@@ -125,30 +125,28 @@ var GBRow = GBTable.createRow({
 
 GBRow.save();
  //Create row in stats table
-    var StatsTable = project.getOrCreateDataTable("MobileStats");
-    
-    DateString = String(moment().format("DD-MM-YYYY"));
-    StatsCursor = StatsTable.queryRows({
-        vars: {'date': DateString,
-        'site': client.SiteName}});
+var StatsTable = project.getOrCreateDataTable("MobileStats");    
+DateString = String(moment().format("DD-MM-YYYY"));
 
-    StatsCursor.limit(1);
+StatsCursor = StatsTable.queryRows({
+    vars: {'date': DateString,
+    'site': client.SiteName}});
 
-    if (StatsCursor.hasNext()) {
-        var StatsRow = StatsCursor.next();
-        StatsRow.vars.countBalance = Number(StatsRow.vars.countBalance)+Number(1);
-        StatsRow.save();
-        console.log("stats row found");
-    }
+StatsCursor.limit(1);
 
-    else{
-        var NewStatsRow = StatsTable.createRow({
+if (StatsCursor.hasNext()) {
+    var StatsRow = StatsCursor.next();
+    StatsRow.vars.countBalance = Number(StatsRow.vars.countBalance)+Number(1);
+    StatsRow.save();
+    console.log("stats row found");
+}
 
-        vars: {'site':client.SiteName,
-            'district':client.DistrictName,
-            'countBalance':Number(1),
-            'date': DateString}});
-        NewStatsRow.save();
-    }
-    
-    
+else{
+    var NewStatsRow = StatsTable.createRow({
+
+    vars: {'site':client.SiteName,
+        'district':client.DistrictName,
+        'countBalance':Number(1),
+        'date': DateString}});
+    NewStatsRow.save();
+}
