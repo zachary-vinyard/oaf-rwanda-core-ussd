@@ -1,7 +1,7 @@
 var client = JSON.parse(state.vars.client_json);
 var arrayLength = client.BalanceHistory.length;
 var districts = project.getOrCreateDataTable('districts');
-
+var admin_email = project.getOrCreateDataTable('admin_emails').queryRows({'name' : 'zach'}).vars.email
 //check MM
 $mm_client = 0
 var d_cur = districts.queryRows({vars: {'district' : state.vars.client_district}});
