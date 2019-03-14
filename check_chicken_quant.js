@@ -112,7 +112,7 @@ var calc_max_chicks = {
         if ($balance === ''){$balance = 0}
         if($paid ===0 && $overpayment !== 0){$paid = (-1)*$overpayment}
         console.log('paid: ' + $paid + '\n$credit: ' + $credit + '\nbalance: ' + $balance + '\noverpayment: ' + $overpayment);
-        $goal = min(client.vars.march_goal, client.vars.march_goal_alt)
+        $goal = min(client.vars.march_goal, client.vars.march_goal_alt);
         $goal_plus = $goal + client.vars.ordered_chickens * 500;
         $result = 0;
         if($paid >= $goal_plus){
