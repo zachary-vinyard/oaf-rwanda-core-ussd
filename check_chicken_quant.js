@@ -127,7 +127,6 @@ var calc_max_chicks = {
         return $result;
     },
     'April' : function(client){
-        //paste in march when done
         var arrayLength = client_dat.BalanceHistory.length;
         $balance = '';
         $paid = 0;
@@ -144,16 +143,23 @@ var calc_max_chicks = {
                 $overpayment += client_dat.BalanceHistory[i].Balance;
             }
         }
-        console.log($overpayment)
         if(!$paid){$paid = 0}
         if(!$credit){$credit = 0}
         if ($balance === ''){$balance = 0}
         if($paid ===0 && $overpayment !== 0){$paid = (-1)*$overpayment}
-        $check_math = Math.max(Math.floor(($paid - client.vars.a_credit*0.6)/500),0);
-        $result = Math.min(client.vars.ordered_chickens, $check_math);
-        console.log(client.vars.ordered_chickens +  ' ' + $result);
-        console.log("paid" + $paid)
-        console.log($check_math)
+        console.log('paid: ' + $paid + '\n$credit: ' + $credit + '\nbalance: ' + $balance + '\noverpayment: ' + $overpayment);
+        $goal = min(client.vars.march_goal, client.vars.march_goal_alt)
+        $goal_plus = $goal + client.vars.ordered_chickens * 500;
+        $result = 0;
+        if($paid >= $goal_plus){
+            $result = client.vars.ordered_chickens;
+        }
+        else if($ <= $goal){
+            $result = 0;
+        }
+        else{
+            $result = client.vars.ordered_chickens - Math.floor(($paid - $goal) / 500)
+        }
         return $result;
     },
     'placeholder' : function(client){
