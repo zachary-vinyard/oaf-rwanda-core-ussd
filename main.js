@@ -5,6 +5,7 @@ lang options - 'en', 'ki'
 */
 
 global.main = function () {
-    var lang = 'en'; //en or ki
-    message_lang = require('./lib/message-lang');
+    var LANG = 'en'; //en or ki
+    var msgs = require('./lib/msg-retrieve');
+    sayText(msgs.get_message(LANG,'main_splash');
 };
