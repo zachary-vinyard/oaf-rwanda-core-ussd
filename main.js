@@ -1,7 +1,6 @@
 /*
 main file for TR / OAF RW mobile enrollment
 include more documentation here!!
-
 lang options - 'en', 'ki'
 */
 
