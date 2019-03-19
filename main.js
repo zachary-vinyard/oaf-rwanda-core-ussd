@@ -5,7 +5,7 @@ lang options - 'en', 'ki'
 */
 
 var msgs = require('./lib/msg-retrieve').get_message; //global message handler
-var admin_alert = require('.lib/admin-alert').admin_alert; //global admin alerter
+var admin_alert = require('./lib/admin-alert').admin_alert; //global admin alerter
 
 global.main = function () {
     sayText(msgs.get_message('main_splash'));
