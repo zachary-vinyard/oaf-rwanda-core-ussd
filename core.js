@@ -35,7 +35,7 @@ addInputHandler('account_number_splash',function(input){ //acount_number_splash 
     }
     catch(error){
         console.log(error);
-        admin_alert("ERROR, ERROR, ERROR", 'Error on USSD test integration : '+ error)
+        admin_alert('Error on USSD test integration : '+ error, "ERROR, ERROR, ERROR")
         stopRules();
     }
 });
