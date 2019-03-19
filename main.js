@@ -4,7 +4,6 @@ include more documentation here!!
 lang options - 'en', 'ki'
 */
 
-var LANG = 'en'; //en or ki - change to ki for launch
 var msgs = require('./lib/msg-retrieve'); //global message handler
 
 global.main = function () {
