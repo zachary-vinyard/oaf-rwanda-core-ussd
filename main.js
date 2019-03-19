@@ -7,7 +7,7 @@ lang options - 'en', 'ki'
 var msgs = require('./lib/msg-retrieve'); //global message handler
 
 global.main = function () {
-    sayText(msgs.get_message(LANG,'main_splash'));
+    sayText(msgs.get_message('main_splash'));
     promptDigits('account_number_splash', { 'submitOnHash' : false,
                                             'maxDigits'   : 8,
                                             'timeout'     : 180 });
