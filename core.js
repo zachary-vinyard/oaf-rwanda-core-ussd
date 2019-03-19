@@ -1,5 +1,5 @@
 /*
-main file for TR / OAF RW mobile enrollment
+main file for TR / OAF RW core program
 include more documentation here!!
 lang options - 'en', 'ki'
 */
