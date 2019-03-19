@@ -22,7 +22,7 @@ input handlers - one per response variable
 addInputHandler('account_number_splash',function(input){ //acount_number_splash input handler - main input handler for initial splash
     try{
         var response = input.replace(/\D/g,'')
-        var verify = require('./account-verify')
+        var verify = require('./lib/account-verify')
         var client_verified = verify(response);
         if(client_verified){
             sayText(msgs('account_number_verified'));
@@ -34,6 +34,7 @@ addInputHandler('account_number_splash',function(input){ //acount_number_splash 
         }
     }
     catch(error){
+        console.log(error);
         admin_alert("ERROR, ERROR, ERROR", 'Error on USSD test integration : '+ error)
         stopRules();
     }
