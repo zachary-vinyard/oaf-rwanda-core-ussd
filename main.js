@@ -22,7 +22,8 @@ input handlers - one per response variable
 addInputHandler('account_number_splash',function(input){ //acount_number_splash input handler - main input handler for initial splash
     try{
         var response = input.replace(/\D/g,'')
-        var client_verified = require('./account-verify').account_verify(response)
+        var verify = require('./account-verify')
+        var client_verified = verify(response);
         if(client_verified){
             sayText(msgs('account_number_verified'));
             stopRules();
