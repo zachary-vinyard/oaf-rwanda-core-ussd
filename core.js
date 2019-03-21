@@ -19,7 +19,7 @@ global.main = function () {
 input handlers - one per response variable
 */
 
-addInputHandler('account_number_splash',function(input){ //acount_number_splash input handler - main input handler for initial splash
+addInputHandler('account_number_splash', function(input){ //acount_number_splash input handler - main input handler for initial splash
     try{
         var response = input.replace(/\D/g,'')
         var verify = require('./lib/account-verify')
