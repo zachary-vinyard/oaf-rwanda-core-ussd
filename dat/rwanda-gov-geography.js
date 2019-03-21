@@ -3,7 +3,23 @@ module contains a file with government geography for Rwanda
 */
 module.exports = {"Rwanda" : {
     "Eastern"   : {
-        "Bugesera"   : {},
+        "Bugesera"   : {
+            "Gashora"    : {},
+            "Juru"       : {},
+            "Kamabuye"   : {},
+            "Ntarama"    : {},
+            "Mareba"     : {},
+            "Mayange"    : {},
+            "Musenyi"    : {},
+            "Mwogo"      : {},
+            "Ngeruka"    : {},
+            "Nyamata"    : {},
+            "Nyarugenge" : {},
+            "Rilima"     : {},
+            "Ruhuha"     : {},
+            "Rweru"      : {},
+            "Shyara"     : {}
+        },
         "Gatsibo"    : {},
         "Kayonza"    : {},
         "Kirehe"     : {},
@@ -19,7 +35,6 @@ module.exports = {"Rwanda" : {
         "Rubavu"     : {},
         "Rusizi"     : {},
         "Rutsiro"    : {},
-        "Mukamira"   : {},
     },
     "Southern"  : {
         "Gisagara"   : {},
