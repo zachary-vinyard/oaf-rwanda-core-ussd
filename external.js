@@ -28,6 +28,7 @@ addInputHandler('geo_selection_1', function(input){
     if(input > 0 && input <= keys.length){
         var selection = input - 1;
         state.vars.province = selection;
+        state.vars.province_name = keys[selection];
         geo_data = geo_select(selection, geo_data)
         var selection_menu = geo_process(geo_data);
         state.vars.current_menu = JSON.stringify(selection_menu);
@@ -57,6 +58,7 @@ addInputHandler('geo_selection_2', function(input){
     if(input > 0 && input <= keys.length){
         var selection = input - 1;
         state.vars.district = selection;
+        state.vars.district_name = keys[selection];
         geo_data = geo_select(selection, geo_data);
         var selection_menu = geo_process(geo_data);
         state.vars.current_menu = JSON.stringify(selection_menu);
@@ -89,6 +91,7 @@ addInputHandler('geo_selection_3', function(input){
         var selection = input - 1;
         geo_data = geo_select(selection, geo_data);
         state.vars.sector = selection;
+        state.vars.sector_name = keys[selection];
         var selection_menu = geo_process(geo_data);
         state.vars.current_menu = JSON.stringify(selection_menu);
         sayText(msgs('geo_selections', selection_menu));
@@ -121,6 +124,7 @@ addInputHandler('geo_selection_4', function(input){
     if(input > 0 && input <= keys.length){
         var selection = input - 1;
         var cell_name = keys[selection];
+        state.vars.cell_name = cell_name;
         var fo_dat = geo_process(geo_select(selection, geo_data));
         var fo_phone = fo_dat["$FO_PHONE"];
         fo_dat["$CELL_NAME"] =  cell_name;
