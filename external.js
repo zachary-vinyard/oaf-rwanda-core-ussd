@@ -32,7 +32,7 @@ addInputHandler('geo_selection', function(input){ //recurses!
         else{
             state.vars.geo_data = JSON.stringify(geo_data);
             var selection_menu = geo_process(geo_data);
-            msgs('geo_selection', selection_menu);
+            msgs('geo_selections', selection_menu);
             waitForResponse('geo_selection', {'submitOnHash' : false,
                                                'maxDigits'   : 1,
                                                'timeout'     : 180});
