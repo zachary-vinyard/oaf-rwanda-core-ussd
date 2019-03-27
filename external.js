@@ -23,7 +23,7 @@ addInputHandler('geo_selection_province', function(input){
     var keys = Object.keys(geo_data);
     if(input > 0 && input <= keys.length){
         var selection = input - 1;
-        state.vars.province_select = selection;
+        state.vars.province = selection;
         geo_data = geo_select(selection, geo_data)
         if('fo_name' in geo_data){ //reached bottom - sends client FO phone number and send message to FO. send via USSD and via SMS
             //here finalize - send message 
@@ -53,8 +53,8 @@ addInputHandler('geo_selection_district', function(input){
     if(input > 0 && input <= keys.length){
         var selection = input - 1;
         console.log(selection);
-        state.vars.district
-        geo_data = geo_select(selection, geo_select(state.vars.province, geo_data));
+        state.vars.district = selection;
+        geo_data = geo_select(selection, geo_select(parseInt(state.vars.province), geo_data));
         if('fo_name' in geo_data){ //reached bottom - sends client FO phone number and send message to FO. send via USSD and via SMS
             //here finalize - send message 
         }
