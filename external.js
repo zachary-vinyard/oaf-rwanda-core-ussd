@@ -77,13 +77,15 @@ addInputHandler('geo_selection_district', function(input){
 
 addInputHandler('geo_selection_sector', function(input){
     input = parseInt(input.replace(/\D/g,''));//cleans out anything nonnumeric in the input - really, input should only be digits 1 -?
+    geo_data = geo_select(selection, geo_select(parseInt(state.vars.province), geo_data))
     var keys = Object.keys(geo_data);
     console.log('at the sector handler now');
     console.log(keys);
     console.log(keys.length);
     if(input > 0 && input <= keys.length){
         var selection = input - 1;
-        geo_data = geo_select(selection, geo_select(state.vars.district, geo_select(state.vars.province, geo_data)));
+        geo_data = geo_select(selection, geo_data);
+        //geo_data = geo_select(selection, geo_select(state.vars.district, geo_select(state.vars.province, geo_data)));
         if('fo_name' in geo_data){ //reached bottom - sends client FO phone number and send message to FO. send via USSD and via SMS
             admin_alert('ERROR', 'ERROR')
         }
