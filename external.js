@@ -47,6 +47,7 @@ addInputHandler('geo_selection_province', function(input){
 addInputHandler('geo_selection_district', function(input){
     input = parseInt(input.replace(/\D/g,''));//cleans out anything nonnumeric in the input - really, input should only be digits 1 -?
     var keys = Object.keys(geo_data);
+    console.log('at the district handler now');
     console.log(keys);
     if(input > 0 && input <= keys.length){
         var selection = input - 1;
@@ -75,6 +76,7 @@ addInputHandler('geo_selection_district', function(input){
 addInputHandler('geo_selection_sector', function(input){
     input = parseInt(input.replace(/\D/g,''));//cleans out anything nonnumeric in the input - really, input should only be digits 1 -?
     var keys = Object.keys(geo_data);
+    console.log('at the sector handler now');
     console.log(keys);
     console.log(keys.length);
     if(input > 0 && input <= keys.length){
