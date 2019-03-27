@@ -10,7 +10,8 @@ var geo_select = require('./lib/geo-select');
 var geo_process = require('./lib/geo-string-processer');
 
 global.main = function(){
-    var geo_data = JSON.stringify(require('./dat/rwanda-gov-geography'));
+    var geo_data = require('./dat/rwanda-gov-geography');
+    state.vars.geo_data = JSON.stringify(geo_data);
     var geo_list = geo_process(geo_data);
     sayText(msgs('external_splash', {'$REGION_LIST' : geo_list}));
     promptDigits('geo_selection', { 'submitOnHash' : false,
