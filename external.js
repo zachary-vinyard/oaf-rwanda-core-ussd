@@ -120,6 +120,7 @@ addInputHandler('geo_selection_4', function(input){
     var sector = state.vars.sector;
     geo_data = geo_select(sector, geo_select(district, geo_select(province, geo_data)));
     var keys = Object.keys(geo_data);
+    var log_client = require('./lib/log-prospective-client');
     console.log('at the cell handler now');
     if(input > 0 && input <= keys.length){
         var selection = input - 1;
@@ -131,10 +132,13 @@ addInputHandler('geo_selection_4', function(input){
         console.log(JSON.stringify(fo_dat));
         if(!(fo_phone == 0)){
             sayText(msgs('cto_fo_information', fo_dat));
+
         }
         else{
             sayText(msgs('cto_no_fo', fo_dat))
         }
+        log_client(fo_dat);
+        stopRules();
     }
     else if (input == 99){ // exit
         sayText(msgs('exit')); // need to add this to the list
