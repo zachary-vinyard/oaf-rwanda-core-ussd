@@ -88,7 +88,7 @@ addInputHandler('geo_selection_3', function(input){
     if(input > 0 && input <= keys.length){
         var selection = input - 1;
         geo_data = geo_select(selection, geo_data);
-        state.vars.sector = input;
+        state.vars.sector = selection;
         var selection_menu = geo_process(geo_data);
         state.vars.current_menu = JSON.stringify(selection_menu);
         sayText(msgs('geo_selections', selection_menu));
