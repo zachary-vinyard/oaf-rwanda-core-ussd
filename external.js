@@ -49,7 +49,7 @@ addInputHandler('geo_selection_district', function(input){
     input = parseInt(input.replace(/\D/g,''));//cleans out anything nonnumeric in the input - really, input should only be digits 1 -?
     var keys = Object.keys(geo_data);
     if(input > 0 && input <= keys.length){
-        var selection = keys[input - 1]
+        var selection = input - 1;
         geo_data = geo_select(selection, geo_data);
         if('fo_name' in geo_data){ //reached bottom - sends client FO phone number and send message to FO. send via USSD and via SMS
             //here finalize - send message 
@@ -75,7 +75,7 @@ addInputHandler('geo_selection_sector', function(input){
     input = parseInt(input.replace(/\D/g,''));//cleans out anything nonnumeric in the input - really, input should only be digits 1 -?
     var keys = Object.keys(geo_data);
     if(input > 0 && input <= keys.length){
-        var selection = keys[input - 1]
+        var selection = input - 1;
         geo_data = geo_select(selection, geo_data);
         if('fo_name' in geo_data){ //reached bottom - sends client FO phone number and send message to FO. send via USSD and via SMS
             admin_alert('ERROR', 'ERROR')
