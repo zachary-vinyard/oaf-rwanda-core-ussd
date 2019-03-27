@@ -13,7 +13,7 @@ global.main = function(){
     var geo_data = require('./dat/rwanda-gov-geography');
     var geo_list = geo_process(geo_data);
     console.log(JSON.stringify(geo_list));
-    sayText(msgs('external_splash', {'$REGION_LIST' : geo_list}));
+    sayText(msgs('external_splash', geo_list));
     promptDigits('geo_selection', { 'submitOnHash' : false,
                                     'maxDigits'    : 1,
                                     'timeout'      : 180 });
@@ -21,7 +21,7 @@ global.main = function(){
 
 addInputHandler('geo_selection', function(input){ //recurses!
     input = parseInt(input.replace(/\D/g,''));//cleans out anything nonnumeric in the input - really, input should only be digits 1 -?
-    var geo_data = JSON.parse(state.vars.geo_data);
+    //var geo_data = JSON.parse(state.vars.geo_data); //deprecate!
     var keys = Object.keys(geo_data);
     if(input > 0 && input <= keys.length){
         var selection = keys[input - 1]
