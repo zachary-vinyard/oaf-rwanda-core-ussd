@@ -18,23 +18,21 @@ global.main = function(){
                                     'timeout'      : 180 });
 }
 
-addInputHandler('geo_selection_province', function(input){
+
+/*
+input = province selection
+shows list of districts from province
+*/
+addInputHandler('geo_selection_1', function(input){
     input = parseInt(input.replace(/\D/g,''));//cleans out anything nonnumeric in the input - really, input should only be digits 1 -?
     var keys = Object.keys(geo_data);
     if(input > 0 && input <= keys.length){
         var selection = input - 1;
         state.vars.province = selection;
         geo_data = geo_select(selection, geo_data)
-        if('fo_name' in geo_data){ //reached bottom - sends client FO phone number and send message to FO. send via USSD and via SMS
-            //here finalize - send message 
-        }
-        else{
-            var selection_menu = geo_process(geo_data);
-            sayText(msgs('geo_selections', selection_menu));
-            promptDigits('geo_selection_district', {'submitOnHash' : false,
-                                               'maxDigits'   : 1,
-                                               'timeout'     : 180});
-        }
+        var selection_menu = geo_process(geo_data);
+        sayText(msgs('geo_selections', selection_menu));
+        promptDigits('geo_selection_2', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
     else if (input == 99){ // exit
         sayText(msgs('exit')); // need to add this to the list
@@ -45,26 +43,22 @@ addInputHandler('geo_selection_province', function(input){
     }
 });
 
-addInputHandler('geo_selection_district', function(input){
+/*
+input = district selection
+shows list of sectors from district
+*/
+addInputHandler('geo_selection_2', function(input){
     input = parseInt(input.replace(/\D/g,''));//cleans out anything nonnumeric in the input - really, input should only be digits 1 -?
+    var province = parseInt(state.vars.province);
+    geo_data = geo_select(province, geo_data);
     var keys = Object.keys(geo_data);
-    console.log('at the district handler now');
-    console.log(keys);
     if(input > 0 && input <= keys.length){
         var selection = input - 1;
-        console.log(selection);
         state.vars.district = selection;
-        geo_data = geo_select(selection, geo_select(parseInt(state.vars.province), geo_data));
-        if('fo_name' in geo_data){ //reached bottom - sends client FO phone number and send message to FO. send via USSD and via SMS
-            //here finalize - send message 
-        }
-        else{
-            var selection_menu = geo_process(geo_data);
-            sayText(msgs('geo_selections', selection_menu));
-            promptDigits('geo_selection_sector', {'submitOnHash' : false,
-                                               'maxDigits'   : 1,
-                                               'timeout'     : 180});
-        }
+        geo_data = geo_select(selection, geo_data);
+        var selection_menu = geo_process(geo_data);
+        sayText(msgs('geo_selections', selection_menu));
+        promptDigits('geo_selection_3', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
     else if (input == 99){ // exit
         sayText(msgs('exit')); // need to add this to the list
@@ -75,27 +69,49 @@ addInputHandler('geo_selection_district', function(input){
     }
 });
 
-addInputHandler('geo_selection_sector', function(input){
+/*
+input = sector selection
+shows list of cells from sectors
+*/
+addInputHandler('geo_selection_3', function(input){
     input = parseInt(input.replace(/\D/g,''));//cleans out anything nonnumeric in the input - really, input should only be digits 1 -?
-    geo_data = geo_select(selection, geo_select(state.vars.province, geo_data))
+    var district = state.vars.district;
+    var province = state.vars.province;
+    geo_data = geo_select(district, geo_select(province, geo_data));
     var keys = Object.keys(geo_data);
     console.log('at the sector handler now');
-    console.log(keys);
-    console.log(keys.length);
     if(input > 0 && input <= keys.length){
         var selection = input - 1;
         geo_data = geo_select(selection, geo_data);
-        //geo_data = geo_select(selection, geo_select(state.vars.district, geo_select(state.vars.province, geo_data)));
-        if('fo_name' in geo_data){ //reached bottom - sends client FO phone number and send message to FO. send via USSD and via SMS
-            admin_alert('ERROR', 'ERROR')
-        }
-        else{
-            var selection_menu = geo_process(geo_data);
-            sayText(msgs('geo_selections', selection_menu));
-            promptDigits('geo_selection_cell', {'submitOnHash' : false,
-                                               'maxDigits'   : 1,
-                                               'timeout'     : 180});
-        }
+        state.vars.sector = input;
+        var selection_menu = geo_process(geo_data);
+        sayText(msgs('geo_selections', selection_menu));
+        promptDigits('geo_selection_4', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+    }
+    else if (input == 99){ // exit
+        sayText(msgs('exit')); // need to add this to the list
+        stopRules();
+    }
+    else{ // selection not within parameters
+        sayText(msgs('invalid_geo_input'));
+    }
+});
+
+
+/*
+input = cell selection
+final step! needs fixing
+*/
+addInputHandler('geo_selection_4', function(input){
+    input = parseInt(input.replace(/\D/g,''));//cleans out anything nonnumeric in the input - really, input should only be digits 1 -?
+    var province = state.vars.province
+    var district = state.vars.district;
+    var sector = state.vars.sector;
+    geo_data = geo_select(sector, geo_select(district, geo_select(province, geo_data)));
+    var keys = Object.keys(geo_data);
+    console.log('at the cell handler now');
+    if(input > 0 && input <= keys.length){
+        throw 'INCOMPLETE BUT WE MADE IT!!!'
     }
     else if (input == 99){ // exit
         sayText(msgs('exit')); // need to add this to the list
