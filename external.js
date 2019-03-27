@@ -14,8 +14,8 @@ global.main = function(){
     var geo_list = geo_process(geo_data);
     sayText(msgs('external_splash', {'$REGION_LIST' : geo_list}));
     promptDigits('geo_selection', { 'submitOnHash' : false,
-                                 'maxDigits'    : 1,
-                                 'timeout'      : 180 });
+                                    'maxDigits'    : 1,
+                                    'timeout'      : 180 });
 }
 
 addInputHandler('geo_selection', function(input){ //recurses!
@@ -25,8 +25,16 @@ addInputHandler('geo_selection', function(input){ //recurses!
     if(input > 0 && input <= keys.length){
         var selection = keys[input - 1]
         geo_data = geo_select(selection, geo_data);
-        if(typeof(geo_data) == 'string'){ //reached bottom - sends client FO phone number and send message to FO. send via USSD and via SMS
+        if('fo_name' in geo_data){ //reached bottom - sends client FO phone number and send message to FO. send via USSD and via SMS
             //here finalize - send message 
+        }
+        else{
+            state.vars.geo_data = JSON.stringify(geo_data);
+            var selection_menu = geo_process(geo_data);
+            msgs(geo_selection, selection_menu);
+            waitForResponse('geo_selection', {'submitOnHash' : false,
+                                               'maxDigits'   : 1,
+                                               'timeout'     : 180});
         }
     }
     else if (input == 99){ // exit
