@@ -13,9 +13,7 @@ var geo_data = require('./dat/rwanda-gov-geography');
 global.main = function(){
     var geo_list = geo_process(geo_data);
     sayText(msgs('external_splash', geo_list));
-    promptDigits('geo_selection_province', { 'submitOnHash' : false,
-                                    'maxDigits'    : 1,
-                                    'timeout'      : 180 });
+    promptDigits('geo_selection_1', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
 }
 
 
