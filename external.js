@@ -55,7 +55,7 @@ addInputHandler('geo_selection_2', function(input){
         geo_data = geo_select(selection, geo_data);
         var selection_menu = geo_process(geo_data);
         sayText(msgs('geo_selections', selection_menu));
-        promptDigits('geo_selection_3', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
+        promptDigits('geo_selection_3', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
     else if (input == 99){ // exit
         sayText(msgs('exit')); // need to add this to the list
@@ -83,7 +83,7 @@ addInputHandler('geo_selection_3', function(input){
         state.vars.sector = input;
         var selection_menu = geo_process(geo_data);
         sayText(msgs('geo_selections', selection_menu));
-        promptDigits('geo_selection_4', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
+        promptDigits('geo_selection_4', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
     else if (input == 99){ // exit
         sayText(msgs('exit')); // need to add this to the list
