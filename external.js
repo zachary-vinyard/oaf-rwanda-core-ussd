@@ -30,7 +30,7 @@ addInputHandler('geo_selection_province', function(input){
         else{
             var selection_menu = geo_process(geo_data);
             sayText(msgs('geo_selections', selection_menu));
-            waitForResponse('geo_selection_district', {'submitOnHash' : false,
+            promptDigits('geo_selection_district', {'submitOnHash' : false,
                                                'maxDigits'   : 1,
                                                'timeout'     : 180});
         }
@@ -56,7 +56,7 @@ addInputHandler('geo_selection_district', function(input){
         else{
             var selection_menu = geo_process(geo_data);
             sayText(msgs('geo_selections', selection_menu));
-            waitForResponse('geo_selection_sector', {'submitOnHash' : false,
+            promptDigits('geo_selection_sector', {'submitOnHash' : false,
                                                'maxDigits'   : 1,
                                                'timeout'     : 180});
         }
@@ -82,7 +82,7 @@ addInputHandler('geo_selection_sector', function(input){
         else{
             var selection_menu = geo_process(geo_data);
             sayText(msgs('geo_selections', selection_menu));
-            waitForResponse('geo_selection_cell', {'submitOnHash' : false,
+            promptDigits('geo_selection_cell', {'submitOnHash' : false,
                                                'maxDigits'   : 1,
                                                'timeout'     : 180});
         }
