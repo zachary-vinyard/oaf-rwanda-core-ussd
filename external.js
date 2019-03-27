@@ -12,6 +12,7 @@ var geo_process = require('./lib/geo-string-processer');
 global.main = function(){
     var geo_data = require('./dat/rwanda-gov-geography');
     var geo_list = geo_process(geo_data);
+    console.log(JSON.stringify(geo_list));
     sayText(msgs('external_splash', {'$REGION_LIST' : geo_list}));
     promptDigits('geo_selection', { 'submitOnHash' : false,
                                     'maxDigits'    : 1,
