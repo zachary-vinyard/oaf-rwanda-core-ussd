@@ -16,7 +16,6 @@ global.main = function(){
     promptDigits('geo_selection_1', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
 }
 
-
 /*
 input = province selection
 shows list of districts from province
@@ -56,7 +55,7 @@ addInputHandler('geo_selection_2', function(input){
         geo_data = geo_select(selection, geo_data);
         var selection_menu = geo_process(geo_data);
         sayText(msgs('geo_selections', selection_menu));
-        promptDigits('geo_selection_3', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+        promptDigits('geo_selection_3', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
     }
     else if (input == 99){ // exit
         sayText(msgs('exit')); // need to add this to the list
@@ -84,7 +83,7 @@ addInputHandler('geo_selection_3', function(input){
         state.vars.sector = input;
         var selection_menu = geo_process(geo_data);
         sayText(msgs('geo_selections', selection_menu));
-        promptDigits('geo_selection_4', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+        promptDigits('geo_selection_4', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
     }
     else if (input == 99){ // exit
         sayText(msgs('exit')); // need to add this to the list
@@ -102,14 +101,19 @@ final step! needs fixing
 */
 addInputHandler('geo_selection_4', function(input){
     input = parseInt(input.replace(/\D/g,''));//cleans out anything nonnumeric in the input - really, input should only be digits 1 -?
-    var province = state.vars.province
+    var province = state.vars.province;
     var district = state.vars.district;
     var sector = state.vars.sector;
     geo_data = geo_select(sector, geo_select(district, geo_select(province, geo_data)));
     var keys = Object.keys(geo_data);
     console.log('at the cell handler now');
     if(input > 0 && input <= keys.length){
-        throw 'INCOMPLETE BUT WE MADE IT!!!'
+        var selection = input - 1;
+        var cell_name = keys[selection];
+        var fo_dat = geo_process(geo_select(selection, geo_data));
+        var fo_phone = fo_dat["$FO_PHONE"];
+        fo_dat["$CELL_NAME"] =  cell_name;
+        sayText(msgs('cto_fo_information', fo_dat));
     }
     else if (input == 99){ // exit
         sayText(msgs('exit')); // need to add this to the list
