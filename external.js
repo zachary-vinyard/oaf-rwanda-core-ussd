@@ -21,7 +21,7 @@ global.main = function(){
 addInputHandler('geo_selection_province', function(input){
     input = parseInt(input.replace(/\D/g,''));//cleans out anything nonnumeric in the input - really, input should only be digits 1 -?
     //var geo_data = JSON.parse(state.vars.geo_data); //deprecate!
-    var keys = Object.keys(geo_data); deprecate
+    var keys = Object.keys(geo_data);
     if(input > 0 && input <= keys.length){
         var selection = input - 1;
         geo_data = geo_select(selection, geo_data);
