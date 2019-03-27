@@ -113,7 +113,10 @@ addInputHandler('geo_selection_4', function(input){
         var fo_dat = geo_process(geo_select(selection, geo_data));
         var fo_phone = fo_dat["$FO_PHONE"];
         fo_dat["$CELL_NAME"] =  cell_name;
-        sayText(msgs('cto_fo_information', fo_dat));
+        console.log(JSON.stringify(fo_dat));
+        if(!(fo_phone == 0)){
+            sayText(msgs('cto_fo_information', fo_dat));
+        }
     }
     else if (input == 99){ // exit
         sayText(msgs('exit')); // need to add this to the list
