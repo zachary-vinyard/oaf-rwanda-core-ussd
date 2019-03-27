@@ -22,12 +22,11 @@ input = province selection
 shows list of districts from province
 */
 addInputHandler('geo_selection_1', function(input){
-    state.vars.current_step = 'geo_selection_2'
+    state.vars.current_step = 'geo_selection_1'
     input = parseInt(input.replace(/\D/g,''));//cleans out anything nonnumeric in the input - really, input should only be digits 1 -?
     var keys = Object.keys(geo_data);
     if(input > 0 && input <= keys.length){
         var selection = input - 1;
-        console.log(keys[selection]);
         state.vars.province = selection;
         geo_data = geo_select(selection, geo_data)
         var selection_menu = geo_process(geo_data);
@@ -50,14 +49,13 @@ input = district selection
 shows list of sectors from district
 */
 addInputHandler('geo_selection_2', function(input){
-    state.vars.current_step = 'geo_selection_3'
+    state.vars.current_step = 'geo_selection_2';
     input = parseInt(input.replace(/\D/g,''));//cleans out anything nonnumeric in the input - really, input should only be digits 1 -?
     var province = parseInt(state.vars.province);
     geo_data = geo_select(province, geo_data);
     var keys = Object.keys(geo_data);
     if(input > 0 && input <= keys.length){
         var selection = input - 1;
-        console.log(keys[selection]);
         state.vars.district = selection;
         geo_data = geo_select(selection, geo_data);
         var selection_menu = geo_process(geo_data);
@@ -80,7 +78,7 @@ input = sector selection
 shows list of cells from sectors
 */
 addInputHandler('geo_selection_3', function(input){
-    state.vars.current_step = 'geo_selection_4';
+    state.vars.current_step = 'geo_selection_3';
     input = parseInt(input.replace(/\D/g,''));//cleans out anything nonnumeric in the input - really, input should only be digits 1 -?
     var district = state.vars.district;
     var province = state.vars.province;
@@ -89,7 +87,6 @@ addInputHandler('geo_selection_3', function(input){
     console.log('at the sector handler now');
     if(input > 0 && input <= keys.length){
         var selection = input - 1;
-        console.log(keys[selection]);
         geo_data = geo_select(selection, geo_data);
         state.vars.sector = input;
         var selection_menu = geo_process(geo_data);
@@ -123,7 +120,6 @@ addInputHandler('geo_selection_4', function(input){
     console.log('at the cell handler now');
     if(input > 0 && input <= keys.length){
         var selection = input - 1;
-        console.log(keys[selection]);
         var cell_name = keys[selection];
         var fo_dat = geo_process(geo_select(selection, geo_data));
         var fo_phone = fo_dat["$FO_PHONE"];
