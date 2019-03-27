@@ -74,6 +74,8 @@ addInputHandler('geo_selection_district', function(input){
 addInputHandler('geo_selection_sector', function(input){
     input = parseInt(input.replace(/\D/g,''));//cleans out anything nonnumeric in the input - really, input should only be digits 1 -?
     var keys = Object.keys(geo_data);
+    console.log(keys);
+    console.log(keys.length);
     if(input > 0 && input <= keys.length){
         var selection = input - 1;
         geo_data = geo_select(selection, geo_data);
