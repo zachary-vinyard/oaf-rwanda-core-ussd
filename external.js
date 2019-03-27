@@ -25,6 +25,7 @@ addInputHandler('geo_selection_province', function(input){
     if(input > 0 && input <= keys.length){
         var selection = keys[input - 1]
         geo_data = geo_select(selection, geo_data);
+        console.log(typeof(geo_data));
         if('fo_name' in geo_data){ //reached bottom - sends client FO phone number and send message to FO. send via USSD and via SMS
             //here finalize - send message 
         }
