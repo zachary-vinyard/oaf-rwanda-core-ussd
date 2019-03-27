@@ -58,7 +58,7 @@ addInputHandler('geo_selection_district', function(input){
             //here finalize - send message 
         }
         else{
-            var selection_menu = geo_process(geo_data);
+            //var selection_menu = geo_process(geo_data);
             msgs('geo_selections', selection_menu);
             waitForResponse('geo_selection_sector', {'submitOnHash' : false,
                                                'maxDigits'   : 1,
