@@ -83,7 +83,7 @@ addInputHandler('geo_selection_sector', function(input){
     console.log(keys.length);
     if(input > 0 && input <= keys.length){
         var selection = input - 1;
-        geo_data = geo_select(selection, geo_select(state.vars.province.district, geo_select(state.vars.province, geo_data)));
+        geo_data = geo_select(selection, geo_select(state.vars.district, geo_select(state.vars.province, geo_data)));
         if('fo_name' in geo_data){ //reached bottom - sends client FO phone number and send message to FO. send via USSD and via SMS
             admin_alert('ERROR', 'ERROR')
         }
