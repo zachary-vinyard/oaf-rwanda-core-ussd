@@ -20,7 +20,6 @@ global.main = function(){
 
 addInputHandler('geo_selection_province', function(input){
     input = parseInt(input.replace(/\D/g,''));//cleans out anything nonnumeric in the input - really, input should only be digits 1 -?
-    //var geo_data = JSON.parse(state.vars.geo_data); //deprecate!
     var keys = Object.keys(geo_data);
     if(input > 0 && input <= keys.length){
         var selection = input - 1;
@@ -30,7 +29,6 @@ addInputHandler('geo_selection_province', function(input){
             //here finalize - send message 
         }
         else{
-            state.vars.geo_data = JSON.stringify(geo_data);
             var selection_menu = geo_process(geo_data);
             msgs('geo_selections', selection_menu);
             waitForResponse('geo_selection_district', {'submitOnHash' : false,
@@ -49,7 +47,6 @@ addInputHandler('geo_selection_province', function(input){
 
 addInputHandler('geo_selection_district', function(input){
     input = parseInt(input.replace(/\D/g,''));//cleans out anything nonnumeric in the input - really, input should only be digits 1 -?
-    //var geo_data = JSON.parse(state.vars.geo_data); //deprecate!
     var keys = Object.keys(geo_data);
     if(input > 0 && input <= keys.length){
         var selection = keys[input - 1]
@@ -58,7 +55,7 @@ addInputHandler('geo_selection_district', function(input){
             //here finalize - send message 
         }
         else{
-            //var selection_menu = geo_process(geo_data);
+            var selection_menu = geo_process(geo_data);
             msgs('geo_selections', selection_menu);
             waitForResponse('geo_selection_sector', {'submitOnHash' : false,
                                                'maxDigits'   : 1,
@@ -76,7 +73,6 @@ addInputHandler('geo_selection_district', function(input){
 
 addInputHandler('geo_selection_sector', function(input){
     input = parseInt(input.replace(/\D/g,''));//cleans out anything nonnumeric in the input - really, input should only be digits 1 -?
-    //var geo_data = JSON.parse(state.vars.geo_data); //deprecate!
     var keys = Object.keys(geo_data);
     if(input > 0 && input <= keys.length){
         var selection = keys[input - 1]
@@ -85,7 +81,6 @@ addInputHandler('geo_selection_sector', function(input){
             admin_alert('ERROR', 'ERROR')
         }
         else{
-            state.vars.geo_data = JSON.stringify(geo_data);
             var selection_menu = geo_process(geo_data);
             msgs('geo_selections', selection_menu);
             waitForResponse('geo_selection_cell', {'submitOnHash' : false,
