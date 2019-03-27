@@ -27,6 +27,7 @@ addInputHandler('geo_selection_1', function(input){
     var keys = Object.keys(geo_data);
     if(input > 0 && input <= keys.length){
         var selection = input - 1;
+        console.log(keys[selection]);
         state.vars.province = selection;
         geo_data = geo_select(selection, geo_data)
         var selection_menu = geo_process(geo_data);
@@ -56,6 +57,7 @@ addInputHandler('geo_selection_2', function(input){
     var keys = Object.keys(geo_data);
     if(input > 0 && input <= keys.length){
         var selection = input - 1;
+        console.log(keys[selection]);
         state.vars.district = selection;
         geo_data = geo_select(selection, geo_data);
         var selection_menu = geo_process(geo_data);
@@ -87,6 +89,7 @@ addInputHandler('geo_selection_3', function(input){
     console.log('at the sector handler now');
     if(input > 0 && input <= keys.length){
         var selection = input - 1;
+        console.log(keys[selection]);
         geo_data = geo_select(selection, geo_data);
         state.vars.sector = input;
         var selection_menu = geo_process(geo_data);
@@ -120,6 +123,7 @@ addInputHandler('geo_selection_4', function(input){
     console.log('at the cell handler now');
     if(input > 0 && input <= keys.length){
         var selection = input - 1;
+        console.log(keys[selection]);
         var cell_name = keys[selection];
         var fo_dat = geo_process(geo_select(selection, geo_data));
         var fo_phone = fo_dat["$FO_PHONE"];
