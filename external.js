@@ -69,6 +69,7 @@ addInputHandler('geo_selection_2', function(input){
     }
     else{ // selection not within parameters
         sayText(msgs('invalid_geo_input'));
+        promptDigits('repeat_geo_input', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
 });
 
@@ -99,6 +100,7 @@ addInputHandler('geo_selection_3', function(input){
     }
     else{ // selection not within parameters
         sayText(msgs('invalid_geo_input'));
+        promptDigits('repeat_geo_input', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
 });
 
@@ -136,6 +138,7 @@ addInputHandler('geo_selection_4', function(input){
     }
     else{ // selection not within parameters
         sayText(msgs('invalid_geo_input'));
+        promptDigits('repeat_geo_input', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
 });
 
