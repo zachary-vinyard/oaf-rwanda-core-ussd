@@ -8,9 +8,12 @@ var msgs = require('./lib/msg-retrieve'); //global message handler
 var admin_alert = require('./lib/admin-alert'); //global admin alerter
 var geo_select = require('./lib/geo-select');
 var geo_process = require('./lib/geo-string-processer');
+var client_log = require('./lib/cta-client-logger');
 var geo_data = require('./dat/rwanda-gov-geography');
 
 global.main = function(){
+    var get_phones = require('./lib/identify-phones');
+    get_phones();
     var geo_list = geo_process(geo_data);
     state.vars.current_menu = JSON.stringify(geo_list);
     sayText(msgs('external_splash', geo_list));
@@ -29,6 +32,7 @@ addInputHandler('geo_selection_1', function(input){
         var selection = input - 1;
         state.vars.province = selection;
         state.vars.province_name = keys[selection];
+        client_log(contact.phone_number, {'province' : state.vars.province_name});
         geo_data = geo_select(selection, geo_data)
         var selection_menu = geo_process(geo_data);
         state.vars.current_menu = JSON.stringify(selection_menu);
@@ -59,6 +63,7 @@ addInputHandler('geo_selection_2', function(input){
         var selection = input - 1;
         state.vars.district = selection;
         state.vars.district_name = keys[selection];
+        client_log(contact.phone_number, {'district' : state.vars.district_name});
         geo_data = geo_select(selection, geo_data);
         var selection_menu = geo_process(geo_data);
         state.vars.current_menu = JSON.stringify(selection_menu);
@@ -92,6 +97,7 @@ addInputHandler('geo_selection_3', function(input){
         geo_data = geo_select(selection, geo_data);
         state.vars.sector = selection;
         state.vars.sector_name = keys[selection];
+        client_log(contact.phone_number, {'sector' : state.vars.sector_name});
         var selection_menu = geo_process(geo_data);
         state.vars.current_menu = JSON.stringify(selection_menu);
         sayText(msgs('geo_selections', selection_menu));
@@ -126,13 +132,13 @@ addInputHandler('geo_selection_4', function(input){
         var selection = input - 1;
         var cell_name = keys[selection];
         state.vars.cell_name = cell_name;
+        client_log(contact.phone_number, {'cell' : cell_name});
         var fo_dat = geo_process(geo_select(selection, geo_data));
         var fo_phone = fo_dat["$FO_PHONE"];
         fo_dat["$CELL_NAME"] =  cell_name;
         console.log(JSON.stringify(fo_dat));
         if(!(fo_phone == 0)){
             sayText(msgs('cto_fo_information', fo_dat));
-
         }
         else{
             sayText(msgs('cto_no_fo', fo_dat))
@@ -150,7 +156,9 @@ addInputHandler('geo_selection_4', function(input){
     }
 });
 
-
+/*
+input handler for errors or repeated inputs
+*/
 addInputHandler('repeat_geo_input', function(input){
     input = parseInt(input.replace(/\D/g,''));
     if(input === 99){
