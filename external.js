@@ -1,7 +1,7 @@
 /*
 main file for external advertising ussd function
 uses lib from core to execute some functions
-so very incomplete - for testing purposes only now
+live!!!
 */
 
 var msgs = require('./lib/msg-retrieve'); //global message handler
@@ -12,8 +12,6 @@ var client_log = require('./lib/cta-client-logger');
 var geo_data = require('./dat/rwanda-gov-geography');
 
 global.main = function(){
-    var get_phones = require('./lib/identify-phones');
-    get_phones();
     var geo_list = geo_process(geo_data);
     state.vars.current_menu = JSON.stringify(geo_list);
     sayText(msgs('external_splash', geo_list));
@@ -116,7 +114,7 @@ addInputHandler('geo_selection_3', function(input){
 
 /*
 input = cell selection
-final step! needs fixing
+final step!
 */
 addInputHandler('geo_selection_4', function(input){
     state.vars.current_step = 'geo_selection_4';
@@ -138,6 +136,8 @@ addInputHandler('geo_selection_4', function(input){
         console.log(JSON.stringify(fo_dat));
         if(!(fo_phone == 0)){
             sayText(msgs('cto_fo_information', fo_dat));
+            var cta_msger = require('./lib/cta-messager');
+            cta_msger(fo_dat, {'$CLIENT_PHONE' : contact.phone_number});
         }
         else{
             sayText(msgs('cto_no_fo', fo_dat))
