@@ -142,7 +142,6 @@ addInputHandler('geo_selection_4', function(input){
         else{
             sayText(msgs('cto_no_fo', fo_dat))
         }
-        log_client(fo_dat);
         stopRules();
     }
     else if (input == 99){ // exit
