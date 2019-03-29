@@ -3,6 +3,7 @@ main file for external advertising ussd function
 uses lib from core to execute some functions
 live!!!
 standard - all input handlers should include 99 as an exit option (even if not included in the options shown)
+all input handlers should save any current display options and current steps to repeat if invalid input
 */
 
 var msgs = require('./lib/msg-retrieve'); //global message handler
