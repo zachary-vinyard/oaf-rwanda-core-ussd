@@ -2,6 +2,7 @@
 main file for external advertising ussd function
 uses lib from core to execute some functions
 live!!!
+standard - all input handlers should include 99 as an exit option (even if not included in the options shown)
 */
 
 var msgs = require('./lib/msg-retrieve'); //global message handler
@@ -38,7 +39,7 @@ addInputHandler('geo_selection_1', function(input){
         promptDigits('geo_selection_2', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
     else if (input == 99){ // exit
-        sayText(msgs('exit')); // need to add this to the list
+        sayText(msgs('exit'));
         stopRules();
     }
     else{ // selection not within parameters
@@ -111,7 +112,6 @@ addInputHandler('geo_selection_3', function(input){
     }
 });
 
-
 /*
 input = cell selection
 final step!
@@ -134,7 +134,7 @@ addInputHandler('geo_selection_4', function(input){
         var fo_phone = fo_dat["$FO_PHONE"];
         fo_dat["$CELL_NAME"] =  cell_name;
         console.log(JSON.stringify(fo_dat));
-        if(!(fo_phone == 0)){
+        if(!(fo_phone == 0)){ //come back to here - if one then send we will be here soon message!
             sayText(msgs('cto_fo_information', fo_dat));
             var cta_msger = require('./lib/cta-messager');
             cta_msger(fo_dat, {'$CLIENT_PHONE' : contact.phone_number});
