@@ -6,8 +6,16 @@ including core, expansion, and Ruhango
 var msgs = require('./lib/msg-retrieve');
 var admin_alert = require('./lib/admin-alert');
 var populate_menu = require('./lib/populate-menu')
+var
+
+/*
+global options - feel free to refactor someday
+*/
 var lang = project.getOrCreateDataTable('ussd_settings').queryRows({'vars' : {'settings' : 'enr_lang'}}).next().vars.value;
 
+/*
+main function
+*/
 global.main = function(){
     var splash_menu = populate_menu('enr_splash', lang);
     console.log(splash_menu);
@@ -18,6 +26,6 @@ global.main = function(){
 addInputHandler('enr_splash', function(input){ //input
     state.vars.current_step = 'enr_splash';
     input = parseInt(input.replace(/\D/g,''));
-    
+    console.log
 });
 
