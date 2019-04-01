@@ -6,7 +6,7 @@ including core, expansion, and Ruhango
 var msgs = require('./lib/msg-retrieve');
 var admin_alert = require('./lib/admin-alert');
 var populate_menu = require('./lib/populate-menu')
-var
+var get_menu_option = require('./lib/get-menu-option');
 
 /*
 global options - feel free to refactor someday
