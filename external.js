@@ -135,14 +135,17 @@ addInputHandler('geo_selection_4', function(input){
         var fo_phone = fo_dat["$FO_PHONE"];
         fo_dat["$CELL_NAME"] =  cell_name;
         console.log(JSON.stringify(fo_dat));
+        var fo_contacted = 0;
         if(!(fo_phone == 0)){ //come back to here - if one then send we will be here soon message!
             sayText(msgs('cto_fo_information', fo_dat));
             var cta_msger = require('./lib/cta-messager');
             cta_msger(fo_dat, {'$CLIENT_PHONE' : contact.phone_number});
+            fo_contacted = 1;
         }
         else{
             sayText(msgs('cto_no_fo', fo_dat))
         }
+        client_log(contact.phone_number, {'fo_contacted' : fo_contacted});
         stopRules();
     }
     else if (input == 99){ // exit
