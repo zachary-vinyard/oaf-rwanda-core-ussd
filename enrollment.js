@@ -18,7 +18,6 @@ main function
 */
 global.main = function(){
     var splash_menu = populate_menu('enr_splash', lang);
-    console.log(splash_menu);
     sayText(msgs('enr_splash', {'$ENR_SPLASH' : splash_menu}, lang))
     promptDigits('enr_splash', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
 }
@@ -26,6 +25,9 @@ global.main = function(){
 addInputHandler('enr_splash', function(input){ //input
     state.vars.current_step = 'enr_splash';
     input = parseInt(input.replace(/\D/g,''));
-    console.log
+    var selection = get_menu_option(input, state.vars.current_step);
+    console.log(selection);
+    sayText(msgs(selection));
+    promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180})
 });
 
