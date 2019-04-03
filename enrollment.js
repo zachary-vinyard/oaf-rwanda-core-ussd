@@ -28,6 +28,7 @@ global.main = function(){
 
 addInputHandler('enr_splash', function(input){ //input handler for splash - expected inputs in table 'enr_splash' on tr
     state.vars.current_step = 'enr_splash';
+    console.log(current_step);
     input = parseInt(input.replace(/\D/g,''));
     var selection = get_menu_option(input, state.vars.current_step);
     if(selection == null){
@@ -38,7 +39,7 @@ addInputHandler('enr_splash', function(input){ //input handler for splash - expe
         var current_menu = msgs(selection, {}, lang);
         state.vars.current_menu_str = current_menu;
         sayText(current_menu);
-        promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180})
+        promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180})
     }
 });
 
@@ -47,8 +48,9 @@ splash menu function 1-5
 */
 addInputHandler('enr_reg_start', function(input){ //input is first entry of nid - next step is nid confirm
     state.vars.current_step = 'enr_reg_start';
+    console.log(state.vars.current_step);
     input = parseInt(input.replace(/\D/g,''));
-    sayText(msgs('enr_reg', {}, lang));
+    sayText(msgs('enr_nid_confirm', {}, lang));
     promptDigits('enr_nid', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
 });
 
