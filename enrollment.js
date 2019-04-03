@@ -208,7 +208,6 @@ addInputHandler('enr_continue', function(input){
     promptDigits('enr_splash', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
 });
 
-
 /*
 input handler for invalid input - most input handlers dump here for unrecognized input
 */
