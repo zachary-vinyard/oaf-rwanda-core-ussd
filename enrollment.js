@@ -45,10 +45,10 @@ addInputHandler('enr_splash', function(input){ //input handler for splash - expe
 /*
 splash menu function 1-5
 */
-addInputHandler('enr_reg', function(input){ //input is first entry of nid - next step is nid confirm
-    state.vars.current_step = 'enr_reg';
+addInputHandler('enr_reg_nid', function(input){ //input is first entry of nid - next step is nid confirm
+    state.vars.current_step = 'enr_reg_nid';
     input = parseInt(input.replace(/\D/g,''));
-    sayText(msgs('enr_reg'))
+    sayText(msgs('enr_reg_nid'))
 });
 
 addInputHandler('enr_order_an', function(input){ //needs to be updated
