@@ -28,7 +28,7 @@ global.main = function(){
 
 addInputHandler('enr_splash', function(input){ //input handler for splash - expected inputs in table 'enr_splash' on tr
     state.vars.current_step = 'enr_splash';
-    console.log(current_step);
+    console.log(state.vars.current_step);
     input = parseInt(input.replace(/\D/g,''));
     var selection = get_menu_option(input, state.vars.current_step);
     if(selection == null){
