@@ -1,6 +1,7 @@
 /*
-module contains a file with government geography for Rwanda
+government geography
 */
+
 module.exports = 
 
 {
@@ -8,380 +9,380 @@ module.exports =
         "Burera": {
             "Bungwe": {
                 "Bungwe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Bushenya": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mudugari": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Tumba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Butaro": {
                 "Gatsibo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mubuga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Muhotora": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyamicucu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rusumo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Cyanika": {
                 "Gasiza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gisovu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabyiniro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kagitega": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kamanyana": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyagahinga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Cyeru": {
                 "Butare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ndongozi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ruyange": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Gahunga": {
                 "Buramba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gisizi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kidakama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyangwe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwasa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Gatebe": {
                 "Gabiro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Musenda": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwambogo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwasa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Gitovu": {
                 "Mariba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Musasa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Runoga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kagogo": {
                 "Kabaya": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kayenzi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kiringa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyamabuye": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kinoni": {
                 "Gafuka": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nkenke": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nkumba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ntaruka": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kinyababa": {
                 "Bugamba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kaganda": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Musasa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rutovu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kivuye": {
                 "Bukwashuri": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gashanje": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Murwa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyirataba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Nemba": {
                 "Kivumu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyamugari": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rubona": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rushara": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Rugarama": {
                 "Cyahi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gafumba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Karangara": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rurembo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Rugengabari": {
                 "Kilibata": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mucaca": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyanamo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rukandabyuma": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Ruhunde": {
                 "Gaseke": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gatare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gitovu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rusekera": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Rusarabuye": {
                 "Kabona": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ndago": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ruhanga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Rwerere": {
                 "Gacundura": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gashoro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ruconsho": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rugari": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             }
@@ -389,524 +390,524 @@ module.exports =
         "Gakenke": {
             "Busengo": {
                 "Birambo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Butereri": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Byibuhiro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kamina": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kirabo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mwumba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ruhanga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Coko": {
                 "Kiruku": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mbirima": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyange": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyanza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Cyabingo": {
                 "Muhaza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Muhororo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Muramba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mutanda": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rukore": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Gakenke": {
                 "Buheta": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kagoma": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nganzo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rusagara": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Gashenyi": {
                 "Nyacyina": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rukura": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rutabo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rutenderi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Taba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Janja": {
                 "Gakindo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gashyamba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gatwa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Karukungu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kamubuga": {
                 "Kamubuga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kidomo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mbatabata": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rukore": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Karambo": {
                 "Kanyanza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Karambo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kirebe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kivuruga": {
                 "Cyintare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gasiza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rugimbu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ruhinga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Sereri": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Mataba": {
                 "Buyange": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gikombe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyundo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Minazi": {
                 "Gasiho": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Munyana": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Murambi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Raba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Mugunga": {
                 "Gahinga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Munyana": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mutego": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nkomane": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rutabo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rutenderi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwamambe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Muhondo": {
                 "Busake": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Bwenda": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gasiza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gihinga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Huro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Musagara": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Musenyi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ruganda": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwinkuba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Muyongwe": {
                 "Bumba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gisiza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Karyango": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nganzo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Va": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Muzo": {
                 "Kabatezi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kiryamo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mubuga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mwiyando": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Nemba": {
                 "Buranga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gahinga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gisozi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mucaca": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Ruli": {
                 "Busoro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gikingo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Jango": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ruli": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwesero": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Rusasa": {
                 "Gataba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kamonyi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Murambi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyundo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rumbi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rurembo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Rushashi": {
                 "Burimba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Busanane": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Joma": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kageyo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mbogo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Razi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwankuba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Shyombwe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             }
@@ -914,588 +915,588 @@ module.exports =
         "Gicumbi": {
             "Bukure": {
                 "Karenge": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kigabiro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kivumu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwesero": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Bwisige": {
                 "Bwisige": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gihuke": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mukono": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyabushingitwa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Byumba": {
                 "Gacurabwenge": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gisuna": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kibali": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kivugiza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Murama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ngondore": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyakabungo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyamabuye": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyarutarama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Cyumba": {
                 "Gasunzu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Muhambo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyakabungo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyambare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyaruka": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwankonjo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Giti": {
                 "Gatobotobo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Murehe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Tanda": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kageyo": {
                 "Gihembe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Horezo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabuga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Muhondo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyamiyaga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kaniga": {
                 "Bugomba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gatoma": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mulindi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyarwambu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rukurura": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Manyagiro": {
                 "Kabuga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyiragifumba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyiravugiza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Remera": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rusekera": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ryaruyumba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Miyove": {
                 "Gakenke": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Miyove": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mubuga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Mukarange": {
                 "Cyamuganga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gatenga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kiruhura": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mutarama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rugerero": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rusambya": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Muko": {
                 "Cyamuhinda": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kigoma": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mwendo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ngange": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rebero": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Mutete": {
                 "Gaseke": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabeza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Musenyi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mutandi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyarubuye": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Nyamiyaga": {
                 "Gahumuliza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Jamba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabeza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabuga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Karambo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kiziba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mataba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Nyankenke": {
                 "Butare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kigogo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kinishya": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rusasa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rutete": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwagihura": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Yaramba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Rubaya": {
                 "Gihanga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gishambashayo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gishari": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Muguramo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyamiyaga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Rukomo": {
                 "Cyeya": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Cyuru": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gisiza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kinyami": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mabare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Munyinya": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Rushaki": {
                 "Gitega": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kamutora": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Karurama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Rutare": {
                 "Bikumba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gasharu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gatwaro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kigabiro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Munanira": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nkoto": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Ruvune": {
                 "Cyandaro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gasambya": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gashirira": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rebero": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ruhondo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Rwamiko": {
                 "Cyeru": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kigabiro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyagahinga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Shangasha": {
                 "Bushara": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kitazigurwa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyabishambi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyabubare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Shangasha": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             }
@@ -1503,371 +1504,371 @@ module.exports =
         "Musanze": {
             "Busogo": {
                 "Gisesero": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kavumu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyagisozi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Sahara": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Cyuve": {
                 "Bukinanyana": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Buruba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Cyanya": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabeza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Migeshi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwebeya": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Gacaca": {
                 "Gakoro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gasakuza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabirizi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Karwasa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Gashaki": {
                 "Kigabiro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kivumu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mbwe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Muharuro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Gataraga": {
                 "Mudakama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Murago": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rubindi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rungu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kimonyi": {
                 "Birira": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Buramira": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kivumu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mbizi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kinigi": {
                 "Bisoke": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kaguhu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kampanga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyabigoma": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyonirima": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Muhoza": {
                 "Cyabararika": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kigombe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mpenge": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ruhengeri": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Muko": {
                 "Cyivugiza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Cyogo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mburabuturo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Songa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Musanze": {
                 "Cyabagarura": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Garuka": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabazungu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyarubuye": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwambogo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Nkotsi": {
                 "Bikara": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gashinga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mubago": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rugeshi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ruyumba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Nyange": {
                 "Cyivugiza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabeza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kamwumba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Muhabura": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ninda": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Remera": {
                 "Gasongero": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kamisave": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Murandi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Murwa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rurambo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Rwaza": {
                 "Bumara": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabushinge": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Musezero": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nturo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyarubuye": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Shingiro": {
                 "Gakingo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kibuguzo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mudende": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mugari": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             }
@@ -1875,397 +1876,397 @@ module.exports =
         "Rulindo": {
             "BASE": {
                 "Cyohoha": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gitare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwamahwa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "BUREGA": {
                 "Butangampundu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Karengeri": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Taba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "BUSHOKI": {
                 "Gasiza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Giko": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kayenzi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mukoto": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyirangarama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "BUYOGA": {
                 "Busoro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Butare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gahororo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gitumba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Karama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mwumba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ndarage": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "CYINZUZI": {
                 "Budakiranya": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Migendezo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rudogo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "CYUNGO": {
                 "Burehe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Marembo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwili": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "KINIHIRA": {
                 "Butunzi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Karegamazi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Marembo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rebero": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "KISARO": {
                 "Gitatsa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kamushenyi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kigarama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mubuga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Murama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Sayo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "MASORO": {
                 "Kabuga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kigarama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kivugiza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyamyumba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Shengampuli": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "MBOGO": {
                 "Bukoro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mushari": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ngiramazi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rurenge": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "MURAMBI": {
                 "Bubangu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gatwa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mugambazi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mvuzo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Murambi": {
                 "Bubangu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "NGOMA": {
                 "Kabuga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Karambo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mugote": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Munyarwanda": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "NTARABANA": {
                 "Kajevuba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kiyanza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mahaza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "RUKOZO": {
                 "Buraro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Bwimo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mberuka": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mbuye": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "RUSIGA": {
                 "Gako": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kirenge": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Taba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "SHYORONGI": {
                 "Bugaragara": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kijabagwe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Muvumu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rubona": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rutonde": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "TUMBA": {
                 "Barari": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gahabwa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Misezero": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyirabirori": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Taba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             }
@@ -2302,8 +2303,8 @@ module.exports =
                     "fo_id": 3518
                 },
                 "Nyabitare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Nyakibungo": {
@@ -2329,8 +2330,8 @@ module.exports =
                     "fo_id": 3104
                 },
                 "Sabusaro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Umunini": {
@@ -2341,30 +2342,30 @@ module.exports =
             },
             "Kibirizi": {
                 "Duwani": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Kibirizi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Muyira": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Ruturo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
             "Kigembe": {
                 "Agahabwa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Gatovu": {
@@ -2373,8 +2374,8 @@ module.exports =
                     "fo_id": 2816
                 },
                 "Impinga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Nyabikenke": {
@@ -2383,8 +2384,8 @@ module.exports =
                     "fo_id": 2814
                 },
                 "Rubona": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Rusagara": {
@@ -2400,8 +2401,8 @@ module.exports =
                     "fo_id": 2411
                 },
                 "Kabumbwe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Mamba": {
@@ -2432,8 +2433,8 @@ module.exports =
                     "fo_id": 3017
                 },
                 "Remera": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwamiko": {
@@ -2454,13 +2455,13 @@ module.exports =
                     "fo_id": 2248
                 },
                 "Kibayi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kibu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mugombwa": {
@@ -2469,20 +2470,20 @@ module.exports =
                     "fo_id": 3274
                 },
                 "Mukomacara": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Mukindo": {
                 "Gitega": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Mukiza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyabisagara": {
@@ -2491,8 +2492,8 @@ module.exports =
                     "fo_id": 2980
                 },
                 "Runyinya": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
@@ -2525,8 +2526,8 @@ module.exports =
                     "fo_id": 1519
                 },
                 "Cyamukuza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Dahwe": {
@@ -2547,23 +2548,23 @@ module.exports =
             },
             "Nyanza": {
                 "Higiro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Nyamugari": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Nyaruteja": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Umubanga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
@@ -2598,23 +2599,23 @@ module.exports =
         "Huye": {
             "Gishamvu": {
                 "Nyakibanda": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Nyumba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ryakibogo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Shori": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
@@ -2642,8 +2643,8 @@ module.exports =
             },
             "Karama": {
                 "Buhoro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Bunazi": {
@@ -2652,8 +2653,8 @@ module.exports =
                     "fo_id": 2837
                 },
                 "Gahororo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Kibingo": {
@@ -2662,8 +2663,8 @@ module.exports =
                     "fo_id": 2836
                 },
                 "Muhembe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
@@ -2743,8 +2744,8 @@ module.exports =
                     "fo_id": 3190
                 },
                 "Gasumba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Kabuye": {
@@ -2753,8 +2754,8 @@ module.exports =
                     "fo_id": 2392
                 },
                 "Kanyinya": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Shanga": {
@@ -2822,15 +2823,15 @@ module.exports =
                     "fo_id": 2822
                 },
                 "Rango A": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Ngoma": {
                 "Butare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kaburemera": {
@@ -2839,13 +2840,13 @@ module.exports =
                     "fo_id": 2835
                 },
                 "Matyazo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ngoma": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
@@ -2861,8 +2862,8 @@ module.exports =
                     "fo_id": 2391
                 },
                 "Karama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Mara": {
@@ -2876,8 +2877,8 @@ module.exports =
                     "fo_id": 2832
                 },
                 "Rugogwe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ruhashya": {
@@ -2898,8 +2899,8 @@ module.exports =
                     "fo_id": 2404
                 },
                 "Kimirehe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kimuna": {
@@ -2913,8 +2914,8 @@ module.exports =
                     "fo_id": 2533
                 },
                 "Mugogwe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
@@ -2930,18 +2931,18 @@ module.exports =
                     "fo_id": 2393
                 },
                 "Kibiraro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kiruhura": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mwendo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Nyamabuye": {
@@ -2955,8 +2956,8 @@ module.exports =
                     "fo_id": 1515
                 },
                 "Shyunga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
@@ -2989,18 +2990,18 @@ module.exports =
             },
             "Tumba": {
                 "Cyarwa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Cyimana": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Gitwa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mpare": {
@@ -3018,320 +3019,320 @@ module.exports =
         "Kamonyi": {
             "Gacurabwenge": {
                 "Gihinga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gihira": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kigembe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nkingo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Karama": {
                 "Bitare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Bunyonga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Muganza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyamirembe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kayenzi": {
                 "Bugarama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Cubi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kayonza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kirwa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mataba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyamirama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kayumbu": {
                 "Busoro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gaseke": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Giko": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Muyange": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Mugina": {
                 "Jenda": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabugondo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mbati": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mugina": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nteko": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Musambira": {
                 "Buhoro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Cyambwe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Karengera": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kivumu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mpushi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rukambura": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Ngamba": {
                 "Kabuga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kazirabonde": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Marembo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Nyamiyaga": {
                 "Bibungo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabashumba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kidahwe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mukinga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ngoma": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Nyarubaka": {
                 "Gitare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kambyeyi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kigusa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyagishubi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ruyanza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Rugarika": {
                 "Bihembe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kigese": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Masaka": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyarubuye": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Sheli": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Rukoma": {
                 "Bugoba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Buguri": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gishyeshye": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Murehe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mwirute": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Remera": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Taba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Runda": {
                 "Gihara": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabagesera": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kagina": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Muganza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ruyenzi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             }
@@ -3339,340 +3340,340 @@ module.exports =
         "Muhanga": {
             "Cyeza": {
                 "Biringaga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kigarama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kivumu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Makera": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyarunyinya": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Shori": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kabacuzi": {
                 "Buramba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Butare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabuye": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kavumu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kibyimba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ngarama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ngoma": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Sholi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kibangu": {
                 "Gisharu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gitega": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Jurwe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mubuga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rubyiniro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ryakanimba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kiyumba": {
                 "Budende": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ndago": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Remera": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ruhina": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rukeri": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Muhanga": {
                 "Kanyinya": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nganzo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyamirama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Remera": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Tyazo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Mushishiro": {
                 "Matyazo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Munazi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyagasozi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rukaragata": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwasare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwigerero": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Nyabinoni": {
                 "Gashorera": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Masangano": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mbuga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Muvumba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyarusozi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Nyamabuye": {
                 "Gahogo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gifumba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gitarama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Remera": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Nyarusange": {
                 "Mbiriri": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Musongati": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ngaru": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rusovu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Rongi": {
                 "Gasagara": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gasharu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Karambo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyamirambo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ruhango": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Rugendabari": {
                 "Gasave": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kanyana": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kibaga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mpinga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nsanga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Shyogwe": {
                 "Kinini": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mbare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mubuga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ruli": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             }
@@ -3754,8 +3755,8 @@ module.exports =
                     "fo_id": 3149
                 },
                 "Nyabivumu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyamugari": {
@@ -3845,8 +3846,8 @@ module.exports =
                     "fo_id": 3165
                 },
                 "Kizi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyarusiza": {
@@ -3855,8 +3856,8 @@ module.exports =
                     "fo_id": 3164
                 },
                 "Rususa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
@@ -3943,8 +3944,8 @@ module.exports =
             },
             "Mbazi": {
                 "Manwari": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mutiwingoma": {
@@ -3970,8 +3971,8 @@ module.exports =
                     "fo_id": 2847
                 },
                 "Gitwa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ruhinga": {
@@ -3990,8 +3991,8 @@ module.exports =
                     "fo_id": 2844
                 },
                 "Yonde": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
@@ -4034,8 +4035,8 @@ module.exports =
                     "fo_id": 1747
                 },
                 "Nyarurambi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rugano": {
@@ -4110,8 +4111,8 @@ module.exports =
             },
             "Tare": {
                 "Buhoro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gasarenda": {
@@ -4191,13 +4192,13 @@ module.exports =
                     "fo_id": 2911
                 },
                 "Nyanza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwesero": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
@@ -4419,13 +4420,13 @@ module.exports =
             },
             "Rwabicuma": {
                 "Gacu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gishike": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mubuga": {
@@ -4444,8 +4445,8 @@ module.exports =
                     "fo_id": 1585
                 },
                 "Runga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             }
@@ -4517,8 +4518,8 @@ module.exports =
                     "fo_id": 2353
                 },
                 "Mbasa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mpanda": {
@@ -4539,28 +4540,28 @@ module.exports =
             },
             "Kivu": {
                 "Cyanyirankora": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gahurizo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kimina": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kivu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rugerero": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
@@ -4581,8 +4582,8 @@ module.exports =
                     "fo_id": 2864
                 },
                 "Ramba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwamiko": {
@@ -4642,8 +4643,8 @@ module.exports =
             },
             "Ngera": {
                 "Bitare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mukuge": {
@@ -4657,8 +4658,8 @@ module.exports =
                     "fo_id": 3205
                 },
                 "Nyamirama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyanza": {
@@ -4706,28 +4707,28 @@ module.exports =
             },
             "Nyabimata": {
                 "Gihemvu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabere": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mishungero": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyabimata": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ruhinga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
@@ -4770,12 +4771,12 @@ module.exports =
                     "fo_id": 3202
                 },
                 "Ruyenzi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Uwumusebeya": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 }
@@ -4834,8 +4835,8 @@ module.exports =
                     "fo_id": 1557
                 },
                 "Rusenge": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             }
@@ -4843,314 +4844,314 @@ module.exports =
         "Ruhango": {
             "Bweramana": {
                 "Buhanda": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 },
                 "Gitisi": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 },
                 "Murama": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 },
                 "Rubona": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 },
                 "Rwinyana": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 }
             },
             "Byimana": {
                 "Kamusenyi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kirengeri": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mahembe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mpanda": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Muhororo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ntenyo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyakabuye": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kabagali": {
                 "Bihembe": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 },
                 "Karambi": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 },
                 "Munanira": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 },
                 "Remera": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 },
                 "Rwesero": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 },
                 "Rwoga": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 }
             },
             "Kinazi": {
                 "Burima": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gisali": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kinazi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rubona": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rutabo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kinihira": {
                 "Bweramvura": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 },
                 "Gitinda": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 },
                 "Kirwa": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 },
                 "Muyunzwe": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 },
                 "Nyakogo": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 },
                 "Rukina": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 }
             },
             "Mbuye": {
                 "Cyanza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gisanga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabuga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kizibere": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mbuye": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mwendo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyakarekare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Mwendo": {
                 "Gafunzo": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 },
                 "Gishweru": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 },
                 "Kamujisho": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 },
                 "Kigarama": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 },
                 "Kubutare": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 },
                 "Mutara": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 },
                 "Nyabibugu": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 },
                 "Saruheshyi": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 }
             },
             "Ntongwe": {
                 "Gako": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kareba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kayenzi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kebero": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyagisozi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyakabungo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyarurama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Ruhango": {
                 "Buhoro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Bunyogombe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gikoma": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Munini": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Musamo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyamagana": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwoga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Tambwe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             }
@@ -5160,391 +5161,391 @@ module.exports =
         "Bugesera": {
             "Gashora": {
                 "Biryogo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabuye": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kagomasi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mwendo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ramiro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Juru": {
                 "Juru": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabukuba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mugorore": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Musovu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwinume": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kamabuye": {
                 "Biharagu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Burenge": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kampeka": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyakayaga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Tunda": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Mareba": {
                 "Bushenyi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gakomeye": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyamigina": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rango": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rugarama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Mayange": {
                 "Gakamba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kagenge": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kibenga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kibirizi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mbyo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Musenyi": {
                 "Gicaca": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Musenyi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyagihunika": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rulindo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Mwogo": {
                 "Bitaba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kagasa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rugunga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rurenge": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Ngeruka": {
                 "Gihembe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Murama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ngeruka": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyakayenzi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rutonde": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Ntarama": {
                 "Cyugaro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kanzenze": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kibungo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Nyamata": {
                 "Kanazi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kayumba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Maranyundo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Murama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyamata y' Umujyi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Nyarugenge": {
                 "Gihinga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabuye": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Murambi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ngenda": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rugando": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Rilima": {
                 "Kabeza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Karera": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kimaranzara": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ntarama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyabagendwa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Ruhuha": {
                 "Bihari": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gatanga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gikundamvura": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kindama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ruhuha": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Rweru": {
                 "Batima": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kintambwe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mazane": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nemba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nkanga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Sharita": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Shyara": {
                 "Kabagugu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kamabuye": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nziranziza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rebero": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rutare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             }
@@ -5557,8 +5558,8 @@ module.exports =
                     "fo_id": 3180
                 },
                 "Kimana": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Teme": {
@@ -5567,8 +5568,8 @@ module.exports =
                     "fo_id": 3178
                 },
                 "Viro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
@@ -5731,28 +5732,28 @@ module.exports =
             },
             "Muhura": {
                 "Bibare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gakorokombe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mamfu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rumuli": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Taba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
@@ -5780,60 +5781,60 @@ module.exports =
             },
             "Ngarama": {
                 "Bugamba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Karambi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kigasha": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ngarama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyarubungo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Nyagihanga": {
                 "Gitinda": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kibare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mayange": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Murambi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyagitabire": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyamirama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
@@ -5859,7 +5860,7 @@ module.exports =
                     "fo_id": 2871
                 },
                 "Rurenge": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 },
@@ -5876,8 +5877,8 @@ module.exports =
                     "fo_id": 2494
                 },
                 "Gihuta": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kanyangese": {
@@ -5913,7 +5914,7 @@ module.exports =
                     "fo_id": 3003
                 },
                 "Nyamatete": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 },
@@ -5927,13 +5928,13 @@ module.exports =
         "Kayonza": {
             "Gahini": {
                 "Juru": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Kahi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Kiyenzi": {
@@ -5959,8 +5960,8 @@ module.exports =
                     "fo_id": 1970
                 },
                 "Kirehe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Rubimba": {
@@ -5998,28 +5999,28 @@ module.exports =
             },
             "Mukarange": {
                 "Bwiza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Kayonza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Mburabuturo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Nyagatovu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Rugendabari": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
@@ -6040,25 +6041,25 @@ module.exports =
                     "fo_id": 2443
                 },
                 "Nyakanazi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Rusave": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
             "Murundi": {
                 "Buhabwa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Karambi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Murundi": {
@@ -6067,52 +6068,52 @@ module.exports =
                     "fo_id": 3013
                 },
                 "Ryamanyoni": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
             "Mwiri": {
                 "Kageyo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Migera": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Nyamugari": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Nyawera": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
             "Ndego": {
                 "Byimana": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Isangano": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Karambi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Kiyovu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
@@ -6133,8 +6134,8 @@ module.exports =
                     "fo_id": 3395
                 },
                 "Shyogo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
@@ -6157,30 +6158,30 @@ module.exports =
             },
             "Ruramira": {
                 "Bugambira": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Nkamba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Ruyonza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Umubuga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
             "Rwinkwavu": {
                 "Gihinga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Mbarara": {
@@ -6189,8 +6190,8 @@ module.exports =
                     "fo_id": 2437
                 },
                 "Mukoyoyo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Nkondo": {
@@ -6203,330 +6204,330 @@ module.exports =
         "Kirehe": {
             "Gahara": {
                 "Butezi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Muhamba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Murehe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyagasenyi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyakagezi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rubimba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Gatore": {
                 "Curazo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Cyunuzi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Muganza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyamiryango": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwabutazi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwantonde": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kigarama": {
                 "Cyanya": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kigarama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kiremera": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyakerera": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyankurazo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kigina": {
                 "Gatarama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rugarama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ruhanga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwanteru": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kirehe": {
                 "Gahama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kirehe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyabigega": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyabikokora": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwesero": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Mahama": {
                 "Kamombo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Munini": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mwoga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Saruhembe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Umunini": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Mpanga": {
                 "Bwiyorere": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kankobwa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mpanga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mushongi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nasho": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyakabungo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rubaya": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Musaza": {
                 "Gasarabwayi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabuga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mubuga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Musaza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nganda": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Mushikiri": {
                 "Bisagara": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Cyamigurwa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rugarama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwanyamuhanga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwayikona": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Nasho": {
                 "Cyambwe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kagese": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ntaruka": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rubirizi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rugoma": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Nyamugari": {
                 "Bukora": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kagasa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kazizi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kiyanzi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyamugari": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Nyarubuye": {
                 "Mareba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyabitare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyarutunga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             }
@@ -6627,8 +6628,8 @@ module.exports =
             },
             "Kibungo": {
                 "Cyasemakamba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gahima": {
@@ -6884,361 +6885,361 @@ module.exports =
         "Nyagatare": {
             "GATUNDA": {
                 "Cyagaju": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabeza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyamikamba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyamirembe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyangara": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyarurema": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwensheke": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "KARAMA": {
                 "Bushara": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Cyenkwanzi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gikagati": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gikundamvura": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabuga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ndego": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyakiga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "KARANGAZI": {
                 "Kamate": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Karama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kizirakome": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mbare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Musenyi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ndama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyagashanga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyamirama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rubagabaga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwenyemera": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwisirabo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "KATABAGEMU": {
                 "Bayigaburire": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kaduha": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kanyeganyege": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Katabagemu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kigarama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyakigando": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rubira": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rugazi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rutoma": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "KIYOMBE": {
                 "Gataba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gitenga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabungo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Karambo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Karujumba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Tovu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "MATIMBA": {
                 "Bwera": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Byimana": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Cyembogo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kagitumba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kanyonza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Matimba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyabwishongwezi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwentanga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "MIMURI": {
                 "Bibare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gakoma": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mahoro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mimuri": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rugari": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "MUKAMA": {
                 "Bufunda": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gatete": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gihengeri": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gishororo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kagina": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rugarama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "MUSHERI": {
                 "Kibirizi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kijojo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Musheri": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ntoma": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyagatabire": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyamiyonga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rugarama I": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rugarama Ii": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "NYAGATARE": {
                 "Barija": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Bushoga": {
@@ -7257,8 +7258,8 @@ module.exports =
                     "fo_id": 3511
                 },
                 "Kamagiri": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nsheke": {
@@ -7267,13 +7268,13 @@ module.exports =
                     "fo_id": 3260
                 },
                 "Nyagatare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rutaraka": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ryabega": {
@@ -7284,8 +7285,8 @@ module.exports =
             },
             "RUKOMO": {
                 "Gahurura": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gashenyi": {
@@ -7304,8 +7305,8 @@ module.exports =
                     "fo_id": 2485
                 },
                 "Rurenge": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
@@ -7316,28 +7317,28 @@ module.exports =
                     "fo_id": 2747
                 },
                 "Gasinga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kazaza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mishenyi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rugarama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rukorota": {
@@ -7346,25 +7347,25 @@ module.exports =
                     "fo_id": 2505
                 },
                 "Rutare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwempasha": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ryeru": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "RWIMIYAGA": {
                 "Gacundezi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabeza": {
@@ -7373,13 +7374,13 @@ module.exports =
                     "fo_id": 3560
                 },
                 "Kirebe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ntoma": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyarupfubire": {
@@ -7388,13 +7389,13 @@ module.exports =
                     "fo_id": 3360
                 },
                 "Nyendo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rutungu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwimiyaga": {
@@ -7405,8 +7406,8 @@ module.exports =
             },
             "TABAGWE": {
                 "Gishuro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gitengure": {
@@ -7415,8 +7416,8 @@ module.exports =
                     "fo_id": 3259
                 },
                 "Nkoma": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyabitekeri": {
@@ -7425,18 +7426,18 @@ module.exports =
                     "fo_id": 3006
                 },
                 "Nyagatoma": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Shonga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Tabagwe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             }
@@ -7444,33 +7445,33 @@ module.exports =
         "Rwamagana": {
             "Fumbwe": {
                 "Mununu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Nyagasambu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Nyakagunga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Nyamirama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Nyarubuye": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Sasabirago": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
@@ -7481,13 +7482,13 @@ module.exports =
                     "fo_id": 1201
                 },
                 "Kagezi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kanyangese": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Kibare": {
@@ -7496,60 +7497,60 @@ module.exports =
                     "fo_id": 3441
                 },
                 "Mutamwa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Rugarama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Runyinya": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Rweri": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
             "Gishali": {
                 "Binunga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Bwinsanga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Cyinyana": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Gati": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Kavumu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ruhimbi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Ruhunda": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
@@ -7592,173 +7593,173 @@ module.exports =
             },
             "Kigabiro": {
                 "Bwiza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Cyanya": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyagasenyi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Sibagire": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Sovu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Muhazi": {
                 "Byeza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Karambi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Karitutu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Kitazigurwa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Murambi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nsinda": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Ntebe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyarusange": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
             "Munyaga": {
                 "Kaduha": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nkungu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rweru": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Zinga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Munyiginya": {
                 "Binunga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Bwana": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Cyarukamba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Cyimbazi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Nkomangwa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Nyarubuye": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
             "Musha": {
                 "Akabare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Budahanda": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Kagarama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Musha": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Nyabisindu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Nyakabanda": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
             "Muyumbu": {
                 "Akinyambo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Bujyujyu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Murehe": {
@@ -7767,13 +7768,13 @@ module.exports =
                     "fo_id": 1794
                 },
                 "Ntebe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Nyarukombe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
@@ -7789,7 +7790,7 @@ module.exports =
                     "fo_id": 3252
                 },
                 "Mwulire": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 },
@@ -7811,8 +7812,8 @@ module.exports =
                     "fo_id": 3249
                 },
                 "Gishore": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Munini": {
@@ -7850,33 +7851,33 @@ module.exports =
             },
             "Rubona": {
                 "Byinza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Kabatasi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Kabuye": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Karambi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Mabare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Nawe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             }
@@ -7886,8 +7887,8 @@ module.exports =
         "Karongi": {
             "Bwishyura": {
                 "Burunga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gasura": {
@@ -7906,8 +7907,8 @@ module.exports =
                     "fo_id": 3031
                 },
                 "Kibuye": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kiniha": {
@@ -8204,7 +8205,7 @@ module.exports =
                     "fo_id": 1983
                 },
                 "Mubuga": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 },
@@ -8246,8 +8247,8 @@ module.exports =
                     "fo_id": 1897
                 },
                 "Kivumu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyabikeri": {
@@ -8413,65 +8414,65 @@ module.exports =
             },
             "HINDIRO": {
                 "Gatare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Gatega": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Kajinge": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Marantima": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Rugendabari": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Runyinya": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
             "KABAYA": {
                 "Busunzu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Gaseke": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Kabaya": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Mwendo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Ngoma": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Nyenyeri": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
@@ -8482,8 +8483,8 @@ module.exports =
                     "fo_id": 2342
                 },
                 "Kirwa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Mukore": {
@@ -8509,67 +8510,67 @@ module.exports =
             },
             "KAVUMU": {
                 "Birembo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Gitwa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Murinzi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Nyamugeyo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Rugeshi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Tetero": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
             "MATYAZO": {
                 "Binana": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Gitega": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Matare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Rutare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Rwamiko": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
             "MUHANDA": {
                 "Bugarula": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Bugarura": {
@@ -8605,33 +8606,33 @@ module.exports =
             },
             "MUHORORO": {
                 "Bweramana": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Mubuga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Myiha": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Rugogwe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Rusororo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Sanza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
@@ -8664,33 +8665,33 @@ module.exports =
             },
             "NGORORERO": {
                 "Kaseke": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Kazabe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Mugano": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Nyange": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Rususa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Torero": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
@@ -8752,390 +8753,390 @@ module.exports =
         "Nyabihu": {
             "Bigogwe": {
                 "Arusha": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Basumba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kijote": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kora": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Muhe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rega": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Jenda": {
                 "Bukinanyana": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gasizi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabatezi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kareba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyirakigugu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rega": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Jomba": {
                 "Gasiza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gasura": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gisizi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Guriro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kavumu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyamitanzi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kabatwa": {
                 "Batikoti": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Cyamvumba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gihorwe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Myuga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ngando": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rugarama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Karago": {
                 "Busoro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Cyamabuye": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gatagara": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gihirwa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kadahenda": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Karengera": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kintobo": {
                 "Gatovu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kintobo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyagisozi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyamugari": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rukondo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ryinyo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Mukamira": {
                 "Gasizi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Jaba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kanyove": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rubaya": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rugeshi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rukoma": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rurengeri": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Muringa": {
                 "Gisizi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mulinga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mwiyanike": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nkomane": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyamasheke": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwantobo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Rambura": {
                 "Birembo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Guriro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kibisabo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mutaho": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyundo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rugamba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Rugera": {
                 "Gakoro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Marangara": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyagahondo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyarutembe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rurembo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Tyazo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Rurembo": {
                 "Gahondo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gitega": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kirimbogo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Murambi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mwana": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwaza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Shyira": {
                 "Cyimanzovu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kanyamitana": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kintarure": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mpinga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mutanda": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Shaki": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             }
@@ -9515,425 +9516,425 @@ module.exports =
         "Rubavu": {
             "Bugeshi": {
                 "Buringo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Butaka": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Hehu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabumba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mutovu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nsherima": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rusiza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Busasamana": {
                 "Gacurabwenge": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gasiza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gihonga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kageshi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Makoro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyacyonga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rusura": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Cyanzarwe": {
                 "Busigari": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Cyanzarwe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gora": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kinyanzovu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Makurizo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwangara": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwanzekuma": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ryabizige": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Gisenyi": {
                 "Amahoro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Bugoyi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kivumu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mbugangari": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nengo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rubavu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Umuganda": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kanama": {
                 "Kamuhoza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Karambo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mahoko": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Musabike": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nkomane": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rusongati": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Yungwe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kanzenze": {
                 "Kanyirabigogo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kirerema": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Muramba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyamikongi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyamirango": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyaruteme": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Mudende": {
                 "Bihungwe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kanyundo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Micinyiro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mirindi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ndoranyi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rungu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwanyakayaga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Nyakiriba": {
                 "Bisizi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gikombe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kanyefurwe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyarushyamba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Nyamyumba": {
                 "Burushya": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Busoro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kinigi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kiraga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Munanira": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rubona": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Nyundo": {
                 "Bahimba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gatovu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kavomo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kigarama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mukondo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyundo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Terimbere": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Rubavu": {
                 "Buhaza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Burinda": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Byahi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gikombe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Murambi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Murara": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rukoko": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Rugerero": {
                 "Basa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gisa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabilizi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Muhira": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rugerero": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rushubi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwaza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             }
@@ -9951,8 +9952,8 @@ module.exports =
                     "fo_id": 998
                 },
                 "Ryankana": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
@@ -9968,8 +9969,8 @@ module.exports =
                     "fo_id": 1975
                 },
                 "Nyamihanda": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwambogo": {
@@ -9980,45 +9981,45 @@ module.exports =
             },
             "Bweyeye": {
                 "Gikungu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kiyabo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Murwa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyamuzi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rasano": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Gashonga": {
                 "Birembo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Buhokoro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabakobwa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kacyuma": {
@@ -10079,8 +10080,8 @@ module.exports =
                     "fo_id": 2049
                 },
                 "Rwega": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Turambi": {
@@ -10101,8 +10102,8 @@ module.exports =
                     "fo_id": 754
                 },
                 "Gihaya": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kagara": {
@@ -10162,23 +10163,23 @@ module.exports =
             },
             "Kamembe": {
                 "Cyangugu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gihundwe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kamashangi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kamurera": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ruganda": {
@@ -10206,8 +10207,8 @@ module.exports =
             },
             "Mururu": {
                 "Gahinga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabahinda": {
@@ -10221,8 +10222,8 @@ module.exports =
                     "fo_id": 1235
                 },
                 "Kagarama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Karambi": {
@@ -10270,28 +10271,28 @@ module.exports =
             },
             "Nkombo": {
                 "Bigoga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Bugarura": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Ishywa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kamagimbo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwenje": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
@@ -10381,8 +10382,8 @@ module.exports =
                     "fo_id": 3406
                 },
                 "Rusambu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
@@ -10420,8 +10421,8 @@ module.exports =
             },
             "Rwimbogo": {
                 "Karenge": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Muhehwe": {
@@ -10435,7 +10436,7 @@ module.exports =
                     "fo_id": 2178
                 },
                 "Rubugu": {
-                    "fo_name": " ",
+                    "fo_name": "0",
                     "fo_phone": "0",
                     "fo_id": 0
                 },
@@ -10481,7 +10482,7 @@ module.exports =
                     "fo_id": 3025
                 },
                 "Mataba": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 },
@@ -10604,7 +10605,7 @@ module.exports =
                     "fo_id": 3266
                 },
                 "Mwendo": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 }
@@ -10633,8 +10634,8 @@ module.exports =
             },
             "Musasa": {
                 "Gabiro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gisiza": {
@@ -10687,7 +10688,7 @@ module.exports =
                     "fo_id": 1383
                 },
                 "Gitwa": {
-                    "fo_name": "0",
+                    "fo_name": 0,
                     "fo_phone": "0",
                     "fo_id": 0
                 },
@@ -10789,396 +10790,396 @@ module.exports =
         "Gasabo": {
             "Bumbogo": {
                 "Kinyaga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Musave": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mvuzo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ngara": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nkuzuzu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyabikenke": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyagasozi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Gatsata": {
                 "Karuruma": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyamabuye": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyamugari": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Gikomero": {
                 "Gasagara": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gicaca": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kibara": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Munini": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Murambi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Gisozi": {
                 "Musezero": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ruhango": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Jabana": {
                 "Akamatamu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Bweramvura": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabuye": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kidashya": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ngiryi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Jali": {
                 "Agateko": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Buhiza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Muko": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nkusi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyabuliba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyakabungo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyamitanga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kacyiru": {
                 "Kamatamu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kamutwa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kibaza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kimihurura": {
                 "Kamukina": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kimihurura": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rugando": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kimironko": {
                 "Bibare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kibagabaga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyagatovu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kinyinya": {
                 "Gacuriro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gasharu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kagugu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Murama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Ndera": {
                 "Bwiza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Cyaruzinge": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kibenga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Masoro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mukuyu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rudashya": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Nduba": {
                 "Butare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gasanze": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gasura": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gatunga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Muremure": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Sha": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Shango": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Remera": {
                 "Nyabisindu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyarutarama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rukiri I": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rukiri Ii": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Rusororo": {
                 "Bisenga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gasagara": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabuga I": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabuga Ii": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kinyana": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mbandazi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyagahinga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ruhanga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Rutunga": {
                 "Gasabo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Indatemwa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabaliza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kacyatwa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kibenga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kigabiro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             }
@@ -11186,226 +11187,226 @@ module.exports =
         "Kicukiro": {
             "Gahanga": {
                 "Gahanga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kagasa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Karembure": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Murinja": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nunga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwabutenge": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Gatenga": {
                 "Gatenga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Karambo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyanza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyarurama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Gikondo": {
                 "Kagunga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kanserege": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kinunga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kagarama": {
                 "Kanserege": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Muyange": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rukatsa": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kanombe": {
                 "Busanza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabeza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Karama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rubirizi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kicukiro": {
                 "Gasharu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kagina": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kicukiro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ngoma": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kigarama": {
                 "Bwerankori": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Karugira": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kigarama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyarurama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwampara": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Masaka": {
                 "Ayabaraya": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Cyimo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gako": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gitaraga": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mbabe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rusheshe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Niboye": {
                 "Gatare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Niboye": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyakabanda": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Nyarugunga": {
                 "Kamashashi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nonko": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwimbogo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             }
@@ -11413,266 +11414,266 @@ module.exports =
         "Nyarugenge": {
             "Gitega": {
                 "Akabahizi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Akabeza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gacyamo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kigarama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kinyange": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kora": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kanyinya": {
                 "Nyamweru": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nzove": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Taba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kigali": {
                 "Kigali": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mwendo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyabugogo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ruriba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwesero": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Kimisagara": {
                 "Kamuhoza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Katabaro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kimisagara": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Mageragere": {
                 "Mwendo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Mageregere": {
                 "Kankuba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kavumu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mataba": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ntungamo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyarufunzo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyarurenzi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Runzenze": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Muhima": {
                 "Amahoro": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabasengerezi": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabeza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyabugogo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rugenge": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Tetero": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Ubumwe": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Nyakabanda": {
                 "Munanira I": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Munanira Ii": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyakabanda I": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Nyakabanda Ii": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Nyamirambo": {
                 "Cyivugiza": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Gasharu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Mumena": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rugarama": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Nyarugenge": {
                 "Agatare": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Biryogo": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kiyovu": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwampara": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             },
             "Rwezamenyo": {
                 "Kabuguru I": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Kabuguru Ii": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwezamenyo I": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 },
                 "Rwezamenyo Ii": {
-                    "fo_name": "0",
-                    "fo_phone": "0",
+                    "fo_name": 0,
+                    "fo_phone": 0,
                     "fo_id": 0
                 }
             }
         }
     }
-}
+};
