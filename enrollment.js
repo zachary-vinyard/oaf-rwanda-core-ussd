@@ -5,7 +5,6 @@ input handler IDs must match the associated menu tables. if input handlers are n
 */
 
 var msgs = require('./lib/msg-retrieve');
-var admin_alert = require('./lib/admin-alert');
 var populate_menu = require('./lib/populate-menu')
 var get_menu_option = require('./lib/get-menu-option');
 var get_client = require('./lib/retrieve-client-row');
@@ -41,68 +40,60 @@ addInputHandler('enr_splash', function(input){ //input handler for splash - expe
         sayText(current_menu);
         promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180})
     }
-});
+}); // end of splash
 
 /*
-splash menu function 1-5
+input handlers for registration steps
 */
 addInputHandler('enr_reg_start', function(input){ //input is first entry of nid - next step is nid confirm
     state.vars.current_step = 'enr_reg_start';
     input = parseInt(input.replace(/\D/g,''));
     var check_if_nid = require('./lib/check-nid');
+    if(input == 99){
+        sayText(msgs('exit', {}, lang));
+        stopRules();
+    }
     if(!check_if_nid(input)){
         sayText(msgs('enr_invalid_nid',{},lang));
         promptDigits('enr_reg_start', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180})
     }
     else{
-        state.vars.nid = input;
+        state.vars.reg_nid = input;
         sayText(msgs('enr_nid_confirm', {}, lang));
-        promptDigits('enr_nid', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+        promptDigits('enr_nid_confirm', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
-});
-
-addInputHandler('enr_order_start', function(input){ //needs to be updated
-    state.vars.current_step = 'enr_order_start';
-    input = parseInt(input.replace(/\D/g,''));
-});
-
-addInputHandler('enr_order_review_start', function(input){ //needs to be updated
-    state.vars.current_step = 'enr_order_review_start';
-    input = parseInt(input.replace(/\D/g,''));
-});
-
-addInputHandler('enr_finalize_an', function(input){ //needs to be updated
-    state.vars.current_step = 'enr_finalize_start';
-    input = parseInt(input.replace(/\D/g,''));
-});
-
-addInputHandler('enr_glus_id', function(input){ //needs to be updated
-    state.vars.current_step = 'enr_glus_id';
-    input = parseInt(input.replace(/\D/g,''));
-}); //end splash menu input handlers
-
-/*
-input handlers for registration steps
-TODO: complete these!
-*/
-addInputHandler('enr_nid', function(input){ //step for dd of nid. input here should match stored nid
-    state.vars.current_step = 'enr_nid';
 });
 
 addInputHandler('enr_nid_confirm', function(input){ //step for dd of nid. input here should match stored nid
     state.vars.current_step = 'enr_nid_confirm';
+    input = parseInt(input.replace(/\D/g,''));
+    if(state.vars.reg_nid == input){
+        sayText(msgs('enr_name_1', {}, lang));
+        promptDigits('enr_name_1', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
+    }
+    else if(input == 99){
+        sayText(msgs('exit', {}, lang));
+        stopRules();
+    }
+    else{
+        sayText(msgs('enr_unmatched_nid', {}, lang));
+        promptDigits('enr_nid_start', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
+    }
 });
 
 addInputHandler('enr_name_1', function(input){ //enr name 1 step
     state.vars.current_step = 'enr_name_1';
+    input = input.replace(/[^a-z_]/ig,'');
 });
 
 addInputHandler('enr_name_1', function(input){ //enr name 2 step
     state.vars.current_step = 'enr_name_1';
+    input = input.replace(/[^a-z_]/ig,'');
 });
 
 addInputHandler('enr_pn', function(input){ //enr phone number step
     state.vars.current_step = 'enr_pn';
+    input = parseInt(input.replace(/\D/g,''));
 });
 
 addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu support id step. should be last registration step
@@ -112,6 +103,11 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
 /*
 input handlers for input ordering
 */
+addInputHandler('enr_order_start', function(input){ //needs to be updated
+    state.vars.current_step = 'enr_order_start';
+    input = parseInt(input.replace(/\D/g,''));
+});
+
 addInputHandler('enr_input_splash', function(input){
     state.vars.current_step = 'enr_input_splash';
     input = parseInt(input.replace(/\D/g,''));
@@ -136,6 +132,34 @@ addInputHandler('enr_input_order', function(input){
     state.var.current_step = 'enr_input_order';
 });
 //end input order handlers
+
+/*
+input handlers for order review
+*/
+addInputHandler('enr_order_review_start', function(input){ //needs to be updated
+    state.vars.current_step = 'enr_order_review_start';
+    input = parseInt(input.replace(/\D/g,''));
+});
+//end order review
+
+/*
+input handlers for finalize order
+*/
+addInputHandler('enr_finalize_start', function(input){ //needs to be updated
+    state.vars.current_step = 'enr_finalize_start';
+    input = parseInt(input.replace(/\D/g,''));
+});
+
+//end finalizae order
+
+/*
+input handlers for gl id retrieve 
+*/
+addInputHandler('enr_glus_id', function(input){ //needs to be updated
+    state.vars.current_step = 'enr_glus_id';
+    input = parseInt(input.replace(/\D/g,''));
+});
+//end gl id retrieve
 
 /*
 generic input handler for returning to main splash menu
