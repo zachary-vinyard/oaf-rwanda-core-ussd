@@ -48,10 +48,17 @@ splash menu function 1-5
 */
 addInputHandler('enr_reg_start', function(input){ //input is first entry of nid - next step is nid confirm
     state.vars.current_step = 'enr_reg_start';
-    console.log(state.vars.current_step);
     input = parseInt(input.replace(/\D/g,''));
-    sayText(msgs('enr_nid_confirm', {}, lang));
-    promptDigits('enr_nid', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+    var check_if_nid = require('./lib/check-nid');
+    if(!check_if_nid(input)){
+        sayText(msgs('enr_invalid_nid',{},lang));
+        promptDigits('enr_reg_start', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180})
+    }
+    else{
+        state.vars.nid = input;
+        sayText(msgs('enr_nid_confirm', {}, lang));
+        promptDigits('enr_nid', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+    }
 });
 
 addInputHandler('enr_order_start', function(input){ //needs to be updated
@@ -139,7 +146,7 @@ addInputHandler('enr_continue', function(input){
     var current_menu = msgs('enr_splash', {'$ENR_SPLASH' : splash_menu}, lang);
     state.vars.current_menu_str = current_menu;
     sayText(current_menu);
-    promptDigits
+    promptDigits('enr_splash', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
 });
 
 
