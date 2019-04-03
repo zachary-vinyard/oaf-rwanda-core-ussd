@@ -45,24 +45,25 @@ addInputHandler('enr_splash', function(input){ //input handler for splash - expe
 /*
 splash menu function 1-5
 */
-addInputHandler('enr_reg_nid', function(input){ //input is first entry of nid - next step is nid confirm
-    state.vars.current_step = 'enr_reg_nid';
+addInputHandler('enr_reg_start', function(input){ //input is first entry of nid - next step is nid confirm
+    state.vars.current_step = 'enr_reg_start';
     input = parseInt(input.replace(/\D/g,''));
-    sayText(msgs('enr_reg_nid'))
+    sayText(msgs('enr_reg', {}, lang));
+    promptDigits('enr_nid', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
 });
 
-addInputHandler('enr_order_an', function(input){ //needs to be updated
-    state.vars.current_step = 'enr_order_an';
+addInputHandler('enr_order_start', function(input){ //needs to be updated
+    state.vars.current_step = 'enr_order_start';
     input = parseInt(input.replace(/\D/g,''));
 });
 
-addInputHandler('enr_order_review_an', function(input){ //needs to be updated
-    state.vars.current_step = 'enr_order_review_an';
+addInputHandler('enr_order_review_start', function(input){ //needs to be updated
+    state.vars.current_step = 'enr_order_review_start';
     input = parseInt(input.replace(/\D/g,''));
 });
 
 addInputHandler('enr_finalize_an', function(input){ //needs to be updated
-    state.vars.current_step = 'enr_finalize_an';
+    state.vars.current_step = 'enr_finalize_start';
     input = parseInt(input.replace(/\D/g,''));
 });
 
