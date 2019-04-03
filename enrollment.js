@@ -52,6 +52,7 @@ addInputHandler('enr_reg_start', function(input){ //input is first entry of nid 
     if(input == 99){
         sayText(msgs('exit', {}, lang));
         stopRules();
+        return null;
     }
     if(!check_if_nid(input)){
         sayText(msgs('enr_invalid_nid',{},lang));
@@ -67,13 +68,14 @@ addInputHandler('enr_reg_start', function(input){ //input is first entry of nid 
 addInputHandler('enr_nid_confirm', function(input){ //step for dd of nid. input here should match stored nid
     state.vars.current_step = 'enr_nid_confirm';
     input = parseInt(input.replace(/\D/g,''));
-    if(state.vars.reg_nid == input){
-        sayText(msgs('enr_name_1', {}, lang));
-        promptDigits('enr_name_1', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
-    }
-    else if(input == 99){
+    if(input == 99){
         sayText(msgs('exit', {}, lang));
         stopRules();
+        return null;
+    }
+    else if(state.vars.reg_nid == input){
+        sayText(msgs('enr_name_1', {}, lang));
+        promptDigits('enr_name_1', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
     }
     else{
         sayText(msgs('enr_unmatched_nid', {}, lang));
@@ -83,21 +85,52 @@ addInputHandler('enr_nid_confirm', function(input){ //step for dd of nid. input 
 
 addInputHandler('enr_name_1', function(input){ //enr name 1 step
     state.vars.current_step = 'enr_name_1';
+    if(input == 99){
+        sayText(msgs('exit', {}, lang));
+        stopRules();
+        return null;
+    }
     input = input.replace(/[^a-z_]/ig,'');
+    if(input === undefined || input == ''){
+        sayText(msgs('enr_invalid_name_input', {}, lang));
+        promptDigits('enr_name_1',  {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
+    }
+    else{
+        state.vars.reg_name_1 = input;
+        sayText(msgs('enr_name_2', {}, lang));
+        promptDigits('enr_name_2',  {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
+    }
 });
 
-addInputHandler('enr_name_1', function(input){ //enr name 2 step
-    state.vars.current_step = 'enr_name_1';
+addInputHandler('enr_name_2', function(input){ //enr name 2 step
+    state.vars.current_step = 'enr_name_2';
+    if(input == 99){
+        sayText(msgs('exit', {}, lang));
+        stopRules();
+        return null;
+    }
     input = input.replace(/[^a-z_]/ig,'');
+    if(input === undefined || input == ''){
+        sayText(msgs('enr_invalid_name_input', {}, lang));
+        promptDigits('enr_name_1',  {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
+    }
+    else{
+        state.vars.reg_name_1 = input;
+        sayText(msgs('enr_pn', {}, lang));
+        promptDigits('enr_pn',  {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
+    }
 });
 
 addInputHandler('enr_pn', function(input){ //enr phone number step
     state.vars.current_step = 'enr_pn';
     input = parseInt(input.replace(/\D/g,''));
+    //need to check if looks like RW phone number
 });
 
-addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu support id step. should be last registration step
+addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu support id step. last registration step
     state.vars.current_step = 'enr_glus';
+    input = input.replace(/\^W/g,'');
+    //need to check against glus id database, and save client, and 
 }); //end registration steps input handlers
 
 /*
@@ -106,6 +139,7 @@ input handlers for input ordering
 addInputHandler('enr_order_start', function(input){ //needs to be updated
     state.vars.current_step = 'enr_order_start';
     input = parseInt(input.replace(/\D/g,''));
+    //ask for account number - next step is splash
 });
 
 addInputHandler('enr_input_splash', function(input){
@@ -114,17 +148,18 @@ addInputHandler('enr_input_splash', function(input){
     if(input == 99){
         sayText(msgs('exit', {}, lang));
         stopRules();
+        return null;
     }
     client = get_client(input, an_pool);
     if(!(client == null)){
         state.vars.session_authorized = true;
         state.vars.session_account_number = input;
-        //need to add next steps to ordering
+        //need to add next steps to ordering - splash menu for 
     }
     else{
         sayText(msgs('account_number_not_found', {}, lang));
         contact.vars.account_failures = contact.vars.account_failures + 1;
-        promptDigits('enr_order_an');
+        promptDigits('enr_order_start');
     }
 });
 
@@ -186,5 +221,6 @@ addInputHandler('invalid_input', function(input){
     else if(input == 99){ //exit
         sayText(msgs('exit', {}, lang));
         stopRules();
+        return null;
     }
 });
