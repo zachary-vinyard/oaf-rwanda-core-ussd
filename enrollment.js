@@ -128,6 +128,7 @@ addInputHandler('enr_pn', function(input){ //enr phone number step
     if(input == 99){
         sayText(msgs('exit', {}, lang));
         stopRules();
+        return null;
     }
     if(check_pn(input)){
         state.vars.reg_pn = input;
@@ -146,6 +147,7 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
     if(input == 99){
         sayText(msgs('exit', {}, lang));
         stopRules();
+        return null;
     }
     var check_glus = require('./lib/check-glus');
     var geo = check_glus(input);
