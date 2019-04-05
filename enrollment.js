@@ -21,6 +21,7 @@ global.main = function(){
     var splash_menu = populate_menu('enr_splash', lang);
     var current_menu = msgs('enr_splash', {'$ENR_SPLASH' : splash_menu}, lang);
     state.vars.current_menu_str = current_menu;
+    state.vars.session_authorized = false;
     sayText(current_menu);
     promptDigits('enr_splash', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
 };
@@ -38,7 +39,7 @@ addInputHandler('enr_splash', function(input){ //input handler for splash - expe
         var current_menu = msgs(selection, {}, lang);
         state.vars.current_menu_str = current_menu;
         sayText(current_menu);
-        promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180})
+        promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 80})
     }
 }); // end of splash
 
@@ -174,7 +175,39 @@ input handlers for input ordering
 addInputHandler('enr_order_start', function(input){ //needs to be updated
     state.vars.current_step = 'enr_order_start';
     input = parseInt(input.replace(/\D/g,''));
-    //ask for account number - next step is splash
+    if(input == 99){
+        playText(msgs('exit', {}, lang));
+        stopRules();
+        return null;
+    }
+    var client = get_client(input, an_pool);
+    if(client === null){
+        sayText(msgs('account_number_not_found', {}, lang));
+        contact.vars.account_failures = contact.vars.account_failures + 1;
+        promptDigits(state.vars.current_step, {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180})
+    }
+    else{
+        state.vars.session_authorized = true;
+        state.vars.session_account_number = input;
+        state.var.client_geo = client.vars.geo;
+        var prod_menu_select = require('./lib/enr-select-product-menu');
+        var product_menu_table_name = prod_menu_select(state.var.geo);
+        var menu = populate_menu(product_menu_table_name,lang);
+        if(typeof(menu) == 'string'){
+            sayText(menu);
+            state.vars.multiple_input_menus = false;
+            state.vars.input_menu = menu;
+            promptDigits('enr_input_splash', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
+        }
+        else if(typeof(menu) == 'object'){
+            state.vars.input_menu_loc = 0;
+            state.vars.multiple_input_menus = true;
+            state.vars.input_menu_length = Object.keys(menu).length;
+            sayText(menu[state.vars.input_menu_loc]);
+            state.vars.input_menu = JSON.stringify(menu);
+            promptDigits('enr_input_splash', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
+        }
+    }
 });
 
 addInputHandler('enr_input_splash', function(input){
@@ -185,17 +218,26 @@ addInputHandler('enr_input_splash', function(input){
         stopRules();
         return null;
     }
-    client = get_client(input, an_pool);
-    if(!(client == null)){
-        state.vars.session_authorized = true;
-        state.vars.session_account_number = input;
-        //need to add next steps to ordering - splash menu for 
+    if(state.vars.multiple_input_menus){
+        if(input == 44 &&  state.vars.input_menu_loc > 0){
+            state.vars.input_menu_loc = state.vars.input_menu_loc - 1;
+            var menu = JSON.parse(state.vars.input_menu)[state.vars.input_menu_loc];
+            sayText(menu);
+            promptDigits('enr_input_splash', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
+        }
+        else if(input == 77 && state.vars.input_menu_loc < state.vars.input_menu_length){
+            state.vars.input_menu_loc = state.vars.input_menu_loc + 1;
+            var menu = JSON.parse(state.vars.input_menu)[state.vars.input_menu_loc]
+            sayText(menu);
+            promptDigits('enr_input_splash', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
+        }
     }
-    else{
-        sayText(msgs('account_number_not_found', {}, lang));
-        contact.vars.account_failures = contact.vars.account_failures + 1;
-        promptDigits('enr_order_start');
-    }
+    var selection = get_menu_option(input, product_menu_table_name);
+    state.vars.current_product = selection;
+    var get_product_options = require('./lib/enr-get-product-options')
+    var product_deets = get_product_options(selection);
+    state.vars.product_deets = JSON.stringify(product_deets);
+    //NEXT STEP IS TO FORMAT INPUT SELECTION STRING
 });
 
 addInputHandler('enr_input_order', function(input){
