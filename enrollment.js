@@ -13,7 +13,7 @@ var get_client = require('./lib/retrieve-client-row');
 global options - feel free to refactor someday future friends
 */
 const lang = project.getOrCreateDataTable('ussd_settings').queryRows({'vars' : {'settings' : 'enr_lang'}}).next().vars.value;
-const an_pool = '20A_client_accounts';
+const an_pool = project.getOrCreateDataTable('ussd_settings').queryRows({'vars' : {'settings' : 'enr_client_pool'}}).next().vars.value;
 /*
 main function
 */
@@ -152,7 +152,7 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
     if(geo){
         var client_log = require('./lib/enr-client-logger');
         state.vars.glus = input;
-        var account_number = client_log(state.vars.nid, state.vars.reg_name_1, state.vars.reg_name_2, state.vars.pn, state.vars.glus, geo);
+        var account_number = client_log(state.vars.nid, state.vars.reg_name_1, state.vars.reg_name_2, state.vars.pn, state.vars.glus, geo, an_pool);
         var enr_msg = msgs('enr_reg_complete', {'$ACCOUNT_NUMBER' : account_number}, lang);
         sayText(enr_msg);
         var messager = require('./lib/enr-messager');
