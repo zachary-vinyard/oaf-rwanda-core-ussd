@@ -115,22 +115,47 @@ addInputHandler('enr_name_2', function(input){ //enr name 2 step
         promptDigits('enr_name_1',  {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
     }
     else{
-        state.vars.reg_name_1 = input;
+        state.vars.reg_name_2 = input;
         sayText(msgs('enr_pn', {}, lang));
-        promptDigits('enr_pn',  {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
+        promptDigits('enr_pn', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
     }
 });
 
 addInputHandler('enr_pn', function(input){ //enr phone number step
     state.vars.current_step = 'enr_pn';
-    input = parseInt(input.replace(/\D/g,''));
-    //need to check if looks like RW phone number
+    input = input.replace(/\D/g,'');
+    var check_pn = require('./lib/phone-format-check');
+    if(input == 99){
+        sayText(msgs('exit', {}, lang));
+        stopRules();
+    }
+    if(check_pn(input)){
+        state.vars.reg_pn = input;
+        sayText(msgs('enr_glus', {}, lang));
+        promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
+    }
+    else{
+        sayText(msgs('invalid_pn_format', {}, lang));
+        promptDigits('enr_pn');
+    }
 });
 
 addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu support id step. last registration step
     state.vars.current_step = 'enr_glus';
     input = input.replace(/\^W/g,'');
-    //need to check against glus id database, and save client, and 
+    if(input == 99){
+        sayText(msgs('exit', {}, lang));
+        stopRules();
+    }
+    var check_glus = require('./lib/check-glus');
+    if(check_glus(input)){
+        //log client
+        //thanks for registering
+    }
+    else{
+        sayText(msgs('enr_invalid_glus', {}, lang));
+        promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
+    }
 }); //end registration steps input handlers
 
 /*
