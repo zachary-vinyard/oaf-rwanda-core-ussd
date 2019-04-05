@@ -79,7 +79,7 @@ addInputHandler('enr_nid_confirm', function(input){ //step for dd of nid. input 
     }
     else{
         sayText(msgs('enr_unmatched_nid', {}, lang));
-        promptDigits('enr_nid_start', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
+        promptDigits('enr_reg_start', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
     }
 });
 
