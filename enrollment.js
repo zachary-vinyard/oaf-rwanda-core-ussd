@@ -181,12 +181,12 @@ addInputHandler('enr_order_start', function(input){ //needs to be updated
         return null;
     }
     var client = get_client(input, an_pool);
-    if(client === null){
+    if(client === null || client.vars.registered == 0){
         sayText(msgs('account_number_not_found', {}, lang));
         contact.vars.account_failures = contact.vars.account_failures + 1;
         promptDigits(state.vars.current_step, {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180})
     }
-    else{
+    else if(client.vars.registered == 1){
         state.vars.session_authorized = true;
         state.vars.session_account_number = input;
         state.var.client_geo = client.vars.geo;
@@ -207,6 +207,11 @@ addInputHandler('enr_order_start', function(input){ //needs to be updated
             state.vars.input_menu = JSON.stringify(menu);
             promptDigits('enr_input_splash', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
         }
+    }
+    else{
+        sayText(msgs('account_number_not_found', {}, lang));
+        contact.vars.account_failures = contact.vars.account_failures + 1;
+        promptDigits(state.vars.current_step, {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180})
     }
 });
 
