@@ -61,7 +61,7 @@ addInputHandler('enr_reg_start', function(input){ //input is first entry of nid 
     else{
         state.vars.reg_nid = input;
         sayText(msgs('enr_nid_confirm', {}, lang));
-        promptDigits('enr_nid_confirm', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+        promptDigits('enr_nid_confirm', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
     }
 });
 
@@ -75,7 +75,7 @@ addInputHandler('enr_nid_confirm', function(input){ //step for dd of nid. input 
     }
     else if(state.vars.reg_nid == input){
         sayText(msgs('enr_name_1', {}, lang));
-        promptDigits('enr_name_1', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
+        promptDigits('enr_name_1', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
     }
     else{
         sayText(msgs('enr_unmatched_nid', {}, lang));
@@ -93,12 +93,12 @@ addInputHandler('enr_name_1', function(input){ //enr name 1 step
     input = input.replace(/[^a-z_]/ig,'');
     if(input === undefined || input == ''){
         sayText(msgs('enr_invalid_name_input', {}, lang));
-        promptDigits('enr_name_1',  {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
+        promptDigits('enr_name_1',  {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
     }
     else{
         state.vars.reg_name_1 = input;
         sayText(msgs('enr_name_2', {}, lang));
-        promptDigits('enr_name_2',  {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
+        promptDigits('enr_name_2',  {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
     }
 });
 
@@ -112,12 +112,12 @@ addInputHandler('enr_name_2', function(input){ //enr name 2 step
     input = input.replace(/[^a-z_]/ig,'');
     if(input === undefined || input == ''){
         sayText(msgs('enr_invalid_name_input', {}, lang));
-        promptDigits('enr_name_1',  {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
+        promptDigits('enr_name_2',  {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
     }
     else{
         state.vars.reg_name_2 = input;
         sayText(msgs('enr_pn', {}, lang));
-        promptDigits('enr_pn', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
+        promptDigits('enr_pn', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
     }
 });
 
@@ -158,11 +158,11 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
         var messager = require('./lib/enr-messager');
         messager(contact.phone_number, enr_msg);
         messager(state.vars.reg_pn, enr_msg);
-        promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
+        promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : 4,'timeout' : 180});
     }
     else{
         sayText(msgs('enr_invalid_glus', {}, lang));
-        promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
+        promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : 4,'timeout' : 180});
     }
 });//end registration steps input handlers
 
