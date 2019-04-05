@@ -148,15 +148,23 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
         stopRules();
     }
     var check_glus = require('./lib/check-glus');
-    if(check_glus(input)){
-        //log client
-        //thanks for registering
+    var geo = check_glus(input);
+    if(geo){
+        var client_log = require('./lib/enr-client-logger');
+        state.vars.glus = input;
+        var account_number = client_log(state.vars.nid, state.vars.reg_name_1, state.vars.reg_name_2, state.vars.pn, state.vars.glus, geo);
+        var enr_msg = msgs('enr_reg_complete', {'$ACCOUNT_NUMBER' : account_number}, lang);
+        sayText(enr_msg);
+        var messager = require('./lib/enr-messager');
+        messager(contact.phone_number, enr_msg);
+        messager(state.vars.reg_pn, enr_msg);
+        promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
     }
     else{
         sayText(msgs('enr_invalid_glus', {}, lang));
         promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
     }
-}); //end registration steps input handlers
+});//end registration steps input handlers
 
 /*
 input handlers for input ordering
@@ -226,15 +234,23 @@ generic input handler for returning to main splash menu
 */
 addInputHandler('enr_continue', function(input){
     state.var.current_step = 'enr_continue';
-    var splash_menu = populate_menu('enr_splash', lang);
-    var current_menu = msgs('enr_splash', {'$ENR_SPLASH' : splash_menu}, lang);
-    state.vars.current_menu_str = current_menu;
-    sayText(current_menu);
-    promptDigits('enr_splash', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+    input = parseInt(input.replace(/\D/g,''));
+    if(input == 1){
+        var splash_menu = populate_menu('enr_splash', lang);
+        var current_menu = msgs('enr_splash', {'$ENR_SPLASH' : splash_menu}, lang);
+        state.vars.current_menu_str = current_menu;
+        sayText(current_menu);
+        promptDigits('enr_splash', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+    }
+    else if(input == 99){
+        sayText(msgs('exit', {}, lang));
+        stopRules();
+    }
+    
 });
 
 /*
-input handler for invalid input - most input handlers dump here for unrecognized input
+input handler for invalid input - input handlers dump here for unrecognized input if there's not already a loop
 */
 addInputHandler('invalid_input', function(input){
     input = parseInt(input.replace(/\D/g,''));
