@@ -354,9 +354,27 @@ addInputHandler('input_order_continue', function(input){
 /*
 input handlers for order review
 */
-addInputHandler('enr_order_review_start', function(input){ //needs to be updated
+addInputHandler('enr_order_review_start', function(input){ //input is account number
     state.vars.current_step = 'enr_order_review_start';
     input = parseInt(input.replace(/\D/g,''));
+    var client = get_client(input);
+    if(client == null || client.vars.registered == 0){
+        sayText(msgs('account_number_not_found', {}, lang));
+        contact.vars.account_failures = contact.vars.account_failures + 1;
+        promptDigits(state.vars.current_step, {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
+    }
+    else{
+        var prod_menu_select = require('./lib/enr-select-product-menu');
+        var gen_input_review = require('./lib/enr-gen-order-review')
+        var input_review_menu = gen_input_review(client, prod_menu_select(client.vars.geo), lang);
+        if(typeof(input_review_menu) == 'string'){
+            sayText(input_review_menu);
+            promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+        }
+        else{
+            // need to finish here
+        }
+    }
 });
 //end order review
 
