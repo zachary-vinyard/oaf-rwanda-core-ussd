@@ -150,7 +150,7 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
         stopRules();
         return null;
     }
-    var check_glus = require('./lib/check-glus');
+    var check_glus = require('./lib/enr-check-glus');
     var geo = check_glus(input);
     if(geo){
         var client_log = require('./lib/enr-client-logger');
