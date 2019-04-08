@@ -30,7 +30,7 @@ addInputHandler('enr_splash', function(input){ //input handler for splash - expe
     state.vars.current_step = 'enr_splash';
     console.log(state.vars.current_step);
     input = parseInt(input.replace(/\D/g,''));
-    var selection = get_menu_option(input, state.vars.current_step);
+    var selection = get_menu_option(input, state.vars.current_step); //add if selection order inputs, review inputs pass to post auth if already authed
     if(selection == null){
         sayText(msgs('invalid_input', {}, lang));
         promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
@@ -194,6 +194,7 @@ addInputHandler('enr_order_start', function(input){ //needs to be updated
         var product_menu_table_name = prod_menu_select(state.var.geo);
         var menu = populate_menu(product_menu_table_name,lang);
         if(typeof(menu) == 'string'){
+            state.vars.current_menu_str = menu;
             sayText(menu);
             state.vars.multiple_input_menus = false;
             state.vars.input_menu = menu;
@@ -203,6 +204,7 @@ addInputHandler('enr_order_start', function(input){ //needs to be updated
             state.vars.input_menu_loc = 0;
             state.vars.multiple_input_menus = true;
             state.vars.input_menu_length = Object.keys(menu).length;
+            state.vars.current_menu_str = menu[state.vars.input_menu_loc];
             sayText(menu[state.vars.input_menu_loc]);
             state.vars.input_menu = JSON.stringify(menu);
             promptDigits('enr_input_splash', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
@@ -227,12 +229,14 @@ addInputHandler('enr_input_splash', function(input){
         if(input == 44 &&  state.vars.input_menu_loc > 0){
             state.vars.input_menu_loc = state.vars.input_menu_loc - 1;
             var menu = JSON.parse(state.vars.input_menu)[state.vars.input_menu_loc];
+            state.vars.current_menu_str = menu;
             sayText(menu);
             promptDigits('enr_input_splash', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
         }
         else if(input == 77 && state.vars.input_menu_loc < state.vars.input_menu_length){
             state.vars.input_menu_loc = state.vars.input_menu_loc + 1;
             var menu = JSON.parse(state.vars.input_menu)[state.vars.input_menu_loc]
+            state.vars.current_menu_str = menu;
             sayText(menu);
             promptDigits('enr_input_splash', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
         }
@@ -246,7 +250,7 @@ addInputHandler('enr_input_splash', function(input){
     var get_product_options = require('./lib/enr-get-product-options')
     var product_deets = get_product_options(selection);
     state.vars.product_deets = JSON.stringify(product_deets);
-    var process_prod = require('./lib/format-product-options');
+    var process_prod = require('./lib/enr-format-product-options');
     var prod_deets_for_msg = process_prod(product_deets, lang);
     var prod_message = msgs('enr_product_selected', prod_deets_for_msg, lang)
     state.vars.prod_message = prod_message;
@@ -256,6 +260,18 @@ addInputHandler('enr_input_splash', function(input){
 
 addInputHandler('enr_input_order', function(input){
     state.var.current_step = 'enr_input_order';
+    state.vars.current_menu_str = state.vars.prod_message;
+    input = parseFloat(input.replace(/[^0-9,.,,]/g,'').replace(/,/g,'.'));
+    var product_deets = JSON.parse(state.vars.product_deets);
+    if(input == 99){
+        playText(msgs('exit', {}, lang));
+        stopRules();
+        return null;
+    }
+    if(input < product_deets.min || input > product_deets.max){
+        playText(msgs('enr_input_out_of_bounds', {}, lang));
+        promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180})
+    }
 });
 //end input order handlers
 
