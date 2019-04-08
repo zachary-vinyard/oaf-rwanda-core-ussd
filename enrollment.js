@@ -14,6 +14,7 @@ global options - feel free to refactor someday future friends
 */
 const lang = project.getOrCreateDataTable('ussd_settings').queryRows({'vars' : {'settings' : 'enr_lang'}}).next().vars.value;
 const an_pool = project.getOrCreateDataTable('ussd_settings').queryRows({'vars' : {'settings' : 'enr_client_pool'}}).next().vars.value;
+const glus_pool =project.getOrCreateDataTable('ussd_settings').queryRows({'vars' : {'settings' : 'glus_pool'}}).next().vars.value;
 /*
 main function
 */
@@ -151,7 +152,7 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
         return null;
     }
     var check_glus = require('./lib/enr-check-glus');
-    var geo = check_glus(input);
+    var geo = check_glus(input, glus_pool);
     if(geo){
         var client_log = require('./lib/enr-client-logger');
         state.vars.glus = input;
@@ -416,7 +417,7 @@ addInputHandler('enr_glus_id_start', function(input){ //input is nid for glus re
         return null;
     }
     var nid_glus = require('./lib/enr-glus-id-nid-retrieve');
-    var glus_str = nid_glus(input);
+    var glus_str = nid_glus(input, glus_pool);
     if(glus_str === null){
         sayText(msgs('enr_invalid_nid', {}, lang))
         promptDigits('enr_glus_id_start', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
