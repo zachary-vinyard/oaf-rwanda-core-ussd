@@ -176,7 +176,7 @@ addInputHandler('enr_order_start', function(input){ //input is account number
     state.vars.current_step = 'enr_order_start';
     input = parseInt(input.replace(/\D/g,''));
     if(input == 99){
-        playText(msgs('exit', {}, lang));
+        sayText(msgs('exit', {}, lang));
         stopRules();
         return null;
     }
@@ -268,12 +268,12 @@ addInputHandler('enr_input_order', function(input){
     input = parseFloat(input.replace(/[^0-9,.,,]/g,'').replace(/,/g,'.'));
     var product_deets = JSON.parse(state.vars.product_deets);
     if(input == 99){
-        playText(msgs('exit', {}, lang));
+        sayText(msgs('exit', {}, lang));
         stopRules();
         return null;
     }
     if(input < product_deets.min || input > product_deets.max){
-        playText(msgs('enr_input_out_of_bounds', {}, lang)); //this shoud include 1 to continue 99 to quite
+        sayText(msgs('enr_input_out_of_bounds', {}, lang)); //this shoud include 1 to continue 99 to quite
         promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180})
     }
     else if(input % product_deets.increment === 0){
@@ -282,11 +282,11 @@ addInputHandler('enr_input_order', function(input){
         var input_confirm_opts = format_order_message(input, product_deets, lang);
         var input_confirm_msg = msgs('enr_confirm_input_order', input_confirm_opts, lang);
         state.vars.current_menu_str = input_confirm_msg;
-        playText(input_confirm_msg);
+        sayText(input_confirm_msg);
         promptDigits('enr_confirm_input_order', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180})
     }
     else if(input % product_deets.increment !== 0){
-        playText(msgs('enr_bad_input_increment'));
+        sayText(msgs('enr_bad_input_increment'));
         promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180})
     }
     else{
@@ -299,7 +299,7 @@ addInputHandler('enr_confirm_input_order', function(input){
     state.vars.current_step = 'enr_confirm_input_order'
     input = parseInt(input.replace(/\D/g,''));
     if(input === 99){
-        playText(msgs('exit', {}, lang));
+        sayText(msgs('exit', {}, lang));
         stopRules();
         return null;
     }
@@ -332,7 +332,7 @@ addInputHandler('input_order_continue', function(input){
     state.vars.current_step = 'input_order_continue';
     input = parseInt(input.replace(/\D/g,''));
     if(input == 99){
-        playText(msgs('exit', {}, lang));
+        sayText(msgs('exit', {}, lang));
         stopRules();
         return null;
     }
@@ -366,7 +366,7 @@ addInputHandler('enr_finalize_start', function(input){ //input is account number
     state.vars.current_step = 'enr_finalize_start';
     input = parseInt(input.replace(/\D/g,''));
     if(input == 99){
-        playText(msgs('exit', {}, lang));
+        sayText(msgs('exit', {}, lang));
         stopRules();
         return null;
     }
@@ -411,18 +411,18 @@ addInputHandler('enr_glus_id_start', function(input){ //input is nid for glus re
     state.vars.current_step = 'enr_glus_id_start';
     input = parseInt(input.replace(/\D/g,''));
     if(input == 99){
-        playText(msgs('exit', {}, lang));
+        sayText(msgs('exit', {}, lang));
         stopRules();
         return null;
     }
     var nid_glus = require('./lib/enr-glus-id-nid-retrieve');
     var glus_str = nid_glus(input);
     if(glus_str === null){
-        playText(msgs('enr_invalid_nid', {}, lang))
+        sayText(msgs('enr_invalid_nid', {}, lang))
         promptDigits('enr_glus_id_start', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
     else{
-        playText(msgs('enr_glus_retrieved', {'$GLUS' : glus_str}, lang));
+        sayText(msgs('enr_glus_retrieved', {'$GLUS' : glus_str}, lang));
         promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
 });
