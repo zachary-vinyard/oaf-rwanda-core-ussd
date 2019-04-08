@@ -7,7 +7,7 @@ input handler IDs must match the associated menu tables. if input handlers are n
 var msgs = require('./lib/msg-retrieve');
 var populate_menu = require('./lib/populate-menu')
 var get_menu_option = require('./lib/get-menu-option');
-var get_client = require('./lib/retrieve-client-row');
+var get_client = require('./lib/enr-retrieve-client-row');
 
 /*
 global options - feel free to refactor someday future friends
@@ -186,6 +186,10 @@ addInputHandler('enr_order_start', function(input){ //input is account number
         contact.vars.account_failures = contact.vars.account_failures + 1;
         promptDigits(state.vars.current_step, {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180})
     }
+    else if(client.vars.finalized == 1){
+        sayText(msgs('enr_order_already_finalized', {}, lang));
+        promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
+    }
     else if(client.vars.registered == 1){
         state.vars.session_authorized = true;
         state.vars.session_account_number = input;
@@ -358,9 +362,44 @@ addInputHandler('enr_order_review_start', function(input){ //needs to be updated
 /*
 input handlers for finalize order
 */
-addInputHandler('enr_finalize_start', function(input){ //needs to be updated
+addInputHandler('enr_finalize_start', function(input){ //input is account number
     state.vars.current_step = 'enr_finalize_start';
     input = parseInt(input.replace(/\D/g,''));
+    if(input == 99){
+        playText(msgs('exit', {}, lang));
+        stopRules();
+        return null;
+    }
+    var client = get_client(input, an_pool);
+    if(client == null || client.vars.registered == 0){
+        sayText(msgs('account_number_not_found', {}, lang));
+        contact.vars.account_failures = contact.vars.account_failures + 1;
+        promptDigits(state.vars.current_step, {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
+    }
+    else if(client.vars.finalized == 0){
+        state.vars.session_account_number = input;
+        sayText(msgs('enr_finalize_verify', {}, lang));
+        promptDigits('enr_finalize_verify',  {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
+    }
+    else if(client.vars.finalized == 1){
+        sayText(msgs('enr_already_finalized', {}, lang));
+        promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
+    }
+});
+
+addInputHandler('enr_finalize_verify', function(input){
+    state.vars.current_step = 'enr_finalize_verify';
+    input = parseInt(input.replace(/\D/g, ''));
+    if(input == 1){
+        sayText(msgs('enr_finalized', {}, lang));
+        var client = get_client(state.vars.session_account_number)
+        client.vars.finalized = 1;
+        client.save(); 
+    }
+    else{
+        sayText(msgs('enr_not_finalized', {}, lang));
+    }
+    promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
 });
 
 //end finalize order
