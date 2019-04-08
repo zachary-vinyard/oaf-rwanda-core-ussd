@@ -49,7 +49,7 @@ input handlers for registration steps
 addInputHandler('enr_reg_start', function(input){ //input is first entry of nid - next step is nid confirm
     state.vars.current_step = 'enr_reg_start';
     input = parseInt(input.replace(/\D/g,''));
-    var check_if_nid = require('./lib/check-nid');
+    var check_if_nid = require('./lib/enr-check-nid');
     if(input == 99){
         sayText(msgs('exit', {}, lang));
         stopRules();
@@ -172,7 +172,7 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
 /*
 input handlers for input ordering
 */
-addInputHandler('enr_order_start', function(input){ //needs to be updated
+addInputHandler('enr_order_start', function(input){ //input is account number
     state.vars.current_step = 'enr_order_start';
     input = parseInt(input.replace(/\D/g,''));
     if(input == 99){
@@ -269,8 +269,79 @@ addInputHandler('enr_input_order', function(input){
         return null;
     }
     if(input < product_deets.min || input > product_deets.max){
-        playText(msgs('enr_input_out_of_bounds', {}, lang));
+        playText(msgs('enr_input_out_of_bounds', {}, lang)); //this shoud include 1 to continue 99 to quite
         promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180})
+    }
+    else if(input % product_deets.increment === 0){
+        var format_order_message = require('./lib/enr-format-input-message');
+        state.vars.current_input_quantity = input;
+        var input_confirm_opts = format_order_message(input, product_deets, lang);
+        var input_confirm_msg = msgs('enr_confirm_input_order', input_confirm_opts, lang);
+        state.vars.current_menu_str = input_confirm_msg;
+        playText(input_confirm_msg);
+        promptDigits('enr_confirm_input_order', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180})
+    }
+    else if(input % product_deets.increment !== 0){
+        playText(msgs('enr_bad_input_increment'));
+        promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180})
+    }
+    else{
+        sayText(msgs('invalid_input', {}, lang));
+        promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180})
+    }
+});
+
+addInputHandler('enr_confirm_input_order', function(input){
+    state.vars.current_step = 'enr_confirm_input_order'
+    input = parseInt(input.replace(/\D/g,''));
+    if(input === 99){
+        playText(msgs('exit', {}, lang));
+        stopRules();
+        return null;
+    }
+    else if(input === 44){
+        if(state.vars.multiple_input_menus){
+            var menu = JSON.parse(state.vars.input_menu)[0];
+        }
+        else{
+            var menu = state.vars.input_menu;
+        }
+        state.vars.current_menu_str = menu;
+        sayText(menu)
+        promptDigits('enr_input_splash', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180})
+    }
+    else if(input === 1){
+        var log_input_order = require('./lib/enr-log-input-order');
+        var product_deets = JSON.parse(state.vars.product_deets)
+        var input_name = product_deets.name;
+        log_input_order(state.vars.session_account_number, an_pool, input_name, state.vars.current_input_quantity)
+        sayText(msgs('enr_input_order_success', {'$NAME' : product_deets[lang]}, lang));
+        promptDigits('enr_input_order_continue', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+    }
+    else{
+        sayText(msgs('invalid_input', {}, lang));
+        promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180})
+    }
+});
+
+addInputHandler('input_order_continue', function(input){
+    state.vars.current_step = 'input_order_continue';
+    input = parseInt(input.replace(/\D/g,''));
+    if(input == 99){
+        playText(msgs('exit', {}, lang));
+        stopRules();
+        return null;
+    }
+    else{
+        if(state.vars.multiple_input_menus){
+            var menu = JSON.parse(state.vars.input_menu)[0];
+        }
+        else{
+            var menu = state.vars.input_menu;
+        }
+        state.vars.current_menu_str = menu;
+        sayText(menu)
+        promptDigits('enr_input_splash', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180})
     }
 });
 //end input order handlers
@@ -300,6 +371,7 @@ input handlers for gl id retrieve
 addInputHandler('enr_glus_id', function(input){ //needs to be updated
     state.vars.current_step = 'enr_glus_id';
     input = parseInt(input.replace(/\D/g,''));
+    playText('PLACEHOLDER, PLEASE REPLACE ME')
 });
 //end gl id retrieve
 
