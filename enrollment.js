@@ -194,9 +194,9 @@ addInputHandler('enr_order_start', function(input){ //input is account number
     else if(client.vars.registered == 1){
         state.vars.session_authorized = true;
         state.vars.session_account_number = input;
-        state.var.client_geo = client.vars.geo;
+        state.vars.client_geo = client.vars.geo;
         var prod_menu_select = require('./lib/enr-select-product-menu');
-        var product_menu_table_name = prod_menu_select(state.var.geo);
+        var product_menu_table_name = prod_menu_select(state.vars.geo);
         var menu = populate_menu(product_menu_table_name,lang);
         if(typeof(menu) == 'string'){
             state.vars.current_menu_str = menu;
@@ -264,7 +264,7 @@ addInputHandler('enr_input_splash', function(input){
 });
 
 addInputHandler('enr_input_order', function(input){
-    state.var.current_step = 'enr_input_order';
+    state.vars.current_step = 'enr_input_order';
     state.vars.current_menu_str = state.vars.prod_message;
     input = parseFloat(input.replace(/[^0-9,.,,]/g,'').replace(/,/g,'.'));
     var product_deets = JSON.parse(state.vars.product_deets);
@@ -433,7 +433,7 @@ addInputHandler('enr_glus_id_start', function(input){ //input is nid for glus re
 generic input handler for returning to main splash menu
 */
 addInputHandler('enr_continue', function(input){
-    state.var.current_step = 'enr_continue';
+    state.vars.current_step = 'enr_continue';
     input = parseInt(input.replace(/\D/g,''));
     if(input == 1){
         var splash_menu = populate_menu('enr_splash', lang);
