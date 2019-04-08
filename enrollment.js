@@ -368,10 +368,24 @@ addInputHandler('enr_finalize_start', function(input){ //needs to be updated
 /*
 input handlers for gl id retrieve 
 */
-addInputHandler('enr_glus_id', function(input){ //needs to be updated
-    state.vars.current_step = 'enr_glus_id';
+addInputHandler('enr_glus_id_start', function(input){ //input is nid for glus retrieval
+    state.vars.current_step = 'enr_glus_id_start';
     input = parseInt(input.replace(/\D/g,''));
-    playText('PLACEHOLDER, PLEASE REPLACE ME')
+    if(input == 99){
+        playText(msgs('exit', {}, lang));
+        stopRules();
+        return null;
+    }
+    var nid_glus = require('./lib/enr-glus-id-nid-retrieve');
+    var glus_str = nid_glus(input);
+    if(glus_str === null){
+        playText(msgs('enr_invalid_nid', {}, lang))
+        promptDigits('enr_glus_id_start', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+    }
+    else{
+        playText(msgs('enr_glus_retrieved', {'$GLUS' : glus_str}, lang));
+        promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+    }
 });
 //end gl id retrieve
 
@@ -392,7 +406,6 @@ addInputHandler('enr_continue', function(input){
         sayText(msgs('exit', {}, lang));
         stopRules();
     }
-    
 });
 
 /*
