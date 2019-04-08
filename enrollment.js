@@ -238,11 +238,20 @@ addInputHandler('enr_input_splash', function(input){
         }
     }
     var selection = get_menu_option(input, product_menu_table_name);
+    if(selection === null){
+        sayText('enr_invalid_product_selection', {}, lang); // need to include 1 to continue, 99 to exit here
+        promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180})
+    }
     state.vars.current_product = selection;
     var get_product_options = require('./lib/enr-get-product-options')
     var product_deets = get_product_options(selection);
     state.vars.product_deets = JSON.stringify(product_deets);
-    //NEXT STEP IS TO FORMAT INPUT SELECTION STRING
+    var process_prod = require('./lib/format-product-options');
+    var prod_deets_for_msg = process_prod(product_deets, lang);
+    var prod_message = msgs('enr_product_selected', prod_deets_for_msg, lang)
+    state.vars.prod_message = prod_message;
+    sayText(prod_message);
+    promptDigits('enr_input_order', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
 });
 
 addInputHandler('enr_input_order', function(input){
@@ -267,7 +276,7 @@ addInputHandler('enr_finalize_start', function(input){ //needs to be updated
     input = parseInt(input.replace(/\D/g,''));
 });
 
-//end finalizae order
+//end finalize order
 
 /*
 input handlers for gl id retrieve 
