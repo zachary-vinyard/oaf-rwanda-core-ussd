@@ -51,12 +51,13 @@ addInputHandler('enr_reg_start', function(input){ //input is first entry of nid 
     state.vars.current_step = 'enr_reg_start';
     input = parseInt(input.replace(/\D/g,''));
     var check_if_nid = require('./lib/enr-check-nid');
+    var is_already_reg = require('./lib/enr-check-dup-nid');
     if(input == 99){
         sayText(msgs('exit', {}, lang));
         stopRules();
         return null;
     }
-    if(!check_if_nid(input)){
+    else if(!check_if_nid(input) || is_already_reg(input)){
         sayText(msgs('enr_invalid_nid',{},lang));
         promptDigits('enr_reg_start', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180})
     }
