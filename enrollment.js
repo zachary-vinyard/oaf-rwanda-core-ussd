@@ -340,7 +340,7 @@ addInputHandler('enr_confirm_input_order', function(input){ //input ordering con
     }
 });
 
-addInputHandler('input_order_continue', function(input){
+addInputHandler('enr_input_order_continue', function(input){
     state.vars.current_step = 'input_order_continue';
     input = parseInt(input.replace(/\D/g,''));
     if(input == 99){
