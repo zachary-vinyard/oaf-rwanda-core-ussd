@@ -365,7 +365,7 @@ input handlers for order review
 addInputHandler('enr_order_review_start', function(input){ //input is account number
     state.vars.current_step = 'enr_order_review_start';
     input = parseInt(input.replace(/\D/g,''));
-    var client = get_client(input);
+    var client = get_client(input, an_pool);
     if(client == null || client.vars.registered == 0){
         sayText(msgs('account_number_not_found', {}, lang));
         contact.vars.account_failures = contact.vars.account_failures + 1;
@@ -449,7 +449,7 @@ addInputHandler('enr_finalize_verify', function(input){
     input = parseInt(input.replace(/\D/g, ''));
     if(input == 1){
         sayText(msgs('enr_finalized', {}, lang));
-        var client = get_client(state.vars.session_account_number)
+        var client = get_client(state.vars.session_account_number, an_pool)
         client.vars.finalized = 1;
         client.save(); 
     }
