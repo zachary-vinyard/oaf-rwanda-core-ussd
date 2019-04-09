@@ -145,7 +145,7 @@ addInputHandler('enr_pn', function(input){ //enr phone number step
     }
     else{
         sayText(msgs('invalid_pn_format', {}, lang));
-        promptDigits('enr_pn');
+        promptDigits('enr_pn', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
     }
 });
 
