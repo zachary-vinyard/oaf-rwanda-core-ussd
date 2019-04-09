@@ -264,7 +264,7 @@ addInputHandler('enr_input_splash', function(input){ //main input menu
     }
     state.vars.current_product = selection;
     var get_product_options = require('./lib/enr-get-product-options')
-    var product_deets = get_product_options(selection);
+    var product_deets = get_product_options(selection, product_menu_table_name);
     state.vars.product_deets = JSON.stringify(product_deets);
     var process_prod = require('./lib/enr-format-product-options');
     var prod_deets_for_msg = process_prod(product_deets, lang);
