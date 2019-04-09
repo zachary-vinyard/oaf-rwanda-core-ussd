@@ -166,9 +166,10 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
         var account_number = client_log(state.vars.reg_nid, state.vars.reg_name_1, state.vars.reg_name_2, state.vars.pn, state.vars.glus, geo, an_pool);
         var enr_msg = msgs('enr_reg_complete', {'$ACCOUNT_NUMBER' : account_number}, lang);
         sayText(enr_msg);
+        var enr_msg_sms = msgs('enr_reg_complete_sms', {'$ACCOUNT_NUMBER' : account_number}, lang);
         var messager = require('./lib/enr-messager');
-        messager(contact.phone_number, enr_msg);
-        messager(state.vars.reg_pn, enr_msg);
+        messager(contact.phone_number, enr_msg_sms);
+        messager(state.vars.reg_pn, enr_msg_sms);
         promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
     else{
