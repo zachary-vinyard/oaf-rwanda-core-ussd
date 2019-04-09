@@ -208,6 +208,7 @@ addInputHandler('enr_order_start', function(input){ //input is account number
         var menu = populate_menu(product_menu_table_name, lang);
         if(typeof(menu) == 'string'){
             state.vars.current_menu_str = menu;
+            console.log(menu);
             sayText(menu);
             state.vars.multiple_input_menus = false;
             state.vars.input_menu = menu;
