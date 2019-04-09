@@ -256,6 +256,13 @@ addInputHandler('enr_input_splash', function(input){ //main input menu
             sayText(menu);
             promptDigits('enr_input_splash', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
         }
+        else if(input == 44 && state.vars.input_menu_loc == 0){
+            var splash_menu = populate_menu('enr_splash', lang);
+            var current_menu = msgs('enr_splash', {'$ENR_SPLASH' : splash_menu}, lang);
+            state.vars.current_menu_str = current_menu;
+            sayText(current_menu);
+            promptDigits('enr_splash', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+        }
     }
     var selection = get_menu_option(input, product_menu_table_name);
     if(selection === null){
