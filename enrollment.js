@@ -93,6 +93,9 @@ addInputHandler('enr_name_1', function(input){ //enr name 1 step
         return null;
     }
     input = input.replace(/[^a-z_]/ig,'');
+    if(contact.phone_number == '5550123'){ // allows for testing on the online testing env
+        input = 'TEST1'
+    }
     if(input === undefined || input == ''){
         sayText(msgs('enr_invalid_name_input', {}, lang));
         promptDigits('enr_name_1',  {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
@@ -112,6 +115,9 @@ addInputHandler('enr_name_2', function(input){ //enr name 2 step
         return null;
     }
     input = input.replace(/[^a-z_]/ig,'');
+    if(contact.phone_number == '5550123'){ // allows for testing on the online testing env
+        input = 'TEST1'
+    }
     if(input === undefined || input == ''){
         sayText(msgs('enr_invalid_name_input', {}, lang));
         promptDigits('enr_name_2',  {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
