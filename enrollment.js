@@ -14,7 +14,8 @@ global options - feel free to refactor someday future friends
 */
 const lang = project.getOrCreateDataTable('ussd_settings').queryRows({'vars' : {'settings' : 'enr_lang'}}).next().vars.value;
 const an_pool = project.getOrCreateDataTable('ussd_settings').queryRows({'vars' : {'settings' : 'enr_client_pool'}}).next().vars.value;
-const glus_pool =project.getOrCreateDataTable('ussd_settings').queryRows({'vars' : {'settings' : 'glus_pool'}}).next().vars.value;
+const glus_pool = project.getOrCreateDataTable('ussd_settings').queryRows({'vars' : {'settings' : 'glus_pool'}}).next().vars.value;
+const geo_menu_map = project.getOrCreateDataTable('ussd_settings').queryRows({'vars' : {'settings' : 'geo_menu_map'}}).next().vars.value;
 /*
 main function
 */
@@ -196,7 +197,7 @@ addInputHandler('enr_order_start', function(input){ //input is account number
         state.vars.session_account_number = input;
         state.vars.client_geo = client.vars.geo;
         var prod_menu_select = require('./lib/enr-select-product-menu');
-        var product_menu_table_name = prod_menu_select(state.vars.geo);
+        var product_menu_table_name = prod_menu_select(state.vars.geo, geo_menu_map);
         var menu = populate_menu(product_menu_table_name,lang);
         if(typeof(menu) == 'string'){
             state.vars.current_menu_str = menu;
@@ -366,14 +367,44 @@ addInputHandler('enr_order_review_start', function(input){ //input is account nu
     else{
         var prod_menu_select = require('./lib/enr-select-product-menu');
         var gen_input_review = require('./lib/enr-gen-order-review')
-        var input_review_menu = gen_input_review(client, prod_menu_select(client.vars.geo), lang);
+        var input_review_menu = gen_input_review(client, prod_menu_select(client.vars.geo, geo_menu_map), lang);
         if(typeof(input_review_menu) == 'string'){
             sayText(input_review_menu);
             promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
         }
         else{
-            // need to finish here
+            state.vars.multiple_review_frames = 1;
+            state.var.review_frame_loc = 0;
+            state.vars.review_frame_length = Object.keys(input_review_menu).length;
+            state.vars.current_review_str = input_review_menu[state.vars.input_menu_loc];
+            sayText(state.vars.current_review_str);
+            state.vars.review_menu = JSON.stringify(input_review_menu);
+            promptDigits('enr_order_review_continue', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
         }
+    }
+});
+
+addInputHandler('enr_order_review_continue', function(input){
+    state.vars.current_step = 'enr_order_review_continue';
+    input = parseInt(input.replace(/\D/g,''));
+    if(input == 99){
+        sayText(msgs('exit', {}, lang));
+        stopRules();
+        return null;
+    }
+    else if(state.vars.review_frame_loc < state.vars.review_frame_length){
+        state.vars.review_frame_loc = state.vars.review_frame_loc + 1;
+        var input_review_menu = JSON.parse(state.vars.review_menu);
+        state.vars.current_review_str = input_review_menu[state.vars.input_menu_loc];
+        sayText(state.vars.current_review_str);
+        promptDigits('enr_order_review_continue', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
+    }
+    else{
+        var splash_menu = populate_menu('enr_splash', lang);
+        var current_menu = msgs('enr_splash', {'$ENR_SPLASH' : splash_menu}, lang);
+        state.vars.current_menu_str = current_menu;
+        sayText(current_menu);
+        promptDigits('enr_splash', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
 });
 //end order review
