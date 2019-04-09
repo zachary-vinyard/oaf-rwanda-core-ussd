@@ -298,7 +298,7 @@ addInputHandler('enr_input_order', function(input){ //input ordering function
         promptDigits('enr_confirm_input_order', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180})
     }
     else if(input % product_deets.increment !== 0){
-        sayText(msgs('enr_bad_input_increment'));
+        sayText(msgs('enr_bad_input_increment', {}, lang));
         promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180})
     }
     else{
