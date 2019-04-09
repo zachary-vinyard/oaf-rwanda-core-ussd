@@ -10,7 +10,7 @@ var get_menu_option = require('./lib/get-menu-option');
 var get_client = require('./lib/enr-retrieve-client-row');
 
 /*
-global options - feel free to refactor someday future friends
+global options - feel free to refactor someday
 */
 const lang = project.getOrCreateDataTable('ussd_settings').queryRows({'vars' : {'settings' : 'enr_lang'}}).next().vars.value;
 const an_pool = project.getOrCreateDataTable('ussd_settings').queryRows({'vars' : {'settings' : 'enr_client_pool'}}).next().vars.value;
@@ -30,7 +30,6 @@ global.main = function(){
 
 addInputHandler('enr_splash', function(input){ //input handler for splash - expected inputs in table 'enr_splash' on tr
     state.vars.current_step = 'enr_splash';
-    console.log(state.vars.current_step);
     input = parseInt(input.replace(/\D/g,''));
     var selection = get_menu_option(input, state.vars.current_step); //add if selection order inputs, review inputs pass to post auth if already authed
     if(selection == null){
@@ -223,7 +222,7 @@ addInputHandler('enr_order_start', function(input){ //input is account number
     }
 });
 
-addInputHandler('enr_input_splash', function(input){
+addInputHandler('enr_input_splash', function(input){ //main input menu
     state.vars.current_step = 'enr_input_splash';
     input = parseInt(input.replace(/\D/g,''));
     if(input == 99){
@@ -264,7 +263,7 @@ addInputHandler('enr_input_splash', function(input){
     promptDigits('enr_input_order', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
 });
 
-addInputHandler('enr_input_order', function(input){
+addInputHandler('enr_input_order', function(input){ //input ordering function
     state.vars.current_step = 'enr_input_order';
     state.vars.current_menu_str = state.vars.prod_message;
     input = parseFloat(input.replace(/[^0-9,.,,]/g,'').replace(/,/g,'.'));
@@ -297,7 +296,7 @@ addInputHandler('enr_input_order', function(input){
     }
 });
 
-addInputHandler('enr_confirm_input_order', function(input){
+addInputHandler('enr_confirm_input_order', function(input){ //input ordering confirmation
     state.vars.current_step = 'enr_confirm_input_order'
     input = parseInt(input.replace(/\D/g,''));
     if(input === 99){
