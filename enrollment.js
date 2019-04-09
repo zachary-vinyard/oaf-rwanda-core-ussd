@@ -205,6 +205,7 @@ addInputHandler('enr_order_start', function(input){ //input is account number
         state.vars.client_geo = client.vars.geo;
         var prod_menu_select = require('./lib/enr-select-product-menu');
         var product_menu_table_name = prod_menu_select(state.vars.client_geo, geo_menu_map);
+        state.vars.product_menu_table_name = product_menu_table_name;
         var menu = populate_menu(product_menu_table_name, lang);
         if(typeof(menu) == 'string'){
             state.vars.current_menu_str = menu;
@@ -239,6 +240,7 @@ addInputHandler('enr_input_splash', function(input){ //main input menu
         stopRules();
         return null;
     }
+    var product_menu_table_name = state.vars.product_menu_table_name;
     if(state.vars.multiple_input_menus){
         if(input == 44 &&  state.vars.input_menu_loc > 0){
             state.vars.input_menu_loc = state.vars.input_menu_loc - 1;
