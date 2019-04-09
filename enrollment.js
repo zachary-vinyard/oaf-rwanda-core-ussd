@@ -203,6 +203,7 @@ addInputHandler('enr_order_start', function(input){ //input is account number
         state.vars.session_authorized = true;
         state.vars.session_account_number = input;
         state.vars.client_geo = client.vars.geo;
+        console.log(client.vars.geo)
         var prod_menu_select = require('./lib/enr-select-product-menu');
         var product_menu_table_name = prod_menu_select(state.vars.client_geo, geo_menu_map);
         console.log(product_menu_table_name);
