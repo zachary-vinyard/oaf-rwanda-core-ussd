@@ -125,7 +125,7 @@ addInputHandler('enr_name_2', function(input){ //enr name 2 step
     else{
         state.vars.reg_name_2 = input;
         sayText(msgs('enr_pn', {}, lang));
-        promptDigits('enr_pn', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
+        promptDigits('enr_pn', {'submitOnHash' : false, 'maxDigits' : 10,'timeout' : 180});
     }
 });
 
@@ -141,7 +141,7 @@ addInputHandler('enr_pn', function(input){ //enr phone number step
     if(check_pn(input)){
         state.vars.reg_pn = input;
         sayText(msgs('enr_glus', {}, lang));
-        promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
+        promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
     }
     else{
         sayText(msgs('invalid_pn_format', {}, lang));
@@ -168,7 +168,7 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
         var messager = require('./lib/enr-messager');
         messager(contact.phone_number, enr_msg);
         messager(state.vars.reg_pn, enr_msg);
-        promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : 4,'timeout' : 180});
+        promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
     else{
         sayText(msgs('enr_invalid_glus', {}, lang));
