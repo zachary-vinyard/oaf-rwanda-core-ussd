@@ -40,7 +40,7 @@ addInputHandler('enr_splash', function(input){ //input handler for splash - expe
         var current_menu = msgs(selection, {}, lang);
         state.vars.current_menu_str = current_menu;
         sayText(current_menu);
-        promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 80})
+        promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 80})
     }
 }); // end of splash
 
@@ -68,8 +68,8 @@ addInputHandler('enr_reg_start', function(input){ //input is first entry of nid 
     }
 });
 
-addInputHandler('enr_nid_confirm', function(input){ //step for dd of nid. input here should match stored nid
-    state.vars.current_step = 'enr_nid_confirm';
+addInputHandler('enr_nid_confirm', function(input){ //step for dd of nid. input here should match stored nid nee
+    state.vars.current_step = 'enr_nid_confirm';// need to add section to check if nid registerd already
     input = parseInt(input.replace(/\D/g,''));
     if(input == 99){
         sayText(msgs('exit', {}, lang));
@@ -375,9 +375,6 @@ addInputHandler('enr_order_review_start', function(input){ //input is account nu
     state.vars.current_step = 'enr_order_review_start';
     input = parseInt(input.replace(/\D/g,''));
     var client = get_client(input, an_pool);
-    console.log('in input handler now');
-    console.log(client);
-    console.log(JSON.stringify(client.vars));
     if(client === null || client.vars.registered == 0){
         sayText(msgs('account_number_not_found', {}, lang));
         contact.vars.account_failures = contact.vars.account_failures + 1;
@@ -386,7 +383,6 @@ addInputHandler('enr_order_review_start', function(input){ //input is account nu
     else{
         var prod_menu_select = require('./lib/enr-select-product-menu');
         var gen_input_review = require('./lib/enr-gen-order-review')
-        console.log(client.vars)
         var input_review_menu = gen_input_review(input, prod_menu_select(client.vars.geo, geo_menu_map), an_pool, lang);
         if(typeof(input_review_menu) == 'string'){
             sayText(input_review_menu);
