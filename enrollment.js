@@ -377,7 +377,7 @@ addInputHandler('enr_order_review_start', function(input){ //input is account nu
     var client = get_client(input, an_pool);
     console.log('in input handler now');
     console.log(client);
-    console.log(JSON.stringify(client));
+    console.log(JSON.stringify(client.vars));
     if(client === null || client.vars.registered == 0){
         sayText(msgs('account_number_not_found', {}, lang));
         contact.vars.account_failures = contact.vars.account_failures + 1;
