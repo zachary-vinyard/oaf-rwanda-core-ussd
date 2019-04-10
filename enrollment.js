@@ -443,7 +443,7 @@ addInputHandler('enr_finalize_start', function(input){ //input is account number
         contact.vars.account_failures = contact.vars.account_failures + 1;
         promptDigits(state.vars.current_step, {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
     }
-    else if(client.vars.finalized == 0){
+    else if(client.vars.finalized == 0 || client.vars.finalized === undefined){
         state.vars.session_account_number = input;
         sayText(msgs('enr_finalize_verify', {}, lang));
         promptDigits('enr_finalize_verify',  {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
