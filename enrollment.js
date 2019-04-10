@@ -441,16 +441,16 @@ addInputHandler('enr_finalize_start', function(input){ //input is account number
     if(client == null || client.vars.registered == 0){
         sayText(msgs('account_number_not_found', {}, lang));
         contact.vars.account_failures = contact.vars.account_failures + 1;
-        promptDigits(state.vars.current_step, {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
+        promptDigits(state.vars.current_step, {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
     else if(client.vars.finalized == 0 || client.vars.finalized === undefined){
         state.vars.session_account_number = input;
         sayText(msgs('enr_finalize_verify', {}, lang));
-        promptDigits('enr_finalize_verify',  {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
+        promptDigits('enr_finalize_verify',  {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
     else if(client.vars.finalized == 1){
         sayText(msgs('enr_already_finalized', {}, lang));
-        promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
+        promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
 });
 
@@ -466,7 +466,7 @@ addInputHandler('enr_finalize_verify', function(input){
     else{
         sayText(msgs('enr_not_finalized', {}, lang));
     }
-    promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
+    promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
 });
 
 //end finalize order
