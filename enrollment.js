@@ -374,6 +374,7 @@ input handlers for order review
 addInputHandler('enr_order_review_start', function(input){ //input is account number
     state.vars.current_step = 'enr_order_review_start';
     input = parseInt(input.replace(/\D/g,''));
+    console.log(input + ' ' + an_pool)
     var client = get_client(input, an_pool);
     console.log(JSON.stringify(client));
     if(client === null || client.vars.registered == 0){
