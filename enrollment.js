@@ -16,6 +16,7 @@ const lang = project.getOrCreateDataTable('ussd_settings').queryRows({'vars' : {
 const an_pool = project.getOrCreateDataTable('ussd_settings').queryRows({'vars' : {'settings' : 'enr_client_pool'}}).next().vars.value;
 const glus_pool = project.getOrCreateDataTable('ussd_settings').queryRows({'vars' : {'settings' : 'glus_pool'}}).next().vars.value;
 const geo_menu_map = project.getOrCreateDataTable('ussd_settings').queryRows({'vars' : {'settings' : 'geo_menu_map'}}).next().vars.value;
+
 /*
 main function
 */
@@ -40,7 +41,7 @@ addInputHandler('enr_splash', function(input){ //input handler for splash - expe
         var current_menu = msgs(selection, {}, lang);
         state.vars.current_menu_str = current_menu;
         sayText(current_menu);
-        promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 80})
+        promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 80})
     }
 }); // end of splash
 
