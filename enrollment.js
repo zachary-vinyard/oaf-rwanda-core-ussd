@@ -189,7 +189,7 @@ addInputHandler('enr_order_start', function(input){ //input is account number
         stopRules();
         return null;
     }
-    var client = get_client(input, an_pool);
+    var client = get_client(input, an_pool, true);
     if(client === null || client.vars.registered == 0){
         sayText(msgs('account_number_not_found', {}, lang));
         contact.vars.account_failures = contact.vars.account_failures + 1;
