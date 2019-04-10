@@ -206,7 +206,6 @@ addInputHandler('enr_order_start', function(input){ //input is account number
         var prod_menu_select = require('./lib/enr-select-product-menu');
         var product_menu_table_name = prod_menu_select(state.vars.client_geo, geo_menu_map);
         state.vars.product_menu_table_name = product_menu_table_name;
-        console.log(product_menu_table_name);
         var menu = populate_menu(product_menu_table_name, lang);
         if(typeof(menu) == 'string'){
             state.vars.current_menu_str = menu;
@@ -376,6 +375,7 @@ addInputHandler('enr_order_review_start', function(input){ //input is account nu
     state.vars.current_step = 'enr_order_review_start';
     input = parseInt(input.replace(/\D/g,''));
     var client = get_client(input, an_pool);
+    console.log(JSON.stringify(client));
     if(client === null || client.vars.registered == 0){
         sayText(msgs('account_number_not_found', {}, lang));
         contact.vars.account_failures = contact.vars.account_failures + 1;
