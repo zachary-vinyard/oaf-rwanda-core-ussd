@@ -335,6 +335,7 @@ addInputHandler('enr_confirm_input_order', function(input){ //input ordering con
     else if(input === 1){
         var log_input_order = require('./lib/enr-log-input-order');
         var product_deets = JSON.parse(state.vars.product_deets)
+        console.log('product deets : ' + product_deets)
         var input_name = product_deets.name;
         log_input_order(state.vars.session_account_number, an_pool, input_name, state.vars.current_input_quantity)
         sayText(msgs('enr_input_order_success', {'$NAME' : product_deets[lang]}, lang));
