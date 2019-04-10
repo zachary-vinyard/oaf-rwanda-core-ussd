@@ -7,7 +7,6 @@ all input handlers should save any current display options and current steps to 
 */
 
 var msgs = require('./lib/msg-retrieve'); //global message handler
-var admin_alert = require('./lib/admin-alert'); //global admin alerter
 var geo_select = require('./lib/cta-geo-select');
 var geo_process = require('./lib/cta-geo-string-processer');
 var client_log = require('./lib/cta-client-logger');
