@@ -58,7 +58,11 @@ addInputHandler('enr_reg_start', function(input){ //input is first entry of nid 
         stopRules();
         return null;
     }
-    else if(!check_if_nid(input) || is_already_reg(input, an_pool)){
+    else if(!check_if_nid(input)){
+        sayText(msgs('enr_invalid_nid',{},lang));
+        promptDigits('enr_reg_start', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180})
+    }
+    else if(is_already_reg(input, an_pool)){
         sayText(msgs('enr_invalid_nid',{},lang));
         promptDigits('enr_reg_start', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180})
     }
