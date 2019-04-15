@@ -2781,7 +2781,7 @@ module.exports =
                     "fo_id": 1512
                 },
                 "Mutunda": {
-                    "fo_name": "Claudine\t Muteteri",
+                    "fo_name": "Claudinet Muteteri",
                     "fo_phone": "250785180428",
                     "fo_id": 3084
                 },
@@ -7576,7 +7576,7 @@ module.exports =
                     "fo_id": 3246
                 },
                 "Karenge": {
-                    "fo_name": "Andr\u00c3\u00a9 Nshimiyimana",
+                    "fo_name": "Andre Nshimiyimana",
                     "fo_phone": "250783818292",
                     "fo_id": 2165
                 },
@@ -7897,7 +7897,7 @@ module.exports =
                     "fo_id": 3042
                 },
                 "Gitarama": {
-                    "fo_name": "Alexandre\t Ntakirutimana",
+                    "fo_name": "Alexandre Ntakirutimana",
                     "fo_phone": "250787593834",
                     "fo_id": 3047
                 },
@@ -8195,7 +8195,7 @@ module.exports =
                     "fo_id": 3030
                 },
                 "Gitovu": {
-                    "fo_name": "Jean Nepomsc\u00c3\u00a8ne Ntawiyanga",
+                    "fo_name": "Jean Nepomscu00c3u00a8ne Ntawiyanga",
                     "fo_phone": "250788986087",
                     "fo_id": 638
                 },
@@ -9431,7 +9431,7 @@ module.exports =
                     "fo_id": 1238
                 },
                 "Muyange": {
-                    "fo_name": "Placidie\t Uzayisenga",
+                    "fo_name": "Placidiet Uzayisenga",
                     "fo_phone": "250785440926",
                     "fo_id": 3096
                 },
@@ -10075,7 +10075,7 @@ module.exports =
                     "fo_id": 136
                 },
                 "Ntura": {
-                    "fo_name": "Immacul\u00c3\u00a9e Mukashyaka",
+                    "fo_name": "Immaculu00c3u00a9e Mukashyaka",
                     "fo_phone": "250783119125",
                     "fo_id": 2049
                 },
@@ -10477,7 +10477,7 @@ module.exports =
                     "fo_id": 3460
                 },
                 "Congo-nil": {
-                    "fo_name": "\nNadia Uwamahoro",
+                    "fo_name": "Nadia Uwamahoro",
                     "fo_phone": "250788422134",
                     "fo_id": 3025
                 },
