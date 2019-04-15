@@ -59,11 +59,11 @@ addInputHandler('enr_reg_start', function(input){ //input is first entry of nid 
         return null;
     }
     else if(!check_if_nid(input)){
-        sayText(msgs('enr_invalid_nid',{},lang));
+        sayText(msgs('enr_invalid_nid', {}, lang));
         promptDigits('enr_reg_start', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180})
     }
     else if(is_already_reg(input, an_pool)){
-        sayText(msgs('enr_invalid_nid',{},lang));
+        sayText(msgs('enr_invalid_nid',{}, lang));
         promptDigits('enr_reg_start', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180})
     }
     else{
@@ -189,6 +189,7 @@ input handlers for input ordering
 addInputHandler('enr_order_start', function(input){ //input is account number
     state.vars.current_step = 'enr_order_start';
     input = parseInt(input.replace(/\D/g,''));
+    state.vars.multiple_input_menus = true;
     if(input == 99){
         sayText(msgs('exit', {}, lang));
         stopRules();
@@ -246,6 +247,7 @@ addInputHandler('enr_input_splash', function(input){ //main input menu
     }
     var product_menu_table_name = state.vars.product_menu_table_name;
     if(state.vars.multiple_input_menus){
+        console.log('multiple_input_menus')
         if(input == 44 &&  state.vars.input_menu_loc > 0){
             state.vars.input_menu_loc = state.vars.input_menu_loc - 1;
             var menu = JSON.parse(state.vars.input_menu)[state.vars.input_menu_loc];
