@@ -246,6 +246,7 @@ addInputHandler('enr_input_splash', function(input){ //main input menu
         return null;
     }
     var product_menu_table_name = state.vars.product_menu_table_name;
+    console.log('multiple_input_menus ' + state.vars.multiple_input_menus);
     if(state.vars.multiple_input_menus){
         console.log('multiple_input_menus')
         if(input == 44 &&  state.vars.input_menu_loc > 0){
