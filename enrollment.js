@@ -278,16 +278,18 @@ addInputHandler('enr_input_splash', function(input){ //main input menu
         sayText(msgs('enr_invalid_product_selection', {}, lang)); // need to include 1 to continue, 99 to exit here
         promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180})
     }
-    state.vars.current_product = selection;
-    var get_product_options = require('./lib/enr-get-product-options')
-    var product_deets = get_product_options(selection, product_menu_table_name);
-    state.vars.product_deets = JSON.stringify(product_deets);
-    var process_prod = require('./lib/enr-format-product-options');
-    var prod_deets_for_msg = process_prod(product_deets, lang);
-    var prod_message = msgs('enr_product_selected', prod_deets_for_msg, lang)
-    state.vars.prod_message = prod_message;
-    sayText(prod_message);
-    promptDigits('enr_input_order', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
+    else{
+        state.vars.current_product = selection;
+        var get_product_options = require('./lib/enr-get-product-options')
+        var product_deets = get_product_options(selection, product_menu_table_name);
+        state.vars.product_deets = JSON.stringify(product_deets);
+        var process_prod = require('./lib/enr-format-product-options');
+        var prod_deets_for_msg = process_prod(product_deets, lang);
+        var prod_message = msgs('enr_product_selected', prod_deets_for_msg, lang)
+        state.vars.prod_message = prod_message;
+        sayText(prod_message);
+        promptDigits('enr_input_order', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
+    }
 });
 
 addInputHandler('enr_input_order', function(input){ //input ordering function
