@@ -69,7 +69,7 @@ addInputHandler('dpm_reg_start', function(input){ //input is first entry of nid 
         promptDigits('dpm_continue', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
     }
     else{
-        state.vars.reg_nid = input;
+        state.vars.reg_nid = String(input);
         sayText(msgs('enr_nid_confirm', {}, lang));
         promptDigits('dpm_nid_confirm', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
     }
@@ -77,7 +77,8 @@ addInputHandler('dpm_reg_start', function(input){ //input is first entry of nid 
 
 addInputHandler('dpm_nid_confirm', function(input){ //step for dd of nid. input here should match stored nid nee
     state.vars.current_step = 'dpm_nid_confirm';// need to add section to check if nid registerd already
-    input = parseInt(input.replace(/\D/g,''));
+    input = input.replace(/\D/g,'');
+    console.log(input + ' : ' + state.vars.reg_nid)
     if(input == 99){
         sayText(msgs('exit', {}, lang));
         stopRules();
