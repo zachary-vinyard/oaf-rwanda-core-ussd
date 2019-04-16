@@ -50,7 +50,7 @@ input handlers for registration steps
 */
 addInputHandler('enr_reg_start', function(input){ //input is first entry of nid - next step is nid confirm
     state.vars.current_step = 'enr_reg_start';
-    input = parseInt(input.replace(/\D/g,''));
+    input = String(input.replace(/\D/g,''));
     var check_if_nid = require('./lib/enr-check-nid');
     var is_already_reg = require('./lib/enr-check-dup-nid');
     if(input == 99){
@@ -75,7 +75,7 @@ addInputHandler('enr_reg_start', function(input){ //input is first entry of nid 
 
 addInputHandler('enr_nid_confirm', function(input){ //step for dd of nid. input here should match stored nid nee
     state.vars.current_step = 'enr_nid_confirm';// need to add section to check if nid registerd already
-    input = parseInt(input.replace(/\D/g,''));
+    input = String(input.replace(/\D/g,''));
     if(input == 99){
         sayText(msgs('exit', {}, lang));
         stopRules();
