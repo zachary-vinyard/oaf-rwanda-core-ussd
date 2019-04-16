@@ -83,7 +83,7 @@ addInputHandler('dpm_nid_confirm', function(input){ //step for dd of nid. input 
         stopRules();
         return null;
     }
-    else if(state.vars.reg_nid == input){
+    else if(String(state.vars.reg_nid) == String(input)){
         sayText(msgs('enr_name_1', {}, lang));
         promptDigits('dpm_name_1', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
     }
