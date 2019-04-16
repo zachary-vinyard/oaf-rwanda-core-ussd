@@ -71,7 +71,7 @@ addInputHandler('dpm_reg_start', function(input){ //input is first entry of nid 
     else{
         state.vars.reg_nid = input;
         sayText(msgs('enr_nid_confirm', {}, lang));
-        promptDigits('enr_nid_confirm', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
+        promptDigits('dpm_nid_confirm', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
     }
 });
 
