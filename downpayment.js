@@ -149,7 +149,7 @@ addInputHandler('dpm_pn', function(input){ //enr phone number step
     }
     if(check_pn(input)){
         state.vars.reg_pn = input;
-        sayText(msgs('enr_glus', {}, lang));
+        sayText(msgs('dpm_glus', {}, lang));
         promptDigits('dpm_glus', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
     }
     else{
@@ -160,7 +160,7 @@ addInputHandler('dpm_pn', function(input){ //enr phone number step
 
 addInputHandler('dpm_glus', function(input){ //enr group leader / umudugudu support id step. last registration step
     state.vars.current_step = 'dpm_glus';
-    input = input.replace(/\^W/g,'');
+    input = input.replace(/\^W/g,'').toLowerCase();
     if(input == 99){
         sayText(msgs('exit', {}, lang));
         stopRules();
