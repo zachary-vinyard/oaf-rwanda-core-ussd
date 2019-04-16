@@ -46,7 +46,7 @@ input handlers for registration steps
 */
 addInputHandler('dpm_reg_start', function(input){ //input is first entry of nid - next step is nid confirm 
     state.vars.current_step = 'dpm_reg_start';
-    input = parseInt(input.replace(/\D/g,''));
+    input = input.replace(/\D/g,'');
     var check_if_nid = require('./lib/enr-check-nid');
     var is_already_reg = require('./lib/enr-check-dup-nid');
     if(input == 99){
@@ -77,7 +77,7 @@ addInputHandler('dpm_reg_start', function(input){ //input is first entry of nid 
 
 addInputHandler('dpm_nid_confirm', function(input){ //step for dd of nid. input here should match stored nid nee
     state.vars.current_step = 'dpm_nid_confirm';// need to add section to check if nid registerd already
-    input = parseInt(input.replace(/\D/g,''));
+    input = input.replace(/\D/g,'');
     if(input == 99){
         sayText(msgs('exit', {}, lang));
         stopRules();
@@ -172,7 +172,13 @@ addInputHandler('dpm_glus', function(input){ //enr group leader / umudugudu supp
         state.vars.glus = input;
         var account_number = client_log(state.vars.reg_nid, state.vars.reg_name_1, state.vars.reg_name_2, state.vars.pn, state.vars.glus, geo, an_pool);
         var get_client_by_nid = require('./lib/dpm-get-client-by-nid');
-        var oafid = get_client_by_nid(state.vars.reg_nid, an_pool).oafid;
+        try{
+            var oafid = get_client_by_nid(state.vars.reg_nid, an_pool).oafid;
+        }
+        catch{
+            admin_alert =require('./lib/admin-alert');
+            admin_alert('Null OAFID gab');
+        }
         var enr_msg = msgs('dpm_reg_complete', {'$ACCOUNT_NUMBER' : account_number, '$OAFID' : oafid}, lang);
         sayText(enr_msg);
         var enr_msg_sms = msgs('dpm_reg_complete_sms', {'$ACCOUNT_NUMBER' : account_number, '$OAFID' : oafid}, lang);
