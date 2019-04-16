@@ -44,7 +44,7 @@ addInputHandler('dpm_splash', function(input){ //input handler for splash - expe
 /*
 input handlers for registration steps
 */
-addInputHandler('dpm_reg_start', function(input){ //input is first entry of nid - next step is nid confirm
+addInputHandler('dpm_reg_start', function(input){ //input is first entry of nid - next step is nid confirm 
     state.vars.current_step = 'dpm_reg_start';
     input = parseInt(input.replace(/\D/g,''));
     var check_if_nid = require('./lib/enr-check-nid');
@@ -54,14 +54,24 @@ addInputHandler('dpm_reg_start', function(input){ //input is first entry of nid 
         stopRules();
         return null;
     }
-    else if(!check_if_nid(input) || is_already_reg(input)){
-        sayText(msgs('enr_invalid_nid',{},lang));
-        promptDigits('dpm_reg_start', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180})
+    else if(!check_if_nid(input)){
+        sayText(msgs('enr_invalid_nid', {}, lang));
+        promptDigits('enr_reg_start', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180})
+    }
+    else if(is_already_reg(input, an_pool)){ //fixed april 16??
+        var an_retrieve_from_nid = require('./lib/dpm-get-client-by-nid');
+        var client_data = an_retrieve_from_nid(input, an_pool);
+        var enr_msg = msgs('dpm_reg_complete', {'$ACCOUNT_NUMBER' : client_data.account_number, '$OAFID' : client_data.oafid}, lang);
+        sayText(enr_msg);
+        var enr_msg_sms = msgs('dpm_reg_complete_sms', {'$ACCOUNT_NUMBER' : client_data.account_number, '$OAFID' : client_data.oafid}, lang);
+        var messager = require('./lib/enr-messager');
+        messager(contact.phone_number, enr_msg_sms);
+        promptDigits('dpm_continue', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
     }
     else{
         state.vars.reg_nid = input;
         sayText(msgs('enr_nid_confirm', {}, lang));
-        promptDigits('dpm_nid_confirm', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
+        promptDigits('enr_nid_confirm', {'submitOnHash' : false, 'maxDigits' : 16,'timeout' : 180});
     }
 });
 
@@ -161,9 +171,11 @@ addInputHandler('dpm_glus', function(input){ //enr group leader / umudugudu supp
         var client_log = require('./lib/enr-client-logger');
         state.vars.glus = input;
         var account_number = client_log(state.vars.reg_nid, state.vars.reg_name_1, state.vars.reg_name_2, state.vars.pn, state.vars.glus, geo, an_pool);
-        var enr_msg = msgs('enr_reg_complete', {'$ACCOUNT_NUMBER' : account_number}, lang);
+        var get_client_by_nid = require('./lib/dpm-get-client-by-nid');
+        var oafid = get_client_by_nid(state.vars.reg_nid, an_pool).oafid;
+        var enr_msg = msgs('dpm_reg_complete', {'$ACCOUNT_NUMBER' : account_number, '$OAFID' : oafid}, lang);
         sayText(enr_msg);
-        var enr_msg_sms = msgs('enr_reg_complete_sms', {'$ACCOUNT_NUMBER' : account_number}, lang);
+        var enr_msg_sms = msgs('dpm_reg_complete_sms', {'$ACCOUNT_NUMBER' : account_number, '$OAFID' : oafid}, lang);
         var messager = require('./lib/enr-messager');
         messager(contact.phone_number, enr_msg_sms);
         messager(state.vars.reg_pn, enr_msg_sms);
