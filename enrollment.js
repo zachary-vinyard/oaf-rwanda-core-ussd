@@ -227,9 +227,9 @@ addInputHandler('enr_order_start', function(input){ //input is account number
             promptDigits('enr_input_splash', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
         }
         else if(typeof(menu) == 'object'){
-            state.vars.input_menu_loc = 0;
+            state.vars.input_menu_loc = 0; //watch for off by 1 errors - consider moving this to start at 1
             state.vars.multiple_input_menus = true;
-            state.vars.input_menu_length = Object.keys(menu).length;
+            state.vars.input_menu_length = Object.keys(menu).length; //this will be 1 greater than max possible loc
             state.vars.current_menu_str = menu[state.vars.input_menu_loc];
             sayText(menu[state.vars.input_menu_loc]);
             state.vars.input_menu = JSON.stringify(menu);
@@ -264,7 +264,7 @@ addInputHandler('enr_input_splash', function(input){ //main input menu
             sayText(menu);
             promptDigits('enr_input_splash', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
         }
-        else if(input == 77 && state.vars.input_menu_loc < state.vars.input_menu_length){
+        else if(input == 77 && state.vars.input_menu_loc < state.vars.input_menu_length - 1){
             state.vars.input_menu_loc = state.vars.input_menu_loc + 1;
             var menu = JSON.parse(state.vars.input_menu)[state.vars.input_menu_loc]
             state.vars.current_menu_str = menu;
@@ -277,6 +277,12 @@ addInputHandler('enr_input_splash', function(input){ //main input menu
             state.vars.current_menu_str = current_menu;
             sayText(current_menu);
             promptDigits('enr_splash', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+        }
+        else if(input == 77 && state.vars.input_menu_loc == state.vars.input_menu_length - 1){
+            var menu = JSON.parse(state.vars.input_menu)[state.vars.input_menu_loc]
+            state.vars.current_menu_str = menu;
+            sayText(menu);
+            promptDigits('enr_input_splash', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
         }
     }
     var selection = get_menu_option(input, product_menu_table_name);
