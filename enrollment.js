@@ -25,6 +25,8 @@ main function
 global.main = function(){
     var splash_menu = populate_menu(enr_splash, lang);
     var current_menu = msgs('enr_splash', {'$ENR_SPLASH' : splash_menu}, lang);
+    console.log(current_menu);
+    console.log(JSON.stringify(current_menu));
     state.vars.current_menu_str = current_menu;
     state.vars.session_authorized = false;
     sayText(current_menu);
