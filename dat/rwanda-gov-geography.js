@@ -1,10 +1,8 @@
 /*
-government geography
+gov geograph
 */
 
-module.exports = 
-
-{
+module.exports = {
     "Amajyaruguru": {
         "Burera": {
             "Bungwe": {
@@ -2781,7 +2779,7 @@ module.exports =
                     "fo_id": 1512
                 },
                 "Mutunda": {
-                    "fo_name": "Claudinet Muteteri",
+                    "fo_name": "Claudine\t Muteteri",
                     "fo_phone": "250785180428",
                     "fo_id": 3084
                 },
@@ -3020,22 +3018,22 @@ module.exports =
             "Gacurabwenge": {
                 "Gihinga": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Gihira": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Kigembe": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Nkingo": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
@@ -3248,49 +3246,49 @@ module.exports =
             "Rugarika": {
                 "Bihembe": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Kigese": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Masaka": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Nyarubuye": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Sheli": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
             "Rukoma": {
                 "Bugoba": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Buguri": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Gishyeshye": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Murehe": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Mwirute": {
@@ -3300,12 +3298,12 @@ module.exports =
                 },
                 "Remera": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Taba": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
@@ -3501,32 +3499,32 @@ module.exports =
             "Mushishiro": {
                 "Matyazo": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Munazi": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Nyagasozi": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Rukaragata": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Rwasare": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Rwigerero": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
@@ -3582,22 +3580,22 @@ module.exports =
             "Nyarusange": {
                 "Mbiriri": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Musongati": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Ngaru": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Rusovu": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
@@ -3631,27 +3629,27 @@ module.exports =
             "Rugendabari": {
                 "Gasave": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Kanyana": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Kibaga": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Mpinga": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Nsanga": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
@@ -4844,29 +4842,29 @@ module.exports =
         "Ruhango": {
             "Bweramana": {
                 "Buhanda": {
-                    "fo_name": 0,
-                    "fo_phone": "0",
-                    "fo_id": 0
+                    "fo_name": "Jacques Habimana",
+                    "fo_phone": 250784378243,
+                    "fo_id": 3519
                 },
                 "Gitisi": {
-                    "fo_name": 0,
-                    "fo_phone": "0",
-                    "fo_id": 0
+                    "fo_name": "Vedaste Nsanzineza",
+                    "fo_phone": 250787456915,
+                    "fo_id": 3520
                 },
                 "Murama": {
-                    "fo_name": 0,
-                    "fo_phone": "0",
-                    "fo_id": 0
+                    "fo_name": "Jacques Habimana",
+                    "fo_phone": 250784378243,
+                    "fo_id": 3519
                 },
                 "Rubona": {
-                    "fo_name": 0,
-                    "fo_phone": "0",
-                    "fo_id": 0
+                    "fo_name": "Vedaste Nsanzineza",
+                    "fo_phone": 250787456915,
+                    "fo_id": 3520
                 },
                 "Rwinyana": {
-                    "fo_name": 0,
-                    "fo_phone": "0",
-                    "fo_id": 0
+                    "fo_name": "Vedaste Nsanzineza",
+                    "fo_phone": 250787456915,
+                    "fo_id": 3520
                 }
             },
             "Byimana": {
@@ -4908,34 +4906,34 @@ module.exports =
             },
             "Kabagali": {
                 "Bihembe": {
-                    "fo_name": 0,
-                    "fo_phone": "0",
-                    "fo_id": 0
+                    "fo_name": "Gilbert Sebanani",
+                    "fo_phone": 250787917419,
+                    "fo_id": 3523
                 },
                 "Karambi": {
-                    "fo_name": 0,
-                    "fo_phone": "0",
-                    "fo_id": 0
+                    "fo_name": "Jacques Habimana",
+                    "fo_phone": 250784378243,
+                    "fo_id": 3519
                 },
                 "Munanira": {
-                    "fo_name": 0,
-                    "fo_phone": "0",
-                    "fo_id": 0
+                    "fo_name": "Gilbert Sebanani",
+                    "fo_phone": 250787917419,
+                    "fo_id": 3523
                 },
                 "Remera": {
-                    "fo_name": 0,
-                    "fo_phone": "0",
-                    "fo_id": 0
+                    "fo_name": "Gilbert Sebanani",
+                    "fo_phone": 250787917419,
+                    "fo_id": 3523
                 },
                 "Rwesero": {
-                    "fo_name": 0,
-                    "fo_phone": "0",
-                    "fo_id": 0
+                    "fo_name": "Gilbert Sebanani",
+                    "fo_phone": 250787917419,
+                    "fo_id": 3523
                 },
                 "Rwoga": {
-                    "fo_name": 0,
-                    "fo_phone": "0",
-                    "fo_id": 0
+                    "fo_name": "Gilbert Sebanani",
+                    "fo_phone": 250787917419,
+                    "fo_id": 3523
                 }
             },
             "Kinazi": {
@@ -4967,34 +4965,34 @@ module.exports =
             },
             "Kinihira": {
                 "Bweramvura": {
-                    "fo_name": 0,
-                    "fo_phone": "0",
-                    "fo_id": 0
+                    "fo_name": "Jacqueline Murekatete",
+                    "fo_phone": 250784924292,
+                    "fo_id": 3522
                 },
                 "Gitinda": {
-                    "fo_name": 0,
-                    "fo_phone": "0",
-                    "fo_id": 0
+                    "fo_name": "Jacqueline Murekatete",
+                    "fo_phone": 250784924292,
+                    "fo_id": 3522
                 },
                 "Kirwa": {
-                    "fo_name": 0,
-                    "fo_phone": "0",
-                    "fo_id": 0
+                    "fo_name": "Jacqueline Murekatete",
+                    "fo_phone": 250784924292,
+                    "fo_id": 3522
                 },
                 "Muyunzwe": {
-                    "fo_name": 0,
-                    "fo_phone": "0",
-                    "fo_id": 0
+                    "fo_name": "Protais Hakizimana",
+                    "fo_phone": 250788465065,
+                    "fo_id": 3521
                 },
                 "Nyakogo": {
-                    "fo_name": 0,
-                    "fo_phone": "0",
-                    "fo_id": 0
+                    "fo_name": "Jacques Habimana",
+                    "fo_phone": 250784378243,
+                    "fo_id": 3519
                 },
                 "Rukina": {
-                    "fo_name": 0,
-                    "fo_phone": "0",
-                    "fo_id": 0
+                    "fo_name": "Jacqueline Murekatete",
+                    "fo_phone": 250784924292,
+                    "fo_id": 3522
                 }
             },
             "Mbuye": {
@@ -5036,44 +5034,44 @@ module.exports =
             },
             "Mwendo": {
                 "Gafunzo": {
-                    "fo_name": 0,
-                    "fo_phone": "0",
-                    "fo_id": 0
+                    "fo_name": "Jacques Habimana",
+                    "fo_phone": 250784378243,
+                    "fo_id": 3521
                 },
                 "Gishweru": {
-                    "fo_name": 0,
-                    "fo_phone": "0",
-                    "fo_id": 0
+                    "fo_name": "Protais Hakizimana",
+                    "fo_phone": 250788465065,
+                    "fo_id": 3521
                 },
                 "Kamujisho": {
-                    "fo_name": 0,
-                    "fo_phone": "0",
-                    "fo_id": 0
+                    "fo_name": "Vedaste Nsanzineza",
+                    "fo_phone": 250787456915,
+                    "fo_id": 3520
                 },
                 "Kigarama": {
-                    "fo_name": 0,
-                    "fo_phone": "0",
-                    "fo_id": 0
+                    "fo_name": "Protais Hakizimana",
+                    "fo_phone": 250788465065,
+                    "fo_id": 3521
                 },
                 "Kubutare": {
-                    "fo_name": 0,
-                    "fo_phone": "0",
-                    "fo_id": 0
+                    "fo_name": "Jacqueline Murekatete",
+                    "fo_phone": 250784924292,
+                    "fo_id": 3522
                 },
                 "Mutara": {
-                    "fo_name": 0,
-                    "fo_phone": "0",
-                    "fo_id": 0
+                    "fo_name": "Protais Hakizimana",
+                    "fo_phone": 250788465065,
+                    "fo_id": 3521
                 },
                 "Nyabibugu": {
-                    "fo_name": 0,
-                    "fo_phone": "0",
-                    "fo_id": 0
+                    "fo_name": "Protais Hakizimana",
+                    "fo_phone": 250788465065,
+                    "fo_id": 3521
                 },
                 "Saruheshyi": {
-                    "fo_name": 0,
-                    "fo_phone": "0",
-                    "fo_id": 0
+                    "fo_name": "Vedaste Nsanzineza",
+                    "fo_phone": 250787456915,
+                    "fo_id": 3520
                 }
             },
             "Ntongwe": {
@@ -5162,27 +5160,27 @@ module.exports =
             "Gashora": {
                 "Biryogo": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Kabuye": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Kagomasi": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Mwendo": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Ramiro": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
@@ -5270,27 +5268,27 @@ module.exports =
             "Mayange": {
                 "Gakamba": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Kagenge": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Kibenga": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Kibirizi": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Mbyo": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
@@ -5466,27 +5464,27 @@ module.exports =
             "Ruhuha": {
                 "Bihari": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Gatanga": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Gikundamvura": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Kindama": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 },
                 "Ruhuha": {
                     "fo_name": 0,
-                    "fo_phone": 0,
+                    "fo_phone": 1,
                     "fo_id": 0
                 }
             },
@@ -7576,7 +7574,7 @@ module.exports =
                     "fo_id": 3246
                 },
                 "Karenge": {
-                    "fo_name": "Andre Nshimiyimana",
+                    "fo_name": "Andr\u00c3\u00a9 Nshimiyimana",
                     "fo_phone": "250783818292",
                     "fo_id": 2165
                 },
@@ -7897,7 +7895,7 @@ module.exports =
                     "fo_id": 3042
                 },
                 "Gitarama": {
-                    "fo_name": "Alexandre Ntakirutimana",
+                    "fo_name": "Alexandre\t Ntakirutimana",
                     "fo_phone": "250787593834",
                     "fo_id": 3047
                 },
@@ -8195,7 +8193,7 @@ module.exports =
                     "fo_id": 3030
                 },
                 "Gitovu": {
-                    "fo_name": "Jean Nepomscu00c3u00a8ne Ntawiyanga",
+                    "fo_name": "Jean Nepomsc\u00c3\u00a8ne Ntawiyanga",
                     "fo_phone": "250788986087",
                     "fo_id": 638
                 },
@@ -9431,7 +9429,7 @@ module.exports =
                     "fo_id": 1238
                 },
                 "Muyange": {
-                    "fo_name": "Placidiet Uzayisenga",
+                    "fo_name": "Placidie\t Uzayisenga",
                     "fo_phone": "250785440926",
                     "fo_id": 3096
                 },
@@ -10075,7 +10073,7 @@ module.exports =
                     "fo_id": 136
                 },
                 "Ntura": {
-                    "fo_name": "Immaculu00c3u00a9e Mukashyaka",
+                    "fo_name": "Immacul\u00c3\u00a9e Mukashyaka",
                     "fo_phone": "250783119125",
                     "fo_id": 2049
                 },
@@ -10436,7 +10434,7 @@ module.exports =
                     "fo_id": 2178
                 },
                 "Rubugu": {
-                    "fo_name": "0",
+                    "fo_name": " ",
                     "fo_phone": "0",
                     "fo_id": 0
                 },
@@ -10477,7 +10475,7 @@ module.exports =
                     "fo_id": 3460
                 },
                 "Congo-nil": {
-                    "fo_name": "Nadia Uwamahoro",
+                    "fo_name": "\nNadia Uwamahoro",
                     "fo_phone": "250788422134",
                     "fo_id": 3025
                 },
@@ -11676,4 +11674,4 @@ module.exports =
             }
         }
     }
-};
+}
