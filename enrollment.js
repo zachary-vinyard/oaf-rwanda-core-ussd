@@ -23,7 +23,7 @@ const enr_splash = settings_table.queryRows({'vars' : {'settings' : 'enr_splash'
 main function
 */
 global.main = function(){
-    var splash_menu = populate_menu(enr_splash, lang);
+    var splash_menu = populate_menu(enr_splash, lang, false);
     console.log(splash_menu);
     console.log(JSON.stringify(splash_menu));
     var current_menu = msgs('enr_splash', {'$ENR_SPLASH' : splash_menu}, lang);
