@@ -12,7 +12,7 @@ global options - feel free to refactor someday
 */
 const lang = project.getOrCreateDataTable('ussd_settings').queryRows({'vars' : {'settings' : 'dpm_lang'}}).next().vars.value;
 const an_pool = project.getOrCreateDataTable('ussd_settings').queryRows({'vars' : {'settings' : 'dpm_client_pool'}}).next().vars.value;
-const glus_pool = project.getOrCreateDataTable('ussd_settings').queryRows({'vars' : {'settings' : 'glus_pool'}}).next().vars.value;
+const glus_pool = project.getOrCreateDataTable('ussd_settings').queryRows({'vars' : {'settings' : 'dpm_glus_pool'}}).next().vars.value;
 /*
 main function
 */
