@@ -12,16 +12,18 @@ var get_client = require('./lib/enr-retrieve-client-row');
 /*
 global options - feel free to refactor someday
 */
-const lang = project.getOrCreateDataTable('ussd_settings').queryRows({'vars' : {'settings' : 'enr_lang'}}).next().vars.value;
-const an_pool = project.getOrCreateDataTable('ussd_settings').queryRows({'vars' : {'settings' : 'enr_client_pool'}}).next().vars.value;
-const glus_pool = project.getOrCreateDataTable('ussd_settings').queryRows({'vars' : {'settings' : 'glus_pool'}}).next().vars.value;
-const geo_menu_map = project.getOrCreateDataTable('ussd_settings').queryRows({'vars' : {'settings' : 'geo_menu_map'}}).next().vars.value;
+var settings_table = project.getOrCreateDataTable('ussd_settings');
+const lang = settings_table.queryRows({'vars' : {'settings' : 'enr_lang'}}).next().vars.value;
+const an_pool = settings_table.queryRows({'vars' : {'settings' : 'enr_client_pool'}}).next().vars.value;
+const glus_pool = settings_table.queryRows({'vars' : {'settings' : 'glus_pool'}}).next().vars.value;
+const geo_menu_map = settings_table.queryRows({'vars' : {'settings' : 'geo_menu_map'}}).next().vars.value;
+const enr_splash = settings_table.queryRows({'vars' : {'settings' : 'enr_splash'}}).next().vars.value;
 
 /*
 main function
 */
 global.main = function(){
-    var splash_menu = populate_menu('enr_splash', lang);
+    var splash_menu = populate_menu(enr_splash, lang);
     var current_menu = msgs('enr_splash', {'$ENR_SPLASH' : splash_menu}, lang);
     state.vars.current_menu_str = current_menu;
     state.vars.session_authorized = false;
