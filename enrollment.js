@@ -452,6 +452,7 @@ addInputHandler('enr_order_review_continue', function(input){
         promptDigits('enr_order_review_continue', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
     }
     else{
+        console.log('got to 455')
         var splash_menu = populate_menu('enr_splash', lang);
         var current_menu = msgs('enr_splash', {'$ENR_SPLASH' : splash_menu}, lang);
         state.vars.current_menu_str = current_menu;
