@@ -264,7 +264,7 @@ addInputHandler('enr_input_splash', function(input){ //main input menu
             promptDigits('enr_input_splash', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
         }
         else if(input == 44 && state.vars.input_menu_loc == 0){
-            var splash_menu = populate_menu('enr_splash', lang);
+            var splash_menu = populate_menu('enr_splash', lang, 300);
             var menu = msgs('enr_splash', {'$ENR_SPLASH' : splash_menu}, lang);
             state.vars.current_menu_str = menu;
             sayText(menu);
