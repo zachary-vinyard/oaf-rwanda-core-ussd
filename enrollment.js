@@ -275,7 +275,7 @@ addInputHandler('enr_input_splash', function(input){ //main input menu
     if(selection === null){
         var m = msgs('enr_invalid_product_selection', {}, lang)
         console.log(m)
-        sayText(m); // need to include 1 to continue, 99 to exit here
+        sayText('what is up here'); // need to include 1 to continue, 99 to exit here
         promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180})
     }
     else{
