@@ -261,6 +261,7 @@ addInputHandler('enr_input_splash', function(input){ //main input menu
             var menu = JSON.parse(state.vars.input_menu)[state.vars.input_menu_loc]
             state.vars.current_menu_str = menu;
             sayText(menu);
+            console.log('trying to go forward')
             promptDigits('enr_input_splash', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
         }
         else if(input == 44 && state.vars.input_menu_loc == 0){
