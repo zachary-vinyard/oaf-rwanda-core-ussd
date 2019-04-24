@@ -275,7 +275,9 @@ addInputHandler('enr_input_splash', function(input){ //main input menu
     if(selection === null){
         var m = msgs('enr_invalid_product_selection', {}, lang)
         console.log(m)
+        console.log('got to line 278')
         sayText('what is up here'); // need to include 1 to continue, 99 to exit here
+        throw 'wtf';
         promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180})
     }
     else{
