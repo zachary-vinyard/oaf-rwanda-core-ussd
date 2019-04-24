@@ -256,7 +256,7 @@ addInputHandler('enr_input_splash', function(input){ //main input menu
             sayText(menu);
             promptDigits('enr_input_splash', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
         }
-        else if(input == 77 && state.vars.input_menu_loc < state.vars.input_menu_length){
+        else if(input == 77 && (state.vars.input_menu_loc < state.vars.input_menu_length)){
             state.vars.input_menu_loc = state.vars.input_menu_loc + 1;
             var menu = JSON.parse(state.vars.input_menu)[state.vars.input_menu_loc]
             state.vars.current_menu_str = menu;
@@ -271,6 +271,7 @@ addInputHandler('enr_input_splash', function(input){ //main input menu
             promptDigits('enr_splash', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
         }
         else{
+            console.log('selection is : ' + input + ' line 274');
             var selection = get_menu_option(input, product_menu_table_name);
             if(selection == null){
                 var m = msgs('enr_invalid_product_selection', {}, lang)
