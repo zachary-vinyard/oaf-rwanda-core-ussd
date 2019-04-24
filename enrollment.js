@@ -255,6 +255,7 @@ addInputHandler('enr_input_splash', function(input){ //main input menu
     console.log('multiple_input_menus ' + state.vars.multiple_input_menus);
     console.log('loc ' + state.vars.input_menu_loc);
     console.log('len ' + state.vars.input_menu_length);
+    console.log(state.vars.input_menu)
     if(state.vars.multiple_input_menus){
         console.log('multiple_input_menus')
         if(input == 44 &&  state.vars.input_menu_loc > 0){
@@ -266,6 +267,7 @@ addInputHandler('enr_input_splash', function(input){ //main input menu
         }
         else if(input == 77 && state.vars.input_menu_loc < state.vars.input_menu_length){
             state.vars.input_menu_loc = state.vars.input_menu_loc + 1;
+            console.log('just did addition. new loc : ' + state.vars.input_menu_loc)
             var menu = JSON.parse(state.vars.input_menu)[state.vars.input_menu_loc]
             state.vars.current_menu_str = menu;
             sayText(menu);
@@ -273,9 +275,9 @@ addInputHandler('enr_input_splash', function(input){ //main input menu
         }
         else if(input == 44 && state.vars.input_menu_loc == 0){
             var splash_menu = populate_menu('enr_splash', lang);
-            var current_menu = msgs('enr_splash', {'$ENR_SPLASH' : splash_menu}, lang);
+            var menu = msgs('enr_splash', {'$ENR_SPLASH' : splash_menu}, lang);
             state.vars.current_menu_str = current_menu;
-            sayText(current_menu);
+            sayText(menu);
             promptDigits('enr_splash', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
         }
         else if(input == 77 && state.vars.input_menu_loc == state.vars.input_menu_length){
