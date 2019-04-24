@@ -24,11 +24,7 @@ main function
 */
 global.main = function(){
     var splash_menu = populate_menu(enr_splash, lang, 300);
-    console.log(splash_menu);
-    console.log(JSON.stringify(splash_menu));
     var current_menu = msgs('enr_splash', {'$ENR_SPLASH' : splash_menu}, lang);
-    console.log(current_menu);
-    console.log(JSON.stringify(current_menu));
     state.vars.current_menu_str = current_menu;
     state.vars.session_authorized = false;
     sayText(current_menu);
@@ -252,10 +248,6 @@ addInputHandler('enr_input_splash', function(input){ //main input menu
         return null;
     }
     var product_menu_table_name = state.vars.product_menu_table_name;
-    console.log('multiple_input_menus ' + state.vars.multiple_input_menus);
-    console.log('loc ' + state.vars.input_menu_loc);
-    console.log('len ' + state.vars.input_menu_length);
-    console.log(state.vars.input_menu)
     if(state.vars.multiple_input_menus){
         if(input == 44 &&  state.vars.input_menu_loc > 0){
             state.vars.input_menu_loc = state.vars.input_menu_loc - 1;
@@ -281,8 +273,9 @@ addInputHandler('enr_input_splash', function(input){ //main input menu
     }
     var selection = get_menu_option(input, product_menu_table_name);
     if(selection === null){
-        console.log(msgs('enr_invalid_product_selection', {}, lang))
-        sayText(msgs('enr_invalid_product_selection', {}, lang)); // need to include 1 to continue, 99 to exit here
+        var m = msgs('enr_invalid_product_selection', {}, lang)
+        console.log(m)
+        sayText(m); // need to include 1 to continue, 99 to exit here
         promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180})
     }
     else{
