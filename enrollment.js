@@ -421,11 +421,9 @@ addInputHandler('enr_order_review_start', function(input){ //input is account nu
             promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
         }
         else{
-            console.log('got to 426')
             state.vars.multiple_review_frames = 1;
             state.vars.review_frame_loc = 0;
             state.vars.review_frame_length = Object.keys(input_review_menu).length;
-            console.log('loc =  ' + state.vars.review_frame_loc + ' and len = ' +state.vars.review_frame_length)
             state.vars.current_review_str = input_review_menu[state.vars.review_frame_loc];
             sayText(state.vars.current_review_str);
             state.vars.review_menu = JSON.stringify(input_review_menu);
@@ -451,7 +449,7 @@ addInputHandler('enr_order_review_continue', function(input){
     }
     else{
         console.log('got to 455')
-        var splash_menu = populate_menu('enr_splash', lang);
+        var splash_menu = populate_menu('enr_splash', lang, 300);
         var current_menu = msgs('enr_splash', {'$ENR_SPLASH' : splash_menu}, lang);
         state.vars.current_menu_str = current_menu;
         sayText(current_menu);
