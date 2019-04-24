@@ -281,6 +281,7 @@ addInputHandler('enr_input_splash', function(input){ //main input menu
     }
     var selection = get_menu_option(input, product_menu_table_name);
     if(selection === null){
+        console.log(msgs('enr_invalid_product_selection', {}, lang))
         sayText(msgs('enr_invalid_product_selection', {}, lang)); // need to include 1 to continue, 99 to exit here
         promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180})
     }
