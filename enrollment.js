@@ -261,7 +261,6 @@ addInputHandler('enr_input_splash', function(input){ //main input menu
             var menu = JSON.parse(state.vars.input_menu)[state.vars.input_menu_loc]
             state.vars.current_menu_str = menu;
             sayText(menu);
-            console.log('trying to go forward; loc = ' +state.vars.input_menu_loc + ' and length = ' + state.vars.input_menu_length)
             promptDigits('enr_input_splash', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
         }
         else if(input == 44 && state.vars.input_menu_loc == 0){
@@ -417,7 +416,6 @@ addInputHandler('enr_order_review_start', function(input){ //input is account nu
         var prod_menu_select = require('./lib/enr-select-product-menu');
         var gen_input_review = require('./lib/enr-gen-order-review')
         var input_review_menu = gen_input_review(input, prod_menu_select(client.vars.geo, geo_menu_map), an_pool, lang);
-        console.log(JSON.stringify(input_review_menu))
         if(typeof(input_review_menu) == 'string'){
             sayText(input_review_menu);
             promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
@@ -444,7 +442,7 @@ addInputHandler('enr_order_review_continue', function(input){
         stopRules();
         return null;
     }
-    else if(state.vars.review_frame_loc < state.vars.review_frame_length - 1){
+    else if(state.vars.review_frame_loc < state.vars.review_frame_length - 1){ //watch for off by 1 errors
         state.vars.review_frame_loc = state.vars.review_frame_loc + 1;
         var input_review_menu = JSON.parse(state.vars.review_menu);
         state.vars.current_review_str = input_review_menu[state.vars.review_frame_loc];
