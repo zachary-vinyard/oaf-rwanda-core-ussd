@@ -447,7 +447,7 @@ addInputHandler('enr_order_review_continue', function(input){
     else if(state.vars.review_frame_loc < state.vars.review_frame_length){
         state.vars.review_frame_loc = state.vars.review_frame_loc + 1;
         var input_review_menu = JSON.parse(state.vars.review_menu);
-        state.vars.current_review_str = input_review_menu[state.vars.input_menu_loc];
+        state.vars.current_review_str = input_review_menu[state.vars.review_frame_loc];
         sayText(state.vars.current_review_str);
         promptDigits('enr_order_review_continue', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
     }
