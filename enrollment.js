@@ -268,6 +268,7 @@ addInputHandler('enr_input_splash', function(input){ //main input menu
             state.vars.input_menu_loc = state.vars.input_menu_loc + 1;
             console.log('just did addition. new loc : ' + state.vars.input_menu_loc)
             var menu = JSON.parse(state.vars.input_menu)[state.vars.input_menu_loc]
+            console.log('loc : ' + state.vars.input_menu_log + ' : ' +menu);
             state.vars.current_menu_str = menu;
             sayText(menu);
             promptDigits('enr_input_splash', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
