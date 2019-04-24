@@ -257,7 +257,6 @@ addInputHandler('enr_input_splash', function(input){ //main input menu
     console.log('len ' + state.vars.input_menu_length);
     console.log(state.vars.input_menu)
     if(state.vars.multiple_input_menus){
-        console.log('multiple_input_menus')
         if(input == 44 &&  state.vars.input_menu_loc > 0){
             state.vars.input_menu_loc = state.vars.input_menu_loc - 1;
             var menu = JSON.parse(state.vars.input_menu)[state.vars.input_menu_loc];
@@ -279,12 +278,6 @@ addInputHandler('enr_input_splash', function(input){ //main input menu
             state.vars.current_menu_str = current_menu;
             sayText(menu);
             promptDigits('enr_splash', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
-        }
-        else if(input == 77 && state.vars.input_menu_loc == state.vars.input_menu_length){
-            var menu = JSON.parse(state.vars.input_menu)[state.vars.input_menu_loc]
-            state.vars.current_menu_str = menu;
-            sayText(menu);
-            promptDigits('enr_input_splash', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
         }
     }
     var selection = get_menu_option(input, product_menu_table_name);
