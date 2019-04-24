@@ -248,7 +248,7 @@ addInputHandler('enr_input_splash', function(input){ //main input menu
         return null;
     }
     var product_menu_table_name = state.vars.product_menu_table_name;
-    if(state.vars.multiple_input_menus){
+    if(state.vars.multiple_input_menus){ //needs some serious cleanup here - this is messy
         if(input == 44 &&  state.vars.input_menu_loc > 0){
             state.vars.input_menu_loc = state.vars.input_menu_loc - 1;
             var menu = JSON.parse(state.vars.input_menu)[state.vars.input_menu_loc];
@@ -270,28 +270,50 @@ addInputHandler('enr_input_splash', function(input){ //main input menu
             sayText(menu);
             promptDigits('enr_splash', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
         }
-    }
-    var selection = get_menu_option(input, product_menu_table_name);
-    if(selection === null){
-        sayText('helllo...');
-        var m = msgs('enr_invalid_product_selection', {}, lang)
-        console.log(m)
-        console.log('got to line 278')
-        sayText('what is up here'); // need to include 1 to continue, 99 to exit here
-        throw 'wtf';
-        promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180})
+        else{
+            var selection = get_menu_option(input, product_menu_table_name);
+            if(selection == null){
+                var m = msgs('enr_invalid_product_selection', {}, lang)
+                console.log(m)
+                console.log('got to line 278')
+                sayText(m)
+                promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
+            }
+            else{
+                state.vars.current_product = selection;
+                var get_product_options = require('./lib/enr-get-product-options')
+                var product_deets = get_product_options(selection, product_menu_table_name);
+                state.vars.product_deets = JSON.stringify(product_deets);
+                var process_prod = require('./lib/enr-format-product-options');
+                var prod_deets_for_msg = process_prod(product_deets, lang);
+                var prod_message = msgs('enr_product_selected', prod_deets_for_msg, lang)
+                state.vars.prod_message = prod_message;
+                sayText(prod_message);
+                promptDigits('enr_input_order', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
+            }
+        }
     }
     else{
-        state.vars.current_product = selection;
-        var get_product_options = require('./lib/enr-get-product-options')
-        var product_deets = get_product_options(selection, product_menu_table_name);
-        state.vars.product_deets = JSON.stringify(product_deets);
-        var process_prod = require('./lib/enr-format-product-options');
-        var prod_deets_for_msg = process_prod(product_deets, lang);
-        var prod_message = msgs('enr_product_selected', prod_deets_for_msg, lang)
-        state.vars.prod_message = prod_message;
-        sayText(prod_message);
-        promptDigits('enr_input_order', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
+        var selection = get_menu_option(input, product_menu_table_name);
+        if(selection == null){
+            var m = msgs('enr_invalid_product_selection', {}, lang)
+            console.log(m)
+            console.log('got to line 301')
+            sayText(m)
+            promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180})
+        }
+        else{
+            state.vars.current_product = selection;
+            var get_product_options = require('./lib/enr-get-product-options')
+            var product_deets = get_product_options(selection, product_menu_table_name);
+            state.vars.product_deets = JSON.stringify(product_deets);
+            var process_prod = require('./lib/enr-format-product-options');
+            var prod_deets_for_msg = process_prod(product_deets, lang);
+            var prod_message = msgs('enr_product_selected', prod_deets_for_msg, lang)
+            state.vars.prod_message = prod_message;
+            sayText(prod_message);
+            promptDigits('enr_input_order', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
+        }
     }
 });
 
