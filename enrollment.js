@@ -423,7 +423,7 @@ addInputHandler('enr_order_review_start', function(input){ //input is account nu
         }
         else{
             state.vars.multiple_review_frames = 1;
-            state.var.review_frame_loc = 0;
+            state.vars.review_frame_loc = 0;
             state.vars.review_frame_length = Object.keys(input_review_menu).length;
             state.vars.current_review_str = input_review_menu[state.vars.input_menu_loc];
             sayText(state.vars.current_review_str);
