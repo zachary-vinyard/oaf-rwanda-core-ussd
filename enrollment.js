@@ -553,7 +553,7 @@ addInputHandler('invalid_input', function(input){
     input = parseInt(input.replace(/\D/g,''));
     if(input == 1){ //continue on to previously failed step
         sayText(state.vars.current_menu_str);
-        promptDigits(state.vars.current_step, {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+        promptDigits(state.vars.current_step, {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
     }
     else if(input == 99){ //exit
         sayText(msgs('exit', {}, lang));
