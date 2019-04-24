@@ -256,7 +256,7 @@ addInputHandler('enr_input_splash', function(input){ //main input menu
             sayText(menu);
             promptDigits('enr_input_splash', {'submitOnHash' : false, 'maxDigits' : 2,'timeout' : 180});
         }
-        else if(input == 77 && (state.vars.input_menu_loc < state.vars.input_menu_length)){
+        else if(input == 77 && (state.vars.input_menu_loc < state.vars.input_menu_length - 1)){
             state.vars.input_menu_loc = state.vars.input_menu_loc + 1;
             var menu = JSON.parse(state.vars.input_menu)[state.vars.input_menu_loc]
             state.vars.current_menu_str = menu;
