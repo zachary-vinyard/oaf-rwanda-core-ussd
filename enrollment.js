@@ -273,6 +273,7 @@ addInputHandler('enr_input_splash', function(input){ //main input menu
     }
     var selection = get_menu_option(input, product_menu_table_name);
     if(selection === null){
+        sayText('helllo...');
         var m = msgs('enr_invalid_product_selection', {}, lang)
         console.log(m)
         console.log('got to line 278')
