@@ -526,7 +526,7 @@ addInputHandler('enr_glus_id_start', function(input){ //input is nid for glus re
     var nid_glus = require('./lib/enr-glus-id-nid-retrieve');
     var glus_str = nid_glus(input, glus_pool);
     if(glus_str === null){
-        sayText(msgs('enr_invalid_nid', {}, lang))
+        sayText(msgs('enr_invalid_nid_lookup', {}, lang))
         promptDigits('enr_glus_id_start', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
     }
     else{
