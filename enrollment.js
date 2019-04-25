@@ -67,9 +67,16 @@ addInputHandler('enr_reg_start', function(input){ //input is first entry of nid 
         sayText(msgs('enr_invalid_nid', {}, lang));
         promptDigits('enr_reg_start', {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length})
     }
-    else if(is_already_reg(input, an_pool)){
-        sayText(msgs('enr_invalid_nid',{}, lang));
-        promptDigits('enr_reg_start', {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length})
+    else if(is_already_reg(input, an_pool)){//fix here for nid lookup
+        var get_client_by_nid = require('./lib/dpm-get-client-by-nid');
+        var client = get_client_by_nid(input, an_pool);
+        var enr_msg = msgs('enr_reg_complete', {'$ACCOUNT_NUMBER' : client.account_number}, lang)
+        sayText(enr_msg);
+        var enr_msg_sms = msgs('enr_reg_complete_sms', {'$ACCOUNT_NUMBER' : account_number}, lang);
+        var messager = require('./lib/enr-messager');
+        messager(contact.phone_number, enr_msg_sms);
+        messager(state.vars.reg_pn, enr_msg_sms);
+        promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
     }
     else{
         state.vars.reg_nid = input;
