@@ -531,7 +531,7 @@ addInputHandler('enr_glus_id_start', function(input){ //input is nid for glus re
     }
     else{
         var messager = require('./lib/enr-messager');
-        var glus_sms = msgs('enr_glus_sms', {'$GLUS' : glus_str});
+        var glus_sms = msgs('enr_glus_sms', {'$GLUS' : glus_str}, lang);
         messager(contact.phone_number, glus_sms);
         sayText(msgs('enr_glus_retrieved', {'$GLUS' : glus_str}, lang));
         promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
