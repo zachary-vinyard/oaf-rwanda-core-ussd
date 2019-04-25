@@ -517,7 +517,7 @@ input handlers for gl id retrieve
 */
 addInputHandler('enr_glus_id_start', function(input){ //input is nid for glus retrieval
     state.vars.current_step = 'enr_glus_id_start';
-    input = parseInt(input.replace(/\D/g,''));
+    input = String(input.replace(/\D/g,''));
     if(input == 99){
         sayText(msgs('exit', {}, lang));
         stopRules();
