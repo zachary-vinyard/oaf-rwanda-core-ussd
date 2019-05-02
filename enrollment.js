@@ -424,7 +424,7 @@ addInputHandler('enr_order_review_start', function(input){ //input is account nu
     }
     else{
         var prod_menu_select = require('./lib/enr-select-product-menu');
-        var gen_input_review = require('./lib/enr-gen-order-review')
+        var gen_input_review = require('./lib/enr-gen-order-review'); //todo: add prepayment calc
         var input_review_menu = gen_input_review(input, prod_menu_select(client.vars.geo, geo_menu_map), an_pool, lang);
         if(typeof(input_review_menu) == 'string'){
             sayText(input_review_menu);
