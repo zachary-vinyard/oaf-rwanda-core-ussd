@@ -4774,8 +4774,8 @@ module.exports = {
                     "fo_id": 0
                 },
                 "Uwumusebeya": {
-                    "fo_name": 0,
-                    "fo_phone": "0",
+                    "fo_name": "Faustin Mbonabucya",
+                    "fo_phone": "250785576925",
                     "fo_id": 0
                 }
             },
