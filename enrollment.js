@@ -72,7 +72,7 @@ addInputHandler('enr_reg_start', function(input){ //input is first entry of nid 
         var client = get_client_by_nid(input, an_pool);
         var enr_msg = msgs('enr_reg_complete', {'$ACCOUNT_NUMBER' : client.account_number}, lang)
         sayText(enr_msg);
-        var enr_msg_sms = msgs('enr_reg_complete_sms', {'$ACCOUNT_NUMBER' : account_number}, lang);
+        var enr_msg_sms = msgs('enr_reg_complete_sms', {'$ACCOUNT_NUMBER' : client.account_number}, lang);
         var messager = require('./lib/enr-messager');
         messager(contact.phone_number, enr_msg_sms);
         messager(state.vars.reg_pn, enr_msg_sms);
