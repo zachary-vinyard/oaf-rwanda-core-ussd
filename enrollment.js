@@ -11,6 +11,7 @@ var get_client = require('./lib/enr-retrieve-client-row');
 
 /*
 global options - feel free to refactor someday
+ideally we want something that allows for attaching these datatables by a user? or we should just document this to make it a bit more portable
 */
 var settings_table = project.getOrCreateDataTable('ussd_settings');
 const lang = settings_table.queryRows({'vars' : {'settings' : 'enr_lang'}}).next().vars.value;
@@ -72,7 +73,7 @@ addInputHandler('enr_reg_start', function(input){ //input is first entry of nid 
         var client = get_client_by_nid(input, an_pool);
         var enr_msg = msgs('enr_reg_complete', {'$ACCOUNT_NUMBER' : client.account_number}, lang)
         sayText(enr_msg);
-        var enr_msg_sms = msgs('enr_reg_complete_sms', {'$ACCOUNT_NUMBER' : account_number}, lang);
+        var enr_msg_sms = msgs('enr_reg_complete_sms', {'$ACCOUNT_NUMBER' : client.account_number}, lang);
         var messager = require('./lib/enr-messager');
         messager(contact.phone_number, enr_msg_sms);
         messager(state.vars.reg_pn, enr_msg_sms);
