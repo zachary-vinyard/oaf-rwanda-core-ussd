@@ -11,6 +11,7 @@ var get_client = require('./lib/enr-retrieve-client-row');
 
 /*
 global options - feel free to refactor someday
+ideally we want something that allows for attaching these datatables by a user? or we should just document this to make it a bit more portable
 */
 var settings_table = project.getOrCreateDataTable('ussd_settings');
 const lang = settings_table.queryRows({'vars' : {'settings' : 'enr_lang'}}).next().vars.value;
@@ -424,7 +425,7 @@ addInputHandler('enr_order_review_start', function(input){ //input is account nu
     }
     else{
         var prod_menu_select = require('./lib/enr-select-product-menu');
-        var gen_input_review = require('./lib/enr-gen-order-review')
+        var gen_input_review = require('./lib/enr-gen-order-review'); //todo: add prepayment calc
         var input_review_menu = gen_input_review(input, prod_menu_select(client.vars.geo, geo_menu_map), an_pool, lang);
         if(typeof(input_review_menu) == 'string'){
             sayText(input_review_menu);
