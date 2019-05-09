@@ -76,7 +76,9 @@ addInputHandler('enr_reg_start', function(input){ //input is first entry of nid 
         var enr_msg_sms = msgs('enr_reg_complete_sms', {'$ACCOUNT_NUMBER' : client.account_number, '$NAME' : client.name1 + ' ' + client.name2}, lang);
         var messager = require('./lib/enr-messager');
         messager(contact.phone_number, enr_msg_sms);
-        messager(state.vars.reg_pn, enr_msg_sms);
+        if(state.vars.reg_pn){
+            messager(state.vars.reg_pn, enr_msg_sms);
+        }
         promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
     }
     else{
