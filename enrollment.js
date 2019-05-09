@@ -420,7 +420,7 @@ addInputHandler('enr_order_review_start', function(input){ //input is account nu
     state.vars.current_step = 'enr_order_review_start';
     input = parseInt(input.replace(/\D/g,''));
     var client = get_client(input, an_pool);
-    if(client === null || client.vars.registered == 0){
+    if(client === null || client.vars.registered === 0){
         sayText(msgs('account_number_not_found', {}, lang));
         contact.vars.account_failures = contact.vars.account_failures + 1;
         promptDigits(state.vars.current_step, {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
