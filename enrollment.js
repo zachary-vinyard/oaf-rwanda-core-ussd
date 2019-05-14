@@ -221,6 +221,14 @@ addInputHandler('enr_order_start', function(input){ //input is account number
         promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
     }
     else if(client.vars.registered == 1){
+        if(client.geo == 'Ruhango_trial'){
+            var check_prep = require('./lib/enr-rgo-check-prep');
+            const rgo_trial_prep = parseInt(settings_table.queryRows({'vars' : {'settings' : 'rgo_trial_prep'}}).next().vars.value);
+            if(!check_prep(client.account_number, rgo_trial_prep)){
+                sayText(msgs('rgo_prep_insufficient', {}, lang));
+                promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
+            }
+        }
         state.vars.session_authorized = true;
         state.vars.session_account_number = input;
         state.vars.client_geo = client.vars.geo;
