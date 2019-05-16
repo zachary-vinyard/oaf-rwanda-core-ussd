@@ -223,6 +223,7 @@ addInputHandler('enr_order_start', function(input){ //input is account number
     else if(client.vars.registered == 1){
         console.log(client.vars.glus);
         var ruhango_trial_glus_list = ['VA777763', 'VA715591', 'VA933385', 'VA790067', 'VA345963', 'VA548975', 'VA274555', 'VA440341', 'VA307683', 'VA178482'];
+        console.log(client.vars.glus in ruhango_trial_glus_list);
         if(client.vars.glus in ruhango_trial_glus_list){
             console.log('reached the if statement')
             var check_prep = require('./lib/enr-rgo-check-prep');
