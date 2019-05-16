@@ -221,15 +221,15 @@ addInputHandler('enr_order_start', function(input){ //input is account number
         promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
     }
     else if(client.vars.registered == 1){
-        console.log(client.vars.glus);
         var ruhango_trial_glus_list = {'VA777763' : 0, 'VA715591' : 0, 'VA933385' : 0, 'VA790067' : 0, 'VA345963' : 0, 'VA548975' : 0, 'VA274555' : 0, 'VA440341' : 0, 'VA307683' : 0, 'VA178482': 0};
-        console.log(client.vars.glus in ruhango_trial_glus_list);
         if(client.vars.glus in ruhango_trial_glus_list){
-            console.log('reached the if statement')
             var check_prep = require('./lib/enr-rgo-check-prep');
+            var check_an = client.vars.account_number;
+            if(client.vars.account_number == 1){
+                check_an = 14251308;
+            }
             const rgo_trial_prep = parseInt(settings_table.queryRows({'vars' : {'settings' : 'rgo_trial_prep'}}).next().vars.value);
-            console.log(rgo_trial_prep);
-            if(!check_prep(client.account_number, rgo_trial_prep)){
+            if(!check_prep(check_an, rgo_trial_prep)){
                 sayText(msgs('rgo_prep_insufficient', {}, lang));
                 promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
             }
