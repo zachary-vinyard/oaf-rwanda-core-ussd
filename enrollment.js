@@ -226,7 +226,7 @@ addInputHandler('enr_order_start', function(input){ //input is account number
             var check_prep = require('./lib/enr-rgo-check-prep');
             var check_an = client.vars.account_number;
             if(client.vars.account_number == 1){
-                check_an = 14251308;
+                check_an = 19268437;
             }
             const rgo_trial_prep = parseInt(settings_table.queryRows({'vars' : {'settings' : 'rgo_trial_prep'}}).next().vars.value);
             if(!check_prep(check_an, rgo_trial_prep)){
