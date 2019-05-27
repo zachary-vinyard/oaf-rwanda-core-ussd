@@ -17,5 +17,6 @@ global.main = function(){
         admin_alert(body, subject, 'norbert');
         admin_alert(body, subject, 'tom');
         admin_alert(body, subject, 'ammar');
+        admin_alert(body, subject, 'africas_talking');
     }
 };
