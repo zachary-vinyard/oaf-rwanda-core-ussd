@@ -13,10 +13,9 @@ global.main = function(){
         var subject = "ALERT: No traffic on USSD service the last 15 min";
         var body = "No traffic on USSD service the last 15 min please check https://telerivet.com/p/8799a79f/messages for more information";
         var admin_alert = require('./lib/admin-alert');
-        admin_alert(body, subject);
-        admin_alert(body, subject, 'norbert');
-        admin_alert(body, subject, 'tom');
-        admin_alert(body, subject, 'ammar');
-        admin_alert(body, subject, 'africas_talking');
+        var alertees = ['default', 'norbert', 'tom', 'ammar', 'africas_talking']; //add alertees here. alertees must be in the 'admin_email' table in TR
+        for(var i = 0; i < alertees.length; i++){
+            admin_alert(body, subject, alertees[i]);
+        }
     }
 };
