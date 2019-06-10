@@ -183,7 +183,7 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
     if(geo){
         var client_log = require('./lib/enr-client-logger');
         state.vars.glus = input;
-        var account_number = client_log(state.vars.reg_nid, state.vars.reg_name_1, state.vars.reg_name_2, state.vars.pn, state.vars.glus, geo, an_pool);
+        var account_number = client_log(state.vars.reg_nid, state.vars.reg_name_1, state.vars.reg_name_2, state.vars.reg_pn, state.vars.glus, geo, an_pool);
         var enr_msg = msgs('enr_reg_complete', {'$ACCOUNT_NUMBER' : account_number}, lang);
         sayText(enr_msg);
         var enr_msg_sms = msgs('enr_reg_complete_sms', {'$ACCOUNT_NUMBER' : account_number}, lang);
