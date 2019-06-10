@@ -180,7 +180,20 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
     }
     var check_glus = require('./lib/enr-check-glus');
     var geo = check_glus(input, glus_pool);
+    var check_live = require('./lib/enr-check-geo-active');
     if(geo){
+        try{ // get this out of a try block as soon as bandwidth
+            if(!check_live(geo, geo_menu_map)){
+                sayText(msgs('enr_invalid_glus', {}, lang));
+                promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length});
+                return 0;
+            }
+        }
+        catch(error){
+            console.log(error);
+            var admin_alert = require('./lib/admin-alert');
+            admin_alert('error on live - dead check\n' + error);
+        }
         var client_log = require('./lib/enr-client-logger');
         state.vars.glus = input;
         var account_number = client_log(state.vars.reg_nid, state.vars.reg_name_1, state.vars.reg_name_2, state.vars.reg_pn, state.vars.glus, geo, an_pool);
@@ -222,7 +235,20 @@ addInputHandler('enr_order_start', function(input){ //input is account number
     }
     else if(client.vars.registered == 1){
         var ruhango_trial_glus_list = {'VA777763' : 0, 'VA715591' : 0, 'VA933385' : 0, 'VA790067' : 0, 'VA345963' : 0, 'VA548975' : 0, 'VA274555' : 0, 'VA440341' : 0, 'VA307683' : 0, 'VA178482': 0};
-        if(client.vars.glus in ruhango_trial_glus_list){
+        try{ // this is super awkward plz fix one day. best practice would be to move out of the try block
+            var check_live = require('./lib/enr-check-geo-active');
+            if(!check_live(client.vars.geo, geo_menu_map)){ //TODO: get this out of this try block
+                sayText(msgs('enr_order_already_finalized', {}, lang));
+                promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+                return 0;
+            }
+        }
+        catch(error){
+            console.log(error);
+            var admin_alert = require('./lib/admin-alert');
+            admin_alert('error on live - dead check\n' + error);
+        }
+        if(client.vars.glus in ruhango_trial_glus_list){ //this is awkward - plz fix
             var check_prep = require('./lib/enr-rgo-check-prep');
             const rgo_trial_prep = parseInt(settings_table.queryRows({'vars' : {'settings' : 'rgo_trial_prep'}}).next().vars.value);
             if(!check_prep(client.vars.account_number, rgo_trial_prep)){
