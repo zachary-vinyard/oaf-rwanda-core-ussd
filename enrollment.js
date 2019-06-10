@@ -184,7 +184,7 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
     if(geo){
         try{ // get this out of a try block as soon as bandwidth
             if(!check_live(geo, geo_menu_map)){
-                sayText(msgs('enr_invalid_glus', {}, lang));
+                sayText(msgs('enr_order_period_finished', {}, lang));
                 promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length});
                 return 0;
             }
