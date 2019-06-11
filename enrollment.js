@@ -229,7 +229,7 @@ addInputHandler('enr_order_start', function(input){ //input is account number
         contact.vars.account_failures = contact.vars.account_failures + 1;
         promptDigits(state.vars.current_step, {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length})
     }
-    else if(client.vars.finalized == 1){
+    else if(client.vars.finalized == 1 && client.vars.geo !== 'Ruhango'){ //fix next tine for generallity
         sayText(msgs('enr_order_already_finalized', {}, lang));
         promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
     }
