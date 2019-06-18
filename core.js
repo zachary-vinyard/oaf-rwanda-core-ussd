@@ -10,7 +10,7 @@ var admin_alert = require('./lib/admin-alert'); //global admin alerter
 var settings_table = project.getOrCreateDataTable('ussd_settings');
 const max_digits_for_input = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits'}}).next().vars.value); //only for testing
 const max_digits_for_nid = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_nid'}}).next().vars.value); 
-const max_digits_for_account_number = parsInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_an'}}).next().vars.value);
+const max_digits_for_account_number = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_an'}}).next().vars.value);
 
 global.main = function () {
     sayText(msgs('cor_main_splash'));
