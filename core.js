@@ -1,14 +1,18 @@
 /*
-main file for TR / OAF RW core program
-include more documentation here!!
-lang options - 'en', 'ki'
+OAF RW core program
 */
 
+//global functions
 var msgs = require('./lib/msg-retrieve'); //global message handler
 var admin_alert = require('./lib/admin-alert'); //global admin alerter
 
+//options
+const max_digits_for_input = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits'}}).next().vars.value); //only for testing
+const max_digits_for_nid = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_nid'}}).next().vars.value); 
+const max_digits_for_account_number = parsInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_nid'}}).next().vars.value);
+
 global.main = function () {
-    sayText(msgs('main_splash'));
+    sayText(msgs('cor_main_splash'));
     promptDigits('account_number_splash', { 'submitOnHash' : false,
                                             'maxDigits'    : 8,
                                             'timeout'      : 180 });
