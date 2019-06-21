@@ -5,7 +5,7 @@ input handler IDs must match the associated menu tables. if input handlers are n
 */
 
 var msgs = require('./lib/msg-retrieve');
-var populate_menu = require('./lib/populate-menu')
+var populate_menu = require('./lib/populate-menu');
 var get_menu_option = require('./lib/get-menu-option');
 var get_client = require('./lib/enr-retrieve-client-row');
 
