@@ -34,13 +34,14 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
         if(client_verified){
             //sayText(msgs('account_number_verified'));
             var splash = core_splash_map.queryRows({'vars' : {'district' : state.vars.client_district}}).next().vars.splash_menu;
+            state.vars.splash = splash;
             if(splash === null || splash === undefined){
                 admin_alert(state.vars.client_district + ' not found in district database');
                 throw 'ERROR : DISTRICT NOT FOUND';
             }
             var menu = populate_menu(splash, lang);
             sayText(menu);
-            promptDigits('cor_menu_select', {'submitOnHash' : False, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
+            promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
         }
         else{
             sayText(msgs('account_number_not_found'));
@@ -73,11 +74,32 @@ addInputHandler('cor_menu_select', function(input){
 addInputHandler('cor_check_balance', function(input){
     get_balance = require('./lib/cor-get-balance');
     var balance_data = get_balance(state.vars.client_json, lang);
-    //sayText(msgs())
+    sayText(msgs('cor_get_balance', balance_data, lang));
+    //promptDigits()
 });
 
 addInputHandler('chx_register', function(input){
     //hhh
+});
+
+
+/*
+generic input handler for returning to main splash menu
+*/
+addInputHandler('cor_continue', function(input){
+    state.vars.current_step = 'cor_continue';
+    input = parseInt(input.replace(/\D/g,''));
+    if(input == 1){
+        var splash_menu = populate_menu(state.vars.splash, lang);
+        var current_menu = splash_menu;
+        state.vars.current_menu_str = current_menu;
+        sayText(current_menu);
+        promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+    }
+    else if(input == 99){
+        sayText(msgs('exit', {}, lang));
+        stopRules();
+    }
 });
 
 /*
