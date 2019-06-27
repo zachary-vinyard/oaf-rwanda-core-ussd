@@ -41,6 +41,7 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
                 throw 'ERROR : DISTRICT NOT FOUND';
             }
             var menu = populate_menu(splash, lang);
+            state.vars.current_menu_str = menu;
             sayText(menu);
             promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
         }
@@ -59,7 +60,8 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
 addInputHandler('cor_menu_select', function(input){
     input = String(input.replace(/\D/g,''));
     state.vars.current_step = 'cor_menu_select';
-    var selection = get_menu_option(input, state.vars.current_step); 
+    var selection = get_menu_option(input, state.vars.current_step);
+    console.log(selection);
     if(selection === null || selection || undefined){
         sayText(msgs('invalid_input', {}, lang));
         promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
