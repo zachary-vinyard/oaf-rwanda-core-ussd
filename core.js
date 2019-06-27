@@ -62,7 +62,7 @@ addInputHandler('cor_menu_select', function(input){
     state.vars.current_step = 'cor_menu_select';
     var selection = get_menu_option(input, state.vars.splash);
     console.log(selection);
-    if(selection === null || selection || undefined){
+    if(selection === null || selection === undefined){
         sayText(msgs('invalid_input', {}, lang));
         promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
     }
