@@ -15,6 +15,7 @@ const max_digits_for_input = parseInt(settings_table.queryRows({'vars' : {'setti
 //const max_digits_for_nid = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_nid'}}).next().vars.value); 
 const max_digits_for_account_number = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_an'}}).next().vars.value);
 const core_splash_map = project.getOrCreateDataTable('districts');
+const timeout_length = 180;
 
 global.main = function () {
     sayText(msgs('cor_main_splash'));
