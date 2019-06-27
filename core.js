@@ -68,7 +68,7 @@ addInputHandler('cor_menu_select', function(input){
     }
     else if(selection === 'cor_get_balance'){
         get_balance = require('./lib/cor-get-balance');
-        var balance_data = get_balance(state.vars.client_json, lang);
+        var balance_data = get_balance(JSON.parse(state.vars.client_json), lang);
         sayText(msgs('cor_get_balance', balance_data, lang));
         promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
     }
