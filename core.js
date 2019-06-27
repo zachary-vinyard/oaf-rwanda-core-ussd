@@ -62,7 +62,6 @@ addInputHandler('cor_menu_select', function(input){
     input = String(input.replace(/\D/g,''));
     state.vars.current_step = 'cor_menu_select';
     var selection = get_menu_option(input, state.vars.splash);
-    console.log(selection);
     if(selection === null || selection === undefined){
         sayText(msgs('invalid_input', {}, lang));
         promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
@@ -77,7 +76,7 @@ addInputHandler('cor_menu_select', function(input){
         if(selection === 'chx_confirm'){
             var get_available_chx = require('./lib/chx-calc-available-chickens');
             var opts = get_available_chx;
-            state.vars.max_chx = ops.$CHX_NUM;
+            state.vars.max_chx = opts.$CHX_NUM;
         }
         else{
             var opts = {};
