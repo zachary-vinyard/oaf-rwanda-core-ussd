@@ -80,11 +80,7 @@ addInputHandler('cor_menu_select', function(input){
     }
 });
 
-addInputHandler('cor_check_balance', function(input){
-    //promptDigits()
-});
-
-addInputHandler('chx_register', function(input){
+addInputHandler('chx_confirm', function(input){
     //hhh
 });
 
