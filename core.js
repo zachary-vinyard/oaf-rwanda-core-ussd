@@ -15,6 +15,7 @@ const max_digits_for_input = parseInt(settings_table.queryRows({'vars' : {'setti
 //const max_digits_for_nid = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_nid'}}).next().vars.value); 
 const max_digits_for_account_number = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_an'}}).next().vars.value);
 const core_splash_map = project.getOrCreateDataTable('districts');
+const chicken_client_table = settings_table.queryRows({'vars' : {'sttings' : 'chicken_client_table'}}).next().vars.value;
 const timeout_length = 180;
 
 global.main = function () {
@@ -66,14 +67,22 @@ addInputHandler('cor_menu_select', function(input){
         sayText(msgs('invalid_input', {}, lang));
         promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
     }
-    else if(selection === 'cor_get_balance'){
+    else if(selection === 'cor_get_balance'){ //inelegant
         get_balance = require('./lib/cor-get-balance');
         var balance_data = get_balance(JSON.parse(state.vars.client_json), lang);
         sayText(msgs('cor_get_balance', balance_data, lang));
         promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
     }
     else{
-        var current_menu = msgs(selection, {}, lang);
+        if(selection === 'chx_confirm'){
+            var get_available_chx = require('./lib/chx-calc-available-chickens');
+            var opts = get_available_chx;
+            state.vars.max_chx = ops.$CHX_NUM;
+        }
+        else{
+            var opts = {};
+        }
+        var current_menu = msgs(selection, opts, lang);
         state.vars.current_menu_str = current_menu;
         sayText(current_menu);
         promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
