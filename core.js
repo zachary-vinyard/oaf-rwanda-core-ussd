@@ -66,6 +66,12 @@ addInputHandler('cor_menu_select', function(input){
         sayText(msgs('invalid_input', {}, lang));
         promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
     }
+    else if(selection === 'cor_get_balance'){
+        get_balance = require('./lib/cor-get-balance');
+        var balance_data = get_balance(state.vars.client_json, lang);
+        sayText(msgs('cor_get_balance', balance_data, lang));
+        promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+    }
     else{
         var current_menu = msgs(selection, {}, lang);
         state.vars.current_menu_str = current_menu;
@@ -75,9 +81,6 @@ addInputHandler('cor_menu_select', function(input){
 });
 
 addInputHandler('cor_check_balance', function(input){
-    get_balance = require('./lib/cor-get-balance');
-    var balance_data = get_balance(state.vars.client_json, lang);
-    sayText(msgs('cor_get_balance', balance_data, lang));
     //promptDigits()
 });
 
