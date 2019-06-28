@@ -74,7 +74,7 @@ addInputHandler('cor_menu_select', function(input){
         promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
     }
     else{
-        console.log(current_step);
+        console.log(selection);
         if(selection === 'chx_confirm'){
             console.log('got here');
             var get_available_chx = require('./lib/chx-calc-available-chickens');
