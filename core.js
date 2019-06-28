@@ -123,7 +123,7 @@ addInputHandler('chx_final_confirm', function(input){ //final confirmation to en
         var save_chx_quant = require('./lib/chx-save-quant');
         var conf_code = save_chx_quant(state.vars.account_number, state.vars.confirmed_chx, chicken_client_table);
         var conf_msg = msgs('chx_confirmed', {'$CHX_NUM' : state.vars.confirmed_chx, '$CONFIRMATION_CODE' : conf_code}, lang);
-        var msg_route = settings.queryRows({'vars' : {'settings' : 'sms_push_route'}}).next().vars.value;
+        var msg_route = settings_table.queryRows({'vars' : {'settings' : 'sms_push_route'}}).next().vars.value;
         project.sendMessage({'to_number' : contact.phone_number, 'route_id' : msg_route, 'content' : conf_msg});
         sayText(conf_msg)
         promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length})
