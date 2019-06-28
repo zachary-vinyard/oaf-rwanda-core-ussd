@@ -75,6 +75,7 @@ addInputHandler('cor_menu_select', function(input){
     }
     else{
         if(selection === 'chx_confirm'){
+            console.log('got here');
             var get_available_chx = require('./lib/chx-calc-available-chickens');
             var opts = get_available_chx(state.vars.account_number, JSON.parse(state.vars.client_json), chicken_client_table);
             console.log(JSON.parse(opts));
