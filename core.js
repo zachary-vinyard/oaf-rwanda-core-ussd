@@ -75,13 +75,15 @@ addInputHandler('cor_menu_select', function(input){
     }
     else{
         console.log(selection);
-        if(selection === 'chx_confirm'){
-            console.log('got here');
+        if(selection === 'chx_confirm'){ // this is ... not great
             var get_available_chx = require('./lib/chx-calc-available-chickens');
             var opts = get_available_chx(state.vars.account_number, JSON.parse(state.vars.client_json), chicken_client_table);
-            console.log(opts)
-            console.log(opts.$CHX_NUM)
             state.vars.max_chx = opts.$CHX_NUM;
+            if(state.vars.max_chx == 0){
+                sayText(msgs('chx_none_confirmable', {}, lang));
+                promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+                return null;
+            }
         }
         else{
             var opts = {};
