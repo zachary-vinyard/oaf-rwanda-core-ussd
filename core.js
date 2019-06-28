@@ -35,6 +35,7 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
         var client_verified = verify(response);
         if(client_verified){
             //sayText(msgs('account_number_verified'));
+            state.vars.account_number = response;
             var splash = core_splash_map.queryRows({'vars' : {'district' : state.vars.client_district}}).next().vars.splash_menu;
             state.vars.splash = splash;
             if(splash === null || splash === undefined){
@@ -75,7 +76,7 @@ addInputHandler('cor_menu_select', function(input){
     else{
         if(selection === 'chx_confirm'){
             var get_available_chx = require('./lib/chx-calc-available-chickens');
-            var opts = get_available_chx;
+            var opts = get_available_chx(state.vars.account_number, JSON.parse(state.vars.client_json), chicken_client_table);
             state.vars.max_chx = opts.$CHX_NUM;
         }
         else{
