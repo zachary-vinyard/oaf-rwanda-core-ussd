@@ -169,4 +169,9 @@ addInputHandler('invalid_input', function(input){
         stopRules();
         return null;
     }
+    else{
+        sayText(msgs('exit', {}, lang));
+        stopRules();
+        return null;
+    }
 });
