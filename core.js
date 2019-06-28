@@ -90,7 +90,44 @@ addInputHandler('cor_menu_select', function(input){
 });
 
 addInputHandler('chx_confirm', function(input){
-    //hhh
+    input = parseInt(input.replace(/\D/g,''));
+    state.vars.current_tep = 'chx_confirm';
+    if(input > 0 && input <= state.vars.max_chx){
+        var check_chx_conf = require('./lib/chx-check-reg');
+        if(check_chx_conf(state.vars.account_number, chicken_client_table)){
+            sayText(msgs('chx_alreay_confirmed', {}, lang));
+            promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+            return null;
+        }
+        state.vars.confirmed_chx = input;
+        sayText(msgs('chx_final_confirm', {'$CHX_NUM' : state.vars.confirmed_chx}, lang));
+        promptDigits('chx_final_confirm', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+    }
+    else if(input > state.vars.max_chx){
+        sayText(msgs('chx_too_many', {}, lang))
+        promptDigits('invalid_input',{'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length})
+    }
+    else{
+        sayText(msgs('invalid_input', {}, lang));
+        promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length})
+    }
+});
+
+addInputHandler('chx_final_confirm', function(input){ //final confirmation to ensure that correct number of chickens is picked
+    input = parseInt(input.replace(/\D/g,''));
+    if(input === 1){
+        var save_chx_quant = require('./lib/chx-save-quant');
+        var conf_code = save_chx_quant(state.vars.account_number, state.vars.confirmed_chx, chicken_client_table);
+        var conf_msg = msgs('chx_confirmed', {'$CHX_NUM' : state.vars.confirmed_chx, '$CONFIRMATION_CODE' : conf_code}, lang);
+        var msg_route = settings.queryRows({'vars' : {'settings' : 'sms_push_route'}}).next().vars.value;
+        project.sendMessage({'to_number' : contact.phone_number, 'route_id' : msg_route, 'content' : conf_msg});
+        sayText(conf_msg)
+        promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length})
+    }
+    else{
+        sayText(msgs('chx_not_confirmed', {}, lang));
+        promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length})
+    }
 });
 
 
@@ -110,6 +147,7 @@ addInputHandler('cor_continue', function(input){
     else if(input == 99){
         sayText(msgs('exit', {}, lang));
         stopRules();
+        return null;
     }
 });
 
