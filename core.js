@@ -99,7 +99,7 @@ addInputHandler('chx_confirm', function(input){
     if(input > 0 && input <= state.vars.max_chx){
         var check_chx_conf = require('./lib/chx-check-reg');
         if(check_chx_conf(state.vars.account_number, chicken_client_table)){
-            sayText(msgs('chx_alreay_confirmed', {}, lang));
+            sayText(msgs('chx_already_confirmed', {}, lang));
             promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
             return null;
         }
