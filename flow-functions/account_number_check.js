@@ -33,7 +33,7 @@ try{
 }
 catch(error){
 		console.log('error : ' + error);
-        sendEmail(admin_email, 'API Failure','API failure on account number ' + acctNum + '\nError : ' + error + '\n' + JSON.stringify(client));
+        sendEmail(admin_email, 'API Failure','API failure on account number ' + accnum + '\nError : ' + error + '\n' + JSON.stringify(client));
         client = null;
         $an_error = 1;
 }
