@@ -66,12 +66,14 @@ addInputHandler('cor_menu_select', function(input){
     if(selection === null || selection === undefined){
         sayText(msgs('invalid_input', {}, lang));
         promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
+        return null;
     }
     else if(selection === 'cor_get_balance'){ //inelegant
         get_balance = require('./lib/cor-get-balance');
         var balance_data = get_balance(JSON.parse(state.vars.client_json), lang);
         sayText(msgs('cor_get_balance', balance_data, lang));
         promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        return null;
     }
     else{
         console.log(selection);
@@ -92,6 +94,7 @@ addInputHandler('cor_menu_select', function(input){
         state.vars.current_menu_str = current_menu;
         sayText(current_menu);
         promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        return null;
     }
 });
 
@@ -108,14 +111,17 @@ addInputHandler('chx_confirm', function(input){
         state.vars.confirmed_chx = input;
         sayText(msgs('chx_final_confirm', {'$CHX_NUM' : state.vars.confirmed_chx}, lang));
         promptDigits('chx_final_confirm', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        return null;
     }
     else if(input > state.vars.max_chx){
         sayText(msgs('chx_too_many', {}, lang))
-        promptDigits('invalid_input',{'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length})
+        promptDigits('invalid_input',{'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        return null;
     }
     else{
         sayText(msgs('invalid_input', {}, lang));
-        promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length})
+        promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        return null;
     }
 });
 
@@ -128,11 +134,13 @@ addInputHandler('chx_final_confirm', function(input){ //final confirmation to en
         var msg_route = settings_table.queryRows({'vars' : {'settings' : 'sms_push_route'}}).next().vars.value;
         project.sendMessage({'to_number' : contact.phone_number, 'route_id' : msg_route, 'content' : conf_msg});
         sayText(conf_msg)
-        promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length})
+        promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        return null;
     }
     else{
         sayText(msgs('chx_not_confirmed', {}, lang));
-        promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length})
+        promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        return null;
     }
 });
 
@@ -143,12 +151,13 @@ generic input handler for returning to main splash menu
 addInputHandler('cor_continue', function(input){
     state.vars.current_step = 'cor_continue';
     input = parseInt(input.replace(/\D/g,''));
-    if(input == 1){
+    if(input !== 99){
         var splash_menu = populate_menu(state.vars.splash, lang);
         var current_menu = splash_menu;
         state.vars.current_menu_str = current_menu;
         sayText(current_menu);
         promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+        return null;
     }
     else if(input == 99){
         sayText(msgs('exit', {}, lang));
@@ -165,6 +174,7 @@ addInputHandler('invalid_input', function(input){
     if(input == 1){ //continue on to previously failed step
         sayText(state.vars.current_menu_str);
         promptDigits(state.vars.current_step, {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        return null;
     }
     else if(input == 99){ //exit
         sayText(msgs('exit', {}, lang));
