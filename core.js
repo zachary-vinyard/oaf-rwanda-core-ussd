@@ -2,7 +2,7 @@
 OAF RW core program
 */
 
-//global functions
+//global functionss
 var msgs = require('./lib/msg-retrieve'); //global message handler
 var admin_alert = require('./lib/admin-alert'); //global admin alerter
 var get_menu_option = require('./lib/get-menu-option');
