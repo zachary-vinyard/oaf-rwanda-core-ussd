@@ -18,22 +18,17 @@ const timeout_length = 180; // what unit is this? seconds?
 // display welcome message and prompt input. the input received here will trigger a series of input handlers.
 global.main = function() {
     sayText(msgs('pshops_main_splash'));
-    // is account_number_splash predefined, or is it a name that triggers the right input handler?
+    // account_number_splash triggers the right input handler?
     promptDigits('account_number_splash', { 'submitOnHash' : false,
                                             'maxDigits'    : max_digits_for_account_number,
                                             'timeout'      : 180 });
 }
 
-/*
-input handlers - one per response variable
-*/
-
 // input handler for account #
-addInputHandler('account_number_splash', function(input){ //account_number_splash input handler - main input handler for initial splash
+addInputHandler('account_number_splash', function(accnum){ //account_number_splash input handler - main input handler for initial splash
     try{ 
         // run subroutine Check_AccountNumber with account number
-        var acc_status = check_account_no(input);
-        if(acc_status == 'Valid P-shop'){
+        if(state.vars.AccStatus == 'Valid P-shop'){
             // Display main menu (farmer name state var assigned in check_account_no)
             main_menu_display(farmer_name);
         }
@@ -52,7 +47,7 @@ addInputHandler('account_number_splash', function(input){ //account_number_splas
 });
 
 // input handler for main menu selections
-addInputHandler('pshop_menu_select', function(input){
+addInputHandler('pshop_menu_select', function(selection){
     /* if option 1:
         print log message with variables from roster
         offer option to return to main menu (BackToMain)

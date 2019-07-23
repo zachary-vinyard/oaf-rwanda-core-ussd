@@ -25,6 +25,4 @@ module.exports = function(accnum){
             state.vars.AccStatus = "Non P-Shop"}
         }
     });
-    // Is this necessary
-    return state.vars.AccStatus;
 }
