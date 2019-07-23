@@ -1,3 +1,8 @@
+/*
+    Function: check_account_no.js
+    Author: Tom ft. Marisa
+    Purpose: Checks if the input account number appears as a PShop account in Roster
+*/
 
 module.exports = function(accnum){
     // Authentication against Roster
@@ -14,11 +19,12 @@ module.exports = function(accnum){
                 state.vars.TotalCredit = client.BalanceHistory[0].TotalCredit;
             state.vars.TotalRepay_Incl = client.BalanceHistory[0].TotalRepayment_IncludingOverpayments;
             state.vars.Balance = client.BalanceHistory[0].Balance;
-            state.vars.farmername = client.ClientName;
+            state.vars.farmer_name = client.ClientName;
             }
         else {
             state.vars.AccStatus = "Non P-Shop"}
         }
     });
+    // Is this necessary
     return state.vars.AccStatus;
 }

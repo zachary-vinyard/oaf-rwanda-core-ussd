@@ -13,12 +13,12 @@ var settings_table = project.getOrCreateDataTable('ussd_settings');
 const max_digits_for_account_number = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_an'}}).next().vars.value);
 const timeout_length = 180; // what unit is this? seconds?
 
-// NOTE: NEED SAYTEXT, PROMPTDIGITS FUNCTIONS
+// NOTE: SAYTEXT, PROMPTDIGITS FUNCTIONS AVAILABLE?
 
 // display welcome message and prompt input. the input received here will trigger a series of input handlers.
 global.main = function() {
     sayText(msgs('pshops_main_splash'));
-    // what is the promptdigits function? is account_number_splash predefined, or is it a name that triggers the right input handler?
+    // is account_number_splash predefined, or is it a name that triggers the right input handler?
     promptDigits('account_number_splash', { 'submitOnHash' : false,
                                             'maxDigits'    : max_digits_for_account_number,
                                             'timeout'      : 180 });
@@ -29,16 +29,21 @@ input handlers - one per response variable
 */
 
 // input handler for account #
-addInputHandler('account_number_splash', function(input){ //acount_number_splash input handler - main input handler for initial splash
+addInputHandler('account_number_splash', function(input){ //account_number_splash input handler - main input handler for initial splash
     try{ 
         // run subroutine Check_AccountNumber with account number
         var acc_status = check_account_no(input);
         if(acc_status == 'Valid P-shop'){
-            // call main menu function 
+            // Display main menu (farmer name state var assigned in check_account_no)
+            main_menu_display(farmer_name);
         }
         else{
             // print incorrect account msg
+            sayText(msgs('incorrect_account_number'));
             // promptDigits for account number
+            promptDigits('account_number_splash', { 'submitOnHash' : false,
+                                                    'maxDigits'    : max_digits_for_account_number,
+                                                    'timeout'      : 180 });
         }
     }
     catch(error){
@@ -46,26 +51,13 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
     }
 });
 
-// input handler for main menu
-addInputHandler('pshop_main_menu', function(input){
-    try{}
-    catch(error){}
-})
-
-// input handler for option 1 selected in pshop main menu
-addInputHandler('log_message', function(input){
-    // print log message with variables from roster
-    // offer option to return to main menu (BackToMain)
-})
-
-// input handler for BackToMain
-addInputHandler('back_to_main', function(input){
-    // display pshop_main_menu
-})
-
-// input handler for option 2: what exactly is this?
-addInputHandler('top_up_options', function(input){
-    /* step 1: run registration check subroutine (check Telerivet for script)
+// input handler for main menu selections
+addInputHandler('pshop_menu_select', function(input){
+    /* if option 1:
+        print log message with variables from roster
+        offer option to return to main menu (BackToMain)
+    */
+   /* if option 2:  run registration check subroutine (check Telerivet for script)
     if hasreg == yes, 
         if unlock == yes,
             print message showing serial number
