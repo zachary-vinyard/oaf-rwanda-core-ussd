@@ -1,6 +1,5 @@
 /*
     Function: renew_code.js
-    Author: Tom ft. Marisa
     Purpose: allows a client to renew their PAYGO code
 */
 

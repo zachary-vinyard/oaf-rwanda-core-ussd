@@ -13,36 +13,30 @@ var settings_table = project.getOrCreateDataTable('ussd_settings');
 const max_digits_for_account_number = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_an'}}).next().vars.value);
 const timeout_length = 180; // what unit is this? seconds?
 
-// NOTE: SAYTEXT, PROMPTDIGITS FUNCTIONS AVAILABLE?
-
 // display welcome message and prompt input. the input received here will trigger a series of input handlers.
 global.main = function() {
     sayText(msgs('pshops_main_splash'));
-    // account_number_splash triggers the right input handler?
     promptDigits('account_number_splash', { 'submitOnHash' : false,
                                             'maxDigits'    : max_digits_for_account_number,
                                             'timeout'      : 180 });
 }
 
 // input handler for account #
-addInputHandler('account_number_splash', function(accnum){ //account_number_splash input handler - main input handler for initial splash
-    try{ 
-        // run subroutine Check_AccountNumber with account number
-        if(state.vars.AccStatus == 'Valid P-shop'){
-            // Display main menu (farmer name state var assigned in check_account_no)
+addInputHandler('account_number_splash', function(accnum){
+    try{ // check if account number is a valid p-shop number
+        check_account_no(accnum);
+
+        if(state.vars.AccStatus == 'Valid P-shop'){ // if valid, display main menu
             main_menu_display(farmer_name);
         }
-        else{
-            // print incorrect account msg
+        else{ // if invalid, print incorrect account msg and prompt digits for account # again
             sayText(msgs('incorrect_account_number'));
-            // promptDigits for account number
             promptDigits('account_number_splash', { 'submitOnHash' : false,
                                                     'maxDigits'    : max_digits_for_account_number,
                                                     'timeout'      : 180 });
         }
     }
-    catch(error){
-        // unsure what goes here
+    catch(error){ // unsure what goes here
     }
 });
 
@@ -92,3 +86,6 @@ addInputHandler('new_code', function(input){
 // set back to main options to all run subroutine MainMenuText
 
 // add input handler for serial number
+addInputHandler('serial_no', function(input){
+    // what happens here?
+})

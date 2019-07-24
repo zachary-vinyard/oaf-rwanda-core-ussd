@@ -1,6 +1,5 @@
 /*
     Function: registration_check.js
-    Author: Tom ft. Marisa
     Purpose: allows a client to register their SHS product
 */
 

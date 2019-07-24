@@ -1,11 +1,10 @@
 /*
     Function: serial_no_check.js
-    Author: Tom ft. Marisa
     Purpose: checks if the input SHS serial number is in our data
 */
 
 // STEP 1 GET A TABLE WHERE SERIAL # IS SAVED
-// Note - is this available in Roster? Would it be faster to pull the data from there?
+// MB note - is this available in Roster? Would it be faster to pull the data from there? << RRT POS? 
 var SerialTable = project.getOrCreateDataTable("SerialNumberTable");
 
 

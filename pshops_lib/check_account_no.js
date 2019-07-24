@@ -1,6 +1,5 @@
 /*
     Function: check_account_no.js
-    Author: Tom ft. Marisa
     Purpose: Checks if the input account number appears as a PShop account in Roster
 */
 
