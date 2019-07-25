@@ -1,5 +1,4 @@
 /* 
-COPIED FROM CORE POPULATE MENU
 function for populating a USSD menu 
 takes as input a table + a lang
 tables accessed by this function should have a field for each lang, plus an 'option_number' and 'option_name' field

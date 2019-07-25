@@ -1,6 +1,7 @@
 /*
     Function: check_account_no.js
-    Purpose: Checks if the input account number appears as a PShop account in Roster
+    Purpose: checks if the input account number appears as a PShop account in Roster
+    Status: complete
 */
 
 module.exports = function(accnum){
