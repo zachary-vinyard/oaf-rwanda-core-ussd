@@ -4,11 +4,14 @@
     Status: in progress of writing input handlers; global functions and constants not quite set; messages not yet added.
 */
 
-//global functions -- ripped from core.js, may need to modify
+//global functions -- ripped from core.js, need to add any other functions to use here
 var msgs = require('./lib/msg-retrieve'); //global message handler
 var admin_alert = require('./lib/admin-alert'); //global admin alerter
 var get_menu_option = require('./lib/get-menu-option');
 var populate_menu = require('./lib/populate-menu');
+var check_account_no = require('./pshops_lib/check_account_no'); 
+var registration_check = require('./pshops_lib/registration_check');
+var renew_code = require('./pshops_lib/renew_code');
 
 // set various constants using telerivet tables
 var settings_table = project.getOrCreateDataTable('ussd_settings');
@@ -20,23 +23,29 @@ global.main = function() {
     sayText(msgs('pshops_main_splash'));
     promptDigits('account_number_splash', { 'submitOnHash' : false,
                                             'maxDigits'    : max_digits_for_account_number,
-                                            'timeout'      : 180 });
+                                            'timeout'      : timeout_length });
 }
 
 // input handler for account #
 addInputHandler('account_number_splash', function(accnum){
     try{ // check if account number is a valid p-shop number
-        check_account_no(accnum);
+        if(check_account_no(accnum)){ // if valid account, save account # as state variable and display main menu
+            state.vars.accnum = accnum;
 
-        if(state.vars.AccStatus == 'Valid P-shop'){ // if valid, save account # as state variable and display main menu
-            state.vars.accnum = accnum; // does this save it as a state variable? is this necessary?
-            main_menu_display(farmer_name);
+            // display pshop main menu
+            // need query rows line?? 
+            var menu = populate_menu('pshop_main_menu', lang);
+            state.vars.current_menu_str = menu;
+            sayText(menu);
+            promptDigits('pshop_menu_select', {'submitOnHash' : false,
+                                                'maxDigits'    : 1,
+                                                'timeout' : timeout_length });
         }
         else{ // if invalid, print incorrect account msg and prompt digits for account # again
             sayText(msgs('incorrect_account_number'));
             promptDigits('account_number_splash', { 'submitOnHash' : false,
                                                     'maxDigits'    : max_digits_for_account_number,
-                                                    'timeout'      : 180 });
+                                                    'timeout'      : timeout_length });
         }
     }
     catch(error){
@@ -51,44 +60,34 @@ addInputHandler('pshop_menu_select', function(input){
     // pulled from core.js. Not 100% sure what this section is doing
     input = String(input.replace(/\D/g,''));
     state.vars.current_step = 'pshop_menu_select';
-    var selection = get_menu_option(input, state.vars.splash);
+    var selection = get_menu_option(input, 'pshop_main_menu');
 
     if(selection === null || selection === undefined){
         sayText(msgs('invalid_input', {}, lang));
-        promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
+        promptDigits('invalid_input', {'submitOnHash' : false, 
+                                        'maxDigits' : max_digits_for_input,
+                                        'timeout' : timeout_length});
         return null;
     }
-    else if(selection === 'check_balance_option'){ 
-        /*
-            print log message with variables from roster
-            offer option to return to main menu (BackToMain) (promptDigits?)
-        */
+    else if(selection === 'check_balance_option'){
+        sayText(msgs('log_message', {}, lang)) 
+        promptDigits('back_to_main', {}, lang)
     }    
     else if(selection === 'solar_codes_option'){
         registration_check(state.vars.accnum); // run registration check
         if(state.vars.HasReg === 'Yes'){
             if(state.vars.Unlock === 'Yes'){
-                /*
-                print message showing serial number
-                show unlock code
-                offer option to return to main menu
-                */
+                sayText(msgs('solar_unlocked', {}, lang))
+                promptDigits('back_to_main', {}, lang)
             }
-            else{
-                /* 
-                display serial number
-                show last code
-                offer option for new code (promptDigits('new_code'))
-                offer option to return to main menu
-                */
+            else {
+                sayText(msgs('solar_locked', {}, lang))
+                promptDigits('new_code', {}, lang)
             }
         }
-        else{
-            /*
-            print you have not registered an SHS msg
-            offer option to enter serial number to register (promptDigits('serial_no_reg'))
-            offer option to return to main menu
-            */
+        else {
+            sayText(msgs('solar_nonreg', {}, lang))
+            promptDigits('serial_no_reg', {}, lang)
         }
     }
 });
@@ -97,24 +96,25 @@ addInputHandler('pshop_menu_select', function(input){
 addInputHandler('new_code', function(input){
 
     // any steps for cleaning input here?
-    var selection = get_menu_option(input, new_code_menu);
+    var menu = populate_menu('solar_codes_menu', lang)
+    var selection = get_menu_option(input, menu);
 
-    /* if selection === 1
-        run sub-routine renew_code
-            if no
-                print not enough money message
-                print balance
-                offer back_to_main option
-            else if unlock
-                print successful unlock message
-                print unlock code
-                offer back_to_main option
-            else 
-                print activation code
-                offer back_to_main option
-    else
-        run sub-routine for main_menu_display
-    */
+    if(selection === 1){
+        /* if no
+            print not enough money message
+            print balance
+            offer back_to_main option
+        else if unlock
+            print successful unlock message
+            print unlock code
+            offer back_to_main option
+        else 
+            print activation code
+            offer back_to_main option */
+    }
+    else {
+        // run sub-routine for main_menu_display
+    }
 });
 
 // set back to main options to all run subroutine MainMenuText ? 
