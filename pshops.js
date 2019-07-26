@@ -70,50 +70,55 @@ addInputHandler('pshop_menu_select', function(input){
         return null;
     }
     else if(selection === 'check_balance_option'){
-        sayText(msgs('log_message', {}, lang)) 
-        promptDigits('back_to_main', {}, lang)
+        sayText(msgs('log_message', {'submitOnHash' : false, 
+                                    'maxDigits' : max_digits_for_input,
+                                    'timeout' : timeout_length})}, lang)); 
+        promptDigits('back_to_main', {}, lang);
     }    
     else if(selection === 'solar_codes_option'){
         registration_check(state.vars.accnum); // run registration check
         if(state.vars.HasReg === 'Yes'){
             if(state.vars.Unlock === 'Yes'){
-                sayText(msgs('solar_unlocked', {}, lang))
-                promptDigits('back_to_main', {}, lang)
+                sayText(msgs('solar_unlocked', {}, lang));
+                promptDigits('back_to_main', {}, lang);
             }
             else {
-                sayText(msgs('solar_locked', {}, lang))
-                promptDigits('new_code', {}, lang)
+                sayText(msgs('solar_locked', {}, lang));
+                promptDigits('new_code', {}, lang);
             }
         }
         else {
-            sayText(msgs('solar_nonreg', {}, lang))
-            promptDigits('serial_no_reg', {}, lang)
+            sayText(msgs('solar_nonreg', {}, lang));
+            promptDigits('serial_no_reg', {}, lang);
         }
     }
 });
 
 // input handler for new code (called from solar_codes_option)
 addInputHandler('new_code', function(input){
-
+    renew_code(input);
     // any steps for cleaning input here?
     var menu = populate_menu('solar_codes_menu', lang)
     var selection = get_menu_option(input, menu);
 
     if(selection === 1){
-        /* if no
+        if(NewCodeStatus === 'No'){
+            /* 
             print not enough money message
             print balance
             offer back_to_main option
-        else if unlock
+            */
+        }
+        else if(NewCodeStatus === 'Unlock'){
+            /*
             print successful unlock message
             print unlock code
             offer back_to_main option
-        else 
-            print activation code
-            offer back_to_main option */
-    }
-    else {
-        // run sub-routine for main_menu_display
+            */
+        }
+        else {
+            // main_menu_display
+        }
     }
 });
 
