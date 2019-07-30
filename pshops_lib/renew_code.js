@@ -4,7 +4,7 @@
     Status: reviewed + questions added; possibly convert to boolean?
 */
 
-modules.export = function(accnum, serial_no){
+module.exports = function(accnum, serial_no){
     // do we have this data in roster? or is it only stored in telerivet?
     var table = project.getOrCreateDataTable("SerialNumberTable");
     var ActTable = project.getOrCreateDataTable("ActivationCodes");

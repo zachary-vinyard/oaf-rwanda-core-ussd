@@ -4,7 +4,7 @@
     Status: in progress (early stages). Returns true if client has registered, else false. Saves unlock status as boolean.
 */
 
-modules.export = function(accnum){
+module.exports = function(accnum){
 
     var admin_alert = require('./lib/admin-alert');
     var table = project.getOrCreateDataTable("SerialNumberTable");
