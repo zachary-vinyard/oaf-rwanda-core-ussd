@@ -18,6 +18,7 @@ var serial_no_check = require('./pshops_lib/serial_no_check');
 var settings_table = project.getOrCreateDataTable('ussd_settings');
 const max_digits_for_account_number = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_an'}}).next().vars.value);
 const timeout_length = 180; 
+const lang = 'en';
 
 // display welcome message and prompt input
 global.main = function() {
