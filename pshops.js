@@ -104,7 +104,7 @@ addInputHandler('pshop_menu_select', function(input){
 addInputHandler('new_code', function(input){
     // clean input and run renew_code function
     input = String(input.replace(/\D/g,''));
-    renew_code(input);
+    renew_code(state.vars.accnum, state.vars.serial_no);
 
     // populate solar codes menu options
     var menu = populate_menu('solar_codes_menu', lang)

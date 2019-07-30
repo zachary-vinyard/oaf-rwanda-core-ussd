@@ -4,14 +4,14 @@
     Status: reviewed + questions added; possibly convert to boolean?
 */
 
-modules.export = function(input){
+modules.export = function(accnum, serial_no){
     // do we have this data in roster? or is it only stored in telerivet?
     var table = project.getOrCreateDataTable("SerialNumberTable");
     var ActTable = project.getOrCreateDataTable("ActivationCodes");
 
     // retrieve the row in the serial table with the relevant account number
     ListRows = table.queryRows({
-        vars: {'accountnumber': call.vars.AccountNumber}
+        vars: {'accountnumber': accnum}
     });
 
     ListRows.limit(1); // replace with error controls
@@ -29,14 +29,13 @@ modules.export = function(input){
 
     // access the rows from activation codes table with the input serial number that have been activated
     ListActActive = ActTable.queryRows({
-        vars: {'serialnumber': state.vars.Serial,
+        vars: {'serialnumber': serial_no,
                 'activated': "Yes"
         }
     });
         
     var MonthsBetweenLastCode = -99; // why is this initialized as 99?
         
-    // what is the hasNext() command?
     // what is this loop doing?
     while(ListActActive.hasNext()){
         var ActRowActive = ListActActive.next();
@@ -53,7 +52,7 @@ modules.export = function(input){
     if(state.vars.Balance === 0 && MonthsBetween > 1){
         state.vars.NewCodeStatus = "Unlock";
         ListAct = ActTable.queryRows({
-            vars: {'serialnumber': state.vars.Serial,
+            vars: {'serialnumber': serial_no,
                     'type': "Unlock",
                     'activated': "No"
             }
@@ -65,14 +64,14 @@ modules.export = function(input){
     else if(state.vars.Balance <= MaxBalance){
         state.vars.NewCodeStatus = "Yes";
         ListAct = ActTable.queryRows({
-            vars: {'serialnumber': state.vars.Serial,
+            vars: {'serialnumber': serial_no,
                     'type': "Activation",
                     'activated':"No"
             }
         });  
         ListAct.limit(1);
     }
-    else {
+    else{
         state.vars.NewCodeStatus = "No";
         state.vars.RemainBal = state.vars.Balance - MaxBalance;
     }

@@ -17,7 +17,7 @@ modules.export = function(accnum){
     // get unlock code if client has registered; else get the latest activation code
     if(ListRows.count() === 1){
         var Serial = ListRows.next();
-        var serial_no = Serial.vars.serialnumber;
+        state.vars.serial_no = Serial.vars.serialnumber;
         var Activationtable = project.getOrCreateDataTable("ActivationCodes");
 
         if (Serial.vars.unlock == "Yes"){
@@ -27,7 +27,7 @@ modules.export = function(accnum){
                 vars: {
                     'activated': "Yes",
                     'unlock': "Yes",
-                    'serialnumber': serial_no
+                    'serialnumber': state.vars.serial_no
                 },
             });
             
@@ -43,7 +43,7 @@ modules.export = function(accnum){
             ActList = Activationtable.queryRows({
                 vars: {
                     'activated': "Yes",
-                    'serialnumber': serial_no
+                    'serialnumber': state.vars.serial_no
                 },
             });
             
