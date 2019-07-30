@@ -67,6 +67,11 @@ module.exports = function(accnum, serial_no){
             }
         }
     }
+    else if(ListRows.count() > 1){
+        var admin_alert = require('./lib/admin-alert');
+        admin_alert('duplicate serial numbers in PSHOPs database sn: ' + serial_no, 'Duplicate Serial Numbers in TR DB', 'marisa');
+        return false;
+    }
     else{
         state.vars.SerialStatus = 'NotFound';
         return false;
