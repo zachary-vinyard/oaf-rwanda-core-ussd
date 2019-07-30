@@ -165,7 +165,7 @@ addInputHandler('serial_no_reg', function(input){
                                             'timeout' : timeout_length });
     }
     else{
-        serial_no_check(input);
+        serial_no_check(state.vars.accnum, input);
         if(state.vars.SerialStatus === 'Reg'){
             sayText(msgs('reg_success', {}, lang));
             promptDigits('back_to_main', { 'submitOnHash' : false,
