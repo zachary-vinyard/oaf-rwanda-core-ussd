@@ -12,6 +12,7 @@ var populate_menu = require('./lib/populate-menu');
 var check_account_no = require('./pshops_lib/check_account_no'); 
 var registration_check = require('./pshops_lib/registration_check');
 var renew_code = require('./pshops_lib/renew_code');
+var serial_no_check = require('./pshops_lib/serial_no_check');
 
 // set various constants using telerivet tables
 var settings_table = project.getOrCreateDataTable('ussd_settings');
@@ -31,7 +32,6 @@ addInputHandler('account_number_splash', function(accnum){
     try{ // check if account number is a valid p-shop number
         if(check_account_no(accnum)){ // if valid account, save account # as state variable and display main menu
             state.vars.accnum = accnum;
-
             // display pshop main menu
             // need query rows line?? 
             var menu = populate_menu('pshop_main_menu', lang);
@@ -57,7 +57,7 @@ addInputHandler('account_number_splash', function(accnum){
 
 // input handler for main menu selections
 addInputHandler('pshop_menu_select', function(input){
-    // pulled from core.js. Not 100% sure what this section is doing
+    // clean input and save current step as a variable
     input = String(input.replace(/\D/g,''));
     state.vars.current_step = 'pshop_menu_select';
     var selection = get_menu_option(input, 'pshop_main_menu');
@@ -70,78 +70,120 @@ addInputHandler('pshop_menu_select', function(input){
         return null;
     }
     else if(selection === 'check_balance_option'){
-        sayText(msgs('log_message', {'submitOnHash' : false, 
-                                    'maxDigits' : max_digits_for_input,
-                                    'timeout' : timeout_length})}, lang)); 
-        promptDigits('back_to_main', {}, lang);
+        sayText(msgs('main_message', {}, lang)); 
+        promptDigits('back_to_main', {  'submitOnHash' : false,
+                                        'maxDigits'    : max_digits_for_account_number,
+                                        'timeout'      : timeout_length });
     }    
     else if(selection === 'solar_codes_option'){
         registration_check(state.vars.accnum); // run registration check
         if(state.vars.HasReg === 'Yes'){
             if(state.vars.Unlock === 'Yes'){
                 sayText(msgs('solar_unlocked', {}, lang));
-                promptDigits('back_to_main', {}, lang);
+                promptDigits('back_to_main', {  'submitOnHash' : false,
+                                                'maxDigits'    : max_digits_for_account_number,
+                                                'timeout'      : timeout_length });
             }
-            else {
+            else{
                 sayText(msgs('solar_locked', {}, lang));
-                promptDigits('new_code', {}, lang);
+                promptDigits('new_code', {  'submitOnHash' : false,
+                                            'maxDigits'    : max_digits_for_account_number,
+                                            'timeout'      : timeout_length });
             }
         }
-        else {
+        else{
             sayText(msgs('solar_nonreg', {}, lang));
-            promptDigits('serial_no_reg', {}, lang);
+            promptDigits('serial_no_reg', { 'submitOnHash' : false,
+                                            'maxDigits'    : max_digits_for_account_number,
+                                            'timeout'      : timeout_length });
         }
     }
 });
 
 // input handler for new code (called from solar_codes_option)
 addInputHandler('new_code', function(input){
+    // clean input and run renew_code function
+    input = String(input.replace(/\D/g,''));
     renew_code(input);
-    // any steps for cleaning input here?
+
+    // populate solar codes menu options
     var menu = populate_menu('solar_codes_menu', lang)
     var selection = get_menu_option(input, menu);
 
     if(selection === 1){
         if(NewCodeStatus === 'No'){
-            /* 
-            print not enough money message
-            print balance
-            offer back_to_main option
-            */
+            sayText(msgs('insufficient_funds', {}, lang));
+            promptDigits('back_to_main', { 'submitOnHash' : false,
+                                            'maxDigits'    : max_digits_for_account_number,
+                                            'timeout'      : timeout_length });
         }
         else if(NewCodeStatus === 'Unlock'){
-            /*
-            print successful unlock message
-            print unlock code
-            offer back_to_main option
-            */
+            sayText(msgs('unlock_success', {}, lang));
+            promptDigits('back_to_main', { 'submitOnHash' : false,
+                                            'maxDigits'    : max_digits_for_account_number,
+                                            'timeout'      : timeout_length });
         }
-        else {
-            // main_menu_display
+        else{
+            sayText(msgs('activation_code', {}, lang));
+            promptDigits('back_to_main', { 'submitOnHash' : false,
+                                            'maxDigits'    : max_digits_for_account_number,
+                                            'timeout'      : timeout_length });
         }
+    }
+    else{
+        // return to main menu
+        var menu = populate_menu('pshop_main_menu', lang);
+        state.vars.current_menu_str = menu;
+        sayText(menu);
+        promptDigits('pshop_menu_select', {'submitOnHash' : false,
+                                            'maxDigits'    : 1,
+                                            'timeout' : timeout_length });
     }
 });
 
-// set back to main options to all run subroutine MainMenuText ? 
+// set back to main options to all run subroutine MainMenuText
+addInputHandler('back_to_main', function(input){
+    var menu = populate_menu('pshop_main_menu', lang);
+    state.vars.current_menu_str = menu;
+    sayText(menu);
+    promptDigits('pshop_menu_select', {'submitOnHash' : false,
+                                        'maxDigits'    : 1,
+                                        'timeout' : timeout_length });
+});
 
 // add input handler for serial number
 addInputHandler('serial_no_reg', function(input){
-    /*
-    if input === main menu option
-        display main menu
-    else
-        run serial number check subroutine
-        if reg
-            show "you have registered" msg
-            display activation code
-            offer option to return to main menu
-        else if already reg
-            serial no already registered            
-            prompt digits for either serial number or main menu (promptDigits('serial_no_reg'))
+    input = String(input.replace(/\D/g,''));
 
-        else
-            serial no not found
-            prompt digits for either serial number or main menu (promptDigits('serial_no_reg'))
-    */
+    // if input is 99, return to main menu
+    if(input === '99'){
+        var menu = populate_menu('pshop_main_menu', lang);
+        state.vars.current_menu_str = menu;
+        sayText(menu);
+        promptDigits('pshop_menu_select', {'submitOnHash' : false,
+                                            'maxDigits'    : 1,
+                                            'timeout' : timeout_length });
+    }
+    else{
+        serial_no_check(state.vars.accnum, input);
+        if(state.vars.SerialStatus === 'Reg'){
+            sayText(msgs('reg_success', {}, lang));
+            promptDigits('back_to_main', { 'submitOnHash' : false,
+                                            'maxDigits'    : max_digits_for_account_number,
+                                            'timeout'      : timeout_length });
+        }
+        else if(state.vars.SerialStatus === 'AlreadyReg'){
+            sayText(msgs('already_reg', {}, lang));
+            promptDigits('serial_no_reg', { 'submitOnHash' : false,
+                                            'maxDigits'    : max_digits_for_account_number,
+                                            'timeout'      : timeout_length });
+        }
+        else{
+            sayText(msgs('serial_not_found', {}, lang));
+            promptDigits('serial_no_reg', { 'submitOnHash' : false,
+                                            'maxDigits'    : max_digits_for_account_number,
+                                            'timeout'      : timeout_length });
+        }
+    }
 });
 
