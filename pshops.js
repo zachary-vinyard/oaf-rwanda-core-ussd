@@ -30,7 +30,7 @@ global.main = function() {
 
 // input handler for account #
 addInputHandler('account_number_splash', function(accnum){
-    try{ // check if account number is a valid p-shop number
+    //try{ // check if account number is a valid p-shop number
         if(check_account_no(accnum)){ // if valid account, save account # as state variable and display main menu
             state.vars.accnum = accnum;
             // display pshop main menu
@@ -48,12 +48,13 @@ addInputHandler('account_number_splash', function(accnum){
                                                     'maxDigits'    : max_digits_for_account_number,
                                                     'timeout'      : timeout_length });
         }
-    }
-    catch(error){
+    //}
+    /*catch(error){
+        // add client-facing message about error (call Tubura)
         console.log(error);
         admin_alert('Error on USSD test integration : '+ error + '\nAccount number: ' + accnum, "ERROR, ERROR, ERROR")
         stopRules();
-    }
+    }*/
 });
 
 // input handler for main menu selections
