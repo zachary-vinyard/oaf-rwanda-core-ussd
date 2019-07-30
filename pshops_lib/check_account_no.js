@@ -5,7 +5,7 @@
 */
 
 module.exports = function(accnum){
-    require('./lib/account-verify')(accnum); // run account number through core account verify function
+    require('../lib/account-verify')(accnum); // run account number through core account verify function
     if(state.vars.client_district === 'RRT P-Shops'){
         return true;
     }
