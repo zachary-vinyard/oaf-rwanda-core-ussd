@@ -3,7 +3,7 @@
     Purpose: OAF RW PShops Client Portal; allows clients to register, get new codes, and check balance for SHS products.
     Status: in progress of writing input handlers; global functions and constants not quite set; messages not yet added.
 */
-
+ 
 //global functions -- ripped from core.js, need to add any other functions to use here
 var msgs = require('./lib/msg-retrieve'); //global message handler
 var admin_alert = require('./lib/admin-alert'); //global admin alerter
