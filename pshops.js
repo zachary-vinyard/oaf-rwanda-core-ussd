@@ -14,7 +14,6 @@ var registration_check = require('./pshops_lib/registration_check');
 var renew_code = require('./pshops_lib/renew_code');
 var serial_no_check = require('./pshops_lib/serial_no_check');
 
-
 // set various constants using telerivet tables
 var settings_table = project.getOrCreateDataTable('ussd_settings');
 const max_digits_for_account_number = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_an'}}).next().vars.value);
