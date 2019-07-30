@@ -8,14 +8,14 @@ module.exports = function(serial_no){
     var SerialTable = project.getOrCreateDataTable("SerialNumberTable");
 
     // STEP 2 CHECK IF PERSON HAS REGISTERED
-    ListRows = SerialTable.queryRows({
+    var ListRows = SerialTable.queryRows({
         vars: {'serialnumber': call.vars.EnterSerialNumber}
     });
 
-    state.vars.Serial = call.vars.EnterSerialNumber;
-    ListRows.limit(1);
+    //state.vars.Serial = call.vars.EnterSerialNumber;
+    //ListRows.limit(1);
 
-    if(ListRows.count() == 1){
+    if(ListRows.count() === 1){
         var Serial = ListRows.next();
         if(Serial.vars.accountnumber>0){state.vars.SerialStatus = 'AlreadyReg'}
         else {
@@ -55,5 +55,13 @@ module.exports = function(serial_no){
         }
         state.vars.Serial = Serial.vars.serialnumber;
     }
-    else {state.vars.SerialStatus = 'NotFound'}
-}
+    else if(ListRows.count() > 1){
+        var admin_alert = require('./lib/admin-alert');
+        admin_alert('duplicate serial numbers in PSHOPs database sn: ' + serial_no, 'Duplicate Serial Numbers in TR DB', 'marisa');
+        return false;
+    }
+    else{
+        state.vars.SerialStatus = 'NotFound';
+        return false;
+    }
+};
