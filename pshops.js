@@ -76,9 +76,9 @@ addInputHandler('pshop_menu_select', function(input){
                                         'timeout'      : timeout_length });
     }    
     else if(selection === 'solar_codes_option'){
-        registration_check(state.vars.accnum); // run registration check
-        if(state.vars.HasReg === 'Yes'){
-            if(state.vars.Unlock === 'Yes'){
+        // run registration check
+        if(registration_check(state.vars.accnum)){
+            if(state.vars.unlock){
                 sayText(msgs('solar_unlocked', {}, lang));
                 promptDigits('back_to_main', {  'submitOnHash' : false,
                                                 'maxDigits'    : max_digits_for_account_number,

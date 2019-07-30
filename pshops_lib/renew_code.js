@@ -14,7 +14,7 @@ modules.export = function(input){
         vars: {'accountnumber': call.vars.AccountNumber}
     });
 
-    ListRows.limit(1); // should this flag an error?
+    ListRows.limit(1); // replace with error controls
 
     var Serial = ListRows.next();
     var now = moment();
@@ -27,7 +27,7 @@ modules.export = function(input){
     var MonthsBetween = moment.duration(now.diff(Serial.vars.dateregistered)).asMonths();
     console.log("MonthsBetween: " + MonthsBetween + "\n MaxBalance: " + MaxBalance);
 
-    // save the rows from activation codes table with the input serial number that have been activated
+    // access the rows from activation codes table with the input serial number that have been activated
     ListActActive = ActTable.queryRows({
         vars: {'serialnumber': state.vars.Serial,
                 'activated': "Yes"

@@ -66,7 +66,6 @@ module.exports = function(accnum, serial_no){
                 return false; 
             }
         }
-        state.vars.Serial = Serial.vars.serialnumber;
     }
     else{
         state.vars.SerialStatus = 'NotFound';
