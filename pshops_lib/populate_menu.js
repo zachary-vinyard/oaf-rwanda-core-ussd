@@ -20,7 +20,7 @@ module.exports = function(table_name, lang, max_chars){
         var lang = 'en';
         var console_lang = 'en';
         admin_alert = require('./admin-alert');
-        admin_alert('Options table incomplete\nError: ' + error);
+        admin_alert('Options table for menu construction incomplete\nError: ' + error + "\n" + table_name);
     }
     max_chars = max_chars || 120;
     var output = '';
