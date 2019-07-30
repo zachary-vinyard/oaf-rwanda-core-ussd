@@ -5,7 +5,7 @@
 */
 
 modules.export = function(accnum){
-    // STEP 1 GET A TABLE WHERE SERIAL # IS SAVED
+    // access serial number table
     var table = project.getOrCreateDataTable("SerialNumberTable");
 
     // STEP 2 CHECK IF PERSON HAS REGISTERED

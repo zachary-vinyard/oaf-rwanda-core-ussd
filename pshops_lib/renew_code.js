@@ -1,47 +1,43 @@
 /*
     Function: renew_code.js
-    Purpose: allows a client to renew their PAYGO code
-    Status: put into modules.export format but otherwise unadapted
+    Purpose: allows a client to renew their PAYG code
+    Status: reviewed + questions added; possibly convert to boolean?
 */
 
 modules.export = function(input){
-    // STEP 1 GET TABLES
+    // do we have this data in roster? or is it only stored in telerivet?
     var table = project.getOrCreateDataTable("SerialNumberTable");
     var ActTable = project.getOrCreateDataTable("ActivationCodes");
 
-    // STEP 2 CHECK IF PERSON HAS REGISTERED
+    // retrieve the row in the serial table with the relevant account number
     ListRows = table.queryRows({
         vars: {'accountnumber': call.vars.AccountNumber}
     });
 
-    ListRows.limit(1);
+    ListRows.limit(1); // should this flag an error?
 
     var Serial = ListRows.next();
     var now = moment();
-    var PrePayment = Number(5000);
+    var PrePayment = Number(5000); // store prepayment value somewhere in telerivet?
+    console.log("Total Credit: " + state.vars.TotalCredit + "\n Historic Credit: " + Serial.vars.historic_credit);
 
-    console.log("Total Credit");
-    console.log(state.vars.TotalCredit);
-    console.log("Historic Credit");
-    console.log(Serial.vars.historic_credit);
-
+    // calculate various numbers based on prepayment, credit, etc
     var CreditThisCycle = state.vars.TotalCredit - Serial.vars.historic_credit - PrePayment;
     var MaxBalance = CreditThisCycle - ((CreditThisCycle/12) *(Serial.vars.NumberCodes));
     var MonthsBetween = moment.duration(now.diff(Serial.vars.dateregistered)).asMonths();
+    console.log("MonthsBetween: " + MonthsBetween + "\n MaxBalance: " + MaxBalance);
 
-    console.log("MonthsBetween");
-    console.log(MonthsBetween);
-    console.log("MaxBalance");
-    console.log(MaxBalance);
-
+    // save the rows from activation codes table with the input serial number that have been activated
     ListActActive = ActTable.queryRows({
         vars: {'serialnumber': state.vars.Serial,
-                'activated':"Yes"
+                'activated': "Yes"
         }
     });
         
-    var MonthsBetweenLastCode = -99;
+    var MonthsBetweenLastCode = -99; // why is this initialized as 99?
         
+    // what is the hasNext() command?
+    // what is this loop doing?
     while(ListActActive.hasNext()){
         var ActRowActive = ListActActive.next();
         var MonthsCheck = moment.duration(now.diff(ActRowActive.vars.dateactivated)).asMonths();
@@ -51,14 +47,15 @@ modules.export = function(input){
         } 
     }
     
-    console.log("Months since last code retrieval:"+MonthsBetweenLastCode);
+    // why is this important from program perspective? 
+    console.log("Months since last code retrieval: " + MonthsBetweenLastCode);
 
-    if(state.vars.Balance === 0 && MonthsBetween>1){
+    if(state.vars.Balance === 0 && MonthsBetween > 1){
         state.vars.NewCodeStatus = "Unlock";
         ListAct = ActTable.queryRows({
             vars: {'serialnumber': state.vars.Serial,
                     'type': "Unlock",
-                    'activated':"No"
+                    'activated': "No"
             }
         });         
         ListAct.limit(1);
