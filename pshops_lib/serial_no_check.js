@@ -14,11 +14,7 @@ module.exports = function(accnum, serial_no){
         vars: {'serialnumber': serial_no}
     });
 
-    // save serial state var as the entered serial number
-    //state.vars.Serial = serial_no;
-    // ListRows.limit(1); // should we flag somehow if the serial number appears more than once?
-
-    // what is count() << check telerivet documentation, how is serial different from state.vars.Serial? 
+    // check registration status
     if(ListRows.count() === 1){
         var Serial = ListRows.next(); // this accesses the data row that you get from API cursor using queryRows
         if(Serial.vars.accountnumber !== undefined || Serial.vars.accountnumber !== null){
@@ -43,11 +39,8 @@ module.exports = function(accnum, serial_no){
                         'activated': "No"
                 }
             });
-            
-            // ListAct.limit(1); // should flag an error if there are multiple or zero
-            console.log("List.count: " + ListAct.count());
 
-            // if there's an activation code available, save the code as a state var and update the table
+            // if there's one activation code available, save the code as a state var and update the table; otherwise flag errors in source data
             if(ListAct.count() === 1){
                 var Act = ListAct.next();
                 state.vars.ActCode = Act.vars.code;

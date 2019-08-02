@@ -69,7 +69,7 @@ module.exports = function(accnum, serial_no){
                     'activated':"No"
             }
         });  
-        ListAct.limit(1);
+        ListAct.limit(1); // replace with error flags
     }
     else{
         state.vars.NewCodeStatus = "No";
