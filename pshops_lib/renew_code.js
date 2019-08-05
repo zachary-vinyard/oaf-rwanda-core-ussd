@@ -5,7 +5,7 @@
 */
 
 module.exports = function(accnum, serial_no){
-    // do we have this data in roster? or is it only stored in telerivet?
+    // load relevant data tables from Telerivet
     var table = project.getOrCreateDataTable("SerialNumberTable");
     var ActTable = project.getOrCreateDataTable("ActivationCodes");
 

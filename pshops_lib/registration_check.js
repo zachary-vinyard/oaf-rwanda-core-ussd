@@ -1,11 +1,11 @@
 /*
     Function: registration_check.js
     Purpose: allows a client to register their SHS product
-    Status: in progress (early stages). Returns true if client has registered, else false. Saves unlock status as boolean.
+    Status: complete but not tested
 */
 
 module.exports = function(accnum){
-
+    // load relevant functions and data tables
     var admin_alert = require('./lib/admin-alert');
     var table = project.getOrCreateDataTable("SerialNumberTable");
 
@@ -20,9 +20,9 @@ module.exports = function(accnum){
         state.vars.serial_no = Serial.vars.serialnumber;
         var Activationtable = project.getOrCreateDataTable("ActivationCodes");
 
+        // if the serial number is unlocked, retrieve the the relevant activation code
         if (Serial.vars.unlock == "Yes"){
             state.vars.unlock = true;
-            // get unlock code
             ActList = Activationtable.queryRows({
                 vars: {
                     'activated': "Yes",
@@ -31,10 +31,16 @@ module.exports = function(accnum){
                 },
             });
             
-            ActList.limit(1); // Replace with error controls
-            var Act = ActList.next();
-            state.vars.ActCode = Act.vars.code;
-            return true;
+            // if the serial number is in the table, retrieve the corresponding activation code; else send alert to admin
+            if(ActList.count() >= 1){
+                var Act = ActList.next();
+                state.vars.ActCode = Act.vars.code;
+                return true;
+            }
+            else{
+                admin_alert('No rows in ActTable for serial no: ' + state.vars.serial_no, 'Missing Serial Number in ActivationCodes', 'marisa');
+                return false;
+            }
         }
         else{
         // Get latest activation code
