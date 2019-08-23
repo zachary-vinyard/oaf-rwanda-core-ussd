@@ -34,9 +34,9 @@ addInputHandler('account_number_splash', function(accnum){
     // if account number is valid, save it as a state variable and display main menu
         if(check_account_no(accnum)){ 
             state.vars.accnum = accnum;
-            var menu = populate_menu('pshop_main_menu', lang);
-            state.vars.current_menu_str = menu;
-            sayText(menu, {'$NAME' : state.vars.client_name});
+            //var menu = populate_menu('pshop_main_menu', lang);
+            //state.vars.current_menu_str = menu;
+            sayText(msgs('pshop_main_menu', {'$NAME' : state.vars.client_name}, lang));
             promptDigits('pshop_menu_select', {'submitOnHash' : false,
                                                 'maxDigits'    : 1,
                                                 'timeout' : timeout_length });
