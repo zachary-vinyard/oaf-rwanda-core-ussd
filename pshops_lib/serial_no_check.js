@@ -5,7 +5,7 @@
 */
 
 module.exports = function(accnum, serial_no){
-    var admin_alert = require('./lib/admin-alert');
+    var admin_alert = require('../lib/admin-alert');
     // retrieve Telerivet table with saved serial numbers
     var SerialTable = project.getOrCreateDataTable("SerialNumberTable");
 
