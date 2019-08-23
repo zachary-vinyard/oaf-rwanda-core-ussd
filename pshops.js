@@ -68,9 +68,9 @@ addInputHandler('pshop_menu_select', function(input){
     // if menu selection is null/undefined, print error message and request new selection
     if(selection === null || selection === undefined){
         sayText(msgs('invalid_input', {}, lang));
-        promptDigits('pshop_menu_select', {'submitOnHash' : false, 
-                                        'maxDigits' : max_digits_for_input,
-                                        'timeout' : timeout_length});
+        promptDigits('pshop_menu_select', { 'submitOnHash' : false, 
+                                            'maxDigits' : 1,
+                                            'timeout' : timeout_length});
         return null;
     }
     // if check balance selected, print message with some balance variables and prompt for main menu
@@ -103,10 +103,11 @@ addInputHandler('pshop_menu_select', function(input){
                                             'timeout'      : timeout_length });
         }
     }
+    // if user enters invalid menu option, prompt user to select from main menu options
     else{
         sayText(msgs('invalid_input', {}, lang));
         promptDigits('pshop_menu_select', { 'submitOnHash' : false,
-                                            'maxDigits'    : max_digits_for_account_number,
+                                            'maxDigits'    : 1,
                                             'timeout'      : timeout_length });
     }
 });
