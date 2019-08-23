@@ -127,7 +127,7 @@ addInputHandler('new_code', function(input){
     var selection = get_menu_option(input, menu);
 
     // display various options depending on menu selection
-    if(selection === 1){
+    if(selection === 'new_code'){
         if(NewCodeStatus === 'No'){
             sayText(msgs('insufficient_funds', {'$REMAIN_BAL' : state.vars.RemainBal,
                                                 '$BALANCE' : state.vars.Balance}, lang));
