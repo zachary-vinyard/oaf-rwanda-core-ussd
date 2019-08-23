@@ -126,14 +126,14 @@ addInputHandler('new_code', function(input){
 
     // display various options depending on menu selection
     if(selection === 'new_code'){
-        if(NewCodeStatus === 'No'){
+        if(state.vars.NewCodeStatus === 'No'){
             sayText(msgs('insufficient_funds', {'$REMAIN_BAL' : state.vars.RemainBal,
                                                 '$BALANCE' : state.vars.Balance}, lang));
             promptDigits('back_to_main', {  'submitOnHash' : false,
                                             'maxDigits'    : max_digits,
                                             'timeout'      : timeout_length });
         }
-        else if(NewCodeStatus === 'Unlock'){
+        else if(state.vars.NewCodeStatus === 'Unlock'){
             sayText(msgs('unlock_success', {'$ACTCODE' : state.vars.ActCode}, lang));
             promptDigits('back_to_main', {  'submitOnHash' : false,
                                             'maxDigits'    : max_digits,
