@@ -17,6 +17,7 @@ var serial_no_check = require('./pshops_lib/serial_no_check');
 // set various constants
 var settings_table = project.getOrCreateDataTable('ussd_settings');
 const max_digits_for_account_number = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_an'}}).next().vars.value);
+const max_digits = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits'}}).next().vars.value);
 const timeout_length = 180; 
 const lang = 'en';
 
@@ -38,7 +39,7 @@ addInputHandler('account_number_splash', function(accnum){
             state.vars.current_menu_str = menu;
             sayText(msgs('pshop_main_menu', {'$NAME' : state.vars.client_name}, lang));
             promptDigits('pshop_menu_select', {'submitOnHash' : false,
-                                                'maxDigits'    : 1,
+                                                'maxDigits'    : max_digits,
                                                 'timeout' : timeout_length });
         }
         // if account is invalid, print incorrect account msg and prompt digits for account # again
@@ -69,7 +70,7 @@ addInputHandler('pshop_menu_select', function(input){
     if(selection === null || selection === undefined){
         sayText(msgs('invalid_input', {}, lang));
         promptDigits('pshop_menu_select', { 'submitOnHash' : false, 
-                                            'maxDigits' : 1,
+                                            'maxDigits' : max_digits,
                                             'timeout' : timeout_length});
         return null;
     }
@@ -79,7 +80,7 @@ addInputHandler('pshop_menu_select', function(input){
                                         '$CREDIT' : state.vars.TotalCredit,
                                         '$BALANCE' : state.vars.Balance}, lang)); 
         promptDigits('back_to_main', {  'submitOnHash' : false,
-                                        'maxDigits'    : max_digits_for_account_number,
+                                        'maxDigits'    : max_digits,
                                         'timeout'      : timeout_length });
     }
     // if solar codes option selected, run registration and lock status check then display relevant message/options
@@ -89,14 +90,14 @@ addInputHandler('pshop_menu_select', function(input){
                 sayText(msgs('solar_unlocked', {'$SERIAL' : state.vars.serial_no,
                                                 '$ACTCODE' : state.vars.ActCode}, lang));
                 promptDigits('back_to_main', {  'submitOnHash' : false,
-                                                'maxDigits'    : max_digits_for_account_number,
+                                                'maxDigits'    : max_digits,
                                                 'timeout'      : timeout_length });
             }
             else{
                 sayText(msgs('solar_locked', {  '$SERIAL' : state.vars.serial_no,
                                                 '$ACTCODE' : state.vars.ActCode}, lang));
                 promptDigits('new_code', {  'submitOnHash' : false,
-                                            'maxDigits'    : max_digits_for_account_number,
+                                            'maxDigits'    : max_digits,
                                             'timeout'      : timeout_length });
             }
         }
@@ -111,7 +112,7 @@ addInputHandler('pshop_menu_select', function(input){
     else{
         sayText(msgs('invalid_input', {}, lang));
         promptDigits('pshop_menu_select', { 'submitOnHash' : false,
-                                            'maxDigits'    : 1,
+                                            'maxDigits'    : max_digits,
                                             'timeout'      : timeout_length });
     }
 });
@@ -120,31 +121,28 @@ addInputHandler('pshop_menu_select', function(input){
 addInputHandler('new_code', function(input){
     // clean input and run renew_code function
     input = String(input.replace(/\D/g,''));
+    var selection = get_menu_option(input, 'solar_codes_menu');
     renew_code(state.vars.accnum, state.vars.serial_no);
-
-    // populate solar codes menu options
-    var menu = populate_menu('solar_codes_menu', lang)
-    var selection = get_menu_option(input, menu);
 
     // display various options depending on menu selection
     if(selection === 'new_code'){
         if(NewCodeStatus === 'No'){
             sayText(msgs('insufficient_funds', {'$REMAIN_BAL' : state.vars.RemainBal,
                                                 '$BALANCE' : state.vars.Balance}, lang));
-            promptDigits('back_to_main', { 'submitOnHash' : false,
-                                            'maxDigits'    : max_digits_for_account_number,
+            promptDigits('back_to_main', {  'submitOnHash' : false,
+                                            'maxDigits'    : max_digits,
                                             'timeout'      : timeout_length });
         }
         else if(NewCodeStatus === 'Unlock'){
             sayText(msgs('unlock_success', {'$ACTCODE' : state.vars.ActCode}, lang));
-            promptDigits('back_to_main', { 'submitOnHash' : false,
-                                            'maxDigits'    : max_digits_for_account_number,
+            promptDigits('back_to_main', {  'submitOnHash' : false,
+                                            'maxDigits'    : max_digits,
                                             'timeout'      : timeout_length });
         }
         else{
             sayText(msgs('activation_code', {'$ACTCODE' : state.vars.ActCode}, lang));
-            promptDigits('back_to_main', { 'submitOnHash' : false,
-                                            'maxDigits'    : max_digits_for_account_number,
+            promptDigits('back_to_main', {  'submitOnHash' : false,
+                                            'maxDigits'    : max_digits,
                                             'timeout'      : timeout_length });
         }
     }
@@ -152,9 +150,9 @@ addInputHandler('new_code', function(input){
         var menu = populate_menu('pshop_main_menu', lang);
         state.vars.current_menu_str = menu;
         sayText(menu);
-        promptDigits('pshop_menu_select', {'submitOnHash' : false,
-                                            'maxDigits'    : 1,
-                                            'timeout' : timeout_length });
+        promptDigits('pshop_menu_select', { 'submitOnHash' : false,
+                                            'maxDigits'    : max_digits,
+                                            'timeout'      : timeout_length });
     }
 });
 
@@ -163,9 +161,9 @@ addInputHandler('back_to_main', function(input){
     var menu = populate_menu('pshop_main_menu', lang);
     state.vars.current_menu_str = menu;
     sayText(menu);
-    promptDigits('pshop_menu_select', {'submitOnHash' : false,
-                                        'maxDigits'    : 1,
-                                        'timeout' : timeout_length });
+    promptDigits('pshop_menu_select', { 'submitOnHash' : false,
+                                        'maxDigits'    : max_digits,
+                                        'timeout'      : timeout_length });
 });
 
 // input handler for serial number (called from solar_codes_options)
@@ -176,16 +174,16 @@ addInputHandler('serial_no_reg', function(input){
         var menu = populate_menu('pshop_main_menu', lang);
         state.vars.current_menu_str = menu;
         sayText(menu);
-        promptDigits('pshop_menu_select', {'submitOnHash' : false,
-                                            'maxDigits'    : 1,
-                                            'timeout' : timeout_length });
+        promptDigits('pshop_menu_select', { 'submitOnHash' : false,
+                                            'maxDigits'    : max_digits,
+                                            'timeout'      : timeout_length });
     }
     else{
         serial_no_check(state.vars.accnum, input);
         if(state.vars.SerialStatus === 'Reg'){
             sayText(msgs('reg_success', {'$ACTCODE' : state.vars.ActCode}, lang));
-            promptDigits('back_to_main', { 'submitOnHash' : false,
-                                            'maxDigits'    : max_digits_for_account_number,
+            promptDigits('back_to_main', {  'submitOnHash' : false,
+                                            'maxDigits'    : max_digits,
                                             'timeout'      : timeout_length });
         }
         else if(state.vars.SerialStatus === 'AlreadyReg'){

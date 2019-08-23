@@ -17,7 +17,7 @@ module.exports = function(accnum, serial_no){
     ListRows.limit(1); // replace with error controls
 
     var Serial = ListRows.next();
-    var now = moment();
+    var now = moment(); // this is triggering an error
     var PrePayment = Number(5000); // store prepayment value somewhere in telerivet?
     console.log("Total Credit: " + state.vars.TotalCredit + "\n Historic Credit: " + Serial.vars.historic_credit);
 
@@ -35,8 +35,6 @@ module.exports = function(accnum, serial_no){
     });
         
     var MonthsBetweenLastCode = -99; // why is this initialized as 99?
-        
-    // what is this loop doing?
     while(ListActActive.hasNext()){
         var ActRowActive = ListActActive.next();
         var MonthsCheck = moment.duration(now.diff(ActRowActive.vars.dateactivated)).asMonths();
