@@ -36,7 +36,7 @@ addInputHandler('account_number_splash', function(accnum){
             state.vars.accnum = accnum;
             var menu = populate_menu('pshop_main_menu', lang);
             state.vars.current_menu_str = menu;
-            sayText(menu);
+            sayText(menu, {'$NAME' : state.vars.client_name});
             promptDigits('pshop_menu_select', {'submitOnHash' : false,
                                                 'maxDigits'    : 1,
                                                 'timeout' : timeout_length });
@@ -75,7 +75,9 @@ addInputHandler('pshop_menu_select', function(input){
     }
     // if check balance selected, print message with some balance variables and prompt for main menu
     else if(selection === 'check_balance_option'){
-        sayText(msgs('main_message', {}, lang)); 
+        sayText(msgs('main_message', {  '$REPAY' : state.vars.TotalRepay_Incl,
+                                        '$CREDIT' : state.vars.TotalCredit,
+                                        '$BALANCE' : state.vars.Balance}, lang)); 
         promptDigits('back_to_main', {  'submitOnHash' : false,
                                         'maxDigits'    : max_digits_for_account_number,
                                         'timeout'      : timeout_length });
@@ -84,13 +86,15 @@ addInputHandler('pshop_menu_select', function(input){
     else if(selection === 'solar_codes_option'){
         if(registration_check(state.vars.accnum)){
             if(state.vars.unlock){
-                sayText(msgs('solar_unlocked', {}, lang));
+                sayText(msgs('solar_unlocked', {'$SERIAL' : state.vars.serial_no,
+                                                '$ACTCODE' : state.vars.ActCode}, lang));
                 promptDigits('back_to_main', {  'submitOnHash' : false,
                                                 'maxDigits'    : max_digits_for_account_number,
                                                 'timeout'      : timeout_length });
             }
             else{
-                sayText(msgs('solar_locked', {}, lang));
+                sayText(msgs('solar_locked', {  '$SERIAL' : state.vars.serial_no,
+                                                '$ACTCODE' : state.vars.ActCode}, lang));
                 promptDigits('new_code', {  'submitOnHash' : false,
                                             'maxDigits'    : max_digits_for_account_number,
                                             'timeout'      : timeout_length });
@@ -125,19 +129,20 @@ addInputHandler('new_code', function(input){
     // display various options depending on menu selection
     if(selection === 1){
         if(NewCodeStatus === 'No'){
-            sayText(msgs('insufficient_funds', {}, lang));
+            sayText(msgs('insufficient_funds', {'$REMAIN_BAL' : state.vars.RemainBal,
+                                                '$BALANCE' : state.vars.Balance}, lang));
             promptDigits('back_to_main', { 'submitOnHash' : false,
                                             'maxDigits'    : max_digits_for_account_number,
                                             'timeout'      : timeout_length });
         }
         else if(NewCodeStatus === 'Unlock'){
-            sayText(msgs('unlock_success', {}, lang));
+            sayText(msgs('unlock_success', {'$ACTCODE' : state.vars.ActCode}, lang));
             promptDigits('back_to_main', { 'submitOnHash' : false,
                                             'maxDigits'    : max_digits_for_account_number,
                                             'timeout'      : timeout_length });
         }
         else{
-            sayText(msgs('activation_code', {}, lang));
+            sayText(msgs('activation_code', {'$ACTCODE' : state.vars.ActCode}, lang));
             promptDigits('back_to_main', { 'submitOnHash' : false,
                                             'maxDigits'    : max_digits_for_account_number,
                                             'timeout'      : timeout_length });
@@ -178,7 +183,7 @@ addInputHandler('serial_no_reg', function(input){
     else{
         serial_no_check(state.vars.accnum, input);
         if(state.vars.SerialStatus === 'Reg'){
-            sayText(msgs('reg_success', {}, lang));
+            sayText(msgs('reg_success', {'$ACTCODE' : state.vars.ActCode}, lang));
             promptDigits('back_to_main', { 'submitOnHash' : false,
                                             'maxDigits'    : max_digits_for_account_number,
                                             'timeout'      : timeout_length });
