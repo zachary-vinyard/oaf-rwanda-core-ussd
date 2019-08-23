@@ -25,7 +25,7 @@ module.exports = function(accnum, serial_no){
     var CreditThisCycle = state.vars.TotalCredit - Serial.vars.historic_credit - PrePayment;
     var MaxBalance = CreditThisCycle - ((CreditThisCycle/12) *(Serial.vars.NumberCodes));
     var MonthsBetween = moment.duration(now.diff(Serial.vars.dateregistered)).asMonths();
-    console.log("MonthsBetween: " + MonthsBetween + "\n MaxBalance: " + MaxBalance);
+    console.log("MonthsBetween: " + MonthsBetween + "\n MaxBalance: " + MaxBalance + "\n Balance: " + state.vars.Balance);
 
     // access the rows from activation codes table with the input serial number that have been activated
     ListActActive = ActTable.queryRows({
@@ -45,8 +45,7 @@ module.exports = function(accnum, serial_no){
             MonthsBetweenLastCode =  MonthsCheck;
         } 
     }
-    
-    // why is this important from program perspective? 
+
     console.log("Months since last code retrieval: " + MonthsBetweenLastCode);
 
     if(state.vars.Balance === 0 && MonthsBetween > 1){
@@ -57,7 +56,7 @@ module.exports = function(accnum, serial_no){
                     'activated': "No"
             }
         });         
-        ListAct.limit(1);
+        ListAct.limit(1); // replace with troubleshooting code
         Serial.vars.unlock = "Yes";
         Serial.save();
     }
@@ -66,7 +65,7 @@ module.exports = function(accnum, serial_no){
         ListAct = ActTable.queryRows({
             vars: {'serialnumber': serial_no,
                     'type': "Activation",
-                    'activated':"No"
+                    'activated': "No"
             }
         });  
         ListAct.limit(1); // replace with error flags
@@ -76,7 +75,7 @@ module.exports = function(accnum, serial_no){
         state.vars.RemainBal = state.vars.Balance - MaxBalance;
     }
 
-    if(state.vars.NewCodeStatus == "Unlock"|| state.vars.NewCodeStatus == "Yes"){
+    if(state.vars.NewCodeStatus == "Unlock" || state.vars.NewCodeStatus == "Yes"){
         var Act = ListAct.next();
         Act.vars.activated = "Yes";
         Act.vars.dateactivated = moment().format("DD-MM-YYYY, HH:MM:SS");
