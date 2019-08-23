@@ -103,6 +103,12 @@ addInputHandler('pshop_menu_select', function(input){
                                             'timeout'      : timeout_length });
         }
     }
+    else{
+        sayText(msgs('invalid_input', {}, lang));
+        promptDigits('pshop_menu_select', { 'submitOnHash' : false,
+                                            'maxDigits'    : max_digits_for_account_number,
+                                            'timeout'      : timeout_length });
+    }
 });
 
 // input handler for new code (called from solar_codes_option)
