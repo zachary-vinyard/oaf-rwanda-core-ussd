@@ -6,7 +6,7 @@
 
 module.exports = function(accnum){
     // load relevant functions and data tables
-    var admin_alert = require('./lib/admin-alert');
+    var admin_alert = require('../lib/admin-alert');
     var table = project.getOrCreateDataTable("SerialNumberTable");
 
     // retrieve rows where account number in table corresponds to input account number
