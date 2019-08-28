@@ -75,6 +75,23 @@ addInputHandler('cor_menu_select', function(input){
         promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
         return null;
     }
+    else if(selection === 'cor_payg'){ // also inelegant
+        serial_verify = require('./lib/cor-serial-verify');
+        // if there's a registered serial # and PAYG code for this account number
+        if(serial_verify(state.vars.account_number)){
+            sayText(msgs('cor_payg_true', state.vars.payg_code, lang));
+            return null;
+        }
+        else if(state.vars.acc_status){
+            sayText(msgs('cor_payg_false', lang));
+            promptDigits('cor_payg_reg', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+            return null;
+        }
+        else{
+            sayText(msgs('cor_payg_error', lang));
+            return null;
+        }
+    }
     else{
         console.log(selection);
         if(selection === 'chx_confirm'){ // this is ... not great
@@ -186,4 +203,17 @@ addInputHandler('invalid_input', function(input){
         stopRules();
         return null;
     }
+});
+
+// input handler for registering serial number
+addInputHandler('cor_payg_reg', function(serial_no){
+    serial_no = parseInt(serial_no.replace(/\D/g,''));
+    /* check if the input serial number is correct -- module for this?
+        if yes
+            save account number to relevant row
+            retrieve payg code
+            sayText(payg code)
+        else
+            ask them to re-enter serial number -- redirect to this input handler
+    */
 });
