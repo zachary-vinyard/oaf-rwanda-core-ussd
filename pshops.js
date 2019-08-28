@@ -18,7 +18,7 @@ var serial_no_check = require('./pshops_lib/serial_no_check');
 var settings_table = project.getOrCreateDataTable('ussd_settings');
 const max_digits_for_account_number = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_an'}}).next().vars.value);
 const max_digits = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits'}}).next().vars.value);
-const timeout_length = 180; 
+const timeout_length = 180; // this doesn't appear to work. data type error?
 const lang = 'en';
 
 // display welcome message and prompt user to enter account number
@@ -38,9 +38,9 @@ addInputHandler('account_number_splash', function(accnum){
             var menu = populate_menu('pshop_main_menu', lang);
             state.vars.current_menu_str = menu;
             sayText(msgs('pshop_main_menu', {'$NAME' : state.vars.client_name}, lang));
-            promptDigits('pshop_menu_select', {'submitOnHash' : false,
+            promptDigits('pshop_menu_select', { 'submitOnHash' : false,
                                                 'maxDigits'    : max_digits,
-                                                'timeout' : timeout_length });
+                                                'timeout'      : timeout_length });
         }
         // if account is invalid, print incorrect account msg and prompt digits for account # again
         else{
@@ -70,15 +70,15 @@ addInputHandler('pshop_menu_select', function(input){
     if(selection === null || selection === undefined){
         sayText(msgs('invalid_input', {}, lang));
         promptDigits('pshop_menu_select', { 'submitOnHash' : false, 
-                                            'maxDigits' : max_digits,
-                                            'timeout' : timeout_length});
+                                            'maxDigits'    : max_digits,
+                                            'timeout'      : timeout_length});
         return null;
     }
     // if check balance selected, print message with some balance variables and prompt for main menu
     else if(selection === 'check_balance_option'){
-        sayText(msgs('main_message', {  '$REPAY' : state.vars.TotalRepay_Incl,
-                                        '$CREDIT' : state.vars.TotalCredit,
-                                        '$BALANCE' : state.vars.Balance}, lang)); 
+        sayText(msgs('main_message', {  '$REPAY'    : state.vars.TotalRepay_Incl,
+                                        '$CREDIT'   : state.vars.TotalCredit,
+                                        '$BALANCE'  : state.vars.Balance}, lang)); 
         promptDigits('back_to_main', {  'submitOnHash' : false,
                                         'maxDigits'    : max_digits,
                                         'timeout'      : timeout_length });
@@ -87,18 +87,18 @@ addInputHandler('pshop_menu_select', function(input){
     else if(selection === 'solar_codes_option'){
         if(registration_check(state.vars.accnum)){
             if(state.vars.unlock){
-                sayText(msgs('solar_unlocked', {'$SERIAL' : state.vars.serial_no,
+                sayText(msgs('solar_unlocked', {'$SERIAL'  : state.vars.serial_no,
                                                 '$ACTCODE' : state.vars.ActCode}, lang));
                 promptDigits('back_to_main', {  'submitOnHash' : false,
                                                 'maxDigits'    : max_digits,
                                                 'timeout'      : timeout_length });
             }
             else{
-                sayText(msgs('solar_locked', {  '$SERIAL' : state.vars.serial_no,
+                sayText(msgs('solar_locked', {  '$SERIAL'  : state.vars.serial_no,
                                                 '$ACTCODE' : state.vars.ActCode}, lang));
-                promptDigits('new_code', {  'submitOnHash' : false,
-                                            'maxDigits'    : max_digits,
-                                            'timeout'      : timeout_length });
+                promptDigits('get_new_code', {  'submitOnHash' : false,
+                                                'maxDigits'    : max_digits,
+                                                'timeout'      : timeout_length });
             }
         }
         else{
@@ -118,7 +118,7 @@ addInputHandler('pshop_menu_select', function(input){
 });
 
 // input handler for new code (called from solar_codes_option)
-addInputHandler('new_code', function(input){
+addInputHandler('get_new_code', function(input){
     // clean input and run renew_code function
     input = String(input.replace(/\D/g,''));
     var selection = get_menu_option(input, 'solar_codes_menu');
@@ -128,7 +128,7 @@ addInputHandler('new_code', function(input){
     if(selection === 'new_code'){
         if(state.vars.NewCodeStatus === 'No'){
             sayText(msgs('insufficient_funds', {'$REMAIN_BAL' : state.vars.RemainBal,
-                                                '$BALANCE' : state.vars.Balance}, lang));
+                                                '$BALANCE'    : state.vars.Balance}, lang));
             promptDigits('back_to_main', {  'submitOnHash' : false,
                                             'maxDigits'    : max_digits,
                                             'timeout'      : timeout_length });
