@@ -76,9 +76,9 @@ addInputHandler('cor_menu_select', function(input){
         return null;
     }
     else if(selection === 'cor_payg'){ // also inelegant
-        serial_verify = require('./lib/cor-serial-verify');
+        payg_retrieve = require('./lib/cor-payg-retrieve');
         // if there's a registered serial # and PAYG code for this account number
-        if(serial_verify(state.vars.account_number)){
+        if(payg_retrieve(state.vars.account_number)){
             sayText(msgs('cor_payg_true', state.vars.payg_code, lang));
             return null;
         }
@@ -208,12 +208,18 @@ addInputHandler('invalid_input', function(input){
 // input handler for registering serial number
 addInputHandler('cor_payg_reg', function(serial_no){
     serial_no = parseInt(serial_no.replace(/\D/g,''));
-    /* check if the input serial number is correct -- module for this?
-        if yes
-            save account number to relevant row
-            retrieve payg code
-            sayText(payg code)
-        else
-            ask them to re-enter serial number -- redirect to this input handler
-    */
+    var serial_verify = require('./lib/cor-serial-verify');
+    if(serial_verify(serial_no)){
+        sayText(msgs('cor_payg_true', state.vars.payg_code, lang));
+        return null;
+    }
+    else if(state.vars.serial_status){
+        sayText(msgs('cor_payg_invalid_serial', lang));
+        promptDigits('cor_payg_reg', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length})
+        return null;
+    }
+    else{
+        sayText(msgs('client_alert', lang));
+        return null;
+    }
 });
