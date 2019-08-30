@@ -89,7 +89,6 @@ addInputHandler('cor_menu_select', function(input){
         }
         // else prompt the client to enter their product's serial number
         else if(state.vars.acc_valid){
-            console.log(state.vars.acc_valid);
             sayText(msgs('cor_payg_false', {}, lang));
             promptDigits('cor_payg_reg', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
             return null;
