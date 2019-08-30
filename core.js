@@ -36,12 +36,14 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
         if(client_verified){
             //sayText(msgs('account_number_verified'));
             state.vars.account_number = response;
+            /* HIDING THIS FOR TESTING PURPOSES
             var splash = core_splash_map.queryRows({'vars' : {'district' : state.vars.client_district}}).next().vars.splash_menu;
             if(splash === null || splash === undefined){
                 admin_alert(state.vars.client_district + ' not found in district database');
                 throw 'ERROR : DISTRICT NOT FOUND';
             }
-            state.vars.splash = splash;
+            */
+            state.vars.splash = project.getOrCreateDataTable('payg_splash_map');
             var menu = populate_menu(splash, lang);
             state.vars.current_menu_str = menu;
             sayText(menu);
@@ -75,7 +77,7 @@ addInputHandler('cor_menu_select', function(input){
         promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
         return null;
     }
-    else if(selection === 'cor_payg'){
+    else if(selection === 'cor_get_payg'){
         payg_retrieve = require('./lib/cor-payg-retrieve');
         // if account matches a serial number, give the client the corresponding PAYG code
         if(payg_retrieve(state.vars.account_number)){
