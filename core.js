@@ -14,6 +14,7 @@ const lang = settings_table.queryRows({'vars' : {'settings' : 'cor_lang'}}).next
 const max_digits_for_input = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits'}}).next().vars.value); //only for testing
 //const max_digits_for_nid = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_nid'}}).next().vars.value); 
 const max_digits_for_account_number = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_an'}}).next().vars.value);
+const max_digits_for_serial = 7;
 const core_splash_map = project.getOrCreateDataTable('districts');
 const chicken_client_table = settings_table.queryRows({'vars' : {'settings' : 'chicken_client_table'}}).next().vars.value;
 const timeout_length = 180;
@@ -90,7 +91,7 @@ addInputHandler('cor_menu_select', function(input){
         // else prompt the client to enter their product's serial number
         else if(state.vars.acc_valid){
             sayText(msgs('cor_payg_false', {}, lang));
-            promptDigits('cor_payg_reg', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+            promptDigits('cor_payg_reg', {'submitOnHash' : false, 'maxDigits' : max_digits_for_serial, 'timeout' : timeout_length});
             return null;
         }
         // print an error message if an error occurs
@@ -225,7 +226,7 @@ addInputHandler('cor_payg_reg', function(serial_no){
     // else prompt them to re-enter their serial number
     else if(state.vars.serial_status){
         sayText(msgs('cor_payg_invalid_serial', {}, lang));
-        promptDigits('cor_payg_reg', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length})
+        promptDigits('cor_payg_reg', {'submitOnHash' : false, 'maxDigits' : max_digits_for_serial, 'timeout' : timeout_length})
         return null;
     }
     // if error occurs, print error message for the client
