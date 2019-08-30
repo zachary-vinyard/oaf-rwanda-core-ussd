@@ -75,18 +75,21 @@ addInputHandler('cor_menu_select', function(input){
         promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
         return null;
     }
-    else if(selection === 'cor_payg'){ // also inelegant
+    else if(selection === 'cor_payg'){
         payg_retrieve = require('./lib/cor-payg-retrieve');
-        // if there's a registered serial # and PAYG code for this account number
+        // if account matches a serial number, give the client the corresponding PAYG code
         if(payg_retrieve(state.vars.account_number)){
-            sayText(msgs('cor_payg_true', state.vars.payg_code, lang));
+            sayText(msgs('cor_payg_true', {'$PAYG' : state.vars.payg_code}, lang));
+            promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
             return null;
         }
-        else if(state.vars.acc_status){
+        // else prompt the client to enter their product's serial number
+        else if(state.vars.acc_valid){
             sayText(msgs('cor_payg_false', lang));
             promptDigits('cor_payg_reg', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
             return null;
         }
+        // print an error message if an error occurs
         else{
             sayText(msgs('cor_payg_error', lang));
             return null;
@@ -209,17 +212,21 @@ addInputHandler('invalid_input', function(input){
 addInputHandler('cor_payg_reg', function(serial_no){
     serial_no = parseInt(serial_no.replace(/\D/g,''));
     var serial_verify = require('./lib/cor-serial-verify');
+    // if the input serial is valid, give the client their PAYG code
     if(serial_verify(serial_no)){
         sayText(msgs('cor_payg_true', state.vars.payg_code, lang));
+        promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
         return null;
     }
+    // else prompt them to re-enter their serial number
     else if(state.vars.serial_status){
         sayText(msgs('cor_payg_invalid_serial', lang));
         promptDigits('cor_payg_reg', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length})
         return null;
     }
+    // if error occurs, print error message for the client
     else{
-        sayText(msgs('client_alert', lang));
+        sayText(msgs('cor_payg_error', lang));
         return null;
     }
 });
