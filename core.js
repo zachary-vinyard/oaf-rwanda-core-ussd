@@ -44,7 +44,7 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
             }
             state.vars.splash = splash;
             */
-            var splash = project.getOrCreateDataTable('payg_splash_menu');
+            var splash = 'payg_splash_menu';
             state.vars.splash = splash;
             var menu = populate_menu(splash, lang);
             state.vars.current_menu_str = menu;
