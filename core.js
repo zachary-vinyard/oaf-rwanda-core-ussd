@@ -81,6 +81,7 @@ addInputHandler('cor_menu_select', function(input){
     }
     else if(selection === 'cor_get_payg'){
         payg_retrieve = require('./lib/cor-payg-retrieve');
+        console.log('retrieved payg');
         // if account matches a serial number, give the client the corresponding PAYG code
         if(payg_retrieve(state.vars.account_number)){
             sayText(msgs('cor_payg_true', {'$PAYG' : state.vars.payg_code}, lang));
