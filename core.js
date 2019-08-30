@@ -43,7 +43,7 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
                 throw 'ERROR : DISTRICT NOT FOUND';
             }
             */
-            state.vars.splash = project.getOrCreateDataTable('payg_splash_map');
+            state.vars.splash = project.getOrCreateDataTable('payg_splash_menu');
             var menu = populate_menu(splash, lang);
             state.vars.current_menu_str = menu;
             sayText(menu);
