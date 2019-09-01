@@ -128,7 +128,7 @@ addInputHandler('get_new_code', function(input){
     if(selection === 'new_code'){
         if(state.vars.NewCodeStatus === 'No'){
             sayText(msgs('insufficient_funds', {'$REMAIN_BAL' : state.vars.RemainBal,
-                                                '$BALANCE'    : state.vars.Balance}, lang));
+                                                '$BALANCE'    : state.vars.Balance,}, lang));
             promptDigits('back_to_main', {  'submitOnHash' : false,
                                             'maxDigits'    : max_digits,
                                             'timeout'      : timeout_length });
