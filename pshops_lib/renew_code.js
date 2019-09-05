@@ -24,7 +24,7 @@ module.exports = function(accnum, serial_no){
     // calculate various numbers based on prepayment, credit, etc
     var CreditThisCycle = state.vars.TotalCredit - Serial.vars.historic_credit - PrePayment;
     var MaxBalance = CreditThisCycle - ((CreditThisCycle/12) *(Serial.vars.NumberCodes));
-    var MonthsBetween = moment.duration(now.diff(Serial.vars.dateregistered)).asMonths();
+    var MonthsBetween = moment.duration(now.diff(Serial.vars.dateregistered).asMonths());
     console.log("MonthsBetween: " + MonthsBetween + "\n MaxBalance: " + MaxBalance);
 
     // access the rows from activation codes table with the input serial number that have been activated
