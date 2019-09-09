@@ -85,7 +85,7 @@ addInputHandler('cor_menu_select', function(input){
         payg_balance = require('./lib/cor-payg-balance');
 
         // only run code if client has paid enough; otherwise tell them they haven't paid enough for a new code
-        if(payg_balance){
+        if(payg_balance()){
             // if account matches a serial number, give the client the corresponding PAYG code
             if(payg_retrieve(state.vars.account_number)){
                 sayText(msgs('cor_payg_true', {'$PAYG' : state.vars.payg_code}, lang));
