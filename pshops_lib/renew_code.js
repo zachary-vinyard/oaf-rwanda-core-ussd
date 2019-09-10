@@ -17,13 +17,15 @@ module.exports = function(accnum, serial_no){
     ListRows.limit(1); // replace with error controls
 
     var Serial = ListRows.next();
-    var now = moment(); // this is triggering an error
+    var current_month = new Date().getMonth();
     var PrePayment = Number(5000); // store prepayment value somewhere in telerivet?
     console.log("Total Credit: " + state.vars.TotalCredit + "\n Historic Credit: " + Serial.vars.historic_credit);
 
     // calculate various numbers based on prepayment, credit, etc
     var CreditThisCycle = state.vars.TotalCredit - Serial.vars.historic_credit - PrePayment;
     var MaxBalance = CreditThisCycle - ((CreditThisCycle/12) * (Serial.vars.numbercodes));
+
+    // calculate the months between
     var MonthsBetween = moment.duration(now.diff(Serial.vars.dateregistered)).asMonths(); // unsure this works
     console.log("MonthsBetween: " + MonthsBetween + "\n MaxBalance: " + MaxBalance + "\n Balance: " + state.vars.Balance);
 
@@ -37,6 +39,8 @@ module.exports = function(accnum, serial_no){
     var MonthsBetweenLastCode = -99; // why is this initialized as 99?
     while(ListActActive.hasNext()){
         var ActRowActive = ListActActive.next();
+
+        // this is calculating the number of months between current date and when the client first activated
         var MonthsCheck = moment.duration(now.diff(ActRowActive.vars.dateactivated)).asMonths();
         console.log(MonthsCheck);
         if (MonthsBetweenLastCode < MonthsCheck){
@@ -76,7 +80,7 @@ module.exports = function(accnum, serial_no){
     if(state.vars.NewCodeStatus == "Unlock" || state.vars.NewCodeStatus == "Yes"){
         var Act = ListAct.next();
         Act.vars.activated = "Yes";
-        Act.vars.dateactivated = moment().format("DD-MM-YYYY, HH:MM:SS");
+        Act.vars.dateactivated = new Date();
         Act.save();
         state.vars.ActCode = Act.vars.code;
     }
