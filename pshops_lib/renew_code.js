@@ -28,13 +28,7 @@ module.exports = function(accnum, serial_no){
     var current_month = new Date().getMonth();
     var date_reg = serial.vars.dateregistered.toString();
     var month_reg = 0;
-    // this if/else clause accounts for varying date formats
-    if(date_reg.length() < 20){
-        month_reg = parseInt(date_reg.substring(3, 4));
-    }
-    else{
-        month_reg = date_reg.getMonth();
-    }
+    month_reg = date_reg.getMonth();
     var months_between = current_month - month_reg;
     console.log("MonthsBetween: " + months_between + "\n MaxBalance: " + MaxBalance + "\n Balance: " + state.vars.Balance);
 
