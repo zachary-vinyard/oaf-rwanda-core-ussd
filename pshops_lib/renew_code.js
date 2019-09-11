@@ -30,6 +30,7 @@ module.exports = function(accnum, serial_no){
     var month_reg = 0;
     if(date_reg.length < 24){
         month_reg = parseInt(date_reg.split("-")[1]);
+        console.log("Month registered is " + month_reg);
     }
     else{
         month_reg = date_reg.getMonth();
