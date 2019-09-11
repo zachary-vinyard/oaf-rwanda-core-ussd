@@ -21,7 +21,7 @@ module.exports = function(accnum, serial_no){
         state.vars.SerialStatus = 'Reg';
         Serial.vars.accountnumber = accnum; 
         Serial.vars.historic_credit = state.vars.TotalCredit - state.vars.Balance;
-        Serial.vars.dateregistered = moment().format("DD-MM-YYYY, HH:MM:SS");
+        Serial.vars.dateregistered = new Date();
         Serial.save(); 
         
         // assign activation code
@@ -40,7 +40,7 @@ module.exports = function(accnum, serial_no){
             var Act = ListAct.next();
             state.vars.ActCode = Act.vars.code;
             Act.vars.activated = "Yes";
-            Act.vars.dateactivated = moment().format("DD-MM-YYYY, HH:MM:SS");
+            Act.vars.dateactivated = new Date();
             Act.save();
         }
         else if(ListAct.count() > 1){
