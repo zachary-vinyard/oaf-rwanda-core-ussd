@@ -26,7 +26,7 @@ module.exports = function(accnum, serial_no){
 
     // calculate the months between the current date and when the product was registered
     var current_month = new Date().getMonth();
-    var date_reg = serial.vars.dateregistered;
+    var date_reg = serial.vars.dateregistered.toString();
     var month_reg = 0;
     // this if/else clause accounts for varying date formats
     if(date_reg.length() < 20){
