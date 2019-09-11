@@ -10,15 +10,14 @@ module.exports = function(accnum, serial_no){
     var act_table = project.getOrCreateDataTable("ActivationCodes");
 
     // retrieve the row in the serial table with the relevant account number
-    serial_pointer = serial_table.queryRows({
+    var serial_pointer = serial_table.queryRows({
         vars: {'accountnumber': accnum}
     });
 
     serial_pointer.limit(1); // replace with error controls
-
     var serial = serial_pointer.next();
     var prepayment = Number(5000); // store in telerivet
-    console.log("Total Credit: " + state.vars.TotalCredit + "\n Historic Credit: " + serial.vars.historic_credit);
+    console.log("Total Credit: " + state.vars.TotalCredit + " Historic Credit: " + serial.vars.historic_credit);
 
     // calculate various numbers based on prepayment, credit, etc
     var CreditThisCycle = state.vars.TotalCredit - serial.vars.historic_credit - prepayment;
@@ -29,10 +28,7 @@ module.exports = function(accnum, serial_no){
     var date_reg = serial.vars.dateregistered;
     var month_reg = 0;
     if(date_reg.length < 24){
-        month_reg = date_reg.split("-")[1];
-        console.log("Month registered is " + month_reg);
-        month_reg = parseInt(month_reg, 10);
-        console.log("Month registered is " + month_reg);
+        month_reg = parseInt(date_reg.split("-")[1], 10) - 1;
     }
     else{
         month_reg = date_reg.getMonth();
@@ -40,11 +36,37 @@ module.exports = function(accnum, serial_no){
     var months_between = current_month - month_reg;
     console.log("MonthsBetween: " + months_between + "\n MaxBalance: " + MaxBalance + "\n Balance: " + state.vars.Balance);
 
-    /* 
-        add code here that checks what the most recent activation date was. 
-        will need to do messy date conversion.
-    */
+    // check activation date
+    var month_active = 0;
+    var month_check = 0;
+    var year_active = 0;
+    var year_check = 0;
+    var act_pointer = act_table.queryRows({
+        vars: {'serialnumber' : serial_no, 'activated' : 'Yes'}
+    });
 
+    // calculate months since most recent code activation
+    while(act_pointer.hasNext()){
+        var date_active = act_pointer.next().vars.dateactivated;
+        if(date_active.length < 24){
+            month_active = parseInt(date_active.split("-")[1], 10) - 1;
+            year_active = parseInt(date_active.split("-")[0], 10);
+        }
+        else{ // note: this will crash if month is not in the correct date format
+            month_active = date_active.getMonth();
+            year_active = date_active.getYear();
+        }
+        // save month_active as the most recent value in the listed rows
+        if(month_active > month_check && year_active >= year_check){
+            month_check = month_active;
+        }
+        else{
+            return null;
+        }
+    }
+    var months_since_activation = current_month - month_check;
+
+    // if balance is zero and months between is larger than one, client has unlocked product
     if(state.vars.Balance === 0 && months_between > 1){
         state.vars.NewCodeStatus = "Unlock";
         ListAct = act_table.queryRows({
@@ -54,11 +76,12 @@ module.exports = function(accnum, serial_no){
             }
         });         
         ListAct.limit(1); // replace with error flags
-        Serial.vars.unlock = "Yes";
-        Serial.save();
+        serial.vars.unlock = "Yes";
+        serial.save();
     }
     else if(state.vars.Balance <= MaxBalance){
         state.vars.NewCodeStatus = "Yes";
+        // note - build in the check for months_since_activation somewhere here
         ListAct = act_table.queryRows({
             vars: {'serialnumber': serial_no,
                     'type': "Activation",
