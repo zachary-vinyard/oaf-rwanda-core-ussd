@@ -29,7 +29,7 @@ module.exports = function(accnum, serial_no){
     var date_reg = serial.vars.dateregistered;
     var month_reg = 0;
     // this if/else clause accounts for varying date formats
-    if(length(date_reg) < 20){
+    if(date_reg.length() < 20){
         month_reg = parseInt(date_reg.substring(3, 4));
     }
     else{
