@@ -28,7 +28,7 @@ module.exports = function(accnum, serial_no){
     var current_month = new Date().getMonth();
     var date_reg = serial.vars.dateregistered;
     var month_reg = 0;
-    if(date_reg.length < 20){
+    if(date_reg.length < 24){
         month_reg = parseInt(date_reg.split("-")[1]);
     }
     else{
