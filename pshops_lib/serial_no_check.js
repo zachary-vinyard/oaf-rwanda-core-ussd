@@ -13,12 +13,12 @@ module.exports = function(accnum, serial_no){
     // save as variable the row from the serial table where the entered serial number matches
     if(state.vars.duplicate){
         var ListRows = SerialTable.queryRows({
-            vars: {'serialnumber': serial_no, 'registered_account_number' : accnum}
+            vars: {'serialnumber': serial_no, 'accountnumber' : accnum}
         });
     }
     else{
         var ListRows = SerialTable.queryRows({
-            vars: {'serialnumber': serial_no, 'registered_account_number' : {exists : 0}}
+            vars: {'serialnumber': serial_no, 'accountnumber' : {exists : 0}}
         });
     }
 
