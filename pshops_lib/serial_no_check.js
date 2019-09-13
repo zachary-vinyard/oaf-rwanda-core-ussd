@@ -44,6 +44,7 @@ module.exports = function(accnum, serial_no){
         });
         ListAct.limit(1);
         
+        console.log('Activation rows number ' + ListAct.count());
         // update the activation table to say that this code has been used
         var Act = ListAct.next();
         state.vars.ActCode = Act.vars.code;
