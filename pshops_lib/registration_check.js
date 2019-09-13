@@ -53,7 +53,7 @@ module.exports = function(accnum){
                 },
             });
             
-            Serial.vars.NumberCodes = ActList.count();
+            Serial.vars.numbercodes = ActList.count();
             Serial.save();
         
             var LatestDateActivated = "";
