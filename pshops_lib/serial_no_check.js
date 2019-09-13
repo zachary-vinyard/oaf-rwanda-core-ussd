@@ -21,7 +21,7 @@ module.exports = function(accnum, serial_no){
         state.vars.SerialStatus = 'Reg';
         Serial.vars.accountnumber = accnum; 
         Serial.vars.historic_credit = state.vars.TotalCredit - state.vars.Balance;
-        Serial.vars.dateregistered = new Date();
+        Serial.vars.dateregistered = new Date().toString();
         Serial.save(); 
         
         // assign activation code

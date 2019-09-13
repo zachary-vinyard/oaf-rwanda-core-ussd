@@ -34,7 +34,6 @@ module.exports = function(accnum, serial_no){
         month_reg = date_reg.getMonth();
     }
     var months_between = current_month - month_reg;
-    console.log("Months reg is " + month_reg + " and its type is " + typeof month_reg);
     console.log("MonthsBetween: " + months_between + "\n MaxBalance: " + MaxBalance + "\n Balance: " + state.vars.Balance);
 
     // check activation date
