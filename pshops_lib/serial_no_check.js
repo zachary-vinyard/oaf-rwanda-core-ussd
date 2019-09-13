@@ -21,9 +21,11 @@ module.exports = function(accnum, serial_no){
         });
     }
 
+    console.log("number of rows is " + ListRows.count());
+    
     // if there's a row in serial table with the serial number and no account number, assign the account to that serial
     if(ListRows.count() === 1){
-        var Serial = ListRows.next(); // this accesses the data row that you get from API cursor using queryRows
+        var Serial = ListRows.next();
         // assign account to serial number
         state.vars.SerialStatus = 'Reg';
         Serial.vars.accountnumber = accnum; 
