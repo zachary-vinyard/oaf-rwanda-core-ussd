@@ -36,7 +36,7 @@ module.exports = function(accnum, serial_no){
     var months_between = current_month - month_reg;
     console.log("MonthsBetween: " + months_between + "\n MaxBalance: " + MaxBalance + "\n Balance: " + state.vars.Balance);
 
-    // this section is not currently being used, but will need to be
+    /* this section is not currently being used, but will need to be
     // check activation date
     var month_active = 0;
     var month_check = 0;
@@ -66,6 +66,7 @@ module.exports = function(accnum, serial_no){
         }
     }
     var months_since_activation = current_month - month_check;
+    */
 
     // if balance is zero and months between is larger than one, client has unlocked product
     if(state.vars.Balance === 0 && months_between > 1){
