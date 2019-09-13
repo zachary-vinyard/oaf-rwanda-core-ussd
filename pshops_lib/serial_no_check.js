@@ -42,7 +42,13 @@ module.exports = function(accnum, serial_no){
                     'activated': "No"
             }
         });
-        ListAct.limit(1);
+        if(ListAct.count() < 1){
+            var admin_alert = require('./lib/admin-alert');
+            admin_alert('No codes remaining for SHS product with serial number: ' + serial_no, 'No remaining serial numbers', 'marisa');
+        }
+        else{
+            ListAct.limit(1);
+        }
         
         console.log('Activation rows number ' + ListAct.count());
         // update the activation table to say that this code has been used
