@@ -8,6 +8,7 @@ module.exports = function(accnum, serial_no){
     var admin_alert = require('../lib/admin-alert');
     // retrieve Telerivet table with saved serial numbers
     var SerialTable = project.getOrCreateDataTable("SerialNumberTable");
+    console.log("Duplicate is " + state.vars.duplicate);
 
     // save as variable the row from the serial table where the entered serial number matches
     if(state.vars.duplicate){
@@ -22,7 +23,7 @@ module.exports = function(accnum, serial_no){
     }
 
     console.log("number of rows is " + ListRows.count());
-    
+
     // if there's a row in serial table with the serial number and no account number, assign the account to that serial
     if(ListRows.count() === 1){
         var Serial = ListRows.next();

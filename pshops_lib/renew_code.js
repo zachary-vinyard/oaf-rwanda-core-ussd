@@ -31,7 +31,7 @@ module.exports = function(accnum, serial_no){
         month_reg = parseInt(date_reg.split("-")[1], 10) - 1;
     }
     else{
-        month_reg = date_reg.getMonth();
+        month_reg = new Date(date_reg).getMonth();
     }
     var months_between = current_month - month_reg;
     console.log("MonthsBetween: " + months_between + "\n MaxBalance: " + MaxBalance + "\n Balance: " + state.vars.Balance);
