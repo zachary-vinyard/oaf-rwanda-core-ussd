@@ -36,6 +36,7 @@ module.exports = function(accnum, serial_no){
     var months_between = current_month - month_reg;
     console.log("MonthsBetween: " + months_between + "\n MaxBalance: " + MaxBalance + "\n Balance: " + state.vars.Balance);
 
+    // this section is not currently being used, but will need to be
     // check activation date
     var month_active = 0;
     var month_check = 0;

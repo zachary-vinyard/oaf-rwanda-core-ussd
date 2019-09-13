@@ -14,7 +14,7 @@ module.exports = function(accnum, serial_no){
         vars: {'serialnumber': serial_no, 'registered_account_number' : {exists : 0}}
     });
 
-    // check registration status
+    // if there's a row in serial table with the serial number and no account number, assign the account to that serial
     if(ListRows.count() === 1){
         var Serial = ListRows.next(); // this accesses the data row that you get from API cursor using queryRows
         // assign account to serial number
@@ -24,41 +24,30 @@ module.exports = function(accnum, serial_no){
         Serial.vars.dateregistered = new Date().toString();
         Serial.save(); 
         
-        // assign activation code
+        // retrieve one unused activation code for this serial number
         var ActTable = project.getOrCreateDataTable("ActivationCodes");
-        
-        // find activation code associated with input serial number
         ListAct = ActTable.queryRows({
             vars: {'serialnumber': serial_no,
                     'type': "Activation",
                     'activated': "No"
             }
         });
-
-        // if there's one activation code available, save the code as a state var and update the table; otherwise flag errors in source data
-        if(ListAct.count() === 1){
-            var Act = ListAct.next();
-            state.vars.ActCode = Act.vars.code;
-            Act.vars.activated = "Yes";
-            Act.vars.dateactivated = new Date();
-            Act.save();
-        }
-        else if(ListAct.count() > 1){
-            admin_alert('duplicate rows in ActivationCodes for serial number: ' + serial_no, 'Duplicate Serial Numbers in ActTable', 'marisa');
-            state.vars.SerialStatus = 'Error';
-            return false; 
-        }
-        else{
-            admin_alert('No rows in ActivationCodes for serial number: ' + serial_no, 'No corresponding rows in ActTable', 'marisa');
-            state.vars.SerialStatus = 'Error';
-            return false; 
-        }
+        ListAct.limit(1);
+        
+        // update the activation table to say that this code has been used
+        var Act = ListAct.next();
+        state.vars.ActCode = Act.vars.code;
+        Act.vars.activated = "Yes";
+        Act.vars.dateactivated = new Date();
+        Act.save();
     }
+    // if there are more than one rows with the input serial number, flag an error
     else if(ListRows.count() > 1){
         var admin_alert = require('./lib/admin-alert');
         admin_alert('duplicate serial numbers in PSHOPs database sn: ' + serial_no, 'Duplicate Serial Numbers in TR DB', 'marisa');
         return false;
     }
+    // if there are zero rows in the table with the serial number, return false
     else{
         state.vars.SerialStatus = 'NotFound';
         return false;
