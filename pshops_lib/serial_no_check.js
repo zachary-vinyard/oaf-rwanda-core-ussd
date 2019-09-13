@@ -10,9 +10,16 @@ module.exports = function(accnum, serial_no){
     var SerialTable = project.getOrCreateDataTable("SerialNumberTable");
 
     // save as variable the row from the serial table where the entered serial number matches
-    var ListRows = SerialTable.queryRows({
-        vars: {'serialnumber': serial_no, 'registered_account_number' : {exists : 0}}
-    });
+    if(state.vars.duplicate){
+        var ListRows = SerialTable.queryRows({
+            vars: {'serialnumber': serial_no, 'registered_account_number' : accnum}
+        });
+    }
+    else{
+        var ListRows = SerialTable.queryRows({
+            vars: {'serialnumber': serial_no, 'registered_account_number' : {exists : 0}}
+        });
+    }
 
     // if there's a row in serial table with the serial number and no account number, assign the account to that serial
     if(ListRows.count() === 1){

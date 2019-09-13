@@ -101,6 +101,12 @@ addInputHandler('pshop_menu_select', function(input){
                                                 'timeout'      : timeout_length });
             }
         }
+        else if(state.vars.duplicate){ // if client has multiple products, ask them to enter the correct serial number
+            sayText(msgs('solar_duplicate', {}, lang));
+            promptDigits('serial_no_reg', { 'submitOnHash' : false,
+                                            'maxDigits'    : max_digits_for_account_number,
+                                            'timeout'      : timeout_length })
+        }
         else{
             sayText(msgs('solar_nonreg', {}, lang));
             promptDigits('serial_no_reg', { 'submitOnHash' : false,
