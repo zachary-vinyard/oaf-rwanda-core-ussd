@@ -38,7 +38,7 @@ module.exports = function(accnum, serial_no){
         var Act = ListAct.next();
         state.vars.ActCode = Act.vars.code;
         Act.vars.activated = "Yes";
-        Act.vars.dateactivated = new Date();
+        Act.vars.dateactivated = new Date().toString();
         Act.save();
     }
     // if there are more than one rows with the input serial number, flag an error
