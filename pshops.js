@@ -19,7 +19,7 @@ var settings_table = project.getOrCreateDataTable('ussd_settings');
 const max_digits_for_account_number = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_an'}}).next().vars.value);
 const max_digits = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits'}}).next().vars.value);
 const timeout_length = 180; // this doesn't appear to work. data type error?
-const lang = 'en';
+const lang = 'ki';
 
 // display welcome message and prompt user to enter account number
 global.main = function() {

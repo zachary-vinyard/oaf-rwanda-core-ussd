@@ -1,14 +1,13 @@
 /*
     Function: serial_no_check.js
     Purpose: checks if the input SHS serial number is in our data
-    Status: reviewed with questions, possibly convert to boolean?
+    Status: complete
 */
 
 module.exports = function(accnum, serial_no){
+    // retrieve necssary tables and modules
     var admin_alert = require('../lib/admin-alert');
-    // retrieve Telerivet table with saved serial numbers
     var SerialTable = project.getOrCreateDataTable("SerialNumberTable");
-    console.log("Duplicate is " + state.vars.duplicate);
 
     // save as variable the row from the serial table where the entered serial number matches
     if(state.vars.duplicate){
@@ -21,8 +20,6 @@ module.exports = function(accnum, serial_no){
             vars: {'serialnumber': serial_no, 'accountnumber' : {exists : 0}}
         });
     }
-
-    console.log("number of rows is " + ListRows.count());
 
     // if there's a row in serial table with the serial number and no account number, assign the account to that serial
     if(ListRows.count() === 1){
@@ -50,7 +47,6 @@ module.exports = function(accnum, serial_no){
             ListAct.limit(1);
         }
         
-        console.log('Activation rows number ' + ListAct.count());
         // update the activation table to say that this code has been used
         var Act = ListAct.next();
         state.vars.ActCode = Act.vars.code;
