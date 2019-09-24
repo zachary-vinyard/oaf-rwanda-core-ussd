@@ -49,7 +49,7 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
             state.vars.splash = splash;
             var menu = populate_menu(splash, lang);
             state.vars.current_menu_str = menu;
-            sayText(menu);
+            sayText(menu, lang);
             promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
         }
         else{
