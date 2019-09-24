@@ -83,7 +83,7 @@ addInputHandler('cor_menu_select', function(input){
     else if(selection === 'cor_get_payg'){
         payg_retrieve = require('./lib/cor-payg-retrieve');
         payg_balance = require('./lib/cor-payg-balance');
-        console.log("PAYG balance is " + payg_balance());
+        console.log("PAYG balance is " + payg_balance(JSON.parse(state.vars.client_json)));
 
         // only run code if client has paid enough; otherwise tell them they haven't paid enough for a new code
         if(payg_balance(JSON.parse(state.vars.client_json))){
