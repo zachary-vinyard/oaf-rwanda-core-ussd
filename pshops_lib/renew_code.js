@@ -71,7 +71,7 @@ module.exports = function(accnum, serial_no){
     // if balance is zero and months between is larger than one, client has unlocked product
     if(state.vars.Balance === 0 && months_between > 1){
         state.vars.NewCodeStatus = "Unlock";
-        ListAct = act_table.queryRows({
+        var ListAct = act_table.queryRows({
             vars: {'serialnumber': serial_no,
                     'type': "Unlock",
                     'activated': "No"
@@ -84,7 +84,7 @@ module.exports = function(accnum, serial_no){
     else if(state.vars.Balance <= MaxBalance){
         state.vars.NewCodeStatus = "Yes";
         // note - build in the check for months_since_activation somewhere here
-        ListAct = act_table.queryRows({
+        var ListAct = act_table.queryRows({
             vars: {'serialnumber': serial_no,
                     'type': "Activation",
                     'activated': "No"
@@ -101,6 +101,7 @@ module.exports = function(accnum, serial_no){
         var Act = ListAct.next();
         Act.vars.activated = "Yes";
         Act.vars.dateactivated = new Date();
+        console.log("Act type is " + typeof(Act));
         Act.save();
         state.vars.ActCode = Act.vars.code;
     }
