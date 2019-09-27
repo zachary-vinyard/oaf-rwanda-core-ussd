@@ -90,7 +90,7 @@ module.exports = function(accnum, serial_no){
                     'activated': "No"
             }
         });  
-        ListAct.limit(1); // replace with error flags
+        ListAct.limit(1); 
     }
     else{
         state.vars.NewCodeStatus = "No";
@@ -100,7 +100,7 @@ module.exports = function(accnum, serial_no){
     if(state.vars.NewCodeStatus == "Unlock" || state.vars.NewCodeStatus == "Yes"){
         var Act = ListAct.next();
         Act.vars.activated = "Yes";
-        Act.vars.dateactivated = new Date();
+        Act.vars.dateactivated = new Date().toString();
         console.log("Act type is " + typeof(Act));
         Act.save();
         state.vars.ActCode = Act.vars.code;
