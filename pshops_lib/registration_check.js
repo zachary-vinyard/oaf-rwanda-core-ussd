@@ -15,7 +15,8 @@ module.exports = function(accnum){
         vars: {'accountnumber': accnum} 
     });
 
-    // get unlock code if client has registered; else get the latest activation code
+    // get unlock code if client has paid up; else get the latest activation code
+    console.log("ListRows count is " + ListRows.count());
     if(ListRows.count() === 1){
         var Serial = ListRows.next();
         state.vars.serial_no = Serial.vars.serialnumber;
@@ -74,6 +75,7 @@ module.exports = function(accnum){
         return false;
     }
     else{
+        console.log("Client has not yet registered.")
         return false;
     }
 }
