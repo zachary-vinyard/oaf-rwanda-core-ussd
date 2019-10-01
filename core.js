@@ -14,6 +14,7 @@ const lang = settings_table.queryRows({'vars' : {'settings' : 'cor_lang'}}).next
 const max_digits_for_input = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits'}}).next().vars.value); //only for testing
 //const max_digits_for_nid = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_nid'}}).next().vars.value); 
 const max_digits_for_account_number = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_an'}}).next().vars.value);
+const max_digits_for_serial = 7;
 const core_splash_map = project.getOrCreateDataTable('districts');
 const chicken_client_table = settings_table.queryRows({'vars' : {'settings' : 'chicken_client_table'}}).next().vars.value;
 const timeout_length = 180;
@@ -34,7 +35,7 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
         var verify = require('./lib/account-verify')
         var client_verified = verify(response);
         if(client_verified){
-            //sayText(msgs('account_number_verified'));
+            sayText(msgs('account_number_verified'));
             state.vars.account_number = response;
             var splash = core_splash_map.queryRows({'vars' : {'district' : state.vars.client_district}}).next().vars.splash_menu;
             if(splash === null || splash === undefined){
@@ -44,7 +45,7 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
             state.vars.splash = splash;
             var menu = populate_menu(splash, lang);
             state.vars.current_menu_str = menu;
-            sayText(menu);
+            sayText(menu, lang);
             promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
         }
         else{
@@ -74,6 +75,39 @@ addInputHandler('cor_menu_select', function(input){
         sayText(msgs('cor_get_balance', balance_data, lang));
         promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
         return null;
+    }
+    else if(selection === 'cor_get_payg'){
+        payg_retrieve = require('./lib/cor-payg-retrieve');
+        payg_balance = require('./lib/cor-payg-balance');
+        console.log("PAYG balance is " + payg_balance(JSON.parse(state.vars.client_json)));
+
+        // only run code if client has paid enough; otherwise tell them they haven't paid enough for a new code
+        if(payg_balance(JSON.parse(state.vars.client_json))){
+            // if account matches a serial number, give the client the corresponding PAYG code
+            if(payg_retrieve(state.vars.account_number)){
+                sayText(msgs('cor_payg_true', {'$PAYG' : state.vars.payg_code}, lang));
+                promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+                return null;
+            }
+            // else prompt the client to enter their product's serial number
+            else if(state.vars.acc_empty){
+                sayText(msgs('cor_payg_false', {}, lang));
+                promptDigits('cor_payg_reg', {'submitOnHash' : false, 'maxDigits' : max_digits_for_serial, 'timeout' : timeout_length});
+                return null;
+            }
+            // print an error message if an error occurs
+            else{
+                sayText(msgs('cor_payg_duplicate', {}, lang));
+                promptDigits('cor_payg_reg', {'submitOnHash' : false, 'maxDigits' : max_digits_for_serial, 'timeout' : timeout_length});
+                return null;
+            }
+        }
+        // if client doesn't have sufficient balance, tell them they haven't paid enough for a new code
+        else{
+            sayText(msgs('cor_payg_insufficient', {}, lang));
+            promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+            return null;
+        }
     }
     else{
         console.log(selection);
@@ -184,6 +218,29 @@ addInputHandler('invalid_input', function(input){
     else{
         sayText(msgs('exit', {}, lang));
         stopRules();
+        return null;
+    }
+});
+
+// input handler for registering serial number
+addInputHandler('cor_payg_reg', function(serial_no){
+    serial_no = parseInt(serial_no.replace(/\D/g,''));
+    var serial_verify = require('./lib/cor-serial-verify');
+    // if the input serial is valid, give the client their PAYG code
+    if(serial_verify(serial_no)){
+        sayText(msgs('cor_payg_true', {'$PAYG' : state.vars.payg_code}, lang));
+        promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        return null;
+    }
+    // else prompt them to re-enter their serial number
+    else if(state.vars.serial_status){
+        sayText(msgs('cor_payg_invalid_serial', {}, lang));
+        promptDigits('cor_payg_reg', {'submitOnHash' : false, 'maxDigits' : max_digits_for_serial, 'timeout' : timeout_length})
+        return null;
+    }
+    // if error occurs, print error message for the client
+    else{
+        sayText(msgs('cor_payg_error', {}, lang));
         return null;
     }
 });
