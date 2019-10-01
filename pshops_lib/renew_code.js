@@ -6,80 +6,102 @@
 
 module.exports = function(accnum, serial_no){
     // load relevant data tables from Telerivet
-    var table = project.getOrCreateDataTable("SerialNumberTable");
-    var ActTable = project.getOrCreateDataTable("ActivationCodes");
+    var serial_table = project.getOrCreateDataTable("SerialNumberTable");
+    var act_table = project.getOrCreateDataTable("ActivationCodes");
 
     // retrieve the row in the serial table with the relevant account number
-    ListRows = table.queryRows({
+    var serial_pointer = serial_table.queryRows({
         vars: {'accountnumber': accnum}
     });
 
-    ListRows.limit(1); // replace with error controls
-
-    var Serial = ListRows.next();
-    var now = moment();
-    var PrePayment = Number(5000); // store prepayment value somewhere in telerivet?
-    console.log("Total Credit: " + state.vars.TotalCredit + "\n Historic Credit: " + Serial.vars.historic_credit);
+    serial_pointer.limit(1); // replace with error controls
+    var serial = serial_pointer.next();
+    var prepayment = Number(5000); // store in telerivet
+    console.log("Total Credit: " + state.vars.TotalCredit + " Historic Credit: " + serial.vars.historic_credit);
 
     // calculate various numbers based on prepayment, credit, etc
-    var CreditThisCycle = state.vars.TotalCredit - Serial.vars.historic_credit - PrePayment;
-    var MaxBalance = CreditThisCycle - ((CreditThisCycle/12) *(Serial.vars.NumberCodes));
-    var MonthsBetween = moment.duration(now.diff(Serial.vars.dateregistered)).asMonths();
-    console.log("MonthsBetween: " + MonthsBetween + "\n MaxBalance: " + MaxBalance);
+    var CreditThisCycle = state.vars.TotalCredit - serial.vars.historic_credit - prepayment;
+    var MaxBalance = CreditThisCycle - ((CreditThisCycle / 12) * (serial.vars.numbercodes));
 
-    // access the rows from activation codes table with the input serial number that have been activated
-    ListActActive = ActTable.queryRows({
-        vars: {'serialnumber': serial_no,
-                'activated': "Yes"
-        }
-    });
-        
-    var MonthsBetweenLastCode = -99; // why is this initialized as 99?
-        
-    // what is this loop doing?
-    while(ListActActive.hasNext()){
-        var ActRowActive = ListActActive.next();
-        var MonthsCheck = moment.duration(now.diff(ActRowActive.vars.dateactivated)).asMonths();
-        console.log(MonthsCheck);
-        if (MonthsBetweenLastCode < MonthsCheck){
-            MonthsBetweenLastCode =  MonthsCheck;
-        } 
+    // calculate the months between the current date and when the product was registered
+    var current_month = new Date().getMonth();
+    var date_reg = serial.vars.dateregistered;
+    var month_reg = 0;
+    if(date_reg.length < 24){
+        month_reg = parseInt(date_reg.split("-")[1], 10) - 1;
     }
-    
-    // why is this important from program perspective? 
-    console.log("Months since last code retrieval: " + MonthsBetweenLastCode);
+    else{
+        month_reg = new Date(date_reg).getMonth();
+    }
+    var months_between = current_month - month_reg;
+    console.log("MonthsBetween: " + months_between + "\n MaxBalance: " + MaxBalance + "\n Balance: " + state.vars.Balance);
 
-    if(state.vars.Balance === 0 && MonthsBetween > 1){
+    /* this section is not currently being used, but will need to be
+    // check activation date
+    var month_active = 0;
+    var month_check = 0;
+    var year_active = 0;
+    var year_check = 0;
+    var act_pointer = act_table.queryRows({
+        vars: {'serialnumber' : serial_no, 'activated' : 'Yes'}
+    });
+
+    // calculate months since most recent code activation
+    while(act_pointer.hasNext()){
+        var date_active = act_pointer.next().vars.dateactivated;
+        if(date_active.length < 24){
+            month_active = parseInt(date_active.split("-")[1], 10) - 1;
+            year_active = parseInt(date_active.split("-")[0], 10);
+        }
+        else{ // note: this will crash if month is not in the correct date format
+            month_active = date_active.getMonth();
+            year_active = date_active.getYear();
+        }
+        // save month_active as the most recent value in the listed rows
+        if(month_active > month_check && year_active >= year_check){
+            month_check = month_active;
+        }
+        else{
+            return null;
+        }
+    }
+    var months_since_activation = current_month - month_check;
+    */
+
+    // if balance is zero and months between is larger than one, client has unlocked product
+    if(state.vars.Balance === 0 && months_between > 1){
         state.vars.NewCodeStatus = "Unlock";
-        ListAct = ActTable.queryRows({
+        var ListAct = act_table.queryRows({
             vars: {'serialnumber': serial_no,
                     'type': "Unlock",
                     'activated': "No"
             }
         });         
-        ListAct.limit(1);
-        Serial.vars.unlock = "Yes";
-        Serial.save();
+        ListAct.limit(1); // replace with error flags
+        serial.vars.unlock = "Yes";
+        serial.save();
     }
     else if(state.vars.Balance <= MaxBalance){
         state.vars.NewCodeStatus = "Yes";
-        ListAct = ActTable.queryRows({
+        // note - build in the check for months_since_activation somewhere here
+        var ListAct = act_table.queryRows({
             vars: {'serialnumber': serial_no,
                     'type': "Activation",
-                    'activated':"No"
+                    'activated': "No"
             }
         });  
-        ListAct.limit(1); // replace with error flags
+        ListAct.limit(1); 
     }
     else{
         state.vars.NewCodeStatus = "No";
         state.vars.RemainBal = state.vars.Balance - MaxBalance;
     }
 
-    if(state.vars.NewCodeStatus == "Unlock"|| state.vars.NewCodeStatus == "Yes"){
+    if(state.vars.NewCodeStatus == "Unlock" || state.vars.NewCodeStatus == "Yes"){
         var Act = ListAct.next();
         Act.vars.activated = "Yes";
-        Act.vars.dateactivated = moment().format("DD-MM-YYYY, HH:MM:SS");
+        Act.vars.dateactivated = new Date().toString();
+        console.log("Act type is " + typeof(Act));
         Act.save();
         state.vars.ActCode = Act.vars.code;
     }

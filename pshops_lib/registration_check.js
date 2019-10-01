@@ -1,20 +1,22 @@
 /*
     Function: registration_check.js
     Purpose: allows a client to register their SHS product
-    Status: complete but not tested
+    Status: complete
 */
 
 module.exports = function(accnum){
     // load relevant functions and data tables
-    var admin_alert = require('./lib/admin-alert');
+    var admin_alert = require('../lib/admin-alert');
     var table = project.getOrCreateDataTable("SerialNumberTable");
+    state.vars.duplicate = false; 
 
     // retrieve rows where account number in table corresponds to input account number
     ListRows = table.queryRows({
         vars: {'accountnumber': accnum} 
     });
 
-    // get unlock code if client has registered; else get the latest activation code
+    // get unlock code if client has paid up; else get the latest activation code
+    console.log("ListRows count is " + ListRows.count());
     if(ListRows.count() === 1){
         var Serial = ListRows.next();
         state.vars.serial_no = Serial.vars.serialnumber;
@@ -53,7 +55,7 @@ module.exports = function(accnum){
                 },
             });
             
-            Serial.vars.NumberCodes = ActList.count();
+            Serial.vars.numbercodes = ActList.count();
             Serial.save();
         
             var LatestDateActivated = "";
@@ -67,11 +69,13 @@ module.exports = function(accnum){
             return true;
         }
     }
+    // if there are multiple serial numbers assigned to the same account, the client may have multiple products
     else if(ListRows.count() > 1){
-        admin_alert('Multiple rows in SerialNumberTable for account: ' + accnum, 'Duplicate Account Numbers in SerialNumberTable', 'marisa');
+        state.vars.duplicate = true;
         return false;
     }
     else{
+        console.log("Client has not yet registered.")
         return false;
     }
 }
