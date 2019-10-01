@@ -92,13 +92,13 @@ addInputHandler('cor_menu_select', function(input){
             // else prompt the client to enter their product's serial number
             else if(state.vars.acc_empty){
                 sayText(msgs('cor_payg_false', {}, lang));
-                promptDigits('cor_payg_reg', {'submitOnHash' : false, 'maxDigits' : max_digits_for_serial, 'timeout' : timeout_length});
+                promptDigits('cor_payg_reg', {'submitOnHash' : false, 'maxDigits' : max_digits_for_account_number, 'timeout' : timeout_length});
                 return null;
             }
             // print an error message if an error occurs
             else{
                 sayText(msgs('cor_payg_duplicate', {}, lang));
-                promptDigits('cor_payg_reg', {'submitOnHash' : false, 'maxDigits' : max_digits_for_serial, 'timeout' : timeout_length});
+                promptDigits('cor_payg_reg', {'submitOnHash' : false, 'maxDigits' : max_digits_for_account_number, 'timeout' : timeout_length});
                 return null;
             }
         }
@@ -236,7 +236,7 @@ addInputHandler('cor_payg_reg', function(serial_no){
     // else prompt them to re-enter their serial number
     else if(state.vars.serial_status){
         sayText(msgs('cor_payg_invalid_serial', {}, lang));
-        promptDigits('cor_payg_reg', {'submitOnHash' : false, 'maxDigits' : max_digits_for_serial, 'timeout' : timeout_length})
+        promptDigits('cor_payg_reg', {'submitOnHash' : false, 'maxDigits' : max_digits_for_account_number, 'timeout' : timeout_length})
         return null;
     }
     // if error occurs, print error message for the client
