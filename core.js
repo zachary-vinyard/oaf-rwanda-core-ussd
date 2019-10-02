@@ -226,6 +226,7 @@ addInputHandler('invalid_input', function(input){
 addInputHandler('cor_payg_reg', function(serial_no){
     //serial_no = parseInt(serial_no.replace(/\D/g,''));
     serial_no = serial_no.replace(/^0+/,'');
+    console.log("Serial number is " + serial_no + " and its type is " + typeof(serial_no));
     var serial_verify = require('./lib/cor-serial-verify');
     // if the input serial is valid, give the client their PAYG code
     if(serial_verify(serial_no)){

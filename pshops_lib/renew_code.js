@@ -101,7 +101,6 @@ module.exports = function(accnum, serial_no){
         var Act = ListAct.next();
         Act.vars.activated = "Yes";
         Act.vars.dateactivated = new Date().toString();
-        console.log("Act type is " + typeof(Act));
         Act.save();
         state.vars.ActCode = Act.vars.code;
     }
