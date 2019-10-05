@@ -9,10 +9,10 @@ var msgs = require('./lib/msg-retrieve'); // global message handler
 var admin_alert = require('./lib/admin-alert'); // global admin alerter
 var get_menu_option = require('./lib/get-menu-option');
 var populate_menu = require('./lib/populate-menu');
-var check_account_no = require('./pshops_lib/check_account_no'); 
-var registration_check = require('./pshops_lib/registration_check');
-var renew_code = require('./pshops_lib/renew_code');
-var serial_no_check = require('./pshops_lib/serial_no_check');
+var check_account_no = require('./lib/psh-check-account'); 
+var registration_check = require('./lib/psh-reg-check');
+var renew_code = require('./lib/psh-renew-code');
+var serial_no_check = require('./lib/psh-serial-verify');
 
 // set various constants
 var settings_table = project.getOrCreateDataTable('ussd_settings');
