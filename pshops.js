@@ -1,7 +1,7 @@
 /*
     Name: pshops.js
     Purpose: OAF RW PShops Client Portal; allows clients to register, get new codes, and check balance for SHS products
-    Status: complete but untested
+    Status: complete
 */
  
 // load in necessary functions
