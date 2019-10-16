@@ -6,7 +6,7 @@
 
 // load necessary tables and modules
 var client_table = project.getOrCreateDataTable('20b_client_data');
-var enr_table = project.getOrCreateDataTable('Enrollment - Core + RGO');
+var enr_table = project.getOrCreateDataTable('Enrollment - Core + RGO'); // possible to subset to save computing power?
 const last_order = 7; // number of days before an order gets finalized; can store in telerivet
 const day = 24 * 60 * 60 * 1000; // milliseconds in one day, used for date subtraction
 
