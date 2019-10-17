@@ -223,7 +223,32 @@ addInputHandler('enr_order_start', function(input){ //input is account number
         stopRules();
         return null;
     }
-    //need to add a check here to see if enrolled in a group
+    /*
+        - need to add a check here to see if enrolled in a group
+        - find client's group id in 20b client data table - glus id
+
+        Pseudo-code:
+        var client_table = project.getOrCreateTable('20b_client_data);
+        var glus_id_cursor = client_table.queryRows({
+            'glus' : {not empty},
+            'account_number' : input
+        });
+        if(glus_id_cursor.hasNext()){
+            sayText(msgs('enter glus id'));
+            promptDigits(enter glus id);
+            // verify glus id is valid - var check_glus = require('./lib/enr-check-glus');
+            if(valid){
+                update row with glus id
+                save row
+            }
+            else{
+                sayText(msgs('incorrect glus));
+                promptDigits(enter glus id);
+            }
+        }
+
+        // then add input handler for glus prompt - ref Zach's code for enrollment glus step
+    */
     var client = get_client(input, an_pool, true);
     if(client === null || client.vars.registered == 0){
         sayText(msgs('account_number_not_found', {}, lang));
