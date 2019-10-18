@@ -223,7 +223,7 @@ addInputHandler('enr_order_start', function(input){ //input is account number
         stopRules();
         return null;
     }
-    /*
+        /*
         - need to add a check here to see if enrolled in a group
         - find client's group id in 20b client data table - glus id
 
