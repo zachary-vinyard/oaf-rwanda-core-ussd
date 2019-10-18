@@ -223,32 +223,6 @@ addInputHandler('enr_order_start', function(input){ //input is account number
         stopRules();
         return null;
     }
-        /*
-        - need to add a check here to see if enrolled in a group
-        - find client's group id in 20b client data table - glus id
-
-        Pseudo-code:
-        var client_table = project.getOrCreateTable('20b_client_data);
-        var glus_id_cursor = client_table.queryRows({
-            'glus' : {not empty},
-            'account_number' : input
-        });
-        if(glus_id_cursor.hasNext()){
-            sayText(msgs('enter glus id'));
-            promptDigits(enter glus id);
-            // verify glus id is valid - var check_glus = require('./lib/enr-check-glus');
-            if(valid){
-                update row with glus id
-                save row
-            }
-            else{
-                sayText(msgs('incorrect glus));
-                promptDigits(enter glus id);
-            }
-        }
-
-        // then add input handler for glus prompt - ref Zach's code for enrollment glus step
-    */
     var client = get_client(input, an_pool, true);
     if(client === null || client.vars.registered == 0){
         sayText(msgs('account_number_not_found', {}, lang));
@@ -259,8 +233,17 @@ addInputHandler('enr_order_start', function(input){ //input is account number
         sayText(msgs('enr_order_already_finalized', {}, lang));
         promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
     }
-    else if(client.vars.registered == 1){ // add glvv check in this block
-        
+    else if(client.vars.registered == 1){
+        // if client does not have a glvv id entered, prompt them to enter it before continuing
+        glvv_check = client.vars.glus;
+        if(glvv_check == null || glvv_check == 0){
+            sayText(msgs('enr_missing_glv', {}, lang));
+            promptDigits('enr_glvv_id', {'submitOnHash' : false, 'maxDigits' : 8, 'timeout' : timeout_length});
+        }
+        // save glvv in client row
+        client.vars.glus = state.vars.glvv;
+        client.save();
+        // continue with order steps
         var check_live = require('./lib/enr-check-geo-active');
         if(!check_live(client.vars.geo, geo_menu_map)){
             sayText(msgs('enr_order_already_finalized', {}, lang));
@@ -620,5 +603,20 @@ addInputHandler('invalid_input', function(input){
         sayText(msgs('exit', {}, lang));
         stopRules();
         return null;
+    }
+});
+
+// input handler for entering glvv id. note, do we want to check if this matches the client's district?
+addInputHandler('enr_glvv_id', function(input){
+    input = parseInt(input.replace(/\D/g,''));
+    // check if glvv is valid
+    var check_glus = require('./lib/enr-check-glus');
+    if(check_glus(input, 'glus_ids') == !null){
+        // save client row - possible to do within input handler?
+        state.vars.glvv = input;
+    }
+    else{
+        sayText(msgs('enr_incorrect_glvv', {}, lang);
+        promptDigits('enr_glvv_id', {'submitOnHash' : false, 'maxDigits' : 8, 'timeout' : timeout_length});
     }
 });
