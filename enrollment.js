@@ -8,6 +8,7 @@ var msgs = require('./lib/msg-retrieve');
 var populate_menu = require('./lib/populate-menu');
 var get_menu_option = require('./lib/get-menu-option');
 var get_client = require('./lib/enr-retrieve-client-row');
+var get_time = require('./lib/enr-timestamp');
 
 /*
 global options - feel free to refactor someday
@@ -22,11 +23,13 @@ const enr_splash = settings_table.queryRows({'vars' : {'settings' : 'enr_splash'
 const timeout_length = parseInt(settings_table.queryRows({'vars' : {'settings' : 'timeout_length'}}).next().vars.value);
 const max_digits_for_input = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits'}}).next().vars.value); //only for testing
 const max_digits_for_nid = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_nid'}}).next().vars.value); 
+state.vars.glvv_entered = false;
 
 /*
 main function
 */
 global.main = function(){
+    state.vars.start_time = new Date(); // where to put end time?
     var splash_menu = populate_menu(enr_splash, lang, 300);
     var current_menu = msgs('enr_splash', {'$ENR_SPLASH' : splash_menu}, lang);
     state.vars.current_menu_str = current_menu;
@@ -49,6 +52,7 @@ addInputHandler('enr_splash', function(input){ //input handler for splash - expe
         sayText(current_menu);
         promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length})
     }
+    get_time();
 }); // end of splash
 
 /*
@@ -86,6 +90,7 @@ addInputHandler('enr_reg_start', function(input){ //input is first entry of nid 
         sayText(msgs('enr_nid_confirm', {}, lang));
         promptDigits('enr_nid_confirm', {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length});
     }
+    get_time();
 });
 
 addInputHandler('enr_nid_confirm', function(input){ //step for dd of nid. input here should match stored nid nee
@@ -104,6 +109,7 @@ addInputHandler('enr_nid_confirm', function(input){ //step for dd of nid. input 
         sayText(msgs('enr_unmatched_nid', {}, lang));
         promptDigits('enr_reg_start', {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length});
     }
+    get_time();
 });
 
 addInputHandler('enr_name_1', function(input){ //enr name 1 step
@@ -126,6 +132,7 @@ addInputHandler('enr_name_1', function(input){ //enr name 1 step
         sayText(msgs('enr_name_2', {}, lang));
         promptDigits('enr_name_2',  {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
     }
+    get_time();
 });
 
 addInputHandler('enr_name_2', function(input){ //enr name 2 step
@@ -148,6 +155,7 @@ addInputHandler('enr_name_2', function(input){ //enr name 2 step
         sayText(msgs('enr_pn', {}, lang));
         promptDigits('enr_pn', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
     }
+    get_time();
 });
 
 addInputHandler('enr_pn', function(input){ //enr phone number step
@@ -168,6 +176,7 @@ addInputHandler('enr_pn', function(input){ //enr phone number step
         sayText(msgs('invalid_pn_format', {}, lang));
         promptDigits('enr_pn', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
     }
+    get_time();
 });
 
 addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu support id step. last registration step
@@ -209,6 +218,7 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
         sayText(msgs('enr_invalid_glus', {}, lang));
         promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length});
     }
+    get_time();
 });//end registration steps input handlers
 
 /*
@@ -217,6 +227,11 @@ input handlers for input ordering
 addInputHandler('enr_order_start', function(input){ //input is account number
     state.vars.current_step = 'enr_order_start';
     input = parseInt(input.replace(/\D/g,''));
+    // reassign input to account number if user is entering input handler through glvv step
+    if(state.vars.glvv_entered){
+        input = state.vars.account_number;
+    }
+    state.vars.account_number = input;
     state.vars.multiple_input_menus = 1;
     if(input == 99){
         sayText(msgs('exit', {}, lang));
@@ -239,6 +254,7 @@ addInputHandler('enr_order_start', function(input){ //input is account number
         if(glvv_check == null || glvv_check == 0){
             sayText(msgs('enr_missing_glv', {}, lang));
             promptDigits('enr_glvv_id', {'submitOnHash' : false, 'maxDigits' : 8, 'timeout' : timeout_length});
+            return null;
         }
         // save glvv in client row
         client.vars.glus = state.vars.glvv;
@@ -279,6 +295,7 @@ addInputHandler('enr_order_start', function(input){ //input is account number
         contact.vars.account_failures = contact.vars.account_failures + 1;
         promptDigits(state.vars.current_step, {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length})
     }
+    get_time();
 });
 
 addInputHandler('enr_input_splash', function(input){ //main input menu
@@ -351,6 +368,7 @@ addInputHandler('enr_input_splash', function(input){ //main input menu
             promptDigits('enr_input_order', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
         }
     }
+    get_time();
 });
 
 addInputHandler('enr_input_order', function(input){ //input ordering function
@@ -384,6 +402,7 @@ addInputHandler('enr_input_order', function(input){ //input ordering function
         sayText(msgs('invalid_input', {}, lang));
         promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length})
     }
+    get_time();
 });
 
 addInputHandler('enr_confirm_input_order', function(input){ //input ordering confirmation
@@ -418,6 +437,7 @@ addInputHandler('enr_confirm_input_order', function(input){ //input ordering con
         sayText(msgs('invalid_input', {}, lang));
         promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length})
     }
+    get_time();
 });
 
 addInputHandler('enr_input_order_continue', function(input){
@@ -439,6 +459,7 @@ addInputHandler('enr_input_order_continue', function(input){
         sayText(menu)
         promptDigits('enr_input_splash', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length})
     }
+    get_time();
 });
 //end input order handlers
 
@@ -472,6 +493,7 @@ addInputHandler('enr_order_review_start', function(input){ //input is account nu
             promptDigits('enr_order_review_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
         }
     }
+    get_time();
 });
 
 addInputHandler('enr_order_review_continue', function(input){
@@ -496,6 +518,7 @@ addInputHandler('enr_order_review_continue', function(input){
         sayText(current_menu);
         promptDigits('enr_splash', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
     }
+    get_time();
 });
 //end order review
 
@@ -525,6 +548,7 @@ addInputHandler('enr_finalize_start', function(input){ //input is account number
         sayText(msgs('enr_already_finalized', {}, lang));
         promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
     }
+    get_time();
 });
 
 addInputHandler('enr_finalize_verify', function(input){
@@ -540,6 +564,7 @@ addInputHandler('enr_finalize_verify', function(input){
         sayText(msgs('enr_not_finalized', {}, lang));
     }
     promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+    get_time();
 });
 
 //end finalize order
@@ -568,6 +593,7 @@ addInputHandler('enr_glus_id_start', function(input){ //input is nid for glus re
         sayText(msgs('enr_glus_retrieved', {'$GLUS' : glus_str}, lang));
         promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
     }
+    get_time();
 });
 //end gl id retrieve
 
@@ -588,6 +614,7 @@ addInputHandler('enr_continue', function(input){
         sayText(msgs('exit', {}, lang));
         stopRules();
     }
+    get_time();
 });
 
 /*
@@ -598,25 +625,32 @@ addInputHandler('invalid_input', function(input){
     if(input == 1){ //continue on to previously failed step
         sayText(state.vars.current_menu_str);
         promptDigits(state.vars.current_step, {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        return null;
     }
     else if(input == 99){ //exit
         sayText(msgs('exit', {}, lang));
         stopRules();
         return null;
     }
+    get_time();
 });
 
 // input handler for entering glvv id. note, do we want to check if this matches the client's district?
 addInputHandler('enr_glvv_id', function(input){
+    state.vars.glvv_entered = true; 
     input = parseInt(input.replace(/\D/g,''));
     // check if glvv is valid
     var check_glus = require('./lib/enr-check-glus');
     if(check_glus(input, 'glus_ids') == !null){
-        // save client row - possible to do within input handler?
         state.vars.glvv = input;
+        // return to enr_order_start - give the client their account number in the message?
+        sayText(msgs('enr_continue', {'$GROUP' : state.vars.glvv}, lang));
+        promptDigits('enr_order_start', {'submitOnHash' : false, 'maxDigits' : 1, 'timeout' : timeout_length});
+        return null;
     }
     else{
-        sayText(msgs('enr_incorrect_glvv', {}, lang);
+        sayText(msgs('enr_incorrect_glvv', {}, lang));
         promptDigits('enr_glvv_id', {'submitOnHash' : false, 'maxDigits' : 8, 'timeout' : timeout_length});
+        return null;
     }
 });

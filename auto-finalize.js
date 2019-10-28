@@ -30,6 +30,7 @@ global.main = function(){
         var days_since_last_update = Math.round(Math.abs((current_date - client.vars.time_updated) / day)); 
         if(days_since_last_update > last_order){
             client.vars.finalized = 1;
+            client.vars.autofinalized = 1;
             client.save();
             // send outgoing USSD message to client
             var client_phone = client_table.queryRows({'vars' : {'account_number' : client.vars.account_number}}).next().vars.pn;
