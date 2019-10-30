@@ -208,7 +208,7 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
         var account_number = client_log(state.vars.reg_nid, state.vars.reg_name_1, state.vars.reg_name_2, state.vars.reg_pn, state.vars.glus, geo, an_pool);
         //check if group leader here
         var gl_check = require('./lib/enr-group-leader-check');
-        var is_gl = gl_check(account_number, state.vars.glus, glus_pool);
+        var is_gl = gl_check(account_number, state.vars.glus, an_pool);
         console.log('is gl? : ' + is_gl);
         var enr_msg = msgs('enr_reg_complete', {'$ACCOUNT_NUMBER' : account_number, '$NAME' : state.vars.reg_name_2}, lang);
         sayText(enr_msg);
@@ -648,7 +648,7 @@ addInputHandler('enr_glvv_id', function(input){
     if(check_glus(input, 'glus_ids') == !null){
         state.vars.glvv = input;
         var gl_check = require('./lib/enr-group-leader-check');
-        var is_gl = gl_check(account_number, state.vars.glus, glus_pool);
+        var is_gl = gl_check(account_number, state.vars.glus, an_pool);
         console.log('is gl? : ' + is_gl);
         // return to enr_order_start - give the client their account number in the message?
         sayText(msgs('enr_continue', {'$GROUP' : state.vars.glvv}, lang));
