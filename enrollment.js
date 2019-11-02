@@ -8,7 +8,7 @@ var msgs = require('./lib/msg-retrieve');
 var populate_menu = require('./lib/populate-menu');
 var get_menu_option = require('./lib/get-menu-option');
 var get_client = require('./lib/enr-retrieve-client-row');
-//var get_time = require('./lib/enr-timestamp');
+var get_time = require('./lib/enr-timestamp');
 
 /*
 global options - feel free to refactor someday
