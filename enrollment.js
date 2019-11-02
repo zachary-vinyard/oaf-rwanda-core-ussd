@@ -29,7 +29,7 @@ state.vars.glvv_entered = false;
 main function
 */
 global.main = function(){
-    state.vars.start_time = new Date(); // where to put end time?
+    state.vars.start_time = new Date(); 
     var splash_menu = populate_menu(enr_splash, lang, 300);
     var current_menu = msgs('enr_splash', {'$ENR_SPLASH' : splash_menu}, lang);
     state.vars.current_menu_str = current_menu;
@@ -180,6 +180,9 @@ addInputHandler('enr_pn', function(input){ //enr phone number step
 });
 
 addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu support id step. last registration step
+    if(state.vars.current_step == 'entered_groupname'){
+        input = state.vars.glvv_id;
+    }
     state.vars.current_step = 'enr_glus';
     input = input.replace(/\^W/g,'');
     if(input == 99){
@@ -208,8 +211,13 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
         var account_number = client_log(state.vars.reg_nid, state.vars.reg_name_1, state.vars.reg_name_2, state.vars.reg_pn, state.vars.glus, geo, an_pool);
         //check if group leader here
         var gl_check = require('./lib/enr-group-leader-check');
-        var is_gl = gl_check(account_number, state.vars.glus, an_pool);
+        var is_gl = gl_check(account_number, state.vars.glus, an_pool, glus_pool);
         console.log('is gl? : ' + is_gl);
+        // if the client is a group leader and the group is not yet named, prompt them to enter a group name
+        if(is_gl && state.vars.needs_name){
+            sayText(msgs('enr_add_groupname', {}, lang));
+            promptDigits('enr_enter_groupname', {'submitOnHash' : false, 'maxDigits' : 60, 'timeout' : timeout_length});
+        }
         var enr_msg = msgs('enr_reg_complete', {'$ACCOUNT_NUMBER' : account_number, '$NAME' : state.vars.reg_name_2}, lang);
         sayText(enr_msg);
         var enr_msg_sms = msgs('enr_reg_complete_sms', {'$ACCOUNT_NUMBER' : account_number, '$NAME' : state.vars.reg_name_2}, lang);
@@ -229,6 +237,9 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
 input handlers for input ordering
 */
 addInputHandler('enr_order_start', function(input){ //input is account number
+    if(state.vars.current_step == 'entered_groupname'){
+        input = state.vars.account_number;
+    }
     state.vars.current_step = 'enr_order_start';
     input = parseInt(input.replace(/\D/g,''));
     // reassign input to account number if user is entering input handler through glvv step
@@ -263,6 +274,11 @@ addInputHandler('enr_order_start', function(input){ //input is account number
         // save glvv in client row
         client.vars.glus = state.vars.glvv;
         client.save();
+        // if the client is a group leader and the group is not yet named, prompt them to enter a group name
+        if(is_gl && state.vars.needs_name){
+            sayText(msgs('enr_add_groupname', {}, lang));
+            promptDigits('enr_enter_groupname', {'submitOnHash' : false, 'maxDigits' : 60, 'timeout' : timeout_length});
+        }
         // continue with order steps
         var check_live = require('./lib/enr-check-geo-active');
         if(!check_live(client.vars.geo, geo_menu_map)){
@@ -659,5 +675,24 @@ addInputHandler('enr_glvv_id', function(input){
         sayText(msgs('enr_incorrect_glvv', {}, lang));
         promptDigits('enr_glvv_id', {'submitOnHash' : false, 'maxDigits' : 8, 'timeout' : timeout_length});
         return null;
+    }
+});
+
+// input handler for entering group name
+addInputHandler('enr_enter_groupname', function(input){
+    // assign input as the group name
+    input = parseInt(input.replace(/\D/g,''));
+    var name_group = require('./lib/enr-name-group');
+    name_group(state.vars.glvv, glus_pool, input);
+    // return the client to the last completed step
+    if(state.vars.current_step == 'enr_glus'){
+        state.vars.current_step = 'entered_group_name';
+        sayText(msgs('enr_continue', {}, lang));
+        promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : 1, 'timeout' : timeout_length});
+    }
+    else if(state.vars.current_step == 'enr_order_start'){
+        state.vars.current_step = 'entered_group_name';
+        sayText(msgs('enr_continue', {}, lang));
+        promptDigits('enr_order_start', {'submitOnHash' : false, 'maxDigits' : 1, 'timeout' : timeout_length});
     }
 });
