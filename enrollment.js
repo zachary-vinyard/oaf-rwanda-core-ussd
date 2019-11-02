@@ -28,7 +28,7 @@ const max_digits_for_nid = parseInt(settings_table.queryRows({'vars' : {'setting
 main function
 */
 global.main = function(){
-    //state.vars.start_time = new Date(); 
+    state.vars.start_time = new Date(); 
     //state.vars.glvv_entered = false;
     var splash_menu = populate_menu(enr_splash, lang, 300);
     var current_menu = msgs('enr_splash', {'$ENR_SPLASH' : splash_menu}, lang);
