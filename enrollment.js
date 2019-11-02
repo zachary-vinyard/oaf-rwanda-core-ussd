@@ -29,8 +29,8 @@ state.vars.glvv_entered = false;
 main function
 */
 global.main = function(){
+    console.log('start');
     state.vars.start_time = new Date(); 
-    console.log('start date is' + state.vars.start_time);
     var splash_menu = populate_menu(enr_splash, lang, 300);
     var current_menu = msgs('enr_splash', {'$ENR_SPLASH' : splash_menu}, lang);
     state.vars.current_menu_str = current_menu;
