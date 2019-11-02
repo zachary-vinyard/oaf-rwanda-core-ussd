@@ -8,7 +8,7 @@ var msgs = require('./lib/msg-retrieve');
 var populate_menu = require('./lib/populate-menu');
 var get_menu_option = require('./lib/get-menu-option');
 var get_client = require('./lib/enr-retrieve-client-row');
-var get_time = require('./lib/enr-timestamp');
+//var get_time = require('./lib/enr-timestamp');
 
 /*
 global options - feel free to refactor someday
@@ -28,8 +28,8 @@ const max_digits_for_nid = parseInt(settings_table.queryRows({'vars' : {'setting
 main function
 */
 global.main = function(){
-    state.vars.start_time = new Date(); 
-    state.vars.glvv_entered = false;
+    //state.vars.start_time = new Date(); 
+    //state.vars.glvv_entered = false;
     var splash_menu = populate_menu(enr_splash, lang, 300);
     var current_menu = msgs('enr_splash', {'$ENR_SPLASH' : splash_menu}, lang);
     state.vars.current_menu_str = current_menu;
