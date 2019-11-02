@@ -23,13 +23,13 @@ const enr_splash = settings_table.queryRows({'vars' : {'settings' : 'enr_splash'
 const timeout_length = parseInt(settings_table.queryRows({'vars' : {'settings' : 'timeout_length'}}).next().vars.value);
 const max_digits_for_input = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits'}}).next().vars.value); //only for testing
 const max_digits_for_nid = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_nid'}}).next().vars.value); 
-state.vars.glvv_entered = false;
 
 /*
 main function
 */
 global.main = function(){
     state.vars.start_time = new Date(); 
+    state.vars.glvv_entered = false;
     var splash_menu = populate_menu(enr_splash, lang, 300);
     var current_menu = msgs('enr_splash', {'$ENR_SPLASH' : splash_menu}, lang);
     state.vars.current_menu_str = current_menu;
