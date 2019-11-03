@@ -671,7 +671,7 @@ addInputHandler('enr_glvv_id', function(input){
     input = parseInt(input.replace(/\D/g,''));
     // check if glvv is valid
     var check_glus = require('./lib/enr-check-glus');
-    if(check_glus(input, 'glus_ids') == !null){
+    if(check_glus(input, glus_pool) == !null){
         state.vars.glus = input;
         var gl_check = require('./lib/enr-group-leader-check');
         var is_gl = gl_check(state.vars.account_number, state.vars.glus, an_pool);
