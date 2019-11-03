@@ -32,7 +32,6 @@ main function
 */
 global.main = function(){
     state.vars.start_time = new Date().toString(); 
-    state.vars.glvv_entered = false;
     var splash_menu = populate_menu(enr_splash, lang, 300);
     var current_menu = msgs('enr_splash', {'$ENR_SPLASH' : splash_menu}, lang);
     state.vars.current_menu_str = current_menu;
@@ -184,7 +183,7 @@ addInputHandler('enr_pn', function(input){ //enr phone number step
 
 addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu support id step. last registration step
     if(state.vars.current_step == 'entered_groupname'){
-        input = state.vars.glvv_id;
+        input = state.vars.glvv;
     }
     state.vars.current_step = 'enr_glus';
     input = input.replace(/\^W/g,'');
@@ -193,6 +192,7 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
         stopRules();
         return null;
     }
+    state.vars.glvv = input;
     var check_glus = require('./lib/enr-check-glus');
     var geo = check_glus(input, glus_pool);
     var check_live = require('./lib/enr-check-geo-active');
@@ -240,15 +240,12 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
 input handlers for input ordering
 */
 addInputHandler('enr_order_start', function(input){ //input is account number
-    if(state.vars.current_step == 'entered_groupname'){
+    if(state.vars.current_step == 'entered_groupname' || state.vars.current_step == 'entered_glvv'){
         input = state.vars.account_number;
     }
     state.vars.current_step = 'enr_order_start';
     input = parseInt(input.replace(/\D/g,''));
     // reassign input to account number if user is entering input handler through glvv step
-    if(state.vars.glvv_entered){
-        input = state.vars.account_number;
-    }
     state.vars.account_number = input;
     state.vars.multiple_input_menus = 1;
     if(input == 99){
@@ -663,7 +660,7 @@ addInputHandler('invalid_input', function(input){
 
 // input handler for entering glvv id. note, do we want to check if this matches the client's district?
 addInputHandler('enr_glvv_id', function(input){
-    state.vars.glvv_entered = true; 
+    state.vars.current_step = 'entered_glvv'; 
     input = parseInt(input.replace(/\D/g,''));
     // check if glvv is valid
     var check_glus = require('./lib/enr-check-glus');
