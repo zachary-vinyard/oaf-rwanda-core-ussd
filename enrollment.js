@@ -183,7 +183,7 @@ addInputHandler('enr_pn', function(input){ //enr phone number step
 
 addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu support id step. last registration step
     if(state.vars.current_step == 'entered_groupname'){
-        input = state.vars.glvv;
+        input = state.vars.glus;
     }
     state.vars.current_step = 'enr_glus';
     input = input.replace(/\^W/g,'');
@@ -192,7 +192,7 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
         stopRules();
         return null;
     }
-    state.vars.glvv = input;
+    state.vars.glus = input;
     var check_glus = require('./lib/enr-check-glus');
     var geo = check_glus(input, glus_pool);
     var check_live = require('./lib/enr-check-geo-active');
@@ -272,7 +272,7 @@ addInputHandler('enr_order_start', function(input){ //input is account number
             return null;
         }
         // save glvv in client row
-        client.vars.glus = state.vars.glvv;
+        client.vars.glus = state.vars.glus;
         client.save();
         // check if client is a group leader
         var gl_check = require('./lib/enr-group-leader-check');
@@ -665,12 +665,12 @@ addInputHandler('enr_glvv_id', function(input){
     // check if glvv is valid
     var check_glus = require('./lib/enr-check-glus');
     if(check_glus(input, 'glus_ids') == !null){
-        state.vars.glvv = input;
+        state.vars.glus = input;
         var gl_check = require('./lib/enr-group-leader-check');
         var is_gl = gl_check(account_number, state.vars.glus, an_pool);
         console.log('is gl? : ' + is_gl);
         // return to enr_order_start - give the client their account number in the message?
-        sayText(msgs('enr_continue', {'$GROUP' : state.vars.glvv}, lang));
+        sayText(msgs('enr_continue', {'$GROUP' : state.vars.glus}, lang));
         promptDigits('enr_order_start', {'submitOnHash' : false, 'maxDigits' : 1, 'timeout' : timeout_length});
         return null;
     }
@@ -686,16 +686,16 @@ addInputHandler('enr_enter_groupname', function(input){
     // assign input as the group name
     input = parseInt(input.replace(/\D/g,''));
     var name_group = require('./lib/enr-name-group');
-    name_group(state.vars.glvv, glus_pool, input);
+    name_group(state.vars.glus, glus_pool, input);
     // return the client to the last completed step
     if(state.vars.current_step == 'enr_glus'){
         state.vars.current_step = 'entered_group_name';
-        sayText(msgs('enr_continue', {'$GROUP' : state.vars.glvv}, lang));
+        sayText(msgs('enr_continue', {'$GROUP' : state.vars.glus}, lang));
         promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
     }
     else if(state.vars.current_step == 'enr_order_start'){
         state.vars.current_step = 'entered_group_name';
-        sayText(msgs('enr_continue', {'$GROUP' : state.vars.glvv}, lang));
+        sayText(msgs('enr_continue', {'$GROUP' : state.vars.glus}, lang));
         promptDigits('enr_order_start', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
     }
 });
