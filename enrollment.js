@@ -635,7 +635,7 @@ addInputHandler('enr_continue', function(input){
         var splash_menu = populate_menu('enr_splash', lang);
         var current_menu = msgs('enr_splash', {'$ENR_SPLASH' : splash_menu}, lang);
         state.vars.current_menu_str = current_menu;
-        sayText(current_menu);
+        sayText(current_menu, lang);
         promptDigits('enr_splash', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
     }
     else if(input == 99){
@@ -686,7 +686,7 @@ addInputHandler('enr_glvv_id', function(input){
     }
 });
 
-// input handler for entering group name
+// input handler for entering group name and save to glus id table
 addInputHandler('enr_enter_groupname', function(input){
     // assign input as the group name
     input = parseInt(input.replace(/\D/g,''));
