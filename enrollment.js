@@ -221,13 +221,15 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
             sayText(msgs('enr_add_groupname', {}, lang));
             promptDigits('enr_enter_groupname', {'submitOnHash' : false, 'maxDigits' : 60, 'timeout' : timeout_length});
         }
-        var enr_msg = msgs('enr_reg_complete', {'$ACCOUNT_NUMBER' : account_number, '$NAME' : state.vars.reg_name_2}, lang);
-        sayText(enr_msg);
-        var enr_msg_sms = msgs('enr_reg_complete_sms', {'$ACCOUNT_NUMBER' : account_number, '$NAME' : state.vars.reg_name_2}, lang);
-        var messager = require('./lib/enr-messager');
-        messager(contact.phone_number, enr_msg_sms);
-        messager(state.vars.reg_pn, enr_msg_sms);
-        promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
+        else{
+            var enr_msg = msgs('enr_reg_complete', {'$ACCOUNT_NUMBER' : account_number, '$NAME' : state.vars.reg_name_2}, lang);
+            sayText(enr_msg);
+            var enr_msg_sms = msgs('enr_reg_complete_sms', {'$ACCOUNT_NUMBER' : account_number, '$NAME' : state.vars.reg_name_2}, lang);
+            var messager = require('./lib/enr-messager');
+            messager(contact.phone_number, enr_msg_sms);
+            messager(state.vars.reg_pn, enr_msg_sms);
+            promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
+        }
     }
     else{
         sayText(msgs('enr_invalid_glus', {}, lang));
