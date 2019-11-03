@@ -272,7 +272,7 @@ addInputHandler('enr_order_start', function(input){ //input is account number
         // if client does not have a glvv id entered, prompt them to enter it before continuing
         glvv_check = client.vars.glus;
         if(glvv_check == null || glvv_check == 0){
-            sayText(msgs('enr_missing_glv', {}, lang));
+            sayText(msgs('enr_missing_glvv', {}, lang));
             promptDigits('enr_glvv_id', {'submitOnHash' : false, 'maxDigits' : 8, 'timeout' : timeout_length});
             return null;
         }
