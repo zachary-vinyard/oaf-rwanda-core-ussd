@@ -106,7 +106,7 @@ addInputHandler('enr_nid_confirm', function(input){ //step for dd of nid. input 
     }
     else if(state.vars.reg_nid == input){
         sayText(msgs('enr_name_1', {}, lang));
-        promptDigits('enr_name_1', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        promptDigits('enr_name_1', {'submitOnHash' : false, 'maxDigits' : max_digits_for_name, 'timeout' : timeout_length});
     }
     else{
         sayText(msgs('enr_unmatched_nid', {}, lang));
