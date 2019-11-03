@@ -277,9 +277,6 @@ addInputHandler('enr_order_start', function(input){ //input is account number
             promptDigits('enr_glvv_id', {'submitOnHash' : false, 'maxDigits' : 8, 'timeout' : timeout_length});
             return null;
         }
-        // save glvv in client row
-        client.vars.glus = state.vars.glus;
-        client.save();
         // check if client is a group leader
         var gl_check = require('./lib/enr-group-leader-check');
         var is_gl = gl_check(state.vars.account_number, state.vars.glus, an_pool, glus_pool);
@@ -674,6 +671,9 @@ addInputHandler('enr_glvv_id', function(input){
     var check_glus = require('./lib/enr-check-glus');
     if(check_glus(input, glus_pool)){
         state.vars.glus = input;
+        // save glvv in client row
+        client.vars.glus = state.vars.glus;
+        client.save();
         var gl_check = require('./lib/enr-group-leader-check');
         var is_gl = gl_check(state.vars.account_number, state.vars.glus, an_pool);
         console.log('is gl? : ' + is_gl);
