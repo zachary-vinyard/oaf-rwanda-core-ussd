@@ -209,9 +209,12 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
             var admin_alert = require('./lib/admin-alert');
             admin_alert('error on live - dead check\n' + error);
         }
-        var client_log = require('./lib/enr-client-logger');
-        state.vars.glus = input;
-        client_log(state.vars.reg_nid, state.vars.reg_name_1, state.vars.reg_name_2, state.vars.reg_pn, state.vars.glus, geo, an_pool);
+        // if there isn't already an account number, get one
+        if(state.vars.account_number == null){
+            state.vars.glus = input;
+            var client_log = require('./lib/enr-client-logger');
+            client_log(state.vars.reg_nid, state.vars.reg_name_1, state.vars.reg_name_2, state.vars.reg_pn, state.vars.glus, geo, an_pool);
+        }
         //check if group leader here
         var gl_check = require('./lib/enr-group-leader-check');
         var is_gl = gl_check(state.vars.account_number, state.vars.glus, an_pool, glus_pool);
