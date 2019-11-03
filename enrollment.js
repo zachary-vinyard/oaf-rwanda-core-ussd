@@ -632,14 +632,15 @@ addInputHandler('enr_continue', function(input){
     state.vars.current_step = 'enr_continue';
     input = parseInt(input.replace(/\D/g,''));
     console.log('input is ' + input);
-    if(input === 1){
-        var splash_menu = populate_menu('enr_splash', lang);
+    if(input == 1){
+        var splash_menu = populate_menu(enr_splash, lang, 300);
         var current_menu = msgs('enr_splash', {'$ENR_SPLASH' : splash_menu}, lang);
         state.vars.current_menu_str = current_menu;
-        sayText(current_menu, lang);
-        promptDigits('enr_splash', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        state.vars.session_authorized = false;
+        sayText(current_menu);
+        promptDigits('enr_splash', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
     }
-    else if(input === 99){
+    else if(input == 99){
         sayText(msgs('exit', {}, lang));
         stopRules();
     }
