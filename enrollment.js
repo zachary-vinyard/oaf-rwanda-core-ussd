@@ -182,7 +182,7 @@ addInputHandler('enr_pn', function(input){ //enr phone number step
 });
 
 addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu support id step. last registration step
-    if(state.vars.current_step == 'entered_groupname'){
+    if(state.vars.current_step == 'entered_group_name'){
         input = state.vars.glus;
     }
     state.vars.current_step = 'enr_glus';
