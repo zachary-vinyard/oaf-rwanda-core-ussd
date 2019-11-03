@@ -53,7 +53,7 @@ addInputHandler('enr_splash', function(input){ //input handler for splash - expe
         var current_menu = msgs(selection, {}, lang);
         state.vars.current_menu_str = current_menu;
         sayText(current_menu);
-        promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length})
+        promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length})
     }
     get_time();
 }); // end of splash
