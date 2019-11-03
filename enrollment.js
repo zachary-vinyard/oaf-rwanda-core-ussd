@@ -245,8 +245,9 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
 input handlers for input ordering
 */
 addInputHandler('enr_order_start', function(input){ //input is account number
-    if(state.vars.current_step == 'entered_groupname' || state.vars.current_step == 'entered_glvv'){
+    if(state.vars.current_step == 'entered_group_name' || state.vars.current_step == 'entered_glvv'){
         input = state.vars.account_number;
+        input = input.toString();
     }
     state.vars.current_step = 'enr_order_start';
     input = parseInt(input.replace(/\D/g,''));
