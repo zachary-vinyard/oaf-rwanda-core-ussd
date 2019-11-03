@@ -693,12 +693,12 @@ addInputHandler('enr_enter_groupname', function(input){
     // return the client to the last completed step
     if(state.vars.current_step == 'enr_glus'){
         state.vars.current_step = 'entered_group_name';
-        sayText(msgs('enr_continue', {}, lang));
-        promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : 1, 'timeout' : timeout_length});
+        sayText(msgs('enr_continue', {'$GROUP' : state.vars.glvv}, lang));
+        promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
     }
     else if(state.vars.current_step == 'enr_order_start'){
         state.vars.current_step = 'entered_group_name';
-        sayText(msgs('enr_continue', {}, lang));
-        promptDigits('enr_order_start', {'submitOnHash' : false, 'maxDigits' : 1, 'timeout' : timeout_length});
+        sayText(msgs('enr_continue', {'$GROUP' : state.vars.glvv}, lang));
+        promptDigits('enr_order_start', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
     }
 });
