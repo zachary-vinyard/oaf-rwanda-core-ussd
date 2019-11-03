@@ -211,10 +211,10 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
         }
         var client_log = require('./lib/enr-client-logger');
         state.vars.glus = input;
-        var account_number = client_log(state.vars.reg_nid, state.vars.reg_name_1, state.vars.reg_name_2, state.vars.reg_pn, state.vars.glus, geo, an_pool);
+        client_log(state.vars.reg_nid, state.vars.reg_name_1, state.vars.reg_name_2, state.vars.reg_pn, state.vars.glus, geo, an_pool);
         //check if group leader here
         var gl_check = require('./lib/enr-group-leader-check');
-        var is_gl = gl_check(account_number, state.vars.glus, an_pool, glus_pool);
+        var is_gl = gl_check(state.vars.account_number, state.vars.glus, an_pool, glus_pool);
         console.log('is gl? : ' + is_gl);
         // if the client is a group leader and the group is not yet named, prompt them to enter a group name
         if(is_gl && state.vars.needs_name){
@@ -222,9 +222,9 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
             promptDigits('enr_enter_groupname', {'submitOnHash' : false, 'maxDigits' : 60, 'timeout' : timeout_length});
         }
         else{
-            var enr_msg = msgs('enr_reg_complete', {'$ACCOUNT_NUMBER' : account_number, '$NAME' : state.vars.reg_name_2}, lang);
+            var enr_msg = msgs('enr_reg_complete', {'$ACCOUNT_NUMBER' : state.vars.account_number, '$NAME' : state.vars.reg_name_2}, lang);
             sayText(enr_msg);
-            var enr_msg_sms = msgs('enr_reg_complete_sms', {'$ACCOUNT_NUMBER' : account_number, '$NAME' : state.vars.reg_name_2}, lang);
+            var enr_msg_sms = msgs('enr_reg_complete_sms', {'$ACCOUNT_NUMBER' : state.vars.account_number, '$NAME' : state.vars.reg_name_2}, lang);
             var messager = require('./lib/enr-messager');
             messager(contact.phone_number, enr_msg_sms);
             messager(state.vars.reg_pn, enr_msg_sms);
@@ -278,7 +278,7 @@ addInputHandler('enr_order_start', function(input){ //input is account number
         client.save();
         // check if client is a group leader
         var gl_check = require('./lib/enr-group-leader-check');
-        var is_gl = gl_check(account_number, state.vars.glus, an_pool, glus_pool);
+        var is_gl = gl_check(state.vars.account_number, state.vars.glus, an_pool, glus_pool);
         // if the client is a group leader and the group is not yet named, prompt them to enter a group name
         if(is_gl && state.vars.needs_name){
             sayText(msgs('enr_add_groupname', {}, lang));
@@ -669,7 +669,7 @@ addInputHandler('enr_glvv_id', function(input){
     if(check_glus(input, 'glus_ids') == !null){
         state.vars.glus = input;
         var gl_check = require('./lib/enr-group-leader-check');
-        var is_gl = gl_check(account_number, state.vars.glus, an_pool);
+        var is_gl = gl_check(state.vars.account_number, state.vars.glus, an_pool);
         console.log('is gl? : ' + is_gl);
         // return to enr_order_start - give the client their account number in the message?
         sayText(msgs('enr_continue', {'$GROUP' : state.vars.glus}, lang));
