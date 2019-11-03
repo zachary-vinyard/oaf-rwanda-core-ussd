@@ -635,7 +635,7 @@ addInputHandler('enr_continue', function(input){
         var splash_menu = populate_menu('enr_splash', lang);
         var current_menu = msgs('enr_splash', {'$ENR_SPLASH' : splash_menu}, lang);
         state.vars.current_menu_str = current_menu;
-        sayText(current_menu, lang);
+        sayText(splash_menu, lang);
         promptDigits('enr_splash', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
     }
     else if(input == 99){
