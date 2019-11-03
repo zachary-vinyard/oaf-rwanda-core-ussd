@@ -25,6 +25,7 @@ const max_digits_for_input = parseInt(settings_table.queryRows({'vars' : {'setti
 const max_digits_for_nid = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_nid'}}).next().vars.value); 
 const max_digits_for_pn = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_pn'}}).next().vars.value); 
 const max_digits_for_glus = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_glvv'}}).next().vars.value); 
+const max_digits_for_name = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_name'}}).next().vars.value); 
 
 /*
 main function
@@ -127,12 +128,12 @@ addInputHandler('enr_name_1', function(input){ //enr name 1 step
     }
     if(input === undefined || input == ''){
         sayText(msgs('enr_invalid_name_input', {}, lang));
-        promptDigits('enr_name_1',  {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        promptDigits('enr_name_1',  {'submitOnHash' : false, 'maxDigits' : max_digits_for_name, 'timeout' : timeout_length});
     }
     else{
         state.vars.reg_name_1 = input;
         sayText(msgs('enr_name_2', {}, lang));
-        promptDigits('enr_name_2',  {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        promptDigits('enr_name_2',  {'submitOnHash' : false, 'maxDigits' : max_digits_for_name, 'timeout' : timeout_length});
     }
     get_time();
 });
@@ -150,7 +151,7 @@ addInputHandler('enr_name_2', function(input){ //enr name 2 step
     }
     if(input === undefined || input == ''){
         sayText(msgs('enr_invalid_name_input', {}, lang));
-        promptDigits('enr_name_2',  {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        promptDigits('enr_name_2',  {'submitOnHash' : false, 'maxDigits' : max_digits_for_name, 'timeout' : timeout_length});
     }
     else{
         state.vars.reg_name_2 = input;
