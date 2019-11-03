@@ -23,13 +23,15 @@ const enr_splash = settings_table.queryRows({'vars' : {'settings' : 'enr_splash'
 const timeout_length = parseInt(settings_table.queryRows({'vars' : {'settings' : 'timeout_length'}}).next().vars.value);
 const max_digits_for_input = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits'}}).next().vars.value); //only for testing
 const max_digits_for_nid = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_nid'}}).next().vars.value); 
+const max_digits_for_pn = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_pn'}}).next().vars.value); 
+const max_digits_for_glus = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_glvv'}}).next().vars.value); 
 
 /*
 main function
 */
 global.main = function(){
     state.vars.start_time = new Date().toString(); 
-    //state.vars.glvv_entered = false;
+    state.vars.glvv_entered = false;
     var splash_menu = populate_menu(enr_splash, lang, 300);
     var current_menu = msgs('enr_splash', {'$ENR_SPLASH' : splash_menu}, lang);
     state.vars.current_menu_str = current_menu;
@@ -153,7 +155,7 @@ addInputHandler('enr_name_2', function(input){ //enr name 2 step
     else{
         state.vars.reg_name_2 = input;
         sayText(msgs('enr_pn', {}, lang));
-        promptDigits('enr_pn', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        promptDigits('enr_pn', {'submitOnHash' : false, 'maxDigits' : max_digits_for_pn, 'timeout' : timeout_length});
     }
     get_time();
 });
@@ -170,11 +172,11 @@ addInputHandler('enr_pn', function(input){ //enr phone number step
     if(check_pn(input)){
         state.vars.reg_pn = input;
         sayText(msgs('enr_glus', {}, lang));
-        promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : max_digits_for_glus, 'timeout' : timeout_length});
     }
     else{
         sayText(msgs('invalid_pn_format', {}, lang));
-        promptDigits('enr_pn', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        promptDigits('enr_pn', {'submitOnHash' : false, 'maxDigits' : max_digits_for_pn, 'timeout' : timeout_length});
     }
     get_time();
 });
@@ -197,7 +199,7 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
         try{ // get this out of a try block as soon as bandwidth
             if(!check_live(geo, geo_menu_map)){
                 sayText(msgs('enr_order_period_finished', {}, lang));
-                promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length});
+                promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : max_digits_for_glus, 'timeout' : timeout_length});
                 return 0;
             }
         }
@@ -228,7 +230,7 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
     }
     else{
         sayText(msgs('enr_invalid_glus', {}, lang));
-        promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length});
+        promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : max_digits_for_glus, 'timeout' : timeout_length});
     }
     get_time();
 });//end registration steps input handlers
@@ -274,6 +276,9 @@ addInputHandler('enr_order_start', function(input){ //input is account number
         // save glvv in client row
         client.vars.glus = state.vars.glvv;
         client.save();
+        // check if client is a group leader
+        var gl_check = require('./lib/enr-group-leader-check');
+        var is_gl = gl_check(account_number, state.vars.glus, an_pool, glus_pool);
         // if the client is a group leader and the group is not yet named, prompt them to enter a group name
         if(is_gl && state.vars.needs_name){
             sayText(msgs('enr_add_groupname', {}, lang));
