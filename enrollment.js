@@ -692,7 +692,7 @@ addInputHandler('enr_glvv_id', function(input){
 // input handler for entering group name and save to glus id table
 addInputHandler('enr_enter_groupname', function(input){
     // assign input as the group name
-    input = parseInt(input.replace(/\D/g,''));
+    //input = parseInt(input.replace(/\D/g,''));
     var name_group = require('./lib/enr-name-group');
     name_group(state.vars.glus, glus_pool, input);
     // return the client to the last completed step
