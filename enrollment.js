@@ -211,7 +211,6 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
         }
         // if there isn't already an account number, get one
         if(state.vars.account_number == null){
-            state.vars.glus = input;
             var client_log = require('./lib/enr-client-logger');
             client_log(state.vars.reg_nid, state.vars.reg_name_1, state.vars.reg_name_2, state.vars.reg_pn, state.vars.glus, geo, an_pool);
         }
@@ -692,7 +691,7 @@ addInputHandler('enr_glvv_id', function(input){
 // input handler for entering group name and save to glus id table
 addInputHandler('enr_enter_groupname', function(input){
     // assign input as the group name
-    //input = parseInt(input.replace(/\D/g,''));
+    input = parseInt(input.replace(/\D/g,''));
     var name_group = require('./lib/enr-name-group');
     name_group(state.vars.glus, glus_pool, input);
     // return the client to the last completed step
