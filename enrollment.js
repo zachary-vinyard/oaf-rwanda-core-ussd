@@ -186,7 +186,7 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
         input = state.vars.glus;
     }
     state.vars.current_step = 'enr_glus';
-    input = input.replace(/\^W/g,'');
+    //input = input.replace(/\^W/g,'');
     if(input == 99){
         sayText(msgs('exit', {}, lang));
         stopRules();
@@ -668,7 +668,7 @@ addInputHandler('invalid_input', function(input){
 // input handler for entering glvv id. note, do we want to check if this matches the client's district?
 addInputHandler('enr_glvv_id', function(input){
     state.vars.current_step = 'entered_glvv'; 
-    input = parseInt(input.replace(/\D/g,''));
+    //input = parseInt(input.replace(/\D/g,''));
     // check if glvv is valid
     var check_glus = require('./lib/enr-check-glus');
     if(check_glus(input, glus_pool)){
@@ -691,7 +691,7 @@ addInputHandler('enr_glvv_id', function(input){
 // input handler for entering group name and save to glus id table
 addInputHandler('enr_enter_groupname', function(input){
     // assign input as the group name
-    input = parseInt(input.replace(/\D/g,''));
+    //input = parseInt(input.replace(/\D/g,''));
     var name_group = require('./lib/enr-name-group');
     name_group(state.vars.glus, glus_pool, input);
     // return the client to the last completed step
