@@ -186,7 +186,7 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
         input = state.vars.glus;
     }
     state.vars.current_step = 'enr_glus';
-    input = input.replace(/\^W/g,'');
+    //input = input.replace(/\^W/g,'');
     if(input == 99){
         sayText(msgs('exit', {}, lang));
         stopRules();
