@@ -111,8 +111,8 @@ $DateUpdateMonth = ki_month_lookup[Month];
 $DateUpdateDayName = ki_day_lookup[DayName];
 $DateUpdateDayNR = DayNR;
 
-//Create Record for PowerBI retrieve
-
+//Create Record for PowerBI retrieve (deprecated)
+/*
 var GBTable = project.getOrCreateDataTable("GetBalance");
 var GBRow = GBTable.createRow({
 
@@ -150,3 +150,4 @@ else{
         'date': DateString}});
     NewStatsRow.save();
 }
+*/
