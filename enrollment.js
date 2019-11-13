@@ -20,12 +20,12 @@ const an_pool = settings_table.queryRows({'vars' : {'settings' : 'enr_client_poo
 const glus_pool = settings_table.queryRows({'vars' : {'settings' : 'glus_pool'}}).next().vars.value;
 const geo_menu_map = settings_table.queryRows({'vars' : {'settings' : 'geo_menu_map'}}).next().vars.value;
 const enr_splash = settings_table.queryRows({'vars' : {'settings' : 'enr_splash'}}).next().vars.value;
-const timeout_length = parseInt(settings_table.queryRows({'vars' : {'settings' : 'timeout_length'}}).next().vars.value);
-const max_digits_for_input = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits'}}).next().vars.value); //only for testing
-const max_digits_for_nid = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_nid'}}).next().vars.value); 
-const max_digits_for_pn = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_pn'}}).next().vars.value); 
-const max_digits_for_glus = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_glvv'}}).next().vars.value); 
-const max_digits_for_name = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_name'}}).next().vars.value); 
+const timeout_length = project.vars.timeout_length;
+const max_digits_for_input = project.vars.max_digits; //only for testing
+const max_digits_for_nid = project.vars.max_digits_nid; 
+const max_digits_for_pn = project.vars.max_digits_pn; 
+const max_digits_for_glus = project.vars.max_digits_glvv; 
+const max_digits_for_name = project.vars.max_digits_name; 
 
 /*
 main function
