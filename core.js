@@ -9,14 +9,14 @@ var get_menu_option = require('./lib/get-menu-option');
 var populate_menu = require('./lib/populate-menu');
 
 //options
-var settings_table = project.getOrCreateDataTable('ussd_settings');
-const lang = settings_table.queryRows({'vars' : {'settings' : 'cor_lang'}}).next().vars.value;
-const max_digits_for_input = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits'}}).next().vars.value); //only for testing
+//var settings_table = project.getOrCreateDataTable('ussd_settings'); //removing this to account for project variable preference
+const lang = project.vars.cor_lang;
+const max_digits_for_input = project.vars.max_digits; //only for testing
 //const max_digits_for_nid = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_nid'}}).next().vars.value); 
-const max_digits_for_account_number = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_an'}}).next().vars.value);
-const max_digits_for_serial = 7;
+const max_digits_for_account_number = project.vars.max_digits_an;
+//const max_digits_for_serial = 7;
 const core_splash_map = project.getOrCreateDataTable('districts');
-const chicken_client_table = settings_table.queryRows({'vars' : {'settings' : 'chicken_client_table'}}).next().vars.value;
+const chicken_client_table = project.vars.chicken_client_table;
 const timeout_length = 180;
 
 global.main = function () {
@@ -165,7 +165,7 @@ addInputHandler('chx_final_confirm', function(input){ //final confirmation to en
         var save_chx_quant = require('./lib/chx-save-quant');
         var conf_code = save_chx_quant(state.vars.account_number, state.vars.confirmed_chx, chicken_client_table);
         var conf_msg = msgs('chx_confirmed', {'$CHX_NUM' : state.vars.confirmed_chx, '$CONFIRMATION_CODE' : conf_code}, lang);
-        var msg_route = settings_table.queryRows({'vars' : {'settings' : 'sms_push_route'}}).next().vars.value;
+        var msg_route = project.vars.sms_push_route;
         project.sendMessage({'to_number' : contact.phone_number, 'route_id' : msg_route, 'content' : conf_msg});
         sayText(conf_msg)
         promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
