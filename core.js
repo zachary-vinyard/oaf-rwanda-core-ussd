@@ -15,7 +15,7 @@ const max_digits_for_input = project.vars.max_digits; //only for testing
 //const max_digits_for_nid = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_nid'}}).next().vars.value); 
 const max_digits_for_account_number = project.vars.max_digits_an;
 //const max_digits_for_serial = 7;
-const core_splash_map = project.getOrCreateDataTable('districts');
+const core_splash_map = project.getOrCreateDataTable(project.vars.core_splash_map);
 const chicken_client_table = project.vars.chicken_client_table;
 const timeout_length = 180;
 
