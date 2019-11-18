@@ -23,7 +23,7 @@ const lang = 'ki';
 
 // display welcome message and prompt user to enter account number
 global.main = function() {
-    sayText(msgs('pshops_main_splash'));
+    sayText(msgs('pshops_main_splash', lang));
     promptDigits('account_number_splash', { 'submitOnHash' : false,
                                             'maxDigits'    : max_digits_for_account_number,
                                             'timeout'      : timeout_length });
