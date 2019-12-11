@@ -81,15 +81,167 @@ addInputHandler('sedo_enter_id', function(input){
 addInputHandler('sedo_enter_vid', function(input){
     var check_vid = require('./lib/ext-vid-verify'); // make sure this returns a boolean
     if(check_vid){
-        // code here
-    }
-    else{
-        sayText(msgs('invalid_input', {}, lang));
-        promptDigits('ext_main_splash', {   'submitOnHash' : false, 
+        // save in table
+        // ask next question
+        sayText(msgs('sedo_enter_gender', {}, lang));
+        promptDigits('sedo_enter_gender', {    'submitOnHash' : false, 
                                             'maxDigits'    : max_digits,
                                             'timeout'      : timeout_length});
         return null;
     }
-    return null;
+    else{
+        sayText(msgs('invalid_input', {}, lang));
+        promptDigits('sedo_enter_vid', {   'submitOnHash' : false, 
+                                            'maxDigits'    : max_digits,
+                                            'timeout'      : timeout_length});
+        return null;
+    }
 });
 
+// input handler for SEDO's gender
+addInputHandler('sedo_enter_gender', function(input){
+    // clean input data
+    if(selection === 1 || selection === 2){
+        // save in table
+        // ask next question
+        sayText(msgs('sedo_enter_age', {}, lang));
+        promptDigits('sedo_enter_age', {    'submitOnHash' : false, 
+                                            'maxDigits'    : max_digits,
+                                            'timeout'      : timeout_length});
+        return null;
+    }
+    else{
+        sayText(msgs('invalid_input', {}, lang));
+        promptDigits('sedo_enter_gender', {   'submitOnHash' : false, 
+                                            'maxDigits'    : max_digits,
+                                            'timeout'      : timeout_length});
+        return null;
+    }
+});
+
+// input handler for SEDO's age
+addInputHandler('sedo_enter_age', function(input){
+    // clean input data
+    if(valid_age){
+        // save in table
+        // ask next question
+        sayText(msgs('sedo_enter_tenure', {}, lang));
+        promptDigits('sedo_enter_tenure', {    'submitOnHash' : false, 
+                                            'maxDigits'    : max_digits,
+                                            'timeout'      : timeout_length});
+        return null;
+    }
+    else{
+        sayText(msgs('invalid_input', {}, lang));
+        promptDigits('sedo_enter_age', {   'submitOnHash' : false, 
+                                            'maxDigits'    : max_digits,
+                                            'timeout'      : timeout_length});
+        return null;
+    }
+});
+
+// input handler for SEDO's tenure
+addInputHandler('sedo_enter_tenure', function(input){
+    // clean input data
+    if(valid_tenure){
+        // save in table
+        // ask next question
+        sayText(msgs('sedo_enter_trn', {}, lang));
+        promptDigits('sedo_enter_trn', {    'submitOnHash' : false, 
+                                            'maxDigits'    : max_digits,
+                                            'timeout'      : timeout_length});
+        return null;
+    }
+    else{
+        sayText(msgs('invalid_input', {}, lang));
+        promptDigits('sedo_enter_tenure', {   'submitOnHash' : false, 
+                                            'maxDigits'    : max_digits,
+                                            'timeout'      : timeout_length});
+        return null;
+    }
+});
+
+// input handler for SEDO's number of trainings
+addInputHandler('sedo_enter_trn', function(input){
+    // clean input data
+    if(valid){
+        // save in table
+        // ask next question
+        sayText(msgs('sedo_enter_farmers', {}, lang));
+        promptDigits('sedo_enter_farmers', {    'submitOnHash' : false, 
+                                            'maxDigits'    : max_digits,
+                                            'timeout'      : timeout_length});
+        return null;
+    }
+    else{
+        sayText(msgs('invalid_input', {}, lang));
+        promptDigits('sedo_enter_trn', {   'submitOnHash' : false, 
+                                            'maxDigits'    : max_digits,
+                                            'timeout'      : timeout_length});
+        return null;
+    }
+});
+
+// input handler for SEDO's number of farmers trained
+addInputHandler('sedo_enter_farmers', function(input){
+    // clean input data
+    if(valid){
+        // save in table
+        // ask next question
+        sayText(msgs('sedo_enter_groups', {}, lang));
+        promptDigits('sedo_enter_groups', {    'submitOnHash' : false, 
+                                            'maxDigits'    : max_digits,
+                                            'timeout'      : timeout_length});
+        return null;
+    }
+    else{
+        sayText(msgs('invalid_input', {}, lang));
+        promptDigits('sedo_enter_farmers', {   'submitOnHash' : false, 
+                                            'maxDigits'    : max_digits,
+                                            'timeout'      : timeout_length});
+        return null;
+    }
+});
+
+// input handler for SEDO's number of groups
+addInputHandler('sedo_enter_farmers', function(input){
+    // clean input data
+    if(valid){
+        // save in table
+        // ask next question
+        sayText(msgs('sedo_survey_start', {}, lang));
+        promptDigits('sedo_survey_start', {    'submitOnHash' : false, 
+                                                'maxDigits'    : max_digits,
+                                                'timeout'      : timeout_length});
+        return null;
+    }
+    else{
+        sayText(msgs('invalid_input', {}, lang));
+        promptDigits('sedo_enter_groups', {   'submitOnHash' : false, 
+                                            'maxDigits'    : max_digits,
+                                            'timeout'      : timeout_length});
+        return null;
+    }
+});
+
+
+// input handler for start of survey
+addInputHandler('sedo_survey_start', function(input){
+    // clean input data
+    if(valid){
+        // save in table
+        // ask next question
+        sayText(msgs('sedo_survey_start', {}, lang));
+        promptDigits('sedo_survey_start', {    'submitOnHash' : false, 
+                                                'maxDigits'    : max_digits,
+                                                'timeout'      : timeout_length});
+        return null;
+    }
+    else{
+        sayText(msgs('invalid_input', {}, lang));
+        promptDigits('sedo_enter_groups', {   'submitOnHash' : false, 
+                                            'maxDigits'    : max_digits,
+                                            'timeout'      : timeout_length});
+        return null;
+    }
+});
