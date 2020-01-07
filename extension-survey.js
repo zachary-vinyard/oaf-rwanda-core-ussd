@@ -35,7 +35,6 @@ addInputHandler('ext_main_splash', function(input){
                                         });
     }
     else if(selection === 3){
-        // add code for AMA2
         sayText(msgs('sedo_enter_id'));
         promptDigits('sedo_enter_id', {   'submitOnHash' : false,
                                             'maxDigits'    : max_digits_for_account_number,
@@ -54,8 +53,9 @@ addInputHandler('ext_main_splash', function(input){
 // input handler for FP's village ID
 addInputHandler('fp_enter_id', function(input){
     // verify village id
+    input = input.replace(/\s/g,'');
     var check_vid = require('./lib/ext-vid-verify');
-    if(check_vid){
+    if(check_vid(input)){
         // reinitization?
         // start survey
     }
@@ -70,10 +70,11 @@ addInputHandler('fp_enter_id', function(input){
 
 // input handler for SEDO ID
 addInputHandler('sedo_enter_id', function(input){
-    // check SEDO ID
+    // check sedo id
+    input = input.replace(/\s/g,'');
     var check_sedo = require('./lib/ext-sedo-verify');
-    if(check_sedo){
-        // request for user to enter village ID
+    // if sedo id is valid, prompt user to enter village id; otherwise request user to re-enter sedo id
+    if(check_sedo(input)){
         sayText(msgs('sedo_enter_vid', {}, lang));
         promptDigits('sedo_enter_vid', {    'submitOnHash' : false, 
                                             'maxDigits'    : max_digits,
@@ -91,10 +92,9 @@ addInputHandler('sedo_enter_id', function(input){
 
 // input handler for SEDO's village ID
 addInputHandler('sedo_enter_vid', function(input){
-    var check_vid = require('./lib/ext-vid-verify'); // make sure this returns a boolean
-    if(check_vid){
-        // save in table
-        // ask next question
+    input = input.replace(/\s/g,'');
+    var check_vid = require('./lib/ext-vid-verify');
+    if(check_vid(input)){
         sayText(msgs('sedo_enter_gender', {}, lang));
         promptDigits('sedo_enter_gender', { 'submitOnHash' : false, 
                                             'maxDigits'    : max_digits,
@@ -115,8 +115,6 @@ addInputHandler('sedo_enter_gender', function(input){
     // clean input data
     input = input.replace(/\s/g,'');
     if(input){
-        // save in table
-        // ask next question
         sayText(msgs('sedo_enter_age', {}, lang));
         promptDigits('sedo_enter_age', {'submitOnHash' : false, 
                                         'maxDigits'    : max_digits,
@@ -137,8 +135,6 @@ addInputHandler('sedo_enter_age', function(input){
     // clean input data
     input = input.replace(/\s/g,'');
     if(input){
-        // save in table
-        // ask next question
         sayText(msgs('sedo_enter_tenure', {}, lang));
         promptDigits('sedo_enter_tenure', {    'submitOnHash' : false, 
                                             'maxDigits'    : max_digits,
@@ -159,8 +155,6 @@ addInputHandler('sedo_enter_tenure', function(input){
     // clean input data
     input = input.replace(/\s/g,'');
     if(input){
-        // save in table
-        // ask next question
         sayText(msgs('sedo_enter_trn', {}, lang));
         promptDigits('sedo_enter_trn', {    'submitOnHash' : false, 
                                             'maxDigits'    : max_digits,
@@ -181,8 +175,6 @@ addInputHandler('sedo_enter_trn', function(input){
     // clean input data
     input = input.replace(/\s/g,'');
     if(input){
-        // save in table
-        // ask next question
         sayText(msgs('sedo_enter_farmers', {}, lang));
         promptDigits('sedo_enter_farmers', {    'submitOnHash' : false, 
                                             'maxDigits'    : max_digits,
@@ -202,8 +194,6 @@ addInputHandler('sedo_enter_trn', function(input){
 addInputHandler('sedo_enter_farmers', function(input){
     input = input.replace(/\s/g,'');
     if(input){
-        // save in table
-        // ask next question
         sayText(msgs('sedo_enter_groups', {}, lang));
         promptDigits('sedo_enter_groups', {    'submitOnHash' : false, 
                                             'maxDigits'    : max_digits,
@@ -224,8 +214,6 @@ addInputHandler('sedo_enter_farmers', function(input){
     // clean input data
     input = input.replace(/\s/g,'');
     if(input){
-        // save in table
-        // ask next question
         sayText(msgs('sedo_survey_start', {}, lang));
         promptDigits('sedo_survey_start', {    'submitOnHash' : false, 
                                                 'maxDigits'    : max_digits,
@@ -247,8 +235,6 @@ addInputHandler('sedo_survey_start', function(input){
     // clean input data
     input = input.replace(/\s/g,'');
     if(input){
-        // save in table
-        // ask next question
         sayText(msgs('sedo_survey_start', {}, lang));
         promptDigits('sedo_survey_start', {    'submitOnHash' : false, 
                                                 'maxDigits'    : max_digits,
