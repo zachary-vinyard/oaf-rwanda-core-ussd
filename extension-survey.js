@@ -29,7 +29,7 @@ addInputHandler('ext_main_splash', function(input){
     if(selection === 1 || selection === 2){
         state.vars.selection = selection;
         sayText(msgs('fp_enter_id'));
-        promptDigits('ext_main_splash', {   'submitOnHash' : false,
+        promptDigits('fp_enter_id', {   'submitOnHash' : false,
                                             'maxDigits'    : max_digits_for_account_number,
                                             'timeout'      : timeout_length 
                                         });
@@ -37,7 +37,7 @@ addInputHandler('ext_main_splash', function(input){
     else if(selection === 3){
         // add code for AMA2
         sayText(msgs('sedo_enter_id'));
-        promptDigits('ext_main_splash', {   'submitOnHash' : false,
+        promptDigits('sedo_enter_id', {   'submitOnHash' : false,
                                             'maxDigits'    : max_digits_for_account_number,
                                             'timeout'      : timeout_length 
                                         });
@@ -51,9 +51,21 @@ addInputHandler('ext_main_splash', function(input){
     }
 });
 
-// input handler for FP
+// input handler for FP's village ID
 addInputHandler('fp_enter_id', function(input){
-    // check FP ID
+    // verify village id
+    var check_vid = require('./lib/ext-vid-verify');
+    if(check_vid){
+        // reinitization?
+        // start survey
+    }
+    else{
+        sayText(msgs('invalid_input', {}, lang));
+        promptDigits('fp_enter_id', {   'submitOnHash' : false,
+                                        'maxDigits'    : max_digits_for_account_number,
+                                        'timeout'      : timeout_length 
+                                    });
+    }
 });
 
 // input handler for SEDO ID
@@ -84,14 +96,14 @@ addInputHandler('sedo_enter_vid', function(input){
         // save in table
         // ask next question
         sayText(msgs('sedo_enter_gender', {}, lang));
-        promptDigits('sedo_enter_gender', {    'submitOnHash' : false, 
+        promptDigits('sedo_enter_gender', { 'submitOnHash' : false, 
                                             'maxDigits'    : max_digits,
                                             'timeout'      : timeout_length});
         return null;
     }
     else{
         sayText(msgs('invalid_input', {}, lang));
-        promptDigits('sedo_enter_vid', {   'submitOnHash' : false, 
+        promptDigits('sedo_enter_vid', {    'submitOnHash' : false, 
                                             'maxDigits'    : max_digits,
                                             'timeout'      : timeout_length});
         return null;
@@ -101,18 +113,19 @@ addInputHandler('sedo_enter_vid', function(input){
 // input handler for SEDO's gender
 addInputHandler('sedo_enter_gender', function(input){
     // clean input data
-    if(selection === 1 || selection === 2){
+    input = input.replace(/\s/g,'');
+    if(input){
         // save in table
         // ask next question
         sayText(msgs('sedo_enter_age', {}, lang));
-        promptDigits('sedo_enter_age', {    'submitOnHash' : false, 
-                                            'maxDigits'    : max_digits,
-                                            'timeout'      : timeout_length});
+        promptDigits('sedo_enter_age', {'submitOnHash' : false, 
+                                        'maxDigits'    : max_digits,
+                                        'timeout'      : timeout_length});
         return null;
     }
     else{
         sayText(msgs('invalid_input', {}, lang));
-        promptDigits('sedo_enter_gender', {   'submitOnHash' : false, 
+        promptDigits('sedo_enter_gender', { 'submitOnHash' : false, 
                                             'maxDigits'    : max_digits,
                                             'timeout'      : timeout_length});
         return null;
@@ -122,7 +135,8 @@ addInputHandler('sedo_enter_gender', function(input){
 // input handler for SEDO's age
 addInputHandler('sedo_enter_age', function(input){
     // clean input data
-    if(valid_age){
+    input = input.replace(/\s/g,'');
+    if(input){
         // save in table
         // ask next question
         sayText(msgs('sedo_enter_tenure', {}, lang));
@@ -143,7 +157,8 @@ addInputHandler('sedo_enter_age', function(input){
 // input handler for SEDO's tenure
 addInputHandler('sedo_enter_tenure', function(input){
     // clean input data
-    if(valid_tenure){
+    input = input.replace(/\s/g,'');
+    if(input){
         // save in table
         // ask next question
         sayText(msgs('sedo_enter_trn', {}, lang));
@@ -164,7 +179,8 @@ addInputHandler('sedo_enter_tenure', function(input){
 // input handler for SEDO's number of trainings
 addInputHandler('sedo_enter_trn', function(input){
     // clean input data
-    if(valid){
+    input = input.replace(/\s/g,'');
+    if(input){
         // save in table
         // ask next question
         sayText(msgs('sedo_enter_farmers', {}, lang));
@@ -184,8 +200,8 @@ addInputHandler('sedo_enter_trn', function(input){
 
 // input handler for SEDO's number of farmers trained
 addInputHandler('sedo_enter_farmers', function(input){
-    // clean input data
-    if(valid){
+    input = input.replace(/\s/g,'');
+    if(input){
         // save in table
         // ask next question
         sayText(msgs('sedo_enter_groups', {}, lang));
@@ -206,7 +222,8 @@ addInputHandler('sedo_enter_farmers', function(input){
 // input handler for SEDO's number of groups
 addInputHandler('sedo_enter_farmers', function(input){
     // clean input data
-    if(valid){
+    input = input.replace(/\s/g,'');
+    if(input){
         // save in table
         // ask next question
         sayText(msgs('sedo_survey_start', {}, lang));
@@ -228,7 +245,8 @@ addInputHandler('sedo_enter_farmers', function(input){
 // input handler for start of survey
 addInputHandler('sedo_survey_start', function(input){
     // clean input data
-    if(valid){
+    input = input.replace(/\s/g,'');
+    if(input){
         // save in table
         // ask next question
         sayText(msgs('sedo_survey_start', {}, lang));
