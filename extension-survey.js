@@ -26,8 +26,7 @@ global.main = function(){
 }
 
 // input handler for survey type
-addInputHandler('ext_main_splash', function(input){
-    var selection = input.replace(/\s/g,'');
+addInputHandler('ext_main_splash', function(selection){
     // redirect user based on their input menu selection
     if(selection === 1 || selection === 2){
         state.vars.selection = selection;
