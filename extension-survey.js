@@ -97,7 +97,7 @@ addInputHandler('sedo_enter_vid', function(input){
     input = input.replace(/\s/g,'');
     var check_vid = require('./lib/ext-vid-verify');
     if(check_vid(input)){
-        sayText(msgs('sedo_enter_gender', {}, lang));
+        sayText(msgs('gender_select', {}, lang));
         promptDigits('sedo_enter_gender', { 'submitOnHash' : false, 
                                             'maxDigits'    : max_digits_for_input,
                                             'timeout'      : timeout_length});
@@ -117,7 +117,7 @@ addInputHandler('sedo_enter_gender', function(input){
     // clean input data
     input = input.replace(/\s/g,'');
     if(input){
-        sayText(msgs('sedo_enter_age', {}, lang));
+        sayText(msgs('fp_age_question', {}, lang));
         promptDigits('sedo_enter_age', {'submitOnHash' : false, 
                                         'maxDigits'    : max_digits_for_input,
                                         'timeout'      : timeout_length});
@@ -137,7 +137,7 @@ addInputHandler('sedo_enter_age', function(input){
     // clean input data
     input = input.replace(/\s/g,'');
     if(input){
-        sayText(msgs('sedo_enter_tenure', {}, lang));
+        sayText(msgs('fp_tenure_question', {}, lang));
         promptDigits('sedo_enter_tenure', {    'submitOnHash' : false, 
                                             'maxDigits'    : 2,
                                             'timeout'      : timeout_length});
@@ -157,7 +157,7 @@ addInputHandler('sedo_enter_tenure', function(input){
     // clean input data
     input = input.replace(/\s/g,'');
     if(input){
-        sayText(msgs('sedo_enter_trn', {}, lang));
+        sayText(msgs('fp_num_trainings', {}, lang));
         promptDigits('sedo_enter_trn', {    'submitOnHash' : false, 
                                             'maxDigits'    : 2,
                                             'timeout'      : timeout_length});
@@ -177,7 +177,7 @@ addInputHandler('sedo_enter_trn', function(input){
     // clean input data
     input = input.replace(/\s/g,'');
     if(input){
-        sayText(msgs('sedo_enter_farmers', {}, lang));
+        sayText(msgs('fp_num_trained', {}, lang));
         promptDigits('sedo_enter_farmers', {    'submitOnHash' : false, 
                                             'maxDigits'    : 3,
                                             'timeout'      : timeout_length});
@@ -196,7 +196,7 @@ addInputHandler('sedo_enter_trn', function(input){
 addInputHandler('sedo_enter_farmers', function(input){
     input = input.replace(/\s/g,'');
     if(input){
-        sayText(msgs('sedo_enter_groups', {}, lang));
+        sayText(msgs('fp_num_groups', {}, lang));
         promptDigits('sedo_enter_groups', {    'submitOnHash' : false, 
                                             'maxDigits'    : max_digits,
                                             'timeout'      : timeout_length});
@@ -216,7 +216,7 @@ addInputHandler('sedo_enter_farmers', function(input){
     // clean input data
     input = input.replace(/\s/g,'');
     if(input){
-        sayText(msgs('sedo_survey_start', {}, lang));
+        sayText(msgs('survey_start', {}, lang));
         promptDigits('sedo_survey_start', {    'submitOnHash' : false, 
                                                 'maxDigits'    : max_digits,
                                                 'timeout'      : timeout_length});
@@ -237,7 +237,7 @@ addInputHandler('sedo_survey_start', function(input){
     // clean input data
     input = input.replace(/\s/g,'');
     if(input){
-        sayText(msgs('sedo_survey_start', {}, lang));
+        sayText(msgs('survey_start', {}, lang));
         promptDigits('sedo_survey_start', {    'submitOnHash' : false, 
                                                 'maxDigits'    : max_digits,
                                                 'timeout'      : timeout_length});
