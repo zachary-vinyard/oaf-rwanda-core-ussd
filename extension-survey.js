@@ -11,7 +11,7 @@ var get_menu_option = require('./lib/get-menu-option');
 var populate_menu = require('./lib/populate-menu');
 
 // set various constants -- make sure to port over project variables
-const lang = projet.vars.cor_lang;
+const lang = project.vars.cor_lang;
 const max_digits_for_input = 1;
 const max_digits = 3;
 const max_digits_for_account_number = 8;
