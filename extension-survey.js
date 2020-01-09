@@ -28,7 +28,7 @@ global.main = function(){
 // input handler for survey type
 addInputHandler('ext_main_splash', function(selection){
     // redirect user based on their input menu selection
-    if(selection === 1 || selection === 2){
+    if(selection === '1' || selection === '2'){
         state.vars.selection = selection;
         sayText(msgs('fp_enter_id'));
         promptDigits('fp_enter_id', {   'submitOnHash' : false,
@@ -36,7 +36,7 @@ addInputHandler('ext_main_splash', function(selection){
                                             'timeout'      : timeout_length 
                                         });
     }
-    else if(selection === 3){
+    else if(selection === '3'){
         sayText(msgs('sedo_enter_id'));
         promptDigits('sedo_enter_id', {   'submitOnHash' : false,
                                             'maxDigits'    : max_digits_for_account_number,
