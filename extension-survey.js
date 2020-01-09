@@ -218,6 +218,7 @@ addInputHandler('sedo_enter_farmers', function(input){
     if(input){
         // display survey start menu
         state.vars.question_number = 1; // initialize this tracker variable to 1
+        state.vars.survey_start = true;
         sayText(msgs('survey_start', {}, lang));
         var menu = populate_menu('crop_ids', lang);
         sayText(menu, lang);
@@ -238,10 +239,11 @@ addInputHandler('sedo_enter_farmers', function(input){
 
 // input handler for the survey
 addInputHandler('survey_response', function(input){
-    if(state.vars.question_number === 1){
+    if(state.vars.survey_start){
         var get_menu_option = require('./lib/get-menu-option');
         state.vars.crop = get_menu_option(input, 'crop_ids');
         var feedback = '';
+        state.vars.survey_start = false;
     }
     else if(state.vars.question_number > 10){
         // say closing message if all questions are complete
