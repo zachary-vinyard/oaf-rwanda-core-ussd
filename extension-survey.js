@@ -14,6 +14,7 @@ var populate_menu = require('./lib/populate-menu');
 const lang = 'ki';
 const max_digits_for_input = 1;
 const max_digits_for_account_number = 8;
+const timeout_length = 60;
 
 // display welcome message and prompt user to choose their survey (AMA1, AMA2, GUS)
 global.main = function(){
