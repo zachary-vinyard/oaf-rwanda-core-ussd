@@ -11,7 +11,7 @@ var get_menu_option = require('./lib/get-menu-option');
 var populate_menu = require('./lib/populate-menu');
 
 // set various constants -- make sure to port over project variables
-const lang = 'ki';
+const lang = projet.vars.cor_lang;
 const max_digits_for_input = 1;
 const max_digits = 3;
 const max_digits_for_account_number = 8;
@@ -27,8 +27,7 @@ global.main = function(){
 
 // input handler for survey type
 addInputHandler('ext_main_splash', function(input){
-    // clean input and account for errors
-    selection = String(input.replace(/\D/g,''));
+    input = input.replace(/\s/g,'');
     // redirect user based on their input menu selection
     if(selection === 1 || selection === 2){
         state.vars.selection = selection;
