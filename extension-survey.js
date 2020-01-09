@@ -218,8 +218,7 @@ addInputHandler('sedo_enter_farmers', function(input){
     if(input){
         // display survey start menu
         sayText(msgs('survey_start', {}, lang));
-        var crop_ids = project.getOrCreateDataTable('crop_ids');
-        var menu = populate_menu(crop_ids, lang);
+        var menu = populate_menu('crop_ids', lang);
         sayText(menu, lang);
         promptDigits('sedo_survey_start', {    'submitOnHash' : false, 
                                                 'maxDigits'    : max_digits,
