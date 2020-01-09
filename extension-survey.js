@@ -13,6 +13,7 @@ var populate_menu = require('./lib/populate-menu');
 // set various constants -- make sure to port over project variables
 const lang = 'ki';
 const max_digits_for_input = 1;
+const max_digits = 3;
 const max_digits_for_account_number = 8;
 const timeout_length = 60;
 
@@ -20,7 +21,7 @@ const timeout_length = 60;
 global.main = function(){
     sayText(msgs('ext_main_splash'));
     promptDigits('ext_main_splash', {   'submitOnHash' : false,
-                                        'maxDigits'    : max_digits_for_account_number,
+                                        'maxDigits'    : max_digits_for_input,
                                         'timeout'      : timeout_length });
 }
 
@@ -47,7 +48,7 @@ addInputHandler('ext_main_splash', function(input){
     else{
         sayText(msgs('invalid_input', {}, lang));
         promptDigits('ext_main_splash', { 'submitOnHash' : false, 
-                                            'maxDigits'    : max_digits,
+                                            'maxDigits'    : max_digits_for_input,
                                             'timeout'      : timeout_length});
         return null;
     }
@@ -80,14 +81,14 @@ addInputHandler('sedo_enter_id', function(input){
     if(check_sedo(input)){
         sayText(msgs('sedo_enter_vid', {}, lang));
         promptDigits('sedo_enter_vid', {    'submitOnHash' : false, 
-                                            'maxDigits'    : max_digits,
+                                            'maxDigits'    : max_digits_for_account_number,
                                             'timeout'      : timeout_length});
         return null;
     }
     else{
         sayText(msgs('invalid_input', {}, lang));
         promptDigits('sedo_enter_id', {     'submitOnHash' : false, 
-                                            'maxDigits'    : max_digits,
+                                            'maxDigits'    : max_digits_for_account_number,
                                             'timeout'      : timeout_length});
         return null;
     }
@@ -100,14 +101,14 @@ addInputHandler('sedo_enter_vid', function(input){
     if(check_vid(input)){
         sayText(msgs('sedo_enter_gender', {}, lang));
         promptDigits('sedo_enter_gender', { 'submitOnHash' : false, 
-                                            'maxDigits'    : max_digits,
+                                            'maxDigits'    : max_digits_for_input,
                                             'timeout'      : timeout_length});
         return null;
     }
     else{
         sayText(msgs('invalid_input', {}, lang));
         promptDigits('sedo_enter_vid', {    'submitOnHash' : false, 
-                                            'maxDigits'    : max_digits,
+                                            'maxDigits'    : max_digits_for_account_number,
                                             'timeout'      : timeout_length});
         return null;
     }
@@ -120,14 +121,14 @@ addInputHandler('sedo_enter_gender', function(input){
     if(input){
         sayText(msgs('sedo_enter_age', {}, lang));
         promptDigits('sedo_enter_age', {'submitOnHash' : false, 
-                                        'maxDigits'    : max_digits,
+                                        'maxDigits'    : max_digits_for_input,
                                         'timeout'      : timeout_length});
         return null;
     }
     else{
         sayText(msgs('invalid_input', {}, lang));
         promptDigits('sedo_enter_gender', { 'submitOnHash' : false, 
-                                            'maxDigits'    : max_digits,
+                                            'maxDigits'    : max_digits_for_input,
                                             'timeout'      : timeout_length});
         return null;
     }
@@ -140,14 +141,14 @@ addInputHandler('sedo_enter_age', function(input){
     if(input){
         sayText(msgs('sedo_enter_tenure', {}, lang));
         promptDigits('sedo_enter_tenure', {    'submitOnHash' : false, 
-                                            'maxDigits'    : max_digits,
+                                            'maxDigits'    : 2,
                                             'timeout'      : timeout_length});
         return null;
     }
     else{
         sayText(msgs('invalid_input', {}, lang));
         promptDigits('sedo_enter_age', {   'submitOnHash' : false, 
-                                            'maxDigits'    : max_digits,
+                                            'maxDigits'    : 2,
                                             'timeout'      : timeout_length});
         return null;
     }
@@ -160,14 +161,14 @@ addInputHandler('sedo_enter_tenure', function(input){
     if(input){
         sayText(msgs('sedo_enter_trn', {}, lang));
         promptDigits('sedo_enter_trn', {    'submitOnHash' : false, 
-                                            'maxDigits'    : max_digits,
+                                            'maxDigits'    : 2,
                                             'timeout'      : timeout_length});
         return null;
     }
     else{
         sayText(msgs('invalid_input', {}, lang));
         promptDigits('sedo_enter_tenure', {   'submitOnHash' : false, 
-                                            'maxDigits'    : max_digits,
+                                            'maxDigits'    : 2,
                                             'timeout'      : timeout_length});
         return null;
     }
@@ -180,14 +181,14 @@ addInputHandler('sedo_enter_trn', function(input){
     if(input){
         sayText(msgs('sedo_enter_farmers', {}, lang));
         promptDigits('sedo_enter_farmers', {    'submitOnHash' : false, 
-                                            'maxDigits'    : max_digits,
+                                            'maxDigits'    : 3,
                                             'timeout'      : timeout_length});
         return null;
     }
     else{
         sayText(msgs('invalid_input', {}, lang));
         promptDigits('sedo_enter_trn', {   'submitOnHash' : false, 
-                                            'maxDigits'    : max_digits,
+                                            'maxDigits'    : 2,
                                             'timeout'      : timeout_length});
         return null;
     }
