@@ -31,15 +31,15 @@ addInputHandler('ext_main_splash', function(selection){
     if(selection === '1' || selection === '2'){
         state.vars.selection = selection;
         sayText(msgs('fp_enter_id'));
-        promptDigits('fp_enter_id', {   'submitOnHash' : false,
+        promptDigits('fp_enter_id', {   'submitOnHash'     : false,
                                             'maxDigits'    : max_digits_for_account_number,
                                             'timeout'      : timeout_length 
                                         });
     }
     else if(selection === '3'){
         sayText(msgs('sedo_enter_id'));
-        promptDigits('sedo_enter_id', {   'submitOnHash' : false,
-                                            'maxDigits'    : max_digits_for_account_number,
+        promptDigits('sedo_enter_id', {   'submitOnHash'    : false,
+                                            'maxDigits'    : 6,
                                             'timeout'      : timeout_length 
                                         });
     }
@@ -86,7 +86,7 @@ addInputHandler('sedo_enter_id', function(input){
     else{
         sayText(msgs('invalid_input', {}, lang));
         promptDigits('sedo_enter_id', {     'submitOnHash' : false, 
-                                            'maxDigits'    : max_digits_for_account_number,
+                                            'maxDigits'    : 6,
                                             'timeout'      : timeout_length});
         return null;
     }
@@ -119,7 +119,7 @@ addInputHandler('sedo_enter_gender', function(input){
     if(input){
         sayText(msgs('fp_age_question', {}, lang));
         promptDigits('sedo_enter_age', {'submitOnHash' : false, 
-                                        'maxDigits'    : max_digits_for_input,
+                                        'maxDigits'    : 2,
                                         'timeout'      : timeout_length});
         return null;
     }
@@ -239,7 +239,6 @@ addInputHandler('sedo_enter_farmers', function(input){
 addInputHandler('sedo_survey', function(input){
     var get_menu_option = require('./lib/get-menu-option');
     var crop = get_menu_option(input, 'crop_ids');
-    console.log('Input is ' + input + ' and crop is ' + crop);
     state.vars.question_number = 1;
 
     // assign the question id variable
