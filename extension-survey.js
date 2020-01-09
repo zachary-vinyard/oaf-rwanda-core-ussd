@@ -11,11 +11,13 @@ var get_menu_option = require('./lib/get-menu-option');
 var populate_menu = require('./lib/populate-menu');
 
 // set various constants -- make sure to port over project variables
-const lang = project.vars.cor_lang;
+const lang = 'ki';
+const max_digits_for_input = 1;
+const max_digits_for_account_number = 8;
 
 // display welcome message and prompt user to choose their survey (AMA1, AMA2, GUS)
 global.main = function(){
-    sayText(msgs('ext_main_splash')); // add in TR
+    sayText(msgs('ext_main_splash'));
     promptDigits('ext_main_splash', {   'submitOnHash' : false,
                                         'maxDigits'    : max_digits_for_account_number,
                                         'timeout'      : timeout_length });
