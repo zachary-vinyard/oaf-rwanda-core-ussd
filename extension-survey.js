@@ -243,7 +243,7 @@ addInputHandler('sedo_survey', function(input){
     state.vars.question_number = 1;
 
     // assign the question id variable
-    var question_id = crop + 'Q' + state.vars.question_number;
+    var question_id = String(crop + 'Q' + state.vars.question_number);
 
     // ask the current question
     var ask_question = require('./lib/ext-ask-question');
