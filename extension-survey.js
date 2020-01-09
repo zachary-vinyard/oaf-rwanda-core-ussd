@@ -220,8 +220,8 @@ addInputHandler('sedo_enter_farmers', function(input){
         sayText(msgs('survey_start', {}, lang));
         var menu = populate_menu('crop_ids', lang);
         sayText(menu, lang);
-        promptDigits('sedo_survey_start', {    'submitOnHash' : false, 
-                                                'maxDigits'    : max_digits,
+        promptDigits('sedo_survey', {    'submitOnHash' : false, 
+                                                'maxDigits'    : max_digits_for_input,
                                                 'timeout'      : timeout_length});
         return null;
     }
@@ -236,21 +236,16 @@ addInputHandler('sedo_enter_farmers', function(input){
 
 
 // input handler for start of survey
-addInputHandler('sedo_survey_start', function(input){
-    // clean input data
+addInputHandler('sedo_survey', function(input){
+    var get_menu_option = require('/.lib/get-menu-option');
     input = input.replace(/\s/g,'');
-    if(input){
-        sayText(msgs('survey_start', {}, lang));
-        promptDigits('sedo_survey_start', {    'submitOnHash' : false, 
-                                                'maxDigits'    : max_digits,
-                                                'timeout'      : timeout_length});
-        return null;
-    }
-    else{
-        sayText(msgs('invalid_input', {}, lang));
-        promptDigits('sedo_enter_groups', {   'submitOnHash' : false, 
-                                            'maxDigits'    : max_digits,
-                                            'timeout'      : timeout_length});
-        return null;
-    }
+    var crop = get_menu_option(input);
+    state.vars.question_number = 1;
+
+    // assign the question id variable
+    var question_id = crop + 'Q' + state.vars.question_number;
+
+    // ask the current question
+    var ask_question = require('./lib/ext-ask-question');
+    ask_question(question_id);
 });
