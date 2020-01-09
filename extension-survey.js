@@ -238,8 +238,8 @@ addInputHandler('sedo_enter_farmers', function(input){
 // input handler for start of survey
 addInputHandler('sedo_survey', function(input){
     var get_menu_option = require('./lib/get-menu-option');
-    input = input.replace(/\s/g,'');
     var crop = get_menu_option(input);
+    console.log('Input is ' + input + ' and crop is ' + crop);
     state.vars.question_number = 1;
 
     // assign the question id variable
