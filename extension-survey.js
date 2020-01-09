@@ -221,7 +221,7 @@ addInputHandler('sedo_enter_farmers', function(input){
         sayText(msgs('survey_start', {}, lang));
         var menu = populate_menu('crop_ids', lang);
         sayText(menu, lang);
-        promptDigits('sedo_survey_start', {    'submitOnHash' : false, 
+        promptDigits('survey_response', {    'submitOnHash' : false, 
                                                 'maxDigits'    : max_digits_for_input,
                                                 'timeout'      : timeout_length});
         return null;
@@ -236,39 +236,35 @@ addInputHandler('sedo_enter_farmers', function(input){
 });
 
 
-// input handler for start of survey
-addInputHandler('sedo_survey_start', function(input){
-    var get_menu_option = require('./lib/get-menu-option');
-    var crop = get_menu_option(input, 'crop_ids');
-    state.vars.question_id = String(crop + 'Q' + state.vars.question_number);
-
-    // ask the current question
-    var ask_question = require('./lib/ext-ask-question');
-    ask_question();
-});
-
-// input handler for survey responses
+// input handler for the survey
 addInputHandler('survey_response', function(input){
-    input = input.replace(/\s/g,'');
-    var verify = require('./lib/ext-answer-verify');
-    var feedback = verify(input);
-    console.log('Feedback is ' + feedback);
-    //var correct, feedback = verify(input);
-
-/*     if(correct){
-        // say it's correct
+    if(state.vars.question_number === 1){
+        var get_menu_option = require('./lib/get-menu-option');
+        state.vars.crop = get_menu_option(input, 'crop_ids');
+        var feedback = '';
     }
-    else{
-        // add code
-    }
-    // ask the current question
-    // if user has completed all ten questions, say the closing message
-    if(state.vars.question_number > 10){
+    else if(state.vars.question_number > 10){
+        // say closing message if all questions are complete
         sayText(msgs('closing_message', {}, lang));
-        return null;
+        // need to then end the call
     }
     else{
-        var ask_question = require('./lib/ext-ask-question');
-        ask_question();
-    } */
+        input = input.replace(/\s/g,'');
+        var feedback = require('./lib/ext-answer-verify')(input);
+        console.log('Feedback is ' + feedback);
+    }
+    state.vars.question_id = String(state.vars.crop + 'Q' + state.vars.question_number);
+
+    // display the relevant message and prompt user to select a response
+    var survey_table = project.getOrCreateDataTable('SurveyQuestions');
+    var question = survey_table.queryRows({'vars' : {'questionid' : state.vars.question_id}}).next();
+    sayText(msgs('survey_question_opt',    {   '$FEEDBACK' : feedback,
+                                    '$TEXT' : question.vars.questiontext,
+                                    '$OPT1' : question.vars.opt1, 
+                                    '$OPT2' : question.vars.opt2,
+                                    '$OPT3' : question.vars.opt3,
+                                    '$OPT4' : question.vars.opt4}, lang));
+    promptDigits('survey_response', {   'submitOnHash' : false, 
+                                        'maxDigits'    : max_digits,
+                                        'timeout'      : timeout_length});
 });
