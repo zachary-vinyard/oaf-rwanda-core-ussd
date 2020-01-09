@@ -217,10 +217,11 @@ addInputHandler('sedo_enter_farmers', function(input){
     input = input.replace(/\s/g,'');
     if(input){
         // display survey start menu
+        state.vars.question_number = 1; // initialize this tracker variable to 1
         sayText(msgs('survey_start', {}, lang));
         var menu = populate_menu('crop_ids', lang);
         sayText(menu, lang);
-        promptDigits('sedo_survey', {    'submitOnHash' : false, 
+        promptDigits('sedo_survey_start', {    'submitOnHash' : false, 
                                                 'maxDigits'    : max_digits_for_input,
                                                 'timeout'      : timeout_length});
         return null;
@@ -236,15 +237,38 @@ addInputHandler('sedo_enter_farmers', function(input){
 
 
 // input handler for start of survey
-addInputHandler('sedo_survey', function(input){
+addInputHandler('sedo_survey_start', function(input){
     var get_menu_option = require('./lib/get-menu-option');
     var crop = get_menu_option(input, 'crop_ids');
-    state.vars.question_number = 1;
-
-    // assign the question id variable
-    var question_id = String(crop + 'Q' + state.vars.question_number);
+    state.vars.question_id = String(crop + 'Q' + state.vars.question_number);
 
     // ask the current question
     var ask_question = require('./lib/ext-ask-question');
-    ask_question(question_id);
+    ask_question();
+});
+
+// input handler for survey responses
+addInputHandler('survey_response', function(input){
+    input = input.replace(/\s/g,'');
+    var verify = require('./lib/ext-answer-verify');
+    var feedback = verify(input);
+    console.log('Feedback is ' + feedback);
+    //var correct, feedback = verify(input);
+
+/*     if(correct){
+        // say it's correct
+    }
+    else{
+        // add code
+    }
+    // ask the current question
+    // if user has completed all ten questions, say the closing message
+    if(state.vars.question_number > 10){
+        sayText(msgs('closing_message', {}, lang));
+        return null;
+    }
+    else{
+        var ask_question = require('./lib/ext-ask-question');
+        ask_question();
+    } */
 });
