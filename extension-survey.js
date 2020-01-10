@@ -10,7 +10,7 @@ var admin_alert = require('./lib/admin-alert');
 var get_menu_option = require('./lib/get-menu-option');
 var populate_menu = require('./lib/populate-menu');
 
-// set various constants -- make sure to port over project variables
+// set various constants -- add to list of project variables
 const lang = project.vars.cor_lang;
 const max_digits_for_input = 1;
 const max_digits = 3;
@@ -218,6 +218,7 @@ addInputHandler('sedo_enter_farmers', function(input){
     if(input){
         // display survey start menu
         state.vars.question_number = 1; // initialize this tracker variable to 1
+        state.vars.num_correct = 0; // initialize this counter of correct answers to 0
         state.vars.survey_start = true;
         sayText(msgs('survey_start', {}, lang));
         var menu = populate_menu('crop_ids', lang);
@@ -260,13 +261,13 @@ addInputHandler('survey_response', function(input){
     // display the relevant message and prompt user to select a response
     var survey_table = project.getOrCreateDataTable('SurveyQuestions');
     var question = survey_table.queryRows({'vars' : {'questionid' : state.vars.question_id}}).next();
-    sayText(msgs('survey_question_opt',    {   '$FEEDBACK' : feedback,
-                                    '$TEXT' : question.vars.questiontext,
-                                    '$OPT1' : question.vars.opt1, 
-                                    '$OPT2' : question.vars.opt2,
-                                    '$OPT3' : question.vars.opt3,
-                                    '$OPT4' : question.vars.opt4}, lang));
+    sayText(msgs('survey_question_opt',    {'$FEEDBACK' : feedback,
+                                            '$TEXT' : question.vars.questiontext,
+                                            '$OPT1' : question.vars.opt1, 
+                                            '$OPT2' : question.vars.opt2,
+                                            '$OPT3' : question.vars.opt3,
+                                            '$OPT4' : question.vars.opt4}, lang));
     promptDigits('survey_response', {   'submitOnHash' : false, 
-                                        'maxDigits'    : max_digits,
+                                        'maxDigits'    : max_digits_for_input,
                                         'timeout'      : timeout_length});
 });
