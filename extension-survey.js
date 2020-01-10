@@ -32,14 +32,14 @@ global.main = function(){
 addInputHandler('ext_main_splash', function(input){
     // redirect user based on their input menu selection
     var selection = get_menu_option(input, 'ext_splash_menu');
-    if(selection === 'AMA1' || selection === 'AMA2'){
+    if(selection === 'ama1' || selection === 'ama2'){
         sayText(msgs('fp_enter_id'));
         promptDigits('fp_enter_id', {   'submitOnHash' : false,
                                         'maxDigits'    : max_digits_for_vid,
                                         'timeout'      : timeout_length 
                                     });
     }
-    else if(selection === 'GUS'){
+    else if(selection === 'gus'){
         sayText(msgs('sedo_enter_id'));
         promptDigits('sedo_enter_id',  {'submitOnHash'  : false,
                                         'maxDigits'     : max_digits_for_sedo_id,
@@ -266,7 +266,7 @@ addInputHandler('survey_response', function(input){
             opt4 = '4) ' + question.vars.opt4;
         }
     }
-    
+
     // display text and prompt user to select their choice
     sayText(msgs('survey_question',    {'$FEEDBACK' : feedback,
                                             '$TEXT' : question.vars.questiontext,
