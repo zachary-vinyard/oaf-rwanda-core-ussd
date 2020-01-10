@@ -249,7 +249,6 @@ addInputHandler('sedo_enter_farmers', function(input){
 addInputHandler('survey_response', function(input){
     if(state.vars.question_number === 1){
         state.vars.crop = get_menu_option(input, 'crop_menu');
-        var feedback = '';
     }
     else{
         input = input.replace(/\s/g,'');
@@ -265,5 +264,5 @@ addInputHandler('survey_response', function(input){
     state.vars.question_id = String(state.vars.crop + 'Q' + state.vars.question_number);
     state.vars.question_number = state.vars.question_number + 1;
     // ask the survey question
-    ask();
+    ask(feedback);
 }); 
