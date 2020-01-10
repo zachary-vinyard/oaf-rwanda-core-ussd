@@ -248,16 +248,17 @@ addInputHandler('survey_response', function(input){
     }
     else{
         input = input.replace(/\s/g,'');
+        console.log('Entered else statement');
         var feedback = require('./lib/ext-answer-verify')(input);
+        console.log('Checked answer and question number is ' + state.vars.question_number);
         if(state.vars.question_number > 10){
             // say closing message if all questions are complete
             sayText(msgs('closing_message', {'$FEEDBACK'    : feedback,
                                              '$NUM_CORRECT' : state.vars.num_correct}, lang));
+            return null;
             // need to then end the call or redirect to main menu
         }
-        else{
-            return null;
-        }
+        console.log('Departed if statement');
     }
     state.vars.question_id = String(state.vars.crop + 'Q' + state.vars.question_number);
 
