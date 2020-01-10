@@ -246,27 +246,30 @@ addInputHandler('survey_response', function(input){
         var feedback = '';
         state.vars.survey_start = false;
     }
-    else if(state.vars.question_number > 10){
-        // say closing message if all questions are complete
-        sayText(msgs('closing_message', {}, lang));
-        // need to then end the call
-    }
     else{
         input = input.replace(/\s/g,'');
         var feedback = require('./lib/ext-answer-verify')(input);
-        console.log('Feedback is ' + feedback);
+        if(state.vars.question_number > 10){
+            // say closing message if all questions are complete
+            sayText(msgs('closing_message', {'$FEEDBACK'    : feedback,
+                                             '$NUM_CORRECT' : state.vars.num_correct}, lang));
+            // need to then end the call or redirect to main menu
+        }
+        else{
+            return null;
+        }
     }
     state.vars.question_id = String(state.vars.crop + 'Q' + state.vars.question_number);
 
     // display the relevant message and prompt user to select a response
     var survey_table = project.getOrCreateDataTable('SurveyQuestions');
     var question = survey_table.queryRows({'vars' : {'questionid' : state.vars.question_id}}).next();
-    sayText(msgs('survey_question_opt',    {'$FEEDBACK' : feedback,
+    sayText(msgs('survey_question',    {'$FEEDBACK' : feedback,
                                             '$TEXT' : question.vars.questiontext,
-                                            '$OPT1' : question.vars.opt1, 
-                                            '$OPT2' : question.vars.opt2,
-                                            '$OPT3' : question.vars.opt3,
-                                            '$OPT4' : question.vars.opt4}, lang));
+                                            '$OPT1' : '1) ' + question.vars.opt1, 
+                                            '$OPT2' : '2) ' + question.vars.opt2,
+                                            '$OPT3' : '3) ' + question.vars.opt3,
+                                            '$OPT4' : '4) ' + question.vars.opt4}, lang));
     promptDigits('survey_response', {   'submitOnHash' : false, 
                                         'maxDigits'    : max_digits_for_input,
                                         'timeout'      : timeout_length});
