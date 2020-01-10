@@ -265,12 +265,25 @@ addInputHandler('survey_response', function(input){
     // display the relevant message and prompt user to select a response
     var survey_table = project.getOrCreateDataTable('SurveyQuestions');
     var question = survey_table.queryRows({'vars' : {'questionid' : state.vars.question_id}}).next();
+
+    // messy accounting for survey questions with fewer options
+    var num_opts = question.values.numoptions;
+    var opt3 = '';
+    var opt4 = '';
+    if(num_opts > 2){
+        var opt3 = '3) ' + question.vars.opt3;
+        if(num_opts > 3){
+            var opt4 = '4) ' + question.vars.opt4;
+        }
+    }
+
+    // display text and prompt user to select their choice
     sayText(msgs('survey_question',    {'$FEEDBACK' : feedback,
                                             '$TEXT' : question.vars.questiontext,
                                             '$OPT1' : '1) ' + question.vars.opt1, 
                                             '$OPT2' : '2) ' + question.vars.opt2,
-                                            '$OPT3' : '3) ' + question.vars.opt3,
-                                            '$OPT4' : '4) ' + question.vars.opt4}, lang));
+                                            '$OPT3' : opt3,
+                                            '$OPT4' : opt4}, lang));
     promptDigits('survey_response', {   'submitOnHash' : false, 
                                         'maxDigits'    : max_digits_for_input,
                                         'timeout'      : timeout_length});
