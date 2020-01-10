@@ -216,10 +216,9 @@ addInputHandler('sedo_enter_farmers', function(input){
     // clean input data
     input = input.replace(/\s/g,'');
     if(input){
-        // display survey start menu
+        // initialize counter variables
         state.vars.question_number = 1; // initialize this tracker variable to 1
         state.vars.num_correct = 0; // initialize this counter of correct answers to 0
-        state.vars.survey_start = true;
         sayText(msgs('survey_start', {}, lang));
         var menu = populate_menu('crop_ids', lang);
         sayText(menu, lang);
@@ -240,27 +239,23 @@ addInputHandler('sedo_enter_farmers', function(input){
 
 // input handler for the survey
 addInputHandler('survey_response', function(input){
-    if(state.vars.survey_start){
+    if(state.vars.question_number === 1){
         var get_menu_option = require('./lib/get-menu-option');
         state.vars.crop = get_menu_option(input, 'crop_ids');
         var feedback = '';
-        state.vars.survey_start = false;
     }
     else{
         input = input.replace(/\s/g,'');
-        console.log('Entered else statement');
         var feedback = require('./lib/ext-answer-verify')(input);
-        console.log('Checked answer and question number is ' + state.vars.question_number);
         if(state.vars.question_number > 10){
-            // say closing message if all questions are complete
+            // say closing message and end survey if all questions are complete
             sayText(msgs('closing_message', {'$FEEDBACK'    : feedback,
                                              '$NUM_CORRECT' : state.vars.num_correct}, lang));
             return null;
-            // need to then end the call or redirect to main menu
         }
-        console.log('Departed if statement');
     }
     state.vars.question_id = String(state.vars.crop + 'Q' + state.vars.question_number);
+    state.vars.question_number = state.vars.question_number + 1;
 
     // display the relevant message and prompt user to select a response
     var survey_table = project.getOrCreateDataTable('SurveyQuestions');
@@ -271,9 +266,9 @@ addInputHandler('survey_response', function(input){
     var opt3 = '';
     var opt4 = '';
     if(num_opts > 2){
-        var opt3 = '3) ' + question.vars.opt3;
+        opt3 = '3) ' + question.vars.opt3;
         if(num_opts > 3){
-            var opt4 = '4) ' + question.vars.opt4;
+            opt4 = '4) ' + question.vars.opt4;
         }
     }
 
@@ -287,4 +282,4 @@ addInputHandler('survey_response', function(input){
     promptDigits('survey_response', {   'submitOnHash' : false, 
                                         'maxDigits'    : max_digits_for_input,
                                         'timeout'      : timeout_length});
-});
+}); 
