@@ -267,7 +267,7 @@ addInputHandler('survey_response', function(input){
     var question = survey_table.queryRows({'vars' : {'questionid' : state.vars.question_id}}).next();
 
     // messy accounting for survey questions with fewer options
-    var num_opts = question.values.numoptions;
+    var num_opts = question.vars.numoptions;
     var opt3 = '';
     var opt4 = '';
     if(num_opts > 2){
