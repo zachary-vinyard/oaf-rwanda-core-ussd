@@ -9,6 +9,9 @@ var msgs = require('./lib/msg-retrieve');
 var admin_alert = require('./lib/admin-alert');
 var populate_menu = require('./lib/populate-menu');
 var get_menu_option = require('./lib/get-menu-option');
+var reinitization = require('./lib/ext-reinitization');
+var ask = require('./lib/ext-ask-question');
+var check_vid = require('./lib/ext-vid-verify');
 
 // set various constants -- add to list of project variables
 const lang = project.vars.cor_lang;
@@ -58,18 +61,23 @@ addInputHandler('ext_main_splash', function(input){
 addInputHandler('fp_enter_id', function(input){
     // verify village id
     input = input.replace(/\s/g,'');
-    var check_vid = require('./lib/ext-vid-verify');
     if(check_vid(input)){
-        // initialize counter variables
-        state.vars.question_number = 1;
-        state.vars.num_correct = 0;
-        // display crop survey menu
-        sayText(msgs('survey_start', {}, lang));
-        var menu = populate_menu('crop_menu', lang);
-        sayText(menu, lang);
-        promptDigits('survey_response', {   'submitOnHash' : false, 
-                                            'maxDigits'    : max_digits_for_input,
-                                            'timeout'      : timeout_length});
+        // return user to previous step if they are coming back to the survey
+        if(reinitization() & state.vars.question_id){
+            ask();
+        }
+        else{
+            // initialize counter variables
+            state.vars.question_number = 1;
+            state.vars.num_correct = 0;
+            // display crop survey menu
+            sayText(msgs('survey_start', {}, lang));
+            var menu = populate_menu('crop_menu', lang);
+            sayText(menu, lang);
+            promptDigits('survey_response', {   'submitOnHash' : false, 
+                                                'maxDigits'    : max_digits_for_input,
+                                                'timeout'      : timeout_length});
+        }
     }
     else{
         sayText(msgs('invalid_input', {}, lang));
@@ -103,7 +111,6 @@ addInputHandler('sedo_enter_id', function(input){
 // input handler for SEDO's village ID
 addInputHandler('sedo_enter_vid', function(input){
     input = input.replace(/\s/g,'');
-    var check_vid = require('./lib/ext-vid-verify');
     if(check_vid(input)){
         sayText(msgs('gender_select', {}, lang));
         promptDigits('sedo_enter_gender', { 'submitOnHash' : false, 
@@ -212,16 +219,22 @@ addInputHandler('sedo_enter_farmers', function(input){
     // clean input data
     input = input.replace(/\s/g,'');
     if(input){
-        // initialize counter variables
-        state.vars.question_number = 1;
-        state.vars.num_correct = 0;
-        // display crop survey menu
-        sayText(msgs('survey_start', {}, lang));
-        var menu = populate_menu('crop_menu', lang);
-        sayText(menu, lang);
-        promptDigits('survey_response', {   'submitOnHash' : false, 
-                                            'maxDigits'    : max_digits_for_input,
-                                            'timeout'      : timeout_length});
+        // if user is reinitizing, return them to previous survey question
+        if(reinitization() & state.vars.question_id){
+            ask();
+        }
+        else{
+            // initialize counter variables
+            state.vars.question_number = 1;
+            state.vars.num_correct = 0;
+            // display crop survey menu
+            sayText(msgs('survey_start', {}, lang));
+            var menu = populate_menu('crop_menu', lang);
+            sayText(menu, lang);
+            promptDigits('survey_response', {   'submitOnHash' : false, 
+                                                'maxDigits'    : max_digits_for_input,
+                                                'timeout'      : timeout_length});
+        }
     }
     else{
         sayText(msgs('invalid_input', {}, lang));
@@ -251,30 +264,6 @@ addInputHandler('survey_response', function(input){
     // set question id in correct format, then increment the question number
     state.vars.question_id = String(state.vars.crop + 'Q' + state.vars.question_number);
     state.vars.question_number = state.vars.question_number + 1;
-
-    // display the relevant message and prompt user to select a response
-    var survey_table = project.getOrCreateDataTable('SurveyQuestions');
-    var question = survey_table.queryRows({'vars' : {'questionid' : state.vars.question_id}}).next();
-
-    // messy accounting for survey questions with fewer options
-    var num_opts = question.vars.numoptions;
-    var opt3 = '';
-    var opt4 = '';
-    if(num_opts > 2){
-        opt3 = '3) ' + question.vars.opt3;
-        if(num_opts > 3){
-            opt4 = '4) ' + question.vars.opt4;
-        }
-    }
-
-    // display text and prompt user to select their choice
-    sayText(msgs('survey_question',    {'$FEEDBACK' : feedback,
-                                            '$TEXT' : question.vars.questiontext,
-                                            '$OPT1' : '1) ' + question.vars.opt1, 
-                                            '$OPT2' : '2) ' + question.vars.opt2,
-                                            '$OPT3' : opt3,
-                                            '$OPT4' : opt4}, lang));
-    promptDigits('survey_response', {   'submitOnHash' : false, 
-                                        'maxDigits'    : max_digits_for_input,
-                                        'timeout'      : timeout_length});
+    // ask the survey question
+    ask();
 }); 
