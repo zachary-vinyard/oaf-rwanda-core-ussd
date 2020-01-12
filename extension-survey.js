@@ -140,51 +140,33 @@ addInputHandler('demo_question', function(input){
     else{
         sayText(msgs('invalid_input', {}, lang));
     }
+    // if complete, push to the survey round
     var demo_table = project.getOrCreateDataTable('demo_table');
     var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.step,
                                                             'survey_type' : state.vars.survey_type}
                                         });
-    var question = question_cursor.next();
-    
-    // display text and prompt user to select their choice
-    sayText(msgs(question.vars.msg_name, {}, lang));
-    promptDigits('demo_question', {     'submitOnHash' : false, 
-                                        'maxDigits'    : question.vars.max_digits,
-                                        'timeout'      : timeout_length});
-});
-
-// input handler for SEDO's number of groups
-addInputHandler('sedo_enter_groups', function(input){
-    // clean input data
-    input = input.replace(/\s/g,'');
-    if(input){
-        call.vars.Status = 'NumberOfGroups';
-        // if user is reinitizing, return them to previous survey question
-        if(reinitization() & state.vars.question_id){
-            ask();
-        }
-        else{
-            call.vars.Status = 'SurveyStart';
-            // initialize counter variables
-            state.vars.question_number = 1;
-            state.vars.num_correct = 0;
-            // display crop survey menu
-            sayText(msgs('survey_start', {}, lang));
-            var menu = populate_menu('crop_menu', lang);
-            sayText(menu, lang);
-            promptDigits('survey_response', {   'submitOnHash' : false, 
-                                                'maxDigits'    : max_digits_for_input,
-                                                'timeout'      : timeout_length});
-        }
+    if(question_cursor.hasNext()){
+        var question = question_cursor.next();
+        // display text and prompt user to select their choice
+        sayText(msgs(question.vars.msg_name, {}, lang));
+        promptDigits('demo_question', {     'submitOnHash' : false, 
+                                            'maxDigits'    : question.vars.max_digits,
+                                            'timeout'      : timeout_length});
     }
     else{
-        sayText(msgs('invalid_input', {}, lang));
-        promptDigits('sedo_enter_groups', { 'submitOnHash' : false, 
-                                            'maxDigits'    : max_digits,
+        call.vars.Status = 'SurveyStart';
+        // initialize counter variables
+        state.vars.question_number = 1;
+        state.vars.num_correct = 0;
+        // display crop survey menu
+        sayText(msgs('survey_start', {}, lang));
+        var menu = populate_menu('crop_menu', lang);
+        sayText(menu, lang);
+        promptDigits('survey_response', {   'submitOnHash' : false, 
+                                            'maxDigits'    : max_digits_for_input,
                                             'timeout'      : timeout_length});
     }
 });
-
 
 // input handler for the survey
 addInputHandler('survey_response', function(input){
