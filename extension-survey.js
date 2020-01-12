@@ -12,6 +12,7 @@ var get_menu_option = require('./lib/get-menu-option');
 var reinitization = require('./lib/ext-reinitization');
 var ask = require('./lib/ext-ask-question');
 var check_vid = require('./lib/ext-vid-verify');
+var check_sedo = require('./lib/ext-sedo-verify');
 
 // set various constants -- add to list of project variables
 const lang = project.vars.cor_lang;
@@ -92,7 +93,6 @@ addInputHandler('fp_enter_id', function(input){
 addInputHandler('sedo_enter_id', function(input){
     // check sedo id
     input = input.replace(/\s/g,'');
-    var check_sedo = require('./lib/ext-sedo-verify');
     // if sedo id is valid, prompt user to enter village id; otherwise request user to re-enter sedo id
     if(check_sedo(input)){
         sayText(msgs('sedo_enter_vid', {}, lang));
@@ -112,8 +112,12 @@ addInputHandler('sedo_enter_id', function(input){
 addInputHandler('sedo_enter_vid', function(input){
     input = input.replace(/\s/g,'');
     if(check_vid(input)){
-        sayText(msgs('gender_select', {}, lang));
-        promptDigits('sedo_enter_gender', { 'submitOnHash' : false, 
+        // initialize tracker variables
+        state.vars.step = 1;
+        state.vars.survey_type = 'mon';
+        // display text and prompt user to select their choice
+        sayText(msgs('fp_gender', {}, lang));
+        promptDigits('demo_question', {     'submitOnHash' : false, 
                                             'maxDigits'    : max_digits_for_input,
                                             'timeout'      : timeout_length});
     }
@@ -126,104 +130,41 @@ addInputHandler('sedo_enter_vid', function(input){
 });
 
 // input handler for SEDO's gender
-addInputHandler('sedo_enter_gender', function(input){
+addInputHandler('demo_question', function(input){
     // clean input data
     input = input.replace(/\s/g,'');
+    // if input is valid, increment the step; otherwise display an error message
     if(input){
-        sayText(msgs('fp_age_question', {}, lang));
-        promptDigits('sedo_enter_age', {'submitOnHash' : false, 
-                                        'maxDigits'    : 2,
+        state.vars.step = state.vars.step + 1;
+    }
+    else{
+        sayText(msgs('invalid_input', {}, lang));
+    }
+    var demo_table = project.getOrCreateDataTable('demo_table');
+    var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.step,
+                                                            'survey_type' : state.vars.survey_type}
+                                        });
+    var question = question_cursor.next().vars.msg_name;
+    
+    // display text and prompt user to select their choice
+    sayText(msgs(question, {}, lang));
+    promptDigits('demo_question', {     'submitOnHash' : false, 
+                                        'maxDigits'    : question.vars.max_digits,
                                         'timeout'      : timeout_length});
-    }
-    else{
-        sayText(msgs('invalid_input', {}, lang));
-        promptDigits('sedo_enter_gender', { 'submitOnHash' : false, 
-                                            'maxDigits'    : max_digits_for_input,
-                                            'timeout'      : timeout_length});
-    }
-});
-
-// input handler for SEDO's age
-addInputHandler('sedo_enter_age', function(input){
-    // clean input data
-    input = input.replace(/\s/g,'');
-    if(input){
-        sayText(msgs('fp_tenure_question', {}, lang));
-        promptDigits('sedo_enter_tenure', { 'submitOnHash' : false, 
-                                            'maxDigits'    : 2,
-                                            'timeout'      : timeout_length});
-    }
-    else{
-        sayText(msgs('invalid_input', {}, lang));
-        promptDigits('sedo_enter_age', {   'submitOnHash' : false, 
-                                            'maxDigits'    : 2,
-                                            'timeout'      : timeout_length});
-    }
-});
-
-// input handler for SEDO's tenure
-addInputHandler('sedo_enter_tenure', function(input){
-    // clean input data
-    input = input.replace(/\s/g,'');
-    if(input){
-        sayText(msgs('fp_num_trainings', {}, lang));
-        promptDigits('sedo_enter_trn', {    'submitOnHash' : false, 
-                                            'maxDigits'    : 2,
-                                            'timeout'      : timeout_length});
-    }
-    else{
-        sayText(msgs('invalid_input', {}, lang));
-        promptDigits('sedo_enter_tenure', {   'submitOnHash' : false, 
-                                            'maxDigits'    : 2,
-                                            'timeout'      : timeout_length});
-    }
-});
-
-// input handler for SEDO's number of trainings
-addInputHandler('sedo_enter_trn', function(input){
-    // clean input data
-    input = input.replace(/\s/g,'');
-    if(input){
-        sayText(msgs('fp_num_trained', {}, lang));
-        promptDigits('sedo_enter_farmers', {'submitOnHash' : false, 
-                                            'maxDigits'    : max_digits,
-                                            'timeout'      : timeout_length});
-    }
-    else{
-        sayText(msgs('invalid_input', {}, lang));
-        promptDigits('sedo_enter_trn', {    'submitOnHash' : false, 
-                                            'maxDigits'    : 2,
-                                            'timeout'      : timeout_length});
-    }
-});
-
-// input handler for SEDO's number of farmers trained
-addInputHandler('sedo_enter_farmers', function(input){
-    input = input.replace(/\s/g,'');
-    if(input){
-        sayText(msgs('fp_num_groups', {}, lang));
-        promptDigits('sedo_enter_groups', { 'submitOnHash' : false, 
-                                            'maxDigits'    : max_digits,
-                                            'timeout'      : timeout_length});
-    }
-    else{
-        sayText(msgs('invalid_input', {}, lang));
-        promptDigits('sedo_enter_farmers', {'submitOnHash' : false, 
-                                            'maxDigits'    : max_digits,
-                                            'timeout'      : timeout_length});
-    }
 });
 
 // input handler for SEDO's number of groups
-addInputHandler('sedo_enter_farmers', function(input){
+addInputHandler('sedo_enter_groups', function(input){
     // clean input data
     input = input.replace(/\s/g,'');
     if(input){
+        call.vars.Status = 'NumberOfGroups';
         // if user is reinitizing, return them to previous survey question
         if(reinitization() & state.vars.question_id){
             ask();
         }
         else{
+            call.vars.Status = 'SurveyStart';
             // initialize counter variables
             state.vars.question_number = 1;
             state.vars.num_correct = 0;
@@ -262,6 +203,7 @@ addInputHandler('survey_response', function(input){
     }
     // set question id in correct format, then increment the question number
     state.vars.question_id = String(state.vars.crop + 'Q' + state.vars.question_number);
+    call.vars.Status = String('Q' + state.vars.question_number);
     state.vars.question_number = state.vars.question_number + 1;
     // ask the survey question
     ask(feedback);
