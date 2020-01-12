@@ -177,24 +177,24 @@ addInputHandler('survey_response', function(input){
         // ask the demographic questions
         input = input.replace(/\s/g,'');
         if(input){
+            // load the demographic question table
+            var demo_table = project.getOrCreateDataTable('demo_table');
+            var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.step,
+                                                                    'survey_type' : state.vars.survey_type}
+                                                });
             state.vars.step = state.vars.step + 1;
+            // if there are still questions remaining, ask the next question; otherwise start the crop quiz
+            if(question_cursor.hasNext()){
+                var question = question_cursor.next();
+                // display text and prompt user to select their choice
+                sayText(msgs(question.vars.msg_name, {}, lang));
+                promptDigits('demo_question', {     'submitOnHash' : false, 
+                                                    'maxDigits'    : question.vars.max_digits,
+                                                    'timeout'      : timeout_length});
+            }
         }
         else{
             sayText(msgs('invalid_input', {}, lang));
-        }
-        // load the demographic question table
-        var demo_table = project.getOrCreateDataTable('demo_table');
-        var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.step,
-                                                                'survey_type' : state.vars.survey_type}
-                                            });
-        // if there are still questions remaining, ask the next question; otherwise start the crop quiz
-        if(question_cursor.hasNext()){
-            var question = question_cursor.next();
-            // display text and prompt user to select their choice
-            sayText(msgs(question.vars.msg_name, {}, lang));
-            promptDigits('demo_question', {     'submitOnHash' : false, 
-                                                'maxDigits'    : question.vars.max_digits,
-                                                'timeout'      : timeout_length});
         }
     }
     else{
