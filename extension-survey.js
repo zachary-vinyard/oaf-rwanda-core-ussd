@@ -136,6 +136,7 @@ addInputHandler('demo_question', function(input){
     // if input is valid, increment the step; otherwise display an error message
     if(input){
         state.vars.step = state.vars.step + 1;
+        console.log('Input is valid' + state.vars.step + typeof(state.vars.step));
     }
     else{
         sayText(msgs('invalid_input', {}, lang));
@@ -145,6 +146,7 @@ addInputHandler('demo_question', function(input){
                                                             'survey_type' : state.vars.survey_type}
                                         });
     var question = question_cursor.next().vars.msg_name;
+    console.log('Question is ' + question);
     
     // display text and prompt user to select their choice
     sayText(msgs(question, {}, lang));
