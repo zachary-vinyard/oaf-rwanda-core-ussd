@@ -140,11 +140,12 @@ addInputHandler('demo_question', function(input){
     else{
         sayText(msgs('invalid_input', {}, lang));
     }
-    // if complete, push to the survey round
+    // load the demographic question table
     var demo_table = project.getOrCreateDataTable('demo_table');
     var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.step,
                                                             'survey_type' : state.vars.survey_type}
                                         });
+    // if there are still questions remaining, ask the next question; otherwise start the crop quiz
     if(question_cursor.hasNext()){
         var question = question_cursor.next();
         // display text and prompt user to select their choice
@@ -158,6 +159,7 @@ addInputHandler('demo_question', function(input){
         // initialize counter variables
         state.vars.question_number = 1;
         state.vars.num_correct = 0;
+        state.vars.survey_type = 'crop';
         // display crop survey menu
         sayText(msgs('survey_start', {}, lang));
         var menu = populate_menu('crop_menu', lang);
@@ -172,6 +174,28 @@ addInputHandler('demo_question', function(input){
 addInputHandler('survey_response', function(input){
     if(state.vars.question_number === 1){
         state.vars.crop = get_menu_option(input, 'crop_menu');
+        // ask the demographic questions
+        input = input.replace(/\s/g,'');
+        if(input){
+            state.vars.step = state.vars.step + 1;
+        }
+        else{
+            sayText(msgs('invalid_input', {}, lang));
+        }
+        // load the demographic question table
+        var demo_table = project.getOrCreateDataTable('demo_table');
+        var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.step,
+                                                                'survey_type' : state.vars.survey_type}
+                                            });
+        // if there are still questions remaining, ask the next question; otherwise start the crop quiz
+        if(question_cursor.hasNext()){
+            var question = question_cursor.next();
+            // display text and prompt user to select their choice
+            sayText(msgs(question.vars.msg_name, {}, lang));
+            promptDigits('demo_question', {     'submitOnHash' : false, 
+                                                'maxDigits'    : question.vars.max_digits,
+                                                'timeout'      : timeout_length});
+        }
     }
     else{
         input = input.replace(/\s/g,'');
