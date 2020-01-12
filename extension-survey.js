@@ -185,6 +185,7 @@ addInputHandler('crop_demo_question', function(input){
             // if there are still questions remaining, ask the next question; otherwise start the survey
             if(question_cursor.hasNext()){
                 var question = question_cursor.next();
+                state.vars.step = state.vars.step + 1;
                 // display text and prompt user to select their choice
                 sayText(msgs(question.vars.msg_name, {}, lang));
                 promptDigits('crop_demo_question', {'submitOnHash' : false, 
