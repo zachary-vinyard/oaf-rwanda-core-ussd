@@ -129,7 +129,7 @@ addInputHandler('sedo_enter_vid', function(input){
     }
 });
 
-// input handler for SEDO's gender
+// input handler for demographic questions
 addInputHandler('demo_question', function(input){
     // clean input data
     input = input.replace(/\s/g,'');
@@ -164,14 +164,14 @@ addInputHandler('demo_question', function(input){
         sayText(msgs('survey_start', {}, lang));
         var menu = populate_menu('crop_menu', lang);
         sayText(menu, lang);
-        promptDigits('survey_response', {   'submitOnHash' : false, 
+        promptDigits('crop_demo_question', {   'submitOnHash' : false, 
                                             'maxDigits'    : max_digits_for_input,
                                             'timeout'      : timeout_length});
     }
 });
 
-// input handler for the survey
-addInputHandler('survey_response', function(input){
+// input handler for crop demographic questions
+addInputHandler('crop_demo_question', function(input){
     if(state.vars.question_number === 1){
         state.vars.crop = get_menu_option(input, 'crop_menu');
         // ask the demographic questions
@@ -182,30 +182,39 @@ addInputHandler('survey_response', function(input){
             var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.step,
                                                                     'survey_type' : state.vars.survey_type}
                                                 });
-            state.vars.step = state.vars.step + 1;
-            // if there are still questions remaining, ask the next question; otherwise start the crop quiz
+            // if there are still questions remaining, ask the next question; otherwise start the survey
             if(question_cursor.hasNext()){
                 var question = question_cursor.next();
                 // display text and prompt user to select their choice
                 sayText(msgs(question.vars.msg_name, {}, lang));
-                promptDigits('demo_question', {     'submitOnHash' : false, 
+                promptDigits('crop_demo_question', {'submitOnHash' : false, 
                                                     'maxDigits'    : question.vars.max_digits,
                                                     'timeout'      : timeout_length});
+            }
+            else{
+                // set question id in correct format, then increment the question number
+                state.vars.question_id = String(state.vars.crop + 'Q' + state.vars.question_number);
+                call.vars.Status = String('Q' + state.vars.question_number);
+                state.vars.question_number = state.vars.question_number + 1;
+                // ask the survey question
+                ask(feedback);
             }
         }
         else{
             sayText(msgs('invalid_input', {}, lang));
         }
     }
-    else{
-        input = input.replace(/\s/g,'');
-        var feedback = require('./lib/ext-answer-verify')(input);
-        if(state.vars.question_number > 10){
-            // say closing message and end survey if all questions are complete
-            sayText(msgs('closing_message', {'$FEEDBACK'    : feedback,
-                                             '$NUM_CORRECT' : state.vars.num_correct}, lang));
-            return null;
-        }
+}); 
+
+// input handler for survey questions
+addInputHandler('survey_response', function(input){
+    input = input.replace(/\s/g,'');
+    var feedback = require('./lib/ext-answer-verify')(input);
+    // say closing message and end survey if all questions are complete
+    if(state.vars.question_number > 10){
+        sayText(msgs('closing_message', {'$FEEDBACK'    : feedback,
+                                            '$NUM_CORRECT' : state.vars.num_correct}, lang));
+        return null;
     }
     // set question id in correct format, then increment the question number
     state.vars.question_id = String(state.vars.crop + 'Q' + state.vars.question_number);
