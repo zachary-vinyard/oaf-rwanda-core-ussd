@@ -198,7 +198,7 @@ addInputHandler('crop_demo_question', function(input){
                 call.vars.Status = String('Q' + state.vars.question_number);
                 state.vars.question_number = state.vars.question_number + 1;
                 // ask the survey question
-                ask(feedback);
+                ask();
             }
         }
         else{
