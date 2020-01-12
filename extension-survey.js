@@ -145,11 +145,13 @@ addInputHandler('demo_question', function(input){
                                                             'survey_type' : state.vars.survey_type}
                                         });
     var question = question_cursor.next().vars.msg_name;
+    var response_digits = question_cursor.next().vars.max_digits;
+    console.log('max digits is ' + response_digits + ' with type ' + typeof(response_digits));
     
     // display text and prompt user to select their choice
     sayText(msgs(question, {}, lang));
     promptDigits('demo_question', {     'submitOnHash' : false, 
-                                        'maxDigits'    : question_cursor.next().vars.max_digits,
+                                        'maxDigits'    : response_digits,
                                         'timeout'      : timeout_length});
 });
 
