@@ -22,7 +22,6 @@ const lang = project.vars.cor_lang;
 const max_digits_for_input = project.vars.max_digits_for_input;
 const max_digits_for_vid = project.vars.max_digits_for_vid;
 const max_digits_for_sedo_id = project.vars.max_digits_for_sedo_id;
-const max_digits = 3;
 const timeout_length = project.vars.timeout_length;
 
 // display welcome message and prompt user to choose their survey (AMA1, AMA2, GUS)
