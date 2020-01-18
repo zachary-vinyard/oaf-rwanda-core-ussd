@@ -146,6 +146,7 @@ addInputHandler('demo_question', function(input){
     var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.step,
                                                             'survey_type' : state.vars.survey_type}
                                         });
+    console.log('step is ' + state.vars.step + ', survey type is ' + state.vars.survey_type);
     // if there are still questions remaining, ask the next question; otherwise start the crop quiz
     if(question_cursor.hasNext()){
         var question = question_cursor.next();
