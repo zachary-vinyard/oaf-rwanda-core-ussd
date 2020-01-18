@@ -202,6 +202,7 @@ addInputHandler('crop_demo_question', function(input){
         input = input.replace(/\s/g,'');
         if(input){
             // load the demographic question table
+            console.log('step is ' + state.vars.step + ', survey type is ' + state.vars.survey_type);
             var demo_table = project.getOrCreateDataTable('demo_table');
             var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.step,
                                                                     'survey_type' : state.vars.survey_type}
