@@ -158,9 +158,9 @@ addInputHandler('demo_question', function(input){
     else{
         // load village table and mark as completed
         var village_table = project.getOrCreateDataTable("VillageInfo");
-        var village_cursor = village_table.queryRows({vars: {'villageid' : state.vars.vid}});
-        var village = village_cursor.next();
+        var village = village_table.queryRows({vars: {'villageid' : state.vars.vid}}).next();
         village.vars.demo_complete = true;
+        village.save();
         call.vars.Status = 'SurveyStart';
         // initialize counter variables
         state.vars.question_number = 1;
