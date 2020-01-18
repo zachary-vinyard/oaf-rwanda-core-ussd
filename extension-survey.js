@@ -1,7 +1,7 @@
 /*
     Script: extension-survey.js
     Description: RW program extension survey for FPs and SEDOs
-    Status: complete but not tested
+    Status: in progress
 */
 
 // load in necessary functions
@@ -71,6 +71,7 @@ addInputHandler('fp_enter_id', function(input){
             // initialize counter variables
             state.vars.question_number = 1;
             state.vars.num_correct = 0;
+            state.vars.survey_type = 'tra';
             // display crop survey menu
             sayText(msgs('survey_start', {}, lang));
             var menu = populate_menu('crop_menu', lang);
@@ -155,6 +156,11 @@ addInputHandler('demo_question', function(input){
                                             'timeout'      : timeout_length});
     }
     else{
+        // load village table and mark as completed
+        var village_table = project.getOrCreateDataTable("VillageInfo");
+        var village_cursor = village_table.queryRows({vars: {'villageid' : vid}});
+        var village = village_cursor.next();
+        village.vars.demo_complete = true;
         call.vars.Status = 'SurveyStart';
         // initialize counter variables
         state.vars.question_number = 1;
@@ -212,8 +218,8 @@ addInputHandler('survey_response', function(input){
     input = input.replace(/\s/g,'');
     var feedback = require('./lib/ext-answer-verify')(input);
     // say closing message and end survey if all questions are complete
-    if(state.vars.question_number > 10){
-        sayText(msgs('closing_message', {'$FEEDBACK'    : feedback,
+    if(state.vars.question_number > 10){ // abstract to variable
+        sayText(msgs('closing_message', {   '$FEEDBACK'    : feedback,
                                             '$NUM_CORRECT' : state.vars.num_correct}, lang));
         return null;
     }
