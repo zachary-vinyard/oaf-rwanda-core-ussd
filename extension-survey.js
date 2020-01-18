@@ -13,6 +13,7 @@ var reinitization = require('./lib/ext-reinitization');
 var ask = require('./lib/ext-ask-question');
 var check_vid = require('./lib/ext-vid-verify');
 var check_sedo = require('./lib/ext-sedo-verify');
+var start_survey = require('./lib/ext-survey-start');
 
 // set various constants -- add to list of project variables
 const lang = project.vars.cor_lang;
@@ -118,18 +119,7 @@ addInputHandler('sedo_enter_vid', function(input){
     if(check_vid(input)){
         // display text and prompt user to select their choice
         if(state.vars.step > 1){
-            call.vars.Status = 'SurveyStart';
-            // initialize counter variables
-            state.vars.question_number = 1;
-            state.vars.num_correct = 0;
-            state.vars.survey_type = 'crop';
-            // display crop survey menu
-            sayText(msgs('survey_start', {}, lang));
-            var menu = populate_menu('crop_menu', lang);
-            sayText(menu, lang);
-            promptDigits('crop_demo_question', {   'submitOnHash' : false, 
-                                                'maxDigits'    : max_digits_for_input,
-                                                'timeout'      : timeout_length});
+            start_survey();
         }
         else{
             sayText(msgs('fp_gender', {}, lang));
@@ -162,11 +152,9 @@ addInputHandler('demo_question', function(input){
     var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.step,
                                                             'survey_type' : state.vars.survey_type}
                                         });
-    console.log('step is ' + state.vars.step + ', survey type is ' + state.vars.survey_type);
     // if there are still questions remaining, ask the next question; otherwise start the crop quiz
     if(question_cursor.hasNext()){
         var question = question_cursor.next();
-        console.log('Question is ' + question.vars.msg_name);
         // display text and prompt user to select their choice
         sayText(msgs(question.vars.msg_name, {}, lang));
         promptDigits('demo_question', {     'submitOnHash' : false, 
@@ -179,18 +167,8 @@ addInputHandler('demo_question', function(input){
         var village = village_table.queryRows({vars: {'villageid' : state.vars.vid}}).next();
         village.vars.demo_complete = true;
         village.save();
-        call.vars.Status = 'SurveyStart';
-        // initialize counter variables
-        state.vars.question_number = 1;
-        state.vars.num_correct = 0;
-        state.vars.survey_type = 'crop';
-        // display crop survey menu
-        sayText(msgs('survey_start', {}, lang));
-        var menu = populate_menu('crop_menu', lang);
-        sayText(menu, lang);
-        promptDigits('crop_demo_question', {   'submitOnHash' : false, 
-                                            'maxDigits'    : max_digits_for_input,
-                                            'timeout'      : timeout_length});
+        // begin the crop survey
+        start_survey();
     }
 });
 
