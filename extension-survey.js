@@ -9,6 +9,8 @@ var msgs = require('./lib/msg-retrieve');
 var admin_alert = require('./lib/admin-alert');
 var populate_menu = require('./lib/populate-menu');
 var get_menu_option = require('./lib/get-menu-option');
+
+// load in extension-specific modules
 var reinitization = require('./lib/ext-reinitization');
 var ask = require('./lib/ext-ask-question');
 var check_vid = require('./lib/ext-vid-verify');
