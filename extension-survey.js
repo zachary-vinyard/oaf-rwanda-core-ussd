@@ -117,10 +117,26 @@ addInputHandler('sedo_enter_vid', function(input){
     state.vars.survey_type = 'mon';
     if(check_vid(input)){
         // display text and prompt user to select their choice
-        sayText(msgs('fp_gender', {}, lang));
-        promptDigits('demo_question', {     'submitOnHash' : false, 
-                                            'maxDigits'    : max_digits_for_input,
-                                            'timeout'      : timeout_length});
+        if(state.vars.step > 1){
+            call.vars.Status = 'SurveyStart';
+            // initialize counter variables
+            state.vars.question_number = 1;
+            state.vars.num_correct = 0;
+            state.vars.survey_type = 'crop';
+            // display crop survey menu
+            sayText(msgs('survey_start', {}, lang));
+            var menu = populate_menu('crop_menu', lang);
+            sayText(menu, lang);
+            promptDigits('crop_demo_question', {   'submitOnHash' : false, 
+                                                'maxDigits'    : max_digits_for_input,
+                                                'timeout'      : timeout_length});
+        }
+        else{
+            sayText(msgs('fp_gender', {}, lang));
+            promptDigits('demo_question', {     'submitOnHash' : false, 
+                                                'maxDigits'    : max_digits_for_input,
+                                                'timeout'      : timeout_length});
+        }
     }
     else{
         sayText(msgs('invalid_input', {}, lang));
@@ -150,6 +166,7 @@ addInputHandler('demo_question', function(input){
     // if there are still questions remaining, ask the next question; otherwise start the crop quiz
     if(question_cursor.hasNext()){
         var question = question_cursor.next();
+        console.log('Question is ' + question.vars.msg_name);
         // display text and prompt user to select their choice
         sayText(msgs(question.vars.msg_name, {}, lang));
         promptDigits('demo_question', {     'submitOnHash' : false, 
