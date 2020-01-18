@@ -112,10 +112,10 @@ addInputHandler('sedo_enter_id', function(input){
 // input handler for SEDO's village ID
 addInputHandler('sedo_enter_vid', function(input){
     input = input.replace(/\s/g,'');
+    // initialize tracker variables
+    state.vars.step = 1;
+    state.vars.survey_type = 'mon';
     if(check_vid(input)){
-        // initialize tracker variables
-        state.vars.step = 1;
-        state.vars.survey_type = 'mon';
         // display text and prompt user to select their choice
         sayText(msgs('fp_gender', {}, lang));
         promptDigits('demo_question', {     'submitOnHash' : false, 
