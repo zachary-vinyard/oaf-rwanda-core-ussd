@@ -182,6 +182,7 @@ addInputHandler('crop_demo_question', function(input){
     input = input.replace(/\s/g,'');
     if(input){
         var demo_table = project.getOrCreateDataTable('demo_table');
+        console.log('step is ' + state.vars.step + ', survey is ' + state.vars.survey_type);
         var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + state.vars.step}});
         // if entering for the first time, save the crop
         if(state.vars.step === 1){
@@ -194,7 +195,6 @@ addInputHandler('crop_demo_question', function(input){
             call.vars[prev_question.vars.msg_name] = input;
         }
         // if there are questions remaining, ask the next question; otherwise start the survey
-        state.vars.step = state.vars.step + 1;
         if(question_cursor.hasNext()){
             var question = question_cursor.next();
             state.vars.step = state.vars.step + 1;
