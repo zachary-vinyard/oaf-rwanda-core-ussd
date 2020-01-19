@@ -181,15 +181,16 @@ addInputHandler('demo_question', function(input){
 addInputHandler('crop_demo_question', function(input){
     input = input.replace(/\s/g,'');
     if(input){
+        var demo_table = project.getOrCreateDataTable('demo_table');
+        var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + state.vars.step}})
         // if entering for the first time, save the crop
-        if(state.vars.step === 0){
+        if(state.vars.step === 1){
             state.vars.crop = get_menu_option(input, 'crop_menu');
             call.vars['crop'] = state.vars.crop;
+            state.vars.step = state.vars.step - 1;
         }
         else{
             // save input in session data
-            var demo_table = project.getOrCreateDataTable('demo_table');
-            var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + state.vars.step}})
             var prev_question = question_cursor.next();
             call.vars[prev_question.vars.msg_name] = input;
         }
