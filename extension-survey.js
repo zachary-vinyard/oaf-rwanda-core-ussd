@@ -230,7 +230,7 @@ addInputHandler('survey_response', function(input){
     // say closing message and end survey if all questions are complete
     var feedback = require('./lib/ext-answer-verify')(input);
     var survey_length = 10; // abstract
-    if(state.vars.question_number > survey_length){
+    if(state.vars.question_number === survey_length){
         call.vars.completed = 'complete';
         sayText(msgs('closing_message', {   '$FEEDBACK'    : feedback,
                                             '$NUM_CORRECT' : state.vars.num_correct}, lang));
