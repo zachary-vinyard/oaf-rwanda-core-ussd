@@ -158,7 +158,7 @@ addInputHandler('demo_question', function(input){
             // display text and prompt user to select their choice
             sayText(msgs(question.vars.msg_name, {}, lang));
             promptDigits('demo_question', {     'submitOnHash' : false, 
-                                                'maxDigits'    : question.vars.max_digits,
+                                                'maxDigits'    : project.vars.max_digits_for_input,
                                                 'timeout'      : timeout_length});
         }
         else{
@@ -202,7 +202,7 @@ addInputHandler('crop_demo_question', function(input){
             state.vars.step = state.vars.step + 1;
             sayText(msgs(question.vars.msg_name, {}, lang));
             promptDigits('crop_demo_question', {'submitOnHash' : false, 
-                                                'maxDigits'    : question.vars.max_digits,
+                                                'maxDigits'    : project.vars.max_digits_for_input,
                                                 'timeout'      : timeout_length});
         }
         else{
