@@ -74,13 +74,16 @@ addInputHandler('fp_enter_id', function(input){
             state.vars.question_number = 1;
             state.vars.num_correct = 0;
             state.vars.survey_type = 'tra';
-            // display crop survey menu
-            sayText(msgs('survey_start', {}, lang));
-            var menu = populate_menu('crop_menu', lang);
-            sayText(menu, lang);
-            promptDigits('survey_response', {   'submitOnHash' : false, 
-                                                'maxDigits'    : max_digits_for_input,
-                                                'timeout'      : timeout_length});
+            // begin the survey, starting with crop demo questions
+            if(state.vars.step > 1){
+                start_survey();
+            }
+            else{
+                sayText(msgs('fp_gender_tra', {}, lang));
+                promptDigits('demo_question', {     'submitOnHash' : false, 
+                                                    'maxDigits'    : max_digits_for_input,
+                                                    'timeout'      : timeout_length});
+            }
         }
     }
     else{
@@ -150,9 +153,7 @@ addInputHandler('demo_question', function(input){
     }
     // load the demographic question table
     var demo_table = project.getOrCreateDataTable('demo_table');
-    var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.step,
-                                                            'survey_type' : state.vars.survey_type}
-                                        });
+    var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + state.vars.step}});
     // if there are still questions remaining, ask the next question; otherwise start the crop quiz
     if(question_cursor.hasNext()){
         var question = question_cursor.next();
@@ -183,9 +184,7 @@ addInputHandler('crop_demo_question', function(input){
             // load the demographic question table
             console.log('step is ' + state.vars.step + ', survey type is ' + state.vars.survey_type);
             var demo_table = project.getOrCreateDataTable('demo_table');
-            var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.step,
-                                                                    'survey_type' : state.vars.survey_type}
-                                                });
+            var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + state.vars.step}});
             // if there are still questions remaining, ask the next question; otherwise start the survey
             if(question_cursor.hasNext()){
                 var question = question_cursor.next();
@@ -215,8 +214,9 @@ addInputHandler('crop_demo_question', function(input){
 addInputHandler('survey_response', function(input){
     input = input.replace(/\s/g,'');
     var feedback = require('./lib/ext-answer-verify')(input);
+    var survey_length = 10; // abstract
     // say closing message and end survey if all questions are complete
-    if(state.vars.question_number > 10){ // abstract to variable
+    if(state.vars.question_number > survey_length){
         sayText(msgs('closing_message', {   '$FEEDBACK'    : feedback,
                                             '$NUM_CORRECT' : state.vars.num_correct}, lang));
         return null;
