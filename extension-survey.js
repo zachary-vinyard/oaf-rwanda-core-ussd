@@ -177,22 +177,26 @@ addInputHandler('demo_question', function(input){
 
 // input handler for crop demographic questions
 addInputHandler('crop_demo_question', function(input){
-    if(state.vars.question_number === 1){
-        state.vars.crop = get_menu_option(input, 'crop_menu');
-    }
-    // ask the demographic questions
     input = input.replace(/\s/g,'');
     if(input){
-        // save data in session table
         var demo_table = project.getOrCreateDataTable('demo_table');
-        var prev_question = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + (state.vars.step - 1)}}).next();
-        call.vars[prev_question.vars.msg_name] = input;
-        // if there are still questions remaining, ask the next question; otherwise start the survey
         var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + state.vars.step}});
+
+        // if entering for the first time, save the crop
+        if(state.vars.question_number === 1){
+            state.vars.crop = get_menu_option(input, 'crop_menu');
+            call.vars['crop'] = state.vars.crop;
+        }
+        else{
+            // save input in session data
+            console.log('step is ' + state.vars.step + ', input is ' + input);
+            var prev_question = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + (state.vars.step - 1)}}).next();
+            call.vars[prev_question.vars.msg_name] = input;
+        }
+        // if there are questions remaining, ask the next question; otherwise start the survey
         if(question_cursor.hasNext()){
             var question = question_cursor.next();
             state.vars.step = state.vars.step + 1;
-            // display text and prompt user to select their choice
             sayText(msgs(question.vars.msg_name, {}, lang));
             promptDigits('crop_demo_question', {'submitOnHash' : false, 
                                                 'maxDigits'    : question.vars.max_digits,
