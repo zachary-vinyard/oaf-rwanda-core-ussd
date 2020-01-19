@@ -146,13 +146,12 @@ addInputHandler('demo_question', function(input){
     input = input.replace(/\s/g,'');
     call.vars.status = state.vars.survey_type + state.vars.step;
     if(input){
-        var demo_table = project.getOrCreateDataTable('demo_table');
         // save input in session data
+        var demo_table = project.getOrCreateDataTable('demo_table');
         var prev_question = demo_table.queryRows({'vars' : {'question_id' : state.vars.survey_type + state.vars.step}}).next();
         call.vars[prev_question.vars.msg_name] = input;
         // if there are still questions remaining, ask the next question; otherwise start the crop quiz
         state.vars.step = state.vars.step + 1;
-        console.log('step is ' + state.vars.step + ', question id is ' + state.vars.survey_type + state.vars.step);
         var question_cursor = demo_table.queryRows({'vars' : {'question_id' : state.vars.survey_type + state.vars.step}});
         if(question_cursor.hasNext()){
             var question = question_cursor.next();
