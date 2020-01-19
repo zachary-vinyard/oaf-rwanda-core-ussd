@@ -64,6 +64,7 @@ addInputHandler('ext_main_splash', function(input){
 addInputHandler('fp_enter_id', function(input){
     // verify village id
     input = input.replace(/\s/g,'');
+    state.vars.survey_type = 'tra';
     if(check_vid(input)){
         // return user to previous step if they are coming back to the survey
         if(reinitization() & state.vars.question_id){
@@ -73,7 +74,6 @@ addInputHandler('fp_enter_id', function(input){
             // initialize counter variables
             state.vars.question_number = 1;
             state.vars.num_correct = 0;
-            state.vars.survey_type = 'tra';
             // begin the survey, starting with crop demo questions
             if(state.vars.step > 1){
                 start_survey();
