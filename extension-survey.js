@@ -146,11 +146,15 @@ addInputHandler('demo_question', function(input){
     input = input.replace(/\s/g,'');
     // if input is valid, increment the step; otherwise display an error message
     if(input){
-        call.vars[state.vars.survey_type + state.vars.step] = input;
-        state.vars.step = state.vars.step + 1;
         // load the demographic question table
         var demo_table = project.getOrCreateDataTable('demo_table');
         var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + state.vars.step}});
+        // save input in session data
+        if(state.vars.step > 1){
+            var prev_question = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + (state.vars.step - 1)}}).next();
+            call.vars[prev_question.vars.msg_name] = input;
+        }
+        state.vars.step = state.vars.step + 1;
         // if there are still questions remaining, ask the next question; otherwise start the crop quiz
         if(question_cursor.hasNext()){
             var question = question_cursor.next();
@@ -188,7 +192,6 @@ addInputHandler('crop_demo_question', function(input){
         }
         else{
             // save input in session data
-            console.log('step is ' + state.vars.step + ', input is ' + input);
             var prev_question = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + (state.vars.step - 1)}}).next();
             call.vars[prev_question.vars.msg_name] = input;
         }
