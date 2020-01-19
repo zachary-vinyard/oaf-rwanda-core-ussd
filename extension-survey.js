@@ -4,7 +4,7 @@
     Status: in progress
 */
 
-// load in necessary functions
+// load in general functions
 var msgs = require('./lib/msg-retrieve');
 var admin_alert = require('./lib/admin-alert');
 var populate_menu = require('./lib/populate-menu');
@@ -18,7 +18,7 @@ var check_sedo = require('./lib/ext-sedo-verify');
 var start_survey = require('./lib/ext-survey-start');
 var checkstop = require('./lib/ext-check-stop');
 
-// set various constants -- add to list of project variables
+// set various constants
 const lang = project.vars.cor_lang;
 const max_digits_for_input = project.vars.max_digits_for_input;
 const max_digits_for_vid = project.vars.max_digits_for_vid;
@@ -207,8 +207,7 @@ addInputHandler('crop_demo_question', function(input){
         else{
             // set question id in correct format, then increment the question number
             state.vars.question_id = String(state.vars.crop + 'Q' + state.vars.question_number);
-            call.vars.Status = String('Q' + state.vars.question_number);
-            state.vars.question_number = state.vars.question_number + 1;
+            call.vars.status = String('Q' + state.vars.question_number);
             // ask the survey question
             ask();
         }
@@ -232,14 +231,14 @@ addInputHandler('survey_response', function(input){
     var feedback = require('./lib/ext-answer-verify')(input);
     var survey_length = 10; // abstract
     if(state.vars.question_number > survey_length){
-        call.vars.completed = true;
+        call.vars.completed = 'complete';
         sayText(msgs('closing_message', {   '$FEEDBACK'    : feedback,
                                             '$NUM_CORRECT' : state.vars.num_correct}, lang));
         return null;
     }
     // set question id in correct format, then increment the question number
     state.vars.question_id = String(state.vars.crop + 'Q' + state.vars.question_number);
-    call.vars.Status = String('Q' + state.vars.question_number);
+    call.vars.status = String('Q' + state.vars.question_number);
     state.vars.question_number = state.vars.question_number + 1;
     // ask the survey question
     ask(feedback);
