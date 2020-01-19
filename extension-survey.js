@@ -16,6 +16,7 @@ var ask = require('./lib/ext-ask-question');
 var check_vid = require('./lib/ext-vid-verify');
 var check_sedo = require('./lib/ext-sedo-verify');
 var start_survey = require('./lib/ext-survey-start');
+var checkstop = require('./lib/ext-check-stop');
 
 // set various constants -- add to list of project variables
 const lang = project.vars.cor_lang;
@@ -220,6 +221,7 @@ addInputHandler('crop_demo_question', function(input){
 // input handler for survey questions
 addInputHandler('survey_response', function(input){
     input = input.replace(/\s/g,'');
+    checkstop(input);
     // save input in session data
     if(state.vars.question_number === 1){
         var demo_table = project.getOrCreateDataTable('demo_table');
