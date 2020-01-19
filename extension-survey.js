@@ -181,16 +181,16 @@ addInputHandler('demo_question', function(input){
 addInputHandler('crop_demo_question', function(input){
     input = input.replace(/\s/g,'');
     if(input){
-        var demo_table = project.getOrCreateDataTable('demo_table');
-        var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + state.vars.step}});
         // if entering for the first time, save the crop
-        if(state.vars.step === 1){
+        if(state.vars.step === 0){
             state.vars.crop = get_menu_option(input, 'crop_menu');
             call.vars['crop'] = state.vars.crop;
         }
         else{
             // save input in session data
-            var prev_question = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + (state.vars.step - 1)}}).next();
+            var demo_table = project.getOrCreateDataTable('demo_table');
+            var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + state.vars.step}})
+            var prev_question = question_cursor.next();
             call.vars[prev_question.vars.msg_name] = input;
         }
         // if there are questions remaining, ask the next question; otherwise start the survey
@@ -222,7 +222,7 @@ addInputHandler('survey_response', function(input){
     // save input in session data
     if(state.vars.question_number === 1){
         var demo_table = project.getOrCreateDataTable('demo_table');
-        var prev_question = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + (state.vars.step - 1)}}).next();
+        var prev_question = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + state.vars.step}}).next();
         call.vars[prev_question.vars.msg_name] = input;
     }
     // say closing message and end survey if all questions are complete
