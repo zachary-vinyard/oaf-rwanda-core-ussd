@@ -181,9 +181,8 @@ addInputHandler('crop_demo_question', function(input){
     if(input){
         var demo_table = project.getOrCreateDataTable('demo_table');
         var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + state.vars.step}});
-
         // if entering for the first time, save the crop
-        if(state.vars.question_number === 1){
+        if(state.vars.step === 1){
             state.vars.crop = get_menu_option(input, 'crop_menu');
             call.vars['crop'] = state.vars.crop;
         }
