@@ -142,20 +142,17 @@ addInputHandler('sedo_enter_vid', function(input){
 
 // input handler for demographic questions
 addInputHandler('demo_question', function(input){
-    // clean input data
     input = input.replace(/\s/g,'');
-    // if input is valid, increment the step; otherwise display an error message
     if(input){
-        // load the demographic question table
         var demo_table = project.getOrCreateDataTable('demo_table');
-        var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + state.vars.step}});
         // save input in session data
         if(state.vars.step > 1){
             var prev_question = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + (state.vars.step - 1)}}).next();
             call.vars[prev_question.vars.msg_name] = input;
         }
-        state.vars.step = state.vars.step + 1;
         // if there are still questions remaining, ask the next question; otherwise start the crop quiz
+        state.vars.step = state.vars.step + 1;
+        var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + state.vars.step}});
         if(question_cursor.hasNext()){
             var question = question_cursor.next();
             // display text and prompt user to select their choice
