@@ -144,6 +144,7 @@ addInputHandler('sedo_enter_vid', function(input){
 // input handler for demographic questions
 addInputHandler('demo_question', function(input){
     input = input.replace(/\s/g,'');
+    call.vars.status = state.vars.survey_type + state.vars.step;
     if(input){
         var demo_table = project.getOrCreateDataTable('demo_table');
         // save input in session data
@@ -181,6 +182,7 @@ addInputHandler('demo_question', function(input){
 // input handler for crop demographic questions
 addInputHandler('crop_demo_question', function(input){
     input = input.replace(/\s/g,'');
+    call.vars.status = state.vars.survey_type + state.vars.step;
     if(input){
         var demo_table = project.getOrCreateDataTable('demo_table');
         console.log('step is ' + state.vars.step + ', survey is ' + state.vars.survey_type);
@@ -220,6 +222,7 @@ addInputHandler('crop_demo_question', function(input){
 // input handler for survey questions
 addInputHandler('survey_response', function(input){
     input = input.replace(/\s/g,'');
+    call.vars.status = String('Q' + state.vars.question_number);
     checkstop(input);
     // save input in session data
     if(state.vars.question_number === 1){
@@ -238,7 +241,6 @@ addInputHandler('survey_response', function(input){
     }
     // set question id in correct format, then increment the question number
     state.vars.question_id = String(state.vars.crop + 'Q' + state.vars.question_number);
-    call.vars.status = String('Q' + state.vars.question_number);
     state.vars.question_number = state.vars.question_number + 1;
     // ask the survey question
     ask(feedback);
