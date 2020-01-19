@@ -144,7 +144,9 @@ addInputHandler('sedo_enter_vid', function(input){
 // input handler for demographic questions
 addInputHandler('demo_question', function(input){
     input = input.replace(/\s/g,'');
-    checkstop(input);
+    if(checkstop(input)){
+        return null;
+    }
     call.vars.status = state.vars.survey_type + state.vars.step;
     if(input){
         // save input in session data
@@ -182,7 +184,9 @@ addInputHandler('demo_question', function(input){
 // input handler for crop demographic questions
 addInputHandler('crop_demo_question', function(input){
     input = input.replace(/\s/g,'');
-    checkstop(input);
+    if(checkstop(input)){
+        return null;
+    }
     call.vars.status = state.vars.survey_type + state.vars.step;
     if(input){
         var demo_table = project.getOrCreateDataTable('demo_table');
@@ -224,7 +228,9 @@ addInputHandler('crop_demo_question', function(input){
 addInputHandler('survey_response', function(input){
     input = input.replace(/\s/g,'');
     call.vars.status = String('Q' + state.vars.question_number);
-    checkstop(input);
+    if(checkstop(input)){
+        return null;
+    }
     // save input in session data
     if(state.vars.question_number === 1){
         var demo_table = project.getOrCreateDataTable('demo_table');
