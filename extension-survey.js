@@ -183,13 +183,13 @@ addInputHandler('crop_demo_question', function(input){
     // ask the demographic questions
     input = input.replace(/\s/g,'');
     if(input){
-        call.vars[state.vars.survey_type + state.vars.step] = input;
-        // load the demographic question table
         var demo_table = project.getOrCreateDataTable('demo_table');
-        var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + state.vars.step}});
         // if there are still questions remaining, ask the next question; otherwise start the survey
+        var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + state.vars.step}});
         if(question_cursor.hasNext()){
             var question = question_cursor.next();
+            // save data in session table
+            call.vars[question.vars.msg_name] = input;
             state.vars.step = state.vars.step + 1;
             // display text and prompt user to select their choice
             sayText(msgs(question.vars.msg_name, {}, lang));
