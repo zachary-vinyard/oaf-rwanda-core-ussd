@@ -187,7 +187,6 @@ addInputHandler('crop_demo_question', function(input){
         if(state.vars.step === 1){
             state.vars.crop = get_menu_option(input, 'crop_menu');
             call.vars['crop'] = state.vars.crop;
-            state.vars.step = state.vars.step - 1;
         }
         else{
             // save input in session data
