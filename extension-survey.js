@@ -146,31 +146,32 @@ addInputHandler('demo_question', function(input){
     input = input.replace(/\s/g,'');
     // if input is valid, increment the step; otherwise display an error message
     if(input){
+        call.vars[state.vars.survey_type + state.vars.step] = input;
         state.vars.step = state.vars.step + 1;
+        // load the demographic question table
+        var demo_table = project.getOrCreateDataTable('demo_table');
+        var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + state.vars.step}});
+        // if there are still questions remaining, ask the next question; otherwise start the crop quiz
+        if(question_cursor.hasNext()){
+            var question = question_cursor.next();
+            // display text and prompt user to select their choice
+            sayText(msgs(question.vars.msg_name, {}, lang));
+            promptDigits('demo_question', {     'submitOnHash' : false, 
+                                                'maxDigits'    : question.vars.max_digits,
+                                                'timeout'      : timeout_length});
+        }
+        else{
+            // load village table and mark as completed
+            var village_table = project.getOrCreateDataTable("VillageInfo");
+            var village = village_table.queryRows({vars: {'villageid' : state.vars.vid}}).next();
+            village.vars.demo_complete = true;
+            village.save();
+            // begin the crop survey
+            start_survey();
+        }
     }
     else{
         sayText(msgs('invalid_input', {}, lang));
-    }
-    // load the demographic question table
-    var demo_table = project.getOrCreateDataTable('demo_table');
-    var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + state.vars.step}});
-    // if there are still questions remaining, ask the next question; otherwise start the crop quiz
-    if(question_cursor.hasNext()){
-        var question = question_cursor.next();
-        // display text and prompt user to select their choice
-        sayText(msgs(question.vars.msg_name, {}, lang));
-        promptDigits('demo_question', {     'submitOnHash' : false, 
-                                            'maxDigits'    : question.vars.max_digits,
-                                            'timeout'      : timeout_length});
-    }
-    else{
-        // load village table and mark as completed
-        var village_table = project.getOrCreateDataTable("VillageInfo");
-        var village = village_table.queryRows({vars: {'villageid' : state.vars.vid}}).next();
-        village.vars.demo_complete = true;
-        village.save();
-        // begin the crop survey
-        start_survey();
     }
 });
 
@@ -182,8 +183,8 @@ addInputHandler('crop_demo_question', function(input){
     // ask the demographic questions
     input = input.replace(/\s/g,'');
     if(input){
+        call.vars[state.vars.survey_type + state.vars.step] = input;
         // load the demographic question table
-        console.log('step is ' + state.vars.step + ', survey type is ' + state.vars.survey_type);
         var demo_table = project.getOrCreateDataTable('demo_table');
         var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + state.vars.step}});
         // if there are still questions remaining, ask the next question; otherwise start the survey
