@@ -178,35 +178,35 @@ addInputHandler('demo_question', function(input){
 addInputHandler('crop_demo_question', function(input){
     if(state.vars.question_number === 1){
         state.vars.crop = get_menu_option(input, 'crop_menu');
-        // ask the demographic questions
-        input = input.replace(/\s/g,'');
-        if(input){
-            // load the demographic question table
-            console.log('step is ' + state.vars.step + ', survey type is ' + state.vars.survey_type);
-            var demo_table = project.getOrCreateDataTable('demo_table');
-            var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + state.vars.step}});
-            // if there are still questions remaining, ask the next question; otherwise start the survey
-            if(question_cursor.hasNext()){
-                var question = question_cursor.next();
-                state.vars.step = state.vars.step + 1;
-                // display text and prompt user to select their choice
-                sayText(msgs(question.vars.msg_name, {}, lang));
-                promptDigits('crop_demo_question', {'submitOnHash' : false, 
-                                                    'maxDigits'    : question.vars.max_digits,
-                                                    'timeout'      : timeout_length});
-            }
-            else{
-                // set question id in correct format, then increment the question number
-                state.vars.question_id = String(state.vars.crop + 'Q' + state.vars.question_number);
-                call.vars.Status = String('Q' + state.vars.question_number);
-                state.vars.question_number = state.vars.question_number + 1;
-                // ask the survey question
-                ask();
-            }
+    }
+    // ask the demographic questions
+    input = input.replace(/\s/g,'');
+    if(input){
+        // load the demographic question table
+        console.log('step is ' + state.vars.step + ', survey type is ' + state.vars.survey_type);
+        var demo_table = project.getOrCreateDataTable('demo_table');
+        var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + state.vars.step}});
+        // if there are still questions remaining, ask the next question; otherwise start the survey
+        if(question_cursor.hasNext()){
+            var question = question_cursor.next();
+            state.vars.step = state.vars.step + 1;
+            // display text and prompt user to select their choice
+            sayText(msgs(question.vars.msg_name, {}, lang));
+            promptDigits('crop_demo_question', {'submitOnHash' : false, 
+                                                'maxDigits'    : question.vars.max_digits,
+                                                'timeout'      : timeout_length});
         }
         else{
-            sayText(msgs('invalid_input', {}, lang));
+            // set question id in correct format, then increment the question number
+            state.vars.question_id = String(state.vars.crop + 'Q' + state.vars.question_number);
+            call.vars.Status = String('Q' + state.vars.question_number);
+            state.vars.question_number = state.vars.question_number + 1;
+            // ask the survey question
+            ask();
         }
+    }
+    else{
+        sayText(msgs('invalid_input', {}, lang));
     }
 }); 
 
