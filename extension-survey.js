@@ -155,7 +155,7 @@ addInputHandler('demo_question', function(input){
         call.vars[prev_question.vars.msg_name] = input;
         // check if input falls within criteria
         var max = prev_question.vars.answer_max;
-        var min = prev_question.vars.answer_min;
+        var min = prev_question.vars.answer_min || 0;
         console.log('max/min: ' + max + '/' + min + ' input: ' + input + ' ' + typeof(input));
         if(input <= max && input >= min){
             console.log('met within criteria');
@@ -218,7 +218,7 @@ addInputHandler('crop_demo_question', function(input){
             // save input in session data
             var prev_question = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + (state.vars.step - 1)}}).next();
             var max = prev_question.vars.answer_max;
-            var min = prev_question.vars.answer_min;
+            var min = prev_question.vars.answer_min || 0;
             if(input < min || input > max){
                 within = false;
             }
