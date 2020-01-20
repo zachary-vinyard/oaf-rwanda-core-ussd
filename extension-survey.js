@@ -182,10 +182,16 @@ addInputHandler('demo_question', function(input){
         }
         else{
             sayText(msgs('invalid_input', {}, lang));
+            promptDigits('crop_demo_question', {   'submitOnHash' : false, 
+                                                    'maxDigits'    : project.vars.max_digits_for_input,
+                                                    'timeout'      : timeout_length});
         }
     }
     else{
         sayText(msgs('invalid_input', {}, lang));
+        promptDigits('demo_question', {   'submitOnHash' : false, 
+                                            'maxDigits'    : project.vars.max_digits_for_input,
+                                            'timeout'      : timeout_length});
     }
 });
 
@@ -237,10 +243,16 @@ addInputHandler('crop_demo_question', function(input){
         }
         else{
             sayText(msgs('invalid_input', {}, lang));
+            promptDigits('crop_demo_question', {   'submitOnHash' : false, 
+                                                    'maxDigits'    : project.vars.max_digits_for_input,
+                                                    'timeout'      : timeout_length});
         }
     }
     else{
         sayText(msgs('invalid_input', {}, lang));
+        promptDigits('crop_demo_question', {   'submitOnHash' : false, 
+                                                'maxDigits'    : project.vars.max_digits_for_input,
+                                                'timeout'      : timeout_length});
     }
 }); 
 
