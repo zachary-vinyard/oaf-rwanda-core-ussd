@@ -197,7 +197,7 @@ addInputHandler('demo_question', function(input){
 
 // input handler for crop demographic questions
 addInputHandler('crop_demo_question', function(input){
-    input = input.replace(/\s/g,'');
+    input = parseInt(input.replace(/\s/g,''));
     if(checkstop(input)){
         return null;
     }
