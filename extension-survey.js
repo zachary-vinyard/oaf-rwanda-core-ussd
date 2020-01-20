@@ -143,7 +143,7 @@ addInputHandler('sedo_enter_vid', function(input){
 
 // input handler for demographic questions
 addInputHandler('demo_question', function(input){
-    input = input.replace(/\s/g,'');
+    input = parseInt(input.replace(/\s/g,''));
     if(checkstop(input)){
         return null;
     }
@@ -156,7 +156,9 @@ addInputHandler('demo_question', function(input){
         // check if input falls within criteria
         var max = prev_question.vars.answer_max;
         var min = prev_question.vars.answer_min;
-        if(parseInt(input) <= max && parseInt(input) >= min){
+        console.log('max/min: ' + max + '/' + min + ' input: ' + input + ' ' + typeof(input));
+        if(input <= max && input >= min){
+            console.log('met within criteria');
             // if there are still questions remaining, ask the next question; otherwise start the crop quiz
             state.vars.step = state.vars.step + 1;
             var question_cursor = demo_table.queryRows({'vars' : {'question_id' : state.vars.survey_type + state.vars.step}});
