@@ -212,11 +212,12 @@ addInputHandler('crop_demo_question', function(input){
             var max = prev_question.vars.answer_max;
             var min = prev_question.vars.answer_min;
             if(input < min || input > max){
-                var within = false;
+                within = false;
             }
             call.vars[prev_question.vars.msg_name] = input;
         }
         if(!within){
+            console.log('input was within' + within);
             // if there are questions remaining, ask the next question; otherwise start the survey
             if(question_cursor.hasNext()){
                 var question = question_cursor.next();
