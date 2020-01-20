@@ -224,7 +224,7 @@ addInputHandler('crop_demo_question', function(input){
             }
             call.vars[prev_question.vars.msg_name] = input;
         }
-        if(!within){
+        if(within){
             console.log('input was within' + within);
             // if there are questions remaining, ask the next question; otherwise start the survey
             if(question_cursor.hasNext()){
