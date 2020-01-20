@@ -143,7 +143,7 @@ addInputHandler('sedo_enter_vid', function(input){
 
 // input handler for demographic questions
 addInputHandler('demo_question', function(input){
-    input = input.replace(/\s/g,'');
+    input = parseInt(input.replace(/\s/g,''));
     if(checkstop(input)){
         return null;
     }
@@ -153,43 +153,60 @@ addInputHandler('demo_question', function(input){
         var demo_table = project.getOrCreateDataTable('demo_table');
         var prev_question = demo_table.queryRows({'vars' : {'question_id' : state.vars.survey_type + state.vars.step}}).next();
         call.vars[prev_question.vars.msg_name] = input;
-        // if there are still questions remaining, ask the next question; otherwise start the crop quiz
-        state.vars.step = state.vars.step + 1;
-        var question_cursor = demo_table.queryRows({'vars' : {'question_id' : state.vars.survey_type + state.vars.step}});
-        if(question_cursor.hasNext()){
-            var question = question_cursor.next();
-            // display text and prompt user to select their choice
-            sayText(msgs(question.vars.msg_name, {}, lang));
-            promptDigits('demo_question', {     'submitOnHash' : false, 
-                                                'maxDigits'    : project.vars.max_digits_for_input,
-                                                'timeout'      : timeout_length});
+        // check if input falls within criteria
+        var max = prev_question.vars.answer_max;
+        var min = prev_question.vars.answer_min || 0;
+        console.log('max/min: ' + max + '/' + min + ' input: ' + input + ' ' + typeof(input));
+        if(input <= max && input >= min){
+            console.log('met within criteria');
+            // if there are still questions remaining, ask the next question; otherwise start the crop quiz
+            state.vars.step = state.vars.step + 1;
+            var question_cursor = demo_table.queryRows({'vars' : {'question_id' : state.vars.survey_type + state.vars.step}});
+            if(question_cursor.hasNext()){
+                var question = question_cursor.next();
+                // display text and prompt user to select their choice
+                sayText(msgs(question.vars.msg_name, {}, lang));
+                promptDigits('demo_question', {     'submitOnHash' : false, 
+                                                    'maxDigits'    : project.vars.max_digits_for_input,
+                                                    'timeout'      : timeout_length});
+            }
+            else{
+                // load village table and mark as completed
+                var village_table = project.getOrCreateDataTable("VillageInfo");
+                var village = village_table.queryRows({vars: {'villageid' : state.vars.vid}}).next();
+                if(state.vars.survey_type === 'mon'){
+                    village.vars.demo_complete = true;
+                    village.save();
+                }
+                // begin the crop survey
+                start_survey();
+            }
         }
         else{
-            // load village table and mark as completed
-            var village_table = project.getOrCreateDataTable("VillageInfo");
-            var village = village_table.queryRows({vars: {'villageid' : state.vars.vid}}).next();
-            if(state.vars.survey_type === 'mon'){
-                village.vars.demo_complete = true;
-                village.save();
-            }
-            // begin the crop survey
-            start_survey();
+            sayText(msgs('invalid_input', {}, lang));
+            promptDigits('demo_question', {   'submitOnHash' : false, 
+                                                    'maxDigits'    : project.vars.max_digits_for_input,
+                                                    'timeout'      : timeout_length});
         }
     }
     else{
         sayText(msgs('invalid_input', {}, lang));
+        promptDigits('demo_question', {   'submitOnHash' : false, 
+                                            'maxDigits'    : project.vars.max_digits_for_input,
+                                            'timeout'      : timeout_length});
     }
 });
 
 // input handler for crop demographic questions
 addInputHandler('crop_demo_question', function(input){
-    input = input.replace(/\s/g,'');
+    input = parseInt(input.replace(/\s/g,''));
     if(checkstop(input)){
         return null;
     }
     call.vars.status = state.vars.survey_type + state.vars.step;
     if(input){
         var demo_table = project.getOrCreateDataTable('demo_table');
+        var within = true;
         console.log('step is ' + state.vars.step + ', survey is ' + state.vars.survey_type);
         var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + state.vars.step}});
         // if entering for the first time, save the crop
@@ -199,28 +216,45 @@ addInputHandler('crop_demo_question', function(input){
         }
         else{
             // save input in session data
-            var prev_question = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + (state.vars.step - 1)}}).next()
+            var prev_question = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + (state.vars.step - 1)}}).next();
+            var max = prev_question.vars.answer_max;
+            var min = prev_question.vars.answer_min || 0;
+            if(input < min || input > max){
+                within = false;
+            }
             call.vars[prev_question.vars.msg_name] = input;
         }
-        // if there are questions remaining, ask the next question; otherwise start the survey
-        if(question_cursor.hasNext()){
-            var question = question_cursor.next();
-            state.vars.step = state.vars.step + 1;
-            sayText(msgs(question.vars.msg_name, {}, lang));
-            promptDigits('crop_demo_question', {'submitOnHash' : false, 
-                                                'maxDigits'    : project.vars.max_digits_for_input,
-                                                'timeout'      : timeout_length});
+        if(within){
+            console.log('input was within' + within);
+            // if there are questions remaining, ask the next question; otherwise start the survey
+            if(question_cursor.hasNext()){
+                var question = question_cursor.next();
+                state.vars.step = state.vars.step + 1;
+                sayText(msgs(question.vars.msg_name, {}, lang));
+                promptDigits('crop_demo_question', {'submitOnHash' : false, 
+                                                    'maxDigits'    : project.vars.max_digits_for_input,
+                                                    'timeout'      : timeout_length});
+            }
+            else{
+                // set question id in correct format, then increment the question number
+                state.vars.question_id = String(state.vars.crop + 'Q' + state.vars.question_number);
+                call.vars.status = String('Q' + state.vars.question_number);
+                // ask the survey question
+                ask();
+            }
         }
         else{
-            // set question id in correct format, then increment the question number
-            state.vars.question_id = String(state.vars.crop + 'Q' + state.vars.question_number);
-            call.vars.status = String('Q' + state.vars.question_number);
-            // ask the survey question
-            ask();
+            sayText(msgs('invalid_input', {}, lang));
+            promptDigits('crop_demo_question', {   'submitOnHash' : false, 
+                                                    'maxDigits'    : project.vars.max_digits_for_input,
+                                                    'timeout'      : timeout_length});
         }
     }
     else{
         sayText(msgs('invalid_input', {}, lang));
+        promptDigits('crop_demo_question', {   'submitOnHash' : false, 
+                                                'maxDigits'    : project.vars.max_digits_for_input,
+                                                'timeout'      : timeout_length});
     }
 }); 
 
