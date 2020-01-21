@@ -174,7 +174,7 @@ addInputHandler('demo_question', function(input){
                 // load village table and mark as completed
                 var village_table = project.getOrCreateDataTable("VillageInfo");
                 var village = village_table.queryRows({vars: {'villageid' : state.vars.vid}}).next();
-                if(state.vars.survey_type === 'mon'){
+                if(state.vars.survey_type === 'mon' && !village.vars.test){
                     village.vars.demo_complete = true;
                     village.save();
                 }
