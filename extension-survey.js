@@ -263,7 +263,7 @@ addInputHandler('crop_demo_question', function(input){
 
 // input handler for survey questions
 addInputHandler('survey_response', function(input){
-    input = input.replace(/\s/g,'');
+    input = parseInt(input.replace(/\s/g,''));
     call.vars.status = String('Q' + state.vars.question_number);
     if(checkstop(input)){
         return null;
