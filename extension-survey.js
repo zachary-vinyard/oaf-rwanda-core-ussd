@@ -40,6 +40,7 @@ addInputHandler('ext_main_splash', function(input){
     // redirect user based on their input menu selection
     var selection = get_menu_option(input, 'ext_splash_menu');
     if(selection === 'ama1' || selection === 'ama2'){
+        state.vars.selection = selection;
         sayText(msgs('fp_enter_id'));
         promptDigits('fp_enter_id', {   'submitOnHash' : false,
                                         'maxDigits'    : max_digits_for_vid,
@@ -70,14 +71,15 @@ addInputHandler('fp_enter_id', function(input){
     if(check_vid(input)){
         // return user to previous step if they are coming back to the survey
         if(reinitization() & state.vars.question_id){
+            console.log('reinitizing...');
             ask();
         }
         else{
             // initialize counter variables
             state.vars.num_correct = 0;
             // begin the crop survey if demo questions are complete
-            if(state.vars.step > 1 || state.vars.survey_type === 'tra2'){
-                console.log('starting survey');
+            if(state.vars.step > 1 || state.vars.selection === 'ama2'){
+                console.log('starting survey...');
                 start_survey();
             }
             else{
