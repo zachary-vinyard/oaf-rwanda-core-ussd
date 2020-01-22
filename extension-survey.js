@@ -70,7 +70,7 @@ addInputHandler('fp_enter_id', function(input){
     state.vars.step = 1;
     if(check_vid(input)){
         // return user to previous step if they are coming back to the survey
-        if(reinitization() & state.vars.question_id){
+        if(reinitization()){
             console.log('reinitizing...');
             ask();
             return null;
