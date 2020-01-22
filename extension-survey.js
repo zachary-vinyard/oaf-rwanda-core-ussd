@@ -265,6 +265,8 @@ addInputHandler('crop_demo_question', function(input){
 addInputHandler('survey_response', function(input){
     input = parseInt(input.replace(/\s/g,''));
     call.vars.status = String('Q' + state.vars.question_number);
+    call.vars[status] = input; 
+    console.log('question number is: ' + state.vars.question_number);
     if(checkstop(input)){
         return null;
     }
