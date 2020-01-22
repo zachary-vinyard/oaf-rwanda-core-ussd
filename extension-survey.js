@@ -279,7 +279,7 @@ addInputHandler('survey_response', function(input){
     }
     else{
         // save answer to demo question in session data
-        if(state.vars.question_number === 1){
+        if(state.vars.question_number === 1 && state.vars.survey_type === 'mon'){
             var demo_table = project.getOrCreateDataTable('demo_table');
             var prev_question = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + (state.vars.step - 1)}}).next();
             call.vars[prev_question.vars.msg_name] = input;
