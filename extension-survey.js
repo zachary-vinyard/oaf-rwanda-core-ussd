@@ -75,8 +75,8 @@ addInputHandler('fp_enter_id', function(input){
         else{
             // initialize counter variables
             state.vars.num_correct = 0;
-            // begin the survey, starting with crop demo questions
-            if(state.vars.step > 1){
+            // begin the crop survey if demo questions are complete
+            if(state.vars.step > 1 || state.vars.survey_type === 'tra2'){
                 start_survey();
             }
             else{
@@ -265,24 +265,35 @@ addInputHandler('survey_response', function(input){
     if(checkstop(input)){
         return null;
     }
-    // save input in session data
-    if(state.vars.question_number === 1){
-        var demo_table = project.getOrCreateDataTable('demo_table');
-        var prev_question = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + (state.vars.step - 1)}}).next();
-        call.vars[prev_question.vars.msg_name] = input;
+    // if entering for the first time, save the crop then ask the first question
+    if(!state.vars.crop){
+        state.vars.crop = get_menu_option(input, 'crop_menu');
+        call.vars['crop'] = state.vars.crop;
+        state.vars.question_id = String(state.vars.crop + 'Q' + state.vars.question_number);
+        call.vars.status = String('Q' + state.vars.question_number);
+        // ask the survey question
+        ask();
     }
-    // say closing message and end survey if all questions are complete
-    var feedback = require('./lib/ext-answer-verify')(input);
-    var survey_length = 10; // abstract
-    if(state.vars.question_number === survey_length){
-        call.vars.completed = 'complete';
-        sayText(msgs('closing_message', {   '$FEEDBACK'    : feedback,
-                                            '$NUM_CORRECT' : state.vars.num_correct}, lang));
-        return null;
+    else{
+        // save answer to demo question in session data
+        if(state.vars.question_number === 1){
+            var demo_table = project.getOrCreateDataTable('demo_table');
+            var prev_question = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + (state.vars.step - 1)}}).next();
+            call.vars[prev_question.vars.msg_name] = input;
+        }
+        // say closing message and end survey if all questions are complete
+        var feedback = require('./lib/ext-answer-verify')(input);
+        var survey_length = 10; // abstract
+        if(state.vars.question_number === survey_length){
+            call.vars.completed = 'complete';
+            sayText(msgs('closing_message', {   '$FEEDBACK'    : feedback,
+                                                '$NUM_CORRECT' : state.vars.num_correct}, lang));
+            return null;
+        }
+        // set question id in correct format, then increment the question number
+        state.vars.question_id = String(state.vars.crop + 'Q' + state.vars.question_number);
+        state.vars.question_number = state.vars.question_number + 1;
+        // ask the survey question
+        ask(feedback);
     }
-    // set question id in correct format, then increment the question number
-    state.vars.question_id = String(state.vars.crop + 'Q' + state.vars.question_number);
-    state.vars.question_number = state.vars.question_number + 1;
-    // ask the survey question
-    ask(feedback);
 }); 
