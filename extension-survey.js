@@ -148,7 +148,7 @@ addInputHandler('demo_question', function(input){
         return null;
     }
     call.vars.status = state.vars.survey_type + state.vars.step;
-    if(input){
+    if(input || input === 0){
         // save input in session data
         var demo_table = project.getOrCreateDataTable('demo_table');
         var prev_question = demo_table.queryRows({'vars' : {'question_id' : state.vars.survey_type + state.vars.step}}).next();
@@ -204,7 +204,7 @@ addInputHandler('crop_demo_question', function(input){
         return null;
     }
     call.vars.status = state.vars.survey_type + state.vars.step;
-    if(input){
+    if(input || input === 0){
         var demo_table = project.getOrCreateDataTable('demo_table');
         var within = true;
         console.log('step is ' + state.vars.step + ', survey is ' + state.vars.survey_type);
