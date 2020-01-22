@@ -77,6 +77,7 @@ addInputHandler('fp_enter_id', function(input){
             state.vars.num_correct = 0;
             // begin the crop survey if demo questions are complete
             if(state.vars.step > 1 || state.vars.survey_type === 'tra2'){
+                console.log('starting survey');
                 start_survey();
             }
             else{
