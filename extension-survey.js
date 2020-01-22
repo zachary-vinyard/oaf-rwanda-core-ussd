@@ -73,6 +73,7 @@ addInputHandler('fp_enter_id', function(input){
         if(reinitization() & state.vars.question_id){
             console.log('reinitizing...');
             ask();
+            return null;
         }
         else{
             // initialize counter variables
@@ -88,6 +89,7 @@ addInputHandler('fp_enter_id', function(input){
                                                     'maxDigits'    : max_digits_for_input,
                                                     'timeout'      : timeout_length});
             }
+            return null;
         }
     }
     else{
@@ -96,6 +98,7 @@ addInputHandler('fp_enter_id', function(input){
                                         'maxDigits'    : max_digits_for_vid,
                                         'timeout'      : timeout_length 
                                     });
+        return null;
     }
 });
 
