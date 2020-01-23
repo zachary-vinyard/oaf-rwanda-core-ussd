@@ -11,7 +11,7 @@ var populate_menu = require('./lib/populate-menu');
 var get_menu_option = require('./lib/get-menu-option');
 
 // load in extension-specific modules
-var reinitization = require('./lib/ext-reinitization');
+var reinit = require('./lib/ext-reinitization');
 var ask = require('./lib/ext-ask-question');
 var check_vid = require('./lib/ext-vid-verify');
 var check_sedo = require('./lib/ext-sedo-verify');
@@ -70,10 +70,8 @@ addInputHandler('fp_enter_id', function(input){
     state.vars.step = 1;
     if(check_vid(input)){
         // return user to previous step if they are coming back to the survey
-        console.log('reinitization is ' + state.vars.reinit + ' ' + Boolean(state.vars.reinit));
-        if(state.vars.reinit){
+        if(reinit()){
             ask();
-            return null;
         }
         else{
             // initialize counter variables
@@ -89,7 +87,6 @@ addInputHandler('fp_enter_id', function(input){
                                                     'maxDigits'    : max_digits_for_input,
                                                     'timeout'      : timeout_length});
             }
-            return null;
         }
     }
     else{
@@ -98,7 +95,6 @@ addInputHandler('fp_enter_id', function(input){
                                         'maxDigits'    : max_digits_for_vid,
                                         'timeout'      : timeout_length 
                                     });
-        return null;
     }
 });
 
@@ -128,6 +124,10 @@ addInputHandler('sedo_enter_vid', function(input){
     state.vars.step = 1;
     state.vars.survey_type = 'mon';
     if(check_vid(input)){
+        // check reinitization
+        if(reinit()){
+            ask();
+        }
         // display text and prompt user to select their choice
         if(state.vars.step > 1){
             start_survey();
