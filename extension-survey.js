@@ -243,6 +243,7 @@ addInputHandler('crop_demo_question', function(input){
             }
             else{
                 // set question id in correct format, then increment the question number
+                state.vars.question_number = state.vars.question_number || 1;
                 state.vars.question_id = String(state.vars.crop + 'Q' + state.vars.question_number);
                 call.vars.status = String('Q' + state.vars.question_number);
                 // ask the survey question
