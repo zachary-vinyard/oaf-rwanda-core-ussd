@@ -299,10 +299,11 @@ addInputHandler('survey_response', function(input){
             var session_table = project.getOrCreateDataTable('Extension Survey');
             var session_cursor = session_table.queryRows({
                 vars        : { 'villageid' : state.vars.vid,
-                                'ext_main_splash' : call.vars.ext_main_splash,
+                                'ext_main_splash' : String(call.vars.ext_main_splash),
                                 'first_take' : true,
                                 'crop' : state.vars.crop}
             });
+            console.log('menu selection: ' + call.vars.ext_main_splash + ' ' + typeof(call.vars.ext_main_splash));
             if(session_cursor.hasNext()){
                 call.vars.first_take = false;
             }
