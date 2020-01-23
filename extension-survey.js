@@ -296,7 +296,7 @@ addInputHandler('survey_response', function(input){
         if(state.vars.question_number === survey_length){
             call.vars.completed = 'complete';
             // label as first take if there aren't any other first takes
-            var session_table = project.getOrCreateDataTable('Extension Survey');
+            var session_table = project.getOrCreateDataTable('Extension Survey Testing');
             var session_cursor = session_table.queryRows({
                 vars        : { 'villageid' : state.vars.vid,
                                 'ext_main_splash' : String(call.vars.ext_main_splash),
