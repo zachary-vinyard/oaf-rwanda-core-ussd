@@ -295,6 +295,20 @@ addInputHandler('survey_response', function(input){
         var survey_length = 10; // abstract
         if(state.vars.question_number === survey_length){
             call.vars.completed = 'complete';
+            // label as first take if there aren't any other first takes
+            var session_table = project.getOrCreateDataTable('Extension Survey');
+            var session_cursor = session_table.queryRows({
+                vars        : { 'villageid' : state.vars.vid,
+                                'ext_main_splash' : call.vars.ext_main_splash,
+                                'completed' : 'complete',
+                                'first_take' : true}
+            });
+            if(session_cursor.hasNext()){
+                call.vars.first_take = false;
+            }
+            else{
+                call.vars.first_take = true;
+            }
             sayText(msgs('closing_message', {   '$FEEDBACK'    : feedback,
                                                 '$NUM_CORRECT' : state.vars.num_correct}, lang));
             return null;
