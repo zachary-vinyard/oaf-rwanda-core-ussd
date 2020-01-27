@@ -82,7 +82,7 @@ addInputHandler('fp_enter_id', function(input){
                 start_survey();
             }
             else{
-                sayText(msgs('fp_gender_tra', {}, lang));
+                sayText(msgs('fp_tr_num', {}, lang));
                 promptDigits('demo_question', {     'submitOnHash' : false, 
                                                     'maxDigits'    : max_digits_for_input,
                                                     'timeout'      : timeout_length});
