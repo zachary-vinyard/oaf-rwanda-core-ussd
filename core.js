@@ -131,7 +131,8 @@ addInputHandler('chx_place_order', function(input){
     state.vars.chx_order = input;
     // veto if client has entered an invalid chicken order
     if(input >= 2 && input <= state.vars.max_chx){
-        var credit = input * 2400;
+        var chx_cost = 2400;
+        var credit = input * chx_cost;
         sayText(msgs('chx_confirm_order', {'$ORDER' : input, '$CREDIT' : credit}, lang));
         promptDigits('chx_confirm_order',  {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
     }
@@ -155,13 +156,12 @@ addInputHandler('chx_confirm_order', function(input){
             }
             chx_row.vars.ordered_chickens = state.vars.chx_order;
             chx_row.save();
-            sayText(msgs('chx_order_finalized', {'$ORDER' : state.vars.chx_order}, lang));
             // send SMS to client with confirmation code
             var conf_code = chx_row.vars.confirmation_code;
-            var conf_msg = msgs('chx_confirmation_sms', {'$ORDER' : state.vars.chx_order, '$CONFIRMATION_CODE' : conf_code}, lang);
+            sayText(msgs('chx_order_finalized', {'$ORDER' : state.vars.chx_order, '$VOUCHER' : conf_code}, lang));
+            var conf_msg = msgs('chx_confirmation_sms', {'$ORDER' : state.vars.chx_order, '$VOUCHER' : conf_code}, lang);
             var msg_route = project.vars.sms_push_route;
             project.sendMessage({'to_number' : contact.phone_number, 'route_id' : msg_route, 'content' : conf_msg});
-            sayText(conf_msg)
             stopRules();
         }
         else{
