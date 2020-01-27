@@ -114,7 +114,7 @@ addInputHandler('cor_menu_select', function(input){
     else if(selection === 'chx_confirm'){
         var eligibility_check = require('./lib/chx-check-eligibility');
         state.vars.max_chx = eligibility_check(JSON.parse(state.vars.client_json));
-        sayText('chx_order_message', {'$NAME' : state.vars.client_name, '$CHX_NUM' : state.vars.max_chx});
+        sayText(msgs('chx_order_message', {'$NAME' : state.vars.client_name, '$CHX_NUM' : state.vars.max_chx}));
         promptDigits('chx_place_order', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
     }
     else{
@@ -132,11 +132,11 @@ addInputHandler('chx_place_order', function(input){
     // veto if client has entered an invalid chicken order
     if(input >= 2 && input <= state.vars.max_chx){
         var credit = input * 2400;
-        sayText('chx_confirm_order', {'$ORDER' : input, '$CREDIT' : credit}, lang);
+        sayText(msgs('chx_confirm_order', {'$ORDER' : input, '$CREDIT' : credit}, lang));
         promptDigits('chx_confirm_order',  {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
     }
     else{
-        sayText('chx_invalid_order', {'$CHX_NUM' : state.vars.max_chx}, lang)
+        sayText(msgs('chx_invalid_order', {'$CHX_NUM' : state.vars.max_chx}, lang));
         promptDigits('chx_place_order', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
     }
 
@@ -155,7 +155,7 @@ addInputHandler('chx_confirm_order', function(input){
             }
             chx_row.vars.ordered_chickens = state.vars.chx_order;
             chx_row.save();
-            sayText('chx_order_finalized', {'$ORDER' : state.vars.chx_order}, lang);
+            sayText(msgs('chx_order_finalized', {'$ORDER' : state.vars.chx_order}, lang));
             stopRules();
         }
         else{
