@@ -112,10 +112,18 @@ addInputHandler('cor_menu_select', function(input){
         }
     }
     else if(selection === 'chx_confirm'){
+        // check how many chickens the client is eligible for
         var eligibility_check = require('./lib/chx-check-eligibility');
         state.vars.max_chx = eligibility_check(JSON.parse(state.vars.client_json));
-        sayText(msgs('chx_order_message', {'$NAME' : state.vars.client_name, '$CHX_NUM' : state.vars.max_chx}));
-        promptDigits('chx_place_order', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        // depending on the eligibility, either prompt them to order or tell them they're not eligible and exit
+        if(state.vars.max_chx === 0){
+            sayText(msgs('chx_not_eligible', {}, lang));
+            stopRules();
+        }
+        else{
+            sayText(msgs('chx_order_message', {'$NAME' : state.vars.client_name, '$CHX_NUM' : state.vars.max_chx}));
+            promptDigits('chx_place_order', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        }
     }
     else{
         var current_menu = msgs(selection, opts, lang);
@@ -146,7 +154,7 @@ addInputHandler('chx_place_order', function(input){
 addInputHandler('chx_confirm_order', function(input){
     input = parseInt(input.replace(/\D/g,''));
     if(input === 1){
-        // load in chx table
+        // save the confirmed order in the data table
         var chx_table = project.getOrCreateDataTable('20b_chicken_table');
         var chx_cursor = chx_table.queryRows({'vars' : {'account_number' : state.vars.account_number}});
         if(chx_cursor.hasNext()){
