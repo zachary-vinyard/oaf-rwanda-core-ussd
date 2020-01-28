@@ -37,13 +37,15 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
         if(client_verified){
             sayText(msgs('account_number_verified'));
             state.vars.account_number = response;
-/*             var splash = core_splash_map.queryRows({'vars' : {'district' : state.vars.client_district}}).next().vars.splash_menu;
+            var splash = core_splash_map.queryRows({'vars' : {'district' : state.vars.client_district}}).next().vars.splash_menu;
             if(splash === null || splash === undefined){
                 admin_alert(state.vars.client_district + ' not found in district database');
                 throw 'ERROR : DISTRICT NOT FOUND';
-            } */
+            }
             // temporary switch for testing
-            var splash = 'chx_splash_menu';
+            if(contact.phone_number === 5550123){
+                splash = 'chx_splash_menu';
+            }
             state.vars.splash = splash;
             var menu = populate_menu(splash, lang);
             state.vars.current_menu_str = menu;
