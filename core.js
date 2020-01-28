@@ -43,7 +43,8 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
                 throw 'ERROR : DISTRICT NOT FOUND';
             }
             // temporary switch for testing
-            if(contact.phone_number === 5550123){
+            console.log('user pn is ' + contact.phone_number + ' ' + typeof(contact.phone_number));
+            if(contact.phone_number === '5550123'){
                 splash = 'chx_splash_menu';
             }
             state.vars.splash = splash;
