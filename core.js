@@ -44,7 +44,7 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
             }
             // temporary switch for testing
             console.log('user pn is ' + contact.phone_number + ' ' + typeof(contact.phone_number));
-            if(contact.phone_number === '5550123'){
+            if(contact.phone_number === '5550123' || contact.phone_number === '+250783231367' || contact.phone_number === '+250783057998'){
                 splash = 'chx_splash_menu';
             }
             state.vars.splash = splash;
@@ -140,9 +140,9 @@ addInputHandler('cor_menu_select', function(input){
 addInputHandler('chx_place_order', function(input){
     input = parseInt(input.replace(/\D/g,''));
     state.vars.chx_order = input;
-    // veto if client has entered an invalid chicken order
+    // veto if client has entered an invalid chicken order; otherwise ask them to confirm
     if(input >= 2 && input <= state.vars.max_chx){
-        var chx_cost = 2400;
+        var chx_cost = 2400; // abstract
         var credit = input * chx_cost;
         sayText(msgs('chx_confirm_order', {'$ORDER' : input, '$CREDIT' : credit}, lang));
         promptDigits('chx_confirm_order',  {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
