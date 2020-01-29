@@ -16,7 +16,7 @@ const max_digits_for_input = project.vars.max_digits; //only for testing
 const max_digits_for_account_number = project.vars.max_digits_an;
 //const max_digits_for_serial = 7;
 const core_splash_map = project.getOrCreateDataTable(project.vars.core_splash_map);
-const chicken_client_table = project.vars.chicken_client_table;
+//const chicken_client_table = project.vars.chicken_client_table;
 const timeout_length = 180;
 
 global.main = function () {
@@ -41,6 +41,11 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
             if(splash === null || splash === undefined){
                 admin_alert(state.vars.client_district + ' not found in district database');
                 throw 'ERROR : DISTRICT NOT FOUND';
+            }
+            // temporary switch for testing
+            console.log('user pn is ' + contact.phone_number + ' ' + typeof(contact.phone_number));
+            if(contact.phone_number === '5550123' || contact.phone_number === '+250783231367' || contact.phone_number === '+250783057998'){
+                splash = 'chx_splash_menu';
             }
             state.vars.splash = splash;
             var menu = populate_menu(splash, lang);
@@ -109,21 +114,21 @@ addInputHandler('cor_menu_select', function(input){
             return null;
         }
     }
-    else{
-        console.log(selection);
-        if(selection === 'chx_confirm'){ // this is ... not great
-            var get_available_chx = require('./lib/chx-calc-available-chickens');
-            var opts = get_available_chx(state.vars.account_number, JSON.parse(state.vars.client_json), chicken_client_table);
-            state.vars.max_chx = opts.$CHX_NUM;
-            if(state.vars.max_chx == 0){
-                sayText(msgs('chx_none_confirmable', {}, lang));
-                promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
-                return null;
-            }
+    else if(selection === 'chx_confirm'){
+        // check how many chickens the client is eligible for
+        var eligibility_check = require('./lib/chx-check-eligibility');
+        state.vars.max_chx = eligibility_check(JSON.parse(state.vars.client_json));
+        // depending on the eligibility, either prompt them to order or tell them they're not eligible and exit
+        if(state.vars.max_chx === 0){
+            sayText(msgs('chx_not_eligible', {}, lang));
+            stopRules();
         }
         else{
-            var opts = {};
+            sayText(msgs('chx_order_message', {'$NAME' : state.vars.client_name, '$CHX_NUM' : state.vars.max_chx}));
+            promptDigits('chx_place_order', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
         }
+    }
+    else{
         var current_menu = msgs(selection, opts, lang);
         state.vars.current_menu_str = current_menu;
         sayText(current_menu);
@@ -132,9 +137,62 @@ addInputHandler('cor_menu_select', function(input){
     }
 });
 
-addInputHandler('chx_confirm', function(input){
+addInputHandler('chx_place_order', function(input){
     input = parseInt(input.replace(/\D/g,''));
-    state.vars.current_tep = 'chx_confirm';
+    state.vars.chx_order = input;
+    // veto if client has entered an invalid chicken order; otherwise ask them to confirm
+    if(input >= 2 && input <= state.vars.max_chx){
+        var chx_cost = 2400; // abstract
+        var credit = input * chx_cost;
+        sayText(msgs('chx_confirm_order', {'$ORDER' : input, '$CREDIT' : credit}, lang));
+        promptDigits('chx_confirm_order',  {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+    }
+    else{
+        sayText(msgs('chx_invalid_order', {'$CHX_NUM' : state.vars.max_chx}, lang));
+        promptDigits('chx_place_order', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+    }
+
+});
+
+addInputHandler('chx_confirm_order', function(input){
+    input = parseInt(input.replace(/\D/g,''));
+    if(input === 1){
+        // save the confirmed order in the data table
+        var chx_table = project.getOrCreateDataTable('20b_chicken_table');
+        var chx_cursor = chx_table.queryRows({'vars' : {'account_number' : state.vars.account_number}});
+        if(chx_cursor.hasNext()){
+            chx_row = chx_cursor.next();
+            if(chx_cursor.hasNext()){
+                admin_alert('Duplicate AN in chx db ' + state.vars.account_number);
+            }
+            chx_row.vars.ordered_chickens = state.vars.chx_order;
+            chx_row.save();
+            // send SMS to client with confirmation code
+            var conf_code = chx_row.vars.confirmation_code;
+            sayText(msgs('chx_order_finalized', {'$ORDER' : state.vars.chx_order, '$VOUCHER' : conf_code}, lang));
+            var conf_msg = msgs('chx_confirmation_sms', {'$ORDER' : state.vars.chx_order, '$VOUCHER' : conf_code}, lang);
+            var msg_route = project.vars.sms_push_route;
+            project.sendMessage({'to_number' : contact.phone_number, 'route_id' : msg_route, 'content' : conf_msg});
+            stopRules();
+        }
+        else{
+            admin_alert('Account number ' + state.vars.account_number + ' not found in chicken dataset');
+            stopRules();
+        }
+    }
+    else{
+        // return client to main menu
+        var menu = populate_menu(state.vars.splash, lang);
+        sayText(menu, lang);
+        promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
+        return null;
+    }
+});
+
+// CODE BLOCKS BELOW ARE FOR OLD CONFIRMATION SERVICE
+/* addInputHandler('chx_confirm', function(input){
+    input = parseInt(input.replace(/\D/g,''));
+    state.vars.current_step = 'chx_confirm';
     if(input > 0 && input <= state.vars.max_chx){
         var check_chx_conf = require('./lib/chx-check-reg');
         if(check_chx_conf(state.vars.account_number, chicken_client_table)){
@@ -176,7 +234,7 @@ addInputHandler('chx_final_confirm', function(input){ //final confirmation to en
         promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
         return null;
     }
-});
+}); */
 
 
 /*
