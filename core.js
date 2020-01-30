@@ -115,6 +115,41 @@ addInputHandler('cor_menu_select', function(input){
         }
     }
     else if(selection === 'chx_confirm'){
+        // if they have already ordered chickens, tell them how many they have ordered and ask if they'd like to change
+        state.vars.chx_order = require('./lib/chx-check-order')(state.vars.account_number);
+        if(state.vars.chx_order){
+            // code for changing order
+            sayText(msgs('chx_change_order', {'$NAME' : state.vars.client_name, '$ORDER' : order}, lang));
+            promptDigits('chx_update', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        }
+        else{
+            // check how many chickens the client is eligible for
+            var eligibility_check = require('./lib/chx-check-eligibility');
+            state.vars.max_chx = eligibility_check(JSON.parse(state.vars.client_json));
+            // depending on the eligibility, either prompt them to order or tell them they're not eligible and exit
+            if(state.vars.max_chx === 0){
+                sayText(msgs('chx_not_eligible', {}, lang));
+                stopRules();
+            }
+            else{
+                sayText(msgs('chx_order_message', {'$NAME' : state.vars.client_name, '$CHX_NUM' : state.vars.max_chx}));
+                promptDigits('chx_place_order', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+            }
+        }
+    }
+    else{
+        var current_menu = msgs(selection, opts, lang);
+        state.vars.current_menu_str = current_menu;
+        sayText(current_menu);
+        promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        return null;
+    }
+});
+
+addInputHandler('chx_update', function(input){
+    input = parseInt(input.replace(/\D/g,''));
+    // if they want to update, ask them to place an order
+    if(input === 1){
         // check how many chickens the client is eligible for
         var eligibility_check = require('./lib/chx-check-eligibility');
         state.vars.max_chx = eligibility_check(JSON.parse(state.vars.client_json));
@@ -129,13 +164,13 @@ addInputHandler('cor_menu_select', function(input){
         }
     }
     else{
-        var current_menu = msgs(selection, opts, lang);
-        state.vars.current_menu_str = current_menu;
-        sayText(current_menu);
-        promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
-        return null;
+        // return client to main menu
+        var menu = populate_menu(state.vars.splash, lang);
+        sayText(menu, lang);
+        promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
+        
     }
-});
+})
 
 addInputHandler('chx_place_order', function(input){
     input = parseInt(input.replace(/\D/g,''));
@@ -151,7 +186,6 @@ addInputHandler('chx_place_order', function(input){
         sayText(msgs('chx_invalid_order', {'$CHX_NUM' : state.vars.max_chx}, lang));
         promptDigits('chx_place_order', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
     }
-
 });
 
 addInputHandler('chx_confirm_order', function(input){
