@@ -183,7 +183,14 @@ addInputHandler('chx_place_order', function(input){
         promptDigits('chx_confirm_order',  {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
     }
     else{
-        sayText(msgs('chx_invalid_order', {'$CHX_NUM' : state.vars.max_chx}, lang));
+        // modify message depending on the order
+        if(state.vars.max_chx === 2){
+            var invalid_msg = 'chx_invalid_order_opt2';
+        }
+        else{
+            var invalid_msg = 'chx_invalid_order';
+        }
+        sayText(msgs(invalid_msg, {'$CHX_NUM' : state.vars.max_chx}, lang));
         promptDigits('chx_place_order', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
     }
 });
