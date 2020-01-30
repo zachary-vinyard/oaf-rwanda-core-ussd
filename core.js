@@ -119,7 +119,7 @@ addInputHandler('cor_menu_select', function(input){
         state.vars.chx_order = require('./lib/chx-check-order')(state.vars.account_number);
         if(state.vars.chx_order){
             // code for changing order
-            sayText(msgs('chx_change_order', {'$NAME' : state.vars.client_name, '$ORDER' : order}, lang));
+            sayText(msgs('chx_change_order', {'$NAME' : state.vars.client_name, '$ORDER' : state.vars.chx_order}, lang));
             promptDigits('chx_update', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
         }
         else{
