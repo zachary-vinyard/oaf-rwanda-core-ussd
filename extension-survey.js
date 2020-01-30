@@ -11,7 +11,7 @@ var populate_menu = require('./lib/populate-menu');
 var get_menu_option = require('./lib/get-menu-option');
 
 // load in extension-specific modules
-var reinitization = require('./lib/ext-reinitization');
+var reinit = require('./lib/ext-reinitization');
 var ask = require('./lib/ext-ask-question');
 var check_vid = require('./lib/ext-vid-verify');
 var check_sedo = require('./lib/ext-sedo-verify');
@@ -40,6 +40,7 @@ addInputHandler('ext_main_splash', function(input){
     // redirect user based on their input menu selection
     var selection = get_menu_option(input, 'ext_splash_menu');
     if(selection === 'ama1' || selection === 'ama2'){
+        state.vars.selection = selection;
         sayText(msgs('fp_enter_id'));
         promptDigits('fp_enter_id', {   'submitOnHash' : false,
                                         'maxDigits'    : max_digits_for_vid,
@@ -69,18 +70,19 @@ addInputHandler('fp_enter_id', function(input){
     state.vars.step = 1;
     if(check_vid(input)){
         // return user to previous step if they are coming back to the survey
-        if(reinitization() & state.vars.question_id){
+        if(reinit()){
             ask();
         }
         else{
             // initialize counter variables
             state.vars.num_correct = 0;
-            // begin the survey, starting with crop demo questions
-            if(state.vars.step > 1){
+            // begin the crop survey if demo questions are complete
+            if(state.vars.step > 1 || state.vars.selection === 'ama2'){
+                console.log('starting survey...');
                 start_survey();
             }
             else{
-                sayText(msgs('fp_gender_tra', {}, lang));
+                sayText(msgs('fp_tr_num', {}, lang));
                 promptDigits('demo_question', {     'submitOnHash' : false, 
                                                     'maxDigits'    : max_digits_for_input,
                                                     'timeout'      : timeout_length});
@@ -122,6 +124,10 @@ addInputHandler('sedo_enter_vid', function(input){
     state.vars.step = 1;
     state.vars.survey_type = 'mon';
     if(check_vid(input)){
+        // check reinitization
+        if(reinit()){
+            ask();
+        }
         // display text and prompt user to select their choice
         if(state.vars.step > 1){
             start_survey();
@@ -148,7 +154,7 @@ addInputHandler('demo_question', function(input){
         return null;
     }
     call.vars.status = state.vars.survey_type + state.vars.step;
-    if(input){
+    if(input || input === 0){
         // save input in session data
         var demo_table = project.getOrCreateDataTable('demo_table');
         var prev_question = demo_table.queryRows({'vars' : {'question_id' : state.vars.survey_type + state.vars.step}}).next();
@@ -174,7 +180,7 @@ addInputHandler('demo_question', function(input){
                 // load village table and mark as completed
                 var village_table = project.getOrCreateDataTable("VillageInfo");
                 var village = village_table.queryRows({vars: {'villageid' : state.vars.vid}}).next();
-                if(state.vars.survey_type === 'mon'){
+                if(state.vars.survey_type === 'mon' && !village.vars.test){
                     village.vars.demo_complete = true;
                     village.save();
                 }
@@ -204,7 +210,7 @@ addInputHandler('crop_demo_question', function(input){
         return null;
     }
     call.vars.status = state.vars.survey_type + state.vars.step;
-    if(input){
+    if(input || input === 0){
         var demo_table = project.getOrCreateDataTable('demo_table');
         var within = true;
         console.log('step is ' + state.vars.step + ', survey is ' + state.vars.survey_type);
@@ -237,6 +243,7 @@ addInputHandler('crop_demo_question', function(input){
             }
             else{
                 // set question id in correct format, then increment the question number
+                state.vars.question_number = state.vars.question_number || 1;
                 state.vars.question_id = String(state.vars.crop + 'Q' + state.vars.question_number);
                 call.vars.status = String('Q' + state.vars.question_number);
                 // ask the survey question
@@ -260,29 +267,59 @@ addInputHandler('crop_demo_question', function(input){
 
 // input handler for survey questions
 addInputHandler('survey_response', function(input){
-    input = input.replace(/\s/g,'');
+    console.log('4 q is ' + state.vars.question_number + ' id is ' + state.vars.question_id);
+    input = parseInt(input.replace(/\s/g,''));
     call.vars.status = String('Q' + state.vars.question_number);
+    call.vars[call.vars.status] = input; 
+    console.log('question number is: ' + state.vars.question_number);
     if(checkstop(input)){
         return null;
     }
-    // save input in session data
-    if(state.vars.question_number === 1){
-        var demo_table = project.getOrCreateDataTable('demo_table');
-        var prev_question = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + (state.vars.step - 1)}}).next();
-        call.vars[prev_question.vars.msg_name] = input;
+    // if entering for the first time, save the crop then ask the first question
+    if(!state.vars.crop){
+        state.vars.crop = get_menu_option(input, 'crop_menu');
+        call.vars['crop'] = state.vars.crop;
+        state.vars.question_id = String(state.vars.crop + 'Q' + state.vars.question_number);
+        call.vars.status = String('Q' + state.vars.question_number);
+        // ask the survey question
+        ask();
     }
-    // say closing message and end survey if all questions are complete
-    var feedback = require('./lib/ext-answer-verify')(input);
-    var survey_length = 10; // abstract
-    if(state.vars.question_number === survey_length){
-        call.vars.completed = 'complete';
-        sayText(msgs('closing_message', {   '$FEEDBACK'    : feedback,
-                                            '$NUM_CORRECT' : state.vars.num_correct}, lang));
-        return null;
+    else{
+        // save answer to demo question in session data
+        if(state.vars.question_number === 1 && state.vars.survey_type === 'mon'){
+            var demo_table = project.getOrCreateDataTable('demo_table');
+            var prev_question = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + (state.vars.step - 1)}}).next();
+            call.vars[prev_question.vars.msg_name] = input;
+        }
+        // say closing message and end survey if all questions are complete
+        var feedback = require('./lib/ext-answer-verify')(input);
+        var survey_length = 10; // abstract
+        if(state.vars.question_number === survey_length){
+            call.vars.completed = 'complete';
+            // label as first take if there aren't any other first takes
+            var session_table = project.getOrCreateDataTable('Extension Survey');
+            var session_cursor = session_table.queryRows({
+                vars        : { 'villageid' : state.vars.vid,
+                                'ext_main_splash' : String(call.vars.ext_main_splash),
+                                'first_take' : true,
+                                'crop' : state.vars.crop}
+            });
+            console.log('menu selection: ' + call.vars.ext_main_splash + ' ' + typeof(call.vars.ext_main_splash));
+            if(session_cursor.hasNext()){
+                call.vars.first_take = false;
+            }
+            else{
+                call.vars.first_take = true;
+            }
+            // report the closing message with the number correct
+            sayText(msgs('closing_message', {   '$FEEDBACK'    : feedback,
+                                                '$NUM_CORRECT' : state.vars.num_correct}, lang));
+            return null;
+        }
+        // set question id in correct format, then increment the question number
+        state.vars.question_id = String(state.vars.crop + 'Q' + state.vars.question_number);
+        state.vars.question_number = state.vars.question_number + 1;
+        // ask the survey question
+        ask(feedback);
     }
-    // set question id in correct format, then increment the question number
-    state.vars.question_id = String(state.vars.crop + 'Q' + state.vars.question_number);
-    state.vars.question_number = state.vars.question_number + 1;
-    // ask the survey question
-    ask(feedback);
 }); 
