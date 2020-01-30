@@ -270,7 +270,6 @@ addInputHandler('chx_final_confirm', function(input){ //final confirmation to en
     }
 }); */
 
-
 /*
 generic input handler for returning to main splash menu
 */
