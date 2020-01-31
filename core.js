@@ -123,7 +123,7 @@ addInputHandler('pin_reset', function(input){
 })
 
 addInputHandler('pin_confirm', function(input){
-    input = String(input.replace(/\D/g,''));
+    input = parseInt(input.replace(/\D/g,''));
     // if user enters 1, save PIN and display menu
     if(input === 1){
         sayText(msgs('pin_confirmed', {'$PIN' : state.vars.new_pin}, lang));
