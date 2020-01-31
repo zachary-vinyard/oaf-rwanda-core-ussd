@@ -127,7 +127,7 @@ addInputHandler('pin_confirm', function(input){
     // if user enters 1, save PIN and display menu
     if(input === 1){
         sayText(msgs('pin_confirmed', {'$PIN' : state.vars.new_pin}, lang));
-        var pin_table = getOrCreateDataTable(project.vars.pin_table);
+        var pin_table = project.getOrCreateDataTable(project.vars.pin_table);
         var pin_cursor = pin_table.queryRows({vars: {'account_number': account_number}});
         pin_cursor.next().vars.pin = state.vars.new_pin;
         // display core service menu
