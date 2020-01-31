@@ -128,8 +128,9 @@ addInputHandler('pin_confirm', function(input){
     if(input === 1){
         sayText(msgs('pin_confirmed', {'$PIN' : state.vars.new_pin}, lang));
         var pin_table = project.getOrCreateDataTable(project.vars.pin_table);
-        var pin_cursor = pin_table.queryRows({vars: {'account_number': state.vars.account_number}});
-        pin_cursor.next().vars.pin = state.vars.new_pin;
+        var pin_row = pin_table.queryRows({vars: {'account_number': state.vars.account_number}}).next();
+        pin_row.vars.pin = state.vars.new_pin;
+        pin_row.save();
         // display core service menu
         var splash = core_splash_map.queryRows({'vars' : {'district' : state.vars.client_district}}).next().vars.splash_menu;
         if(splash === null || splash === undefined){
