@@ -60,7 +60,7 @@ addInputHandler('pin_verification_step', function(input){
         promptDigits('security_question1', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
     }
     // if pin is correct, display core splash menu
-    else if(pin_verify(input)){
+    else if(pin_verify(input, state.vars.account_number)){
         var splash = core_splash_map.queryRows({'vars' : {'district' : state.vars.client_district}}).next().vars.splash_menu;
         if(splash === null || splash === undefined){
             admin_alert(state.vars.client_district + ' not found in district database');
@@ -128,7 +128,7 @@ addInputHandler('pin_confirm', function(input){
     if(input === 1){
         sayText(msgs('pin_confirmed', {'$PIN' : state.vars.new_pin}, lang));
         var pin_table = project.getOrCreateDataTable(project.vars.pin_table);
-        var pin_cursor = pin_table.queryRows({vars: {'account_number': account_number}});
+        var pin_cursor = pin_table.queryRows({vars: {'account_number': state.vars.account_number}});
         pin_cursor.next().vars.pin = state.vars.new_pin;
         // display core service menu
         var splash = core_splash_map.queryRows({'vars' : {'district' : state.vars.client_district}}).next().vars.splash_menu;
