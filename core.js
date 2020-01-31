@@ -12,9 +12,7 @@ var populate_menu = require('./lib/populate-menu');
 //var settings_table = project.getOrCreateDataTable('ussd_settings'); //removing this to account for project variable preference
 const lang = project.vars.cor_lang;
 const max_digits_for_input = project.vars.max_digits; //only for testing
-//const max_digits_for_nid = parseInt(settings_table.queryRows({'vars' : {'settings' : 'max_digits_nid'}}).next().vars.value); 
 const max_digits_for_account_number = project.vars.max_digits_an;
-//const max_digits_for_serial = 7;
 const core_splash_map = project.getOrCreateDataTable(project.vars.core_splash_map);
 const chicken_client_table = project.vars.chicken_client_table;
 const timeout_length = 180;
@@ -37,16 +35,9 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
         if(client_verified){
             sayText(msgs('account_number_verified'));
             state.vars.account_number = response;
-            var splash = core_splash_map.queryRows({'vars' : {'district' : state.vars.client_district}}).next().vars.splash_menu;
-            if(splash === null || splash === undefined){
-                admin_alert(state.vars.client_district + ' not found in district database');
-                throw 'ERROR : DISTRICT NOT FOUND';
-            }
-            state.vars.splash = splash;
-            var menu = populate_menu(splash, lang);
-            state.vars.current_menu_str = menu;
-            sayText(menu, lang);
-            promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
+            state.vars.pin_attempts = 0;
+            sayText(msgs('pin_verification', {}, lang));
+            promptDigits('pin_verification_step', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
         }
         else{
             sayText(msgs('account_number_not_found'));
@@ -59,6 +50,103 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
         stopRules();
     }
 });
+
+addInputHandler('pin_verification_step', function(input){
+    var pin_verify = require('./lib/pin-verify');
+    // if user selects a reset option, move them to SQ1
+    if(input === '99'){
+        state.vars.security_attempts = 0;
+        sayText(msgs('security_question1', {}, lang));
+        promptDigits('security_question1', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
+    }
+    // if pin is correct, display core splash menu
+    else if(pin_verify(input)){
+        var splash = core_splash_map.queryRows({'vars' : {'district' : state.vars.client_district}}).next().vars.splash_menu;
+        if(splash === null || splash === undefined){
+            admin_alert(state.vars.client_district + ' not found in district database');
+            throw 'ERROR : DISTRICT NOT FOUND';
+        }
+        state.vars.splash = splash;
+        var menu = populate_menu(splash, lang);
+        state.vars.current_menu_str = menu;
+        sayText(menu, lang);
+        promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
+    }
+    // else, prompt them to re-enter (3 tries) or kick them out
+    else{
+        if(state.vars.pin_attempts < 4){
+            state.vars.pin_attempts = state.vars.pin_attempts + 1;
+            sayText(msgs('incorrect_pin', {}, lang));
+            promptDigits('pin_verification_step', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
+        }
+        else{
+            sayText(msgs('pin_attempts_exceeded', {}, lang));
+            stopRules();
+        }
+    }
+})
+
+addInputHandler('security_question1', function(input){
+    input = String(input.replace(/\D/g,''));
+    // verify response to security question 1: seasons (years?) with TUBURA
+    var num_seasons = state.vars.client_json.BalanceHistory.length; // is this correct
+    // if correct, ask client to reset their PIN
+    console.log('num seasons: ' + num_seasons);
+    if(input === num_seasons){
+        sayText(msgs('reset_pin', {}, lang));
+        promptDigits('pin_reset', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
+    }
+    else{
+        if(state.vars.security_attempts < 2){
+            state.vars.security_attempts = state.vars.security_attempts + 1;0.0
+            sayText(msgs('incorrect_security_answer', {}, lang));
+            promptDigits('security_question1', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
+        }
+        else{
+            sayText(msgs('security_attempts_exceeded', {}, lang));
+            stopRules();
+        }
+    }
+})
+
+addInputHandler('pin_reset', function(input){
+    // PIN must meet any criteria? Just four characters of anything
+    if(input.length < 4){
+        sayText(msgs('invalid_pin_format', {}, lang));
+        promptDigits('pin_reset', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
+    }
+    else{
+        state.vars.new_pin = input;
+        sayText(msgs('confirm_pin', {'$PIN' : input}, lang)); // move this to SMS?
+        promptDigits('pin_confirm', {'submitOnHash' : false, 'maxDigits' : 2, 'timeout' : 180});
+    }
+})
+
+addInputHandler('pin_confirm', function(input){
+    input = String(input.replace(/\D/g,''));
+    // if user enters 1, save PIN and display menu
+    if(input === 1){
+        sayText(msgs('pin_confirmed', {'$PIN' : state.vars.new_pin}, lang));
+        var pin_table = getOrCreateDataTable(project.vars.pin_table);
+        var pin_cursor = pin_table.queryRows({vars: {'account_number': account_number}});
+        pin_cursor.next().vars.pin = state.vars.new_pin;
+        // display core service menu
+        var splash = core_splash_map.queryRows({'vars' : {'district' : state.vars.client_district}}).next().vars.splash_menu;
+        if(splash === null || splash === undefined){
+            admin_alert(state.vars.client_district + ' not found in district database');
+            throw 'ERROR : DISTRICT NOT FOUND';
+        }
+        state.vars.splash = splash;
+        var menu = populate_menu(splash, lang);
+        state.vars.current_menu_str = menu;
+        sayText(menu, lang);
+        promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
+    }
+    else{
+        sayText(msgs('reset_pin', {}, lang));
+        promptDigits('pin_reset', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
+    }
+})
 
 addInputHandler('cor_menu_select', function(input){
     input = String(input.replace(/\D/g,''));
