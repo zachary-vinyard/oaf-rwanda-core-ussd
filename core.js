@@ -89,7 +89,7 @@ addInputHandler('pin_verification_step', function(input){
 addInputHandler('security_question1', function(input){
     input = String(input.replace(/\D/g,''));
     // verify response to security question 1: seasons (years?) with TUBURA
-    var num_seasons = state.vars.client_json.BalanceHistory.length; // is this correct
+    var num_seasons = JSON.parse(state.vars.client_json).BalanceHistory.length; // is this correct
     // if correct, ask client to reset their PIN
     console.log('num seasons: ' + num_seasons);
     if(input === num_seasons){
@@ -98,7 +98,7 @@ addInputHandler('security_question1', function(input){
     }
     else{
         if(state.vars.security_attempts < 2){
-            state.vars.security_attempts = state.vars.security_attempts + 1;0.0
+            state.vars.security_attempts = state.vars.security_attempts + 1;
             sayText(msgs('incorrect_security_answer', {}, lang));
             promptDigits('security_question1', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
         }
