@@ -275,6 +275,7 @@ addInputHandler('survey_response', function(input){
     if(checkstop(input)){
         return null;
     }
+    console.log('!crop is ' + !state.vars.crop);
     // if entering for the first time, save the crop then ask the first question
     if(!state.vars.crop){
         state.vars.crop = get_menu_option(input, 'crop_menu');
@@ -285,6 +286,7 @@ addInputHandler('survey_response', function(input){
         ask();
     }
     else{
+        console.log('Entering else clause...');
         // save answer to demo question in session data
         if(state.vars.question_number === 1 && state.vars.survey_type === 'mon'){
             var demo_table = project.getOrCreateDataTable('demo_table');
@@ -294,15 +296,16 @@ addInputHandler('survey_response', function(input){
         // say closing message and end survey if all questions are complete
         var feedback = require('./lib/ext-answer-verify')(input);
         var survey_length = 10; // abstract
-        console.log('question number: ' + state.vars.question_number);
+        console.log('question number: ' + state.vars.question_number + ' of type ' + typeof(state.vars.question_number));
         if(state.vars.question_number === survey_length){
+            console.log('Entering closing question clause...');
             call.vars.completed = 'complete';
             // label as first take if there aren't any other first takes
             var session_table = project.getOrCreateDataTable('Extension Survey');
             var session_cursor = session_table.queryRows({
                 vars        : { 'villageid' : state.vars.vid,
                                 'ext_main_splash' : String(call.vars.ext_main_splash),
-                                'first_take' : true,
+                                'first_take' : 'true',
                                 'crop' : state.vars.crop}
             });
             console.log('menu selection: ' + call.vars.ext_main_splash + ' ' + typeof(call.vars.ext_main_splash));
@@ -323,4 +326,4 @@ addInputHandler('survey_response', function(input){
         // ask the survey question
         ask(feedback);
     }
-}); 
+});  
