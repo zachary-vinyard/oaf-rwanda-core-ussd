@@ -275,7 +275,6 @@ addInputHandler('survey_response', function(input){
     if(checkstop(input)){
         return null;
     }
-    console.log('!crop is ' + !state.vars.crop);
     // if entering for the first time, save the crop then ask the first question
     if(!state.vars.crop){
         state.vars.crop = get_menu_option(input, 'crop_menu');
@@ -318,7 +317,6 @@ addInputHandler('survey_response', function(input){
             // report the closing message with the number correct
             sayText(msgs('closing_message', {   '$FEEDBACK'    : feedback,
                                                 '$NUM_CORRECT' : state.vars.num_correct}, lang));
-            stopRules();
         }
         // set question id in correct format, then increment the question number
         state.vars.question_id = String(state.vars.crop + 'Q' + state.vars.question_number);
