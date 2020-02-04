@@ -128,6 +128,7 @@ addInputHandler('cor_menu_select', function(input){
             // depending on the eligibility, either prompt them to order or tell them they're not eligible and exit
             if(state.vars.max_chx === 0){
                 sayText(msgs('chx_not_eligible', {}, lang));
+                return null;
             }
             else{
                 sayText(msgs('chx_order_message', {'$NAME' : state.vars.client_name, '$CHX_NUM' : state.vars.max_chx}));
