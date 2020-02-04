@@ -55,7 +55,6 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
         }
         else{
             sayText(msgs('account_number_not_found'));
-            stopRules();
         }
     }
     catch(error){
@@ -129,7 +128,7 @@ addInputHandler('cor_menu_select', function(input){
             // depending on the eligibility, either prompt them to order or tell them they're not eligible and exit
             if(state.vars.max_chx === 0){
                 sayText(msgs('chx_not_eligible', {}, lang));
-                stopRules();
+                return null;
             }
             else{
                 sayText(msgs('chx_order_message', {'$NAME' : state.vars.client_name, '$CHX_NUM' : state.vars.max_chx}));
@@ -156,7 +155,7 @@ addInputHandler('chx_update', function(input){
         // depending on the eligibility, either prompt them to order or tell them they're not eligible and exit
         if(state.vars.max_chx === 0){
             sayText(msgs('chx_not_eligible', {}, lang));
-            stopRules();
+            return null;
         }
         else{
             sayText(msgs('chx_order_message', {'$NAME' : state.vars.client_name, '$CHX_NUM' : state.vars.max_chx}));
@@ -214,11 +213,10 @@ addInputHandler('chx_confirm_order', function(input){
             var conf_msg = msgs('chx_confirmation_sms', {'$ORDER' : state.vars.chx_order, '$VOUCHER' : conf_code}, lang);
             var msg_route = project.vars.sms_push_route;
             project.sendMessage({'to_number' : contact.phone_number, 'route_id' : msg_route, 'content' : conf_msg});
-            stopRules();
         }
         else{
             admin_alert('Account number ' + state.vars.account_number + ' not found in chicken dataset');
-            stopRules();
+            return null;
         }
     }
     else{
