@@ -285,7 +285,6 @@ addInputHandler('survey_response', function(input){
         ask();
     }
     else{
-        console.log('Entering else clause...');
         // save answer to demo question in session data
         if(state.vars.question_number === 1 && state.vars.survey_type === 'mon'){
             var demo_table = project.getOrCreateDataTable('demo_table');
@@ -297,7 +296,6 @@ addInputHandler('survey_response', function(input){
         var survey_length = 10; // abstract
         console.log('question number: ' + state.vars.question_number + ' of type ' + typeof(state.vars.question_number));
         if(state.vars.question_number === survey_length){
-            console.log('Entering closing question clause...');
             call.vars.completed = 'complete';
             // label as first take if there aren't any other first takes
             var session_table = project.getOrCreateDataTable('Extension Survey');
@@ -318,10 +316,12 @@ addInputHandler('survey_response', function(input){
             sayText(msgs('closing_message', {   '$FEEDBACK'    : feedback,
                                                 '$NUM_CORRECT' : state.vars.num_correct}, lang));
         }
-        // set question id in correct format, then increment the question number
-        state.vars.question_id = String(state.vars.crop + 'Q' + state.vars.question_number);
-        state.vars.question_number = state.vars.question_number + 1;
-        // ask the survey question
-        ask(feedback);
+        else{
+            // set question id in correct format, then increment the question number
+            state.vars.question_id = String(state.vars.crop + 'Q' + state.vars.question_number);
+            state.vars.question_number = state.vars.question_number + 1;
+            // ask the survey question
+            ask(feedback);
+        }
     }
 });  
