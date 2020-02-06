@@ -42,11 +42,6 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
                 admin_alert(state.vars.client_district + ' not found in district database');
                 throw 'ERROR : DISTRICT NOT FOUND';
             }
-            // temporary switch for testing
-            console.log('user pn is ' + contact.phone_number + ' ' + typeof(contact.phone_number));
-            if(contact.phone_number === '5550123' || contact.phone_number === '+250783231367' || contact.phone_number === '+250783057998'){
-                splash = 'chx_splash_menu';
-            }
             state.vars.splash = splash;
             var menu = populate_menu(splash, lang);
             state.vars.current_menu_str = menu;
