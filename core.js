@@ -54,7 +54,10 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
 addInputHandler('pin_verification_step', function(input){
     var pin_verify = require('./lib/pin-verify');
     // if user selects a reset option, move them to SQ1
-    if(input === '99'){
+    if(input === '99' || state.vars.no_pin){
+        if(state.vars.no_pin){
+            sayText(msgs('no_stored_pin', {}, lang));
+        }
         state.vars.security_attempts = 0;
         sayText(msgs('security_question1', {}, lang));
         promptDigits('security_question1', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
