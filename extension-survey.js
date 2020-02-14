@@ -217,6 +217,7 @@ addInputHandler('crop_demo_question', function(input){
         var question_cursor = demo_table.queryRows({'vars' : {  'question_id' : state.vars.survey_type + state.vars.step}});
         // if entering for the first time, save the crop
         if(state.vars.step === 1){
+            // TO ADD: repeat question if the entered crop is invalid
             state.vars.crop = get_menu_option(input, 'crop_menu');
             call.vars['crop'] = state.vars.crop;
         }
@@ -277,6 +278,7 @@ addInputHandler('survey_response', function(input){
     }
     // if entering for the first time, save the crop then ask the first question
     if(!state.vars.crop){
+        // TO ADD: repeat question if the entered crop is invalid
         state.vars.crop = get_menu_option(input, 'crop_menu');
         call.vars['crop'] = state.vars.crop;
         state.vars.question_id = String(state.vars.crop + 'Q' + state.vars.question_number);
