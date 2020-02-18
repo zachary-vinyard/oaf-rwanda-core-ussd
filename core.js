@@ -75,9 +75,9 @@ addInputHandler('pin_verification_step', function(input){
         sayText(menu, lang);
         promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
     }
-    // else, prompt them to re-enter (3 tries) or kick them out
+    // else, prompt them to re-enter (5 tries) or kick them out
     else{
-        if(state.vars.pin_attempts < 4){
+        if(state.vars.pin_attempts < 5){
             state.vars.pin_attempts = state.vars.pin_attempts + 1;
             sayText(msgs('incorrect_pin', {}, lang));
             promptDigits('pin_verification_step', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
@@ -123,8 +123,9 @@ addInputHandler('security_response', function(input){
 })
 
 addInputHandler('pin_reset', function(input){
-    // PIN must meet any criteria? Just four characters of anything
-    if(input.length < 4){
+    // PIN must be 4 digits
+    input = parseInt(input.replace(/\D/g,''));
+    if(input.length != 4){
         sayText(msgs('invalid_pin_format', {}, lang));
         promptDigits('pin_reset', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
     }
