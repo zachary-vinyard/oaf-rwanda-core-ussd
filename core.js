@@ -36,9 +36,10 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
             sayText(msgs('account_number_verified'));
             state.vars.account_number = response;
             state.vars.pin_attempts = 0;
+            console.log('Checking for PIN...');
             // let client know if they haven't set their pin
             var pin_table = project.getOrCreateDataTable(project.vars.pin_table);
-            var pin_cursor = pin_table.queryRows({vars: {'account_number': account_number}});
+            var pin_cursor = pin_table.queryRows({vars: {'account_number': state.vars.account_number}});
             var pin_row = pin_cursor.next();
             if(pin_row.vars.pin){
                 sayText(msgs('pin_verification', {}, lang));
