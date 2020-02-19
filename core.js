@@ -96,7 +96,7 @@ addInputHandler('security_question1', function(input){
     // if correct, ask client to reset their PIN
     console.log('num seasons: ' + num_seasons + ' type: ' + typeof(num_seasons));
     if(input === num_seasons){
-        sayText(msgs('pin_admire_question', {}, lang));
+        sayText(msgs('pin_child_question', {}, lang));
         promptDigits('security_response', {'submitOnHash' : false, 'maxDigits' : 60, 'timeout' : 360});
     }
     else{
@@ -115,8 +115,18 @@ addInputHandler('security_question1', function(input){
 addInputHandler('security_response', function(input){
     // save their response to the question
     var pin_table = project.getOrCreateDataTable(project.vars.pin_table);
-    var pin_row = pin_table.queryRows({vars: {'account_number': state.vars.account_number}}).next();
-    pin_row.vars.admired_person = input;
+    var pin_cursor = pin_table.queryRows({vars: {'account_number': state.vars.account_number}});
+    if(pin_cursor.hasNext()){
+        var pin_row = pin_cursor.next();
+    }
+    else{
+        var pin_row = pin_table.createRow({
+            vars : {
+                account_number : state.vars.account_number
+            }
+        });
+    }
+    pin_row.vars.child_name = input;
     pin_row.save();
     sayText(msgs('reset_pin', {}, lang));
     promptDigits('pin_reset', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
