@@ -44,12 +44,14 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
                 var pin_row = pin_cursor.next();
                 if(pin_row.vars.pin){
                     sayText(msgs('pin_verification', {}, lang));
+                    promptDigits('pin_verification_step', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
                 }
             }
             else{
                 sayText(msgs('no_stored_pin', {}, lang));
+                sayText(msgs('security_question1', {}, lang));
+                promptDigits('security_question1', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
             }
-            promptDigits('pin_verification_step', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
         }
         else{
             sayText(msgs('account_number_not_found'));
