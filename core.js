@@ -78,6 +78,7 @@ addInputHandler('pin_verification_step', function(input){
     // else, prompt them to re-enter (5 tries) or kick them out
     else{
         if(state.vars.pin_attempts < 5){
+            console.log('pin attempts: ' + state.vars.pin_attempts);
             state.vars.pin_attempts = state.vars.pin_attempts + 1;
             sayText(msgs('incorrect_pin', {}, lang));
             promptDigits('pin_verification_step', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
