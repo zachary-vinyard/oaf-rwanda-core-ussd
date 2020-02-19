@@ -36,7 +36,16 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
             sayText(msgs('account_number_verified'));
             state.vars.account_number = response;
             state.vars.pin_attempts = 0;
-            sayText(msgs('pin_verification', {}, lang));
+            // let client know if they haven't set their pin
+            var pin_table = project.getOrCreateDataTable(project.vars.pin_table);
+            var pin_cursor = pin_table.queryRows({vars: {'account_number': account_number}});
+            var pin_row = pin_cursor.next();
+            if(pin_row.vars.pin){
+                sayText(msgs('pin_verification', {}, lang));
+            }
+            else{
+                sayText(msgs('no_stored_pin', {}, lang));
+            }
             promptDigits('pin_verification_step', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
         }
         else{
@@ -54,10 +63,7 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
 addInputHandler('pin_verification_step', function(input){
     var pin_verify = require('./lib/pin-verify');
     // if user selects a reset option, move them to SQ1
-    if(input === '99' || state.vars.no_pin){
-        if(state.vars.no_pin){
-            sayText(msgs('no_stored_pin', {}, lang));
-        }
+    if(input === '99'){
         state.vars.security_attempts = 0;
         sayText(msgs('security_question1', {}, lang));
         promptDigits('security_question1', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
