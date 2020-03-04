@@ -1,7 +1,7 @@
 /*
     Script: extension-survey.js
     Description: RW program extension survey for FPs and SEDOs
-    Status: in progress
+    Status: complete
 */
 
 // load in general functions
