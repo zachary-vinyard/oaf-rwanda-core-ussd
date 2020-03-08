@@ -52,6 +52,7 @@ addInputHandler('demo_question', function(input){
         // initialize variables for tracking place in impact quiz
         state.vars.survey_type = 'trn';
         state.vars.step = 1;
+        state.vars.num_correct = 0;
         // ask first quiz question
         var ask = require('./lib/imp-ask-question');
         ask();
