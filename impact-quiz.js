@@ -17,6 +17,7 @@ global.main = function(){
     state.vars.step = 1;
     // display welcome message and first demographic question
     sayText(msgs('imp_main_splash'));
+    var survey_table = project.getOrCreateDataTable('ag_survey_questions');
     var question_cursor = survey_table.queryRows({'vars' : {'question_id' : state.vars.survey_type + state.vars.step}});
     var question = question_cursor.next();
     sayText(msgs(question.vars.question_text, {}, lang));
