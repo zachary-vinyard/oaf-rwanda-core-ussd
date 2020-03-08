@@ -4,13 +4,9 @@
     Status: in progress
 */
 
-// load in general functions
+// load in relevant modules
 var msgs = require('./lib/msg-retrieve');
 var admin_alert = require('./lib/admin-alert');
-var populate_menu = require('./lib/populate-menu');
-var get_menu_option = require('./lib/get-menu-option');
-
-// load in impact-specific modules
 var reinit = require('./lib/ext-reinitization');
 var checkstop = require('./lib/ext-check-stop');
 
@@ -19,11 +15,14 @@ global.main = function(){
     // initialize counter variables
     state.vars.survey_type = 'dem';
     state.vars.step = 1;
-    // display welcome message and start demo questions
-    sayText(msgs('agr_main_splash'));
-    promptDigits('demo_question', {   'submitOnHash' : false,
-                                        'maxDigits'    : max_digits_for_input,
-                                        'timeout'      : timeout_length });
+    // display welcome message and first demographic question
+    sayText(msgs('imp_main_splash'));
+    var question_cursor = survey_table.queryRows({'vars' : {'question_id' : state.vars.survey_type + state.vars.step}});
+    var question = question_cursor.next();
+    sayText(msgs(question.vars.question_text, {}, lang));
+    promptDigits('demo_question', {'submitOnHash' : false, 
+                                        'maxDigits'    : project.vars.max_digits_for_input,
+                                        'timeout'      : project.vars.timeout_length});
 }
 
 // input handler for demographic questions
@@ -45,7 +44,7 @@ addInputHandler('demo_question', function(input){
         sayText(msgs(question.vars.question_text, {}, lang));
         promptDigits('demo_question', {'submitOnHash' : false, 
                                             'maxDigits'    : project.vars.max_digits_for_input,
-                                            'timeout'      : timeout_length});
+                                            'timeout'      : project.vars.timeout_length});
     }
     else{
         // initialize variables for tracking place in impact quiz
@@ -56,7 +55,7 @@ addInputHandler('demo_question', function(input){
         sayText(msgs(question.vars.question_text, {}, lang));
         promptDigits('quiz_question', {'submitOnHash' : false, 
                                             'maxDigits'    : project.vars.max_digits_for_input,
-                                            'timeout'      : timeout_length});
+                                            'timeout'      : project.vars.timeout_length});
     }
 });
 
@@ -80,7 +79,7 @@ addInputHandler('quiz_question', function(input){
         return null;
     }
     else{
-        sayText(msgs('closing_message', {   '$FEEDBACK'    : feedback,
+        sayText(msgs('imp_closing_message', {   '$FEEDBACK'    : feedback,
                                             '$NUM_CORRECT' : state.vars.num_correct}, lang));
         return null;
     }
