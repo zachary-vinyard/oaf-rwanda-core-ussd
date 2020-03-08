@@ -21,7 +21,7 @@ global.main = function(){
     var survey_table = project.getOrCreateDataTable('ag_survey_questions');
     var question_cursor = survey_table.queryRows({'vars' : {'question_id' : state.vars.survey_type + state.vars.step}});
     var question = question_cursor.next();
-    sayText(msgs(question.vars.question_text, {}, lang));
+    sayText(question.vars.question_text);
     promptDigits('demo_question', {'submitOnHash' : false, 
                                         'maxDigits'    : project.vars.max_digits_for_input,
                                         'timeout'      : project.vars.timeout_length});
@@ -43,7 +43,7 @@ addInputHandler('demo_question', function(input){
     if(state.vars.step < survey_length){
         var question_cursor = survey_table.queryRows({'vars' : {'question_id' : state.vars.survey_type + state.vars.step}});
         var question = question_cursor.next();
-        sayText(msgs(question.vars.question_text, {}, lang));
+        sayText(question.vars.question_text);
         promptDigits('demo_question', {'submitOnHash' : false, 
                                             'maxDigits'    : project.vars.max_digits_for_input,
                                             'timeout'      : project.vars.timeout_length});
