@@ -4,11 +4,12 @@
     Status: in progress
 */
 
-// load in relevant modules
+// load in relevant modules and set constants
 var msgs = require('./lib/msg-retrieve');
 var admin_alert = require('./lib/admin-alert');
 var reinit = require('./lib/ext-reinitization');
 var checkstop = require('./lib/ext-check-stop');
+const lang = 'ki';
 
 // display welcome message and prompt user to run through list of demographic questions
 global.main = function(){
