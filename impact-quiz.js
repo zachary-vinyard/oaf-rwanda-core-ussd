@@ -10,6 +10,8 @@ var admin_alert = require('./lib/admin-alert');
 var reinit = require('./lib/ext-reinitization');
 var checkstop = require('./lib/ext-check-stop');
 const lang = 'ki';
+const max_char = 100;
+const demo_timeout = 180;
 
 // display welcome message and prompt user to run through list of demographic questions
 global.main = function(){
@@ -23,8 +25,8 @@ global.main = function(){
     var question = question_cursor.next();
     sayText(question.vars.question_text);
     promptDigits('demo_question', {'submitOnHash' : false, 
-                                        'maxDigits'    : project.vars.max_digits_for_input,
-                                        'timeout'      : project.vars.timeout_length});
+                                        'maxDigits'    : max_char,
+                                        'timeout'      : demo_timeout});
 }
 
 // input handler for demographic questions
@@ -45,8 +47,8 @@ addInputHandler('demo_question', function(input){
         var question = question_cursor.next();
         sayText(question.vars.question_text);
         promptDigits('demo_question', {'submitOnHash' : false, 
-                                            'maxDigits'    : project.vars.max_digits_for_input,
-                                            'timeout'      : project.vars.timeout_length});
+                                            'maxDigits'    : max_char,
+                                            'timeout'      : demo_timeout});
     }
     else{
         // initialize variables for tracking place in impact quiz
