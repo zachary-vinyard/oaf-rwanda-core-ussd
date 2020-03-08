@@ -40,7 +40,7 @@ addInputHandler('demo_question', function(input){
     state.vars.step += 1;
 
     // if there are remaining questions, ask the next one; else ask the first quiz question
-    if(state.vars.step < survey_length){
+    if(state.vars.step <= survey_length){
         var question_cursor = survey_table.queryRows({'vars' : {'question_id' : state.vars.survey_type + state.vars.step}});
         var question = question_cursor.next();
         sayText(question.vars.question_text);
@@ -75,7 +75,7 @@ addInputHandler('quiz_question', function(input){
     state.vars.step += 1;
 
     // ask next question or display score if complete
-    if(state.vars.step < survey_length){
+    if(state.vars.step <= survey_length){
         var ask = require('./lib/imp-ask-question');
         ask(feedback);
         return null;
