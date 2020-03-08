@@ -81,6 +81,7 @@ addInputHandler('quiz_question', function(input){
         return null;
     }
     else{
+        call.vars.status = 'complete';
         sayText(msgs('imp_closing_message', {   '$FEEDBACK'    : feedback,
                                             '$NUM_CORRECT' : state.vars.num_correct}, lang));
         return null;
