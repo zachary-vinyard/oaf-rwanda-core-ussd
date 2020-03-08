@@ -54,7 +54,7 @@ addInputHandler('demo_question', function(input){
         state.vars.step = 1;
         // ask first quiz question
         var question = survey_table.queryRows({'vars' : {'question_id' : state.vars.survey_type + state.vars.step}}).next();
-        sayText(msgs(question.vars.question_text, {}, lang));
+        sayText(question.vars.question_text);
         promptDigits('quiz_question', {'submitOnHash' : false, 
                                             'maxDigits'    : project.vars.max_digits_for_input,
                                             'timeout'      : project.vars.timeout_length});
