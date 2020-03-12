@@ -40,7 +40,7 @@ addInputHandler('geo_selection_1', function(input){
         sayText(msgs('geo_selections', selection_menu));
         promptDigits('geo_selection_2', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
-    else if (input == 99){ // exit
+    else if (input === 99){ // exit
         sayText(msgs('exit'));
         stopRules();
     }
@@ -52,7 +52,7 @@ addInputHandler('geo_selection_1', function(input){
 });
 
 // input handler for district selection
-addInputHandler('district', function(input){
+addInputHandler('geo_selection_2', function(input){
     state.vars.current_step = 'geo_selection_2';
     input = parseInt(input.replace(/\D/g,''));//cleans out anything nonnumeric in the input - really, input should only be digits 1 -?
     var province = parseInt(state.vars.province);
