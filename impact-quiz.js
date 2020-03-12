@@ -5,59 +5,76 @@
 */
 
 // load in relevant modules and set constants
-var msgs = require('./lib/msg-retrieve');
+var geo_select = require('./lib/cta-geo-select');
+var geo_process = require('./lib/cta-geo-string-processer');
+var geo_data = require('./dat/rwanda-gov-geography');
 var admin_alert = require('./lib/admin-alert');
 var reinit = require('./lib/ext-reinitization');
 var checkstop = require('./lib/ext-check-stop');
+var msgs = require('./lib/msg-retrieve');
+
+// initialize constants
 const lang = 'ki';
-const max_char = 100;
-const demo_timeout = 180;
 
 // display welcome message and prompt user to run through list of demographic questions
 global.main = function(){
-    // initialize counter variables
-    state.vars.survey_type = 'dem';
-    state.vars.step = 1;
-    // display welcome message and first demographic question
-    sayText(msgs('imp_main_splash'));
-    var survey_table = project.getOrCreateDataTable('ag_survey_questions');
-    var question_cursor = survey_table.queryRows({'vars' : {'question_id' : state.vars.survey_type + state.vars.step}});
-    var question = question_cursor.next();
-    sayText(question.vars.question_text);
-    promptDigits('demo_question', {'submitOnHash' : false, 
-                                        'maxDigits'    : max_char,
-                                        'timeout'      : demo_timeout});
+    // display welcome message and first geo question
+    var geo_list = geo_process(geo_data);
+    state.vars.current_menu = JSON.stringify(geo_list);
+    sayText(msgs('external_splash', geo_list));
+    promptDigits('geo_selection_1', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
 }
 
-// input handler for demographic questions
-addInputHandler('demo_question', function(input){
-    // ADD HERE: steps to verify input format - text only? matches something in DB? meets max/min requirements
-    // save status and response in session data
-    call.vars.status = state.vars.survey_type + state.vars.step;
-    call.vars[call.vars.status] = input;
-
-    // initialize variables and table
-    var survey_length = 3; // pull direct from table
-    var survey_table = project.getOrCreateDataTable('ag_survey_questions');
-    state.vars.step += 1;
-
-    // if there are remaining questions, ask the next one; else ask the first quiz question
-    if(state.vars.step <= survey_length){
-        var question_cursor = survey_table.queryRows({'vars' : {'question_id' : state.vars.survey_type + state.vars.step}});
-        var question = question_cursor.next();
-        sayText(question.vars.question_text);
-        promptDigits('demo_question', {'submitOnHash' : false, 
-                                            'maxDigits'    : max_char,
-                                            'timeout'      : demo_timeout});
+// input handler for region selection
+addInputHandler('geo_selection_1', function(input){
+    state.vars.current_step = 'geo_selection_1'
+    input = parseInt(input.replace(/\D/g,''));//cleans out anything nonnumeric in the input - really, input should only be digits 1 -?
+    var keys = Object.keys(geo_data);
+    if(input > 0 && input <= keys.length){
+        call.vars.region = input;
+        var selection = input - 1;
+        state.vars.province = selection;
+        state.vars.province_name = keys[selection];
+        geo_data = geo_select(selection, geo_data)
+        var selection_menu = geo_process(geo_data);
+        state.vars.current_menu = JSON.stringify(selection_menu);
+        sayText(msgs('geo_selections', selection_menu));
+        promptDigits('geo_selection_2', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
-    else{
-        // initialize variables for tracking place in impact quiz
-        state.vars.survey_type = 'trn';
-        state.vars.step = 1;
-        state.vars.num_correct = 0;
-        // ask first quiz question
-        var ask = require('./lib/imp-ask-question');
-        ask();
+    else if (input == 99){ // exit
+        sayText(msgs('exit'));
+        stopRules();
+    }
+    else{ // selection not within parameters
+        sayText(msgs('invalid_geo_input'));
+        promptDigits('repeat_geo_input', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+    }
+});
+
+// input handler for district selection
+addInputHandler('geo_selection_2', function(input){
+    state.vars.current_step = 'geo_selection_2';
+    input = parseInt(input.replace(/\D/g,''));//cleans out anything nonnumeric in the input - really, input should only be digits 1 -?
+    var province = parseInt(state.vars.province);
+    geo_data = geo_select(province, geo_data);
+    var keys = Object.keys(geo_data);
+    if(input > 0 && input <= keys.length){
+        call.vars.district = input;
+                // initialize variables for tracking place in impact quiz
+                state.vars.survey_type = 'trn';
+                state.vars.step = 1;
+                state.vars.num_correct = 0;
+                // ask first quiz question
+                var ask = require('./lib/imp-ask-question');
+                ask();
+    }
+    else if (input == 99){ // exit
+        sayText(msgs('exit')); // need to add this to the list
+        stopRules();
+    }
+    else{ // selection not within parameters
+        sayText(msgs('invalid_geo_input'));
+        promptDigits('repeat_geo_input', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
 });
 
