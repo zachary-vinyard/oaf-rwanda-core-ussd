@@ -36,7 +36,7 @@ addInputHandler('geo_selection_1', function(input){
         state.vars.province = selection;
         state.vars.province_name = keys[selection];
         geo_data = geo_select(selection, geo_data)
-        var selection_menu = geo_process(geo_data);
+        state.vars.selection_menu = geo_process(geo_data);
         state.vars.current_menu = JSON.stringify(selection_menu);
         sayText(msgs('geo_selections', selection_menu));
         promptDigits('geo_selection_2', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
@@ -47,7 +47,7 @@ addInputHandler('geo_selection_1', function(input){
     }
     else{ // selection not within parameters
         sayText(msgs('imp_invalid_geo'));
-        sayText(msgs('geo_selections', selection_menu));
+        sayText(msgs('geo_selections', JSON.parse(state.vars.current_menu)));
         promptDigits('geo_selection_1', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
 });
@@ -75,7 +75,7 @@ addInputHandler('geo_selection_2', function(input){
     }
     else{ // selection not within parameters
         sayText(msgs('imp_invalid_geo'));
-        sayText(msgs('geo_selections', selection_menu));
+        sayText(msgs('geo_selections', JSON.parse(state.vars.current_menu)));
         promptDigits('geo_selection_2', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
 });
