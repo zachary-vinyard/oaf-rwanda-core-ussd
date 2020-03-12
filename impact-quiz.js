@@ -21,7 +21,7 @@ global.main = function(){
     // display welcome message and first geo question
     var geo_list = geo_process(geo_data);
     state.vars.current_menu = JSON.stringify(geo_list);
-    sayText(msgs('external_splash', geo_list));
+    sayText(msgs('imp_main_splash', geo_list));
     promptDigits('geo_selection_1', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
 }
 
@@ -46,8 +46,9 @@ addInputHandler('geo_selection_1', function(input){
         stopRules();
     }
     else{ // selection not within parameters
-        sayText(msgs('invalid_geo_input'));
-        promptDigits('repeat_geo_input', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+        sayText(msgs('imp_invalid_geo'));
+        sayText(msgs('geo_selections', selection_menu));
+        promptDigits('geo_selection_1', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
 });
 
@@ -73,8 +74,9 @@ addInputHandler('geo_selection_2', function(input){
         stopRules();
     }
     else{ // selection not within parameters
-        sayText(msgs('invalid_geo_input'));
-        promptDigits('repeat_geo_input', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+        sayText(msgs('imp_invalid_geo'));
+        sayText(msgs('geo_selections', selection_menu));
+        promptDigits('geo_selection_2', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
 });
 
@@ -82,6 +84,10 @@ addInputHandler('geo_selection_2', function(input){
 addInputHandler('quiz_question', function(input){
     // test and store input response
     input = parseInt(input.replace(/\s/g,''));
+    if (input === 99){ // exit
+        sayText(msgs('exit'));
+        stopRules();
+    }
     call.vars.status = state.vars.survey_type + state.vars.step;
     call.vars[call.vars.status] = input;
     var survey_length = 8; // pull direct from table
