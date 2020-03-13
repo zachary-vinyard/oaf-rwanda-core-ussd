@@ -67,11 +67,10 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
 
 addInputHandler('pin_verification_step', function(input){
     var pin_verify = require('./lib/pin-verify');
-    // if user selects a reset option, move them to SQ1
+    // if user selects a reset option, start the security question process
     if(input === '99'){
-        state.vars.security_attempts = 0;
-        sayText(msgs('security_question1', {}, lang));
-        promptDigits('security_question1', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
+        sayText(msgs('pin_security_message', {}, lang));
+        promptDigits('security_question_intro', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
     }
     // if pin is correct, display core splash menu
     else if(pin_verify(input, state.vars.account_number)){
@@ -99,6 +98,12 @@ addInputHandler('pin_verification_step', function(input){
             stopRules();
         }
     }
+})
+
+addInputHandler('security_question_intro', function(input){
+    state.vars.security_attempts = 0;
+    sayText(msgs('security_question1', {}, lang));
+    promptDigits('security_question1', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
 })
 
 addInputHandler('security_question1', function(input){
