@@ -102,7 +102,7 @@ addInputHandler('pin_verification_step', function(input){
 addInputHandler('security_question_intro', function(){
     state.vars.security_attempts = 0;
     sayText(msgs('pin_security_question1', {}, lang));
-    promptDigits('security_question1', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
+    promptDigits('security_question1', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
 })
 
 addInputHandler('security_question1', function(input){
@@ -119,7 +119,7 @@ addInputHandler('security_question1', function(input){
         if(state.vars.security_attempts < 2){
             state.vars.security_attempts = state.vars.security_attempts + 1;
             sayText(msgs('pin_invalid_sq1', {}, lang));
-            promptDigits('security_question1', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
+            promptDigits('security_question1', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
         }
         else{
             sayText(msgs('pin_security_attempts_exceeded', {}, lang));
