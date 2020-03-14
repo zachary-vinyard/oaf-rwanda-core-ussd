@@ -119,7 +119,7 @@ addInputHandler('security_question1', function(input){
     console.log('first_year: ' + first_year + ' type: ' + typeof(first_year));
     if(input === first_year){
         sayText(msgs('pin_security_question2', {}, lang));
-        promptDigits('security_question2', {'submitOnHash' : false, 'maxDigits' : 60, 'timeout' : 360});
+        promptDigits('security_question2', {'submitOnHash' : false, 'maxDigits' : 3, 'timeout' : 360});
     }
     else{
         if(state.vars.security_attempts < 2){
@@ -141,9 +141,8 @@ addInputHandler('security_question2', function(input){
     var group_name = JSON.parse(state.vars.client_json).GroupName;
     var group_letters = group_name.substring(0,3);
     // if correct, ask client the next question
-    console.log('Group name is ' + group_name);
-    console.log('group_letters: ' + group_letters + ' input: ' + input);
-    if(input.toUpperCase === group_letters.toUpperCase){
+    console.log('group_letters: ' + group_letters.toUpperCase() + ' input: ' + input.toUpperCase());
+    if(input.toUpperCase() === group_letters.toUpperCase()){
         sayText(msgs('pin_security_question2', {}, lang));
         promptDigits('security_question2', {'submitOnHash' : false, 'maxDigits' : 60, 'timeout' : 360});
     }
