@@ -135,8 +135,7 @@ addInputHandler('security_question1', function(input){
 })
 
 addInputHandler('security_question2', function(input){
-    input = parseInt(input.replace(/\s/g,''));
-    input = input;
+    input = input.replace(/[^a-z_]/ig,'');
     // verify response to security question 2
     var group_name = JSON.parse(state.vars.client_json).GroupName;
     var group_letters = group_name.substring(0,3);
@@ -160,6 +159,7 @@ addInputHandler('security_question2', function(input){
 })
 
 addInputHandler('security_question3', function(input){
+    input = input.replace(/[^a-z_]/ig,'');
     // save their response to the question
     var pin_table = project.getOrCreateDataTable(project.vars.pin_table);
     var pin_cursor = pin_table.queryRows({vars: {'account_number': state.vars.account_number}});
