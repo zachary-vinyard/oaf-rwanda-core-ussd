@@ -50,7 +50,7 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
             else{
                 sayText(msgs('pin_unset', {}, lang));
                 sayText(msgs('pin_security_message', {}, lang));
-                promptDigits('security_question_intro', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
+                promptDigits('security_question_intro', {'submitOnHash' : false, 'maxDigits' : 1, 'timeout' : 180});
             }
         }
         else{
@@ -70,7 +70,7 @@ addInputHandler('pin_verification_step', function(input){
     // if user selects a reset option, start the security question process
     if(input === '99'){
         sayText(msgs('pin_security_message', {}, lang));
-        promptDigits('security_question_intro', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
+        promptDigits('security_question_intro', {'submitOnHash' : false, 'maxDigits' : 1, 'timeout' : 180});
     }
     // if pin is correct, display core splash menu
     else if(pin_verify(input, state.vars.account_number)){
@@ -107,11 +107,11 @@ addInputHandler('security_question_intro', function(){
 
 addInputHandler('security_question1', function(input){
     input = parseInt(input.replace(/\D/g,''));
-    // verify response to security question 1: seasons (years?) with TUBURA
-    var num_seasons = JSON.parse(state.vars.client_json).BalanceHistory.length; // is this correct
+    // verify response to security question 1: first year with TUBURA
+    var enroll_date = JSON.parse(state.vars.client_json).EnrollmentDate; // is this correct
     // if correct, ask client to reset their PIN
-    console.log('num seasons: ' + num_seasons + ' type: ' + typeof(num_seasons));
-    if(input === num_seasons){
+    console.log('enroll_date: ' + enroll_date + ' type: ' + typeof(enroll_date));
+    if(input === enroll_date){
         sayText(msgs('pin_security_question2', {}, lang));
         promptDigits('security_question2', {'submitOnHash' : false, 'maxDigits' : 60, 'timeout' : 360});
     }
