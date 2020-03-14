@@ -118,6 +118,7 @@ addInputHandler('security_question1', function(input){
     // if correct, ask client the next question
     console.log('first_year: ' + first_year + ' type: ' + typeof(first_year));
     if(input === first_year){
+        state.vars.security_attempts = 0;
         sayText(msgs('pin_security_question2', {}, lang));
         promptDigits('security_question2', {'submitOnHash' : false, 'maxDigits' : 3, 'timeout' : 360});
     }
@@ -129,7 +130,6 @@ addInputHandler('security_question1', function(input){
         }
         else{
             sayText(msgs('pin_security_attempts_exceeded', {}, lang));
-            stopRules();
         }
     }
 })
@@ -142,18 +142,18 @@ addInputHandler('security_question2', function(input){
     // if correct, ask client the next question
     console.log('group_letters: ' + group_letters.toUpperCase() + ' input: ' + input.toUpperCase());
     if(input.toUpperCase() === group_letters.toUpperCase()){
+        state.vars.security_attempts = 0;
         sayText(msgs('pin_security_question3', {}, lang));
         promptDigits('security_question3', {'submitOnHash' : false, 'maxDigits' : 60, 'timeout' : 360});
     }
     else{
         if(state.vars.security_attempts < 2){
-            state.vars.security_attempts = state.vars.security_attempts + 1;
+            state.vars.security_attempts += 1;
             sayText(msgs('pin_incorrect_response', {}, lang));
             promptDigits('security_question1', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
         }
         else{
             sayText(msgs('pin_security_attempts_exceeded', {}, lang));
-            stopRules();
         }
     }
 })
@@ -162,21 +162,31 @@ addInputHandler('security_question3', function(input){
     input = input.replace(/[^a-z_]/ig,'');
     // save their response to the question
     var pin_table = project.getOrCreateDataTable(project.vars.pin_table);
-    var pin_cursor = pin_table.queryRows({vars: {'account_number': state.vars.account_number}});
-    if(pin_cursor.hasNext()){
-        var pin_row = pin_cursor.next();
+    var pin_row = pin_table.queryRows({vars: {'account_number': state.vars.account_number}}).next();
+    
+    // if user already has a response stored, verify against their response
+    if(pin_row.vars.security_response3){
+        if(input.toUpperCase() === pin_row.vars.security_response3.toUpperCase){
+            sayText(msgs('pin_reset', {}, lang));
+            promptDigits('pin_reset', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
+        }
+        else{
+            if(state.vars.security_attempts < 2){
+                state.vars.security_attempts += 1;
+                sayText(msgs('pin_incorrect_response', {}, lang));
+                promptDigits('security_question1', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
+            }
+            else{
+                sayText(msgs('pin_security_attempts_exceeded', {}, lang));
+            }
+        }
     }
     else{
-        var pin_row = pin_table.createRow({
-            vars : {
-                account_number : state.vars.account_number
-            }
-        });
+        pin_row.vars.security_response3 = input;
+        pin_row.save();
+        sayText(msgs('pin_reset', {}, lang));
+        promptDigits('pin_reset', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
     }
-    pin_row.vars.security_response3 = input;
-    pin_row.save();
-    sayText(msgs('pin_reset', {}, lang));
-    promptDigits('pin_reset', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
 })
 
 addInputHandler('pin_reset', function(input){
