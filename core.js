@@ -150,6 +150,26 @@ addInputHandler('security_question2', function(input){
     }
     pin_row.vars.security_response2 = input;
     pin_row.save();
+    sayText(msgs('pin_security_question3', {}, lang));
+    promptDigits('security_question3', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
+})
+
+addInputHandler('security_question3', function(input){
+    // save their response to the question
+    var pin_table = project.getOrCreateDataTable(project.vars.pin_table);
+    var pin_cursor = pin_table.queryRows({vars: {'account_number': state.vars.account_number}});
+    if(pin_cursor.hasNext()){
+        var pin_row = pin_cursor.next();
+    }
+    else{
+        var pin_row = pin_table.createRow({
+            vars : {
+                account_number : state.vars.account_number
+            }
+        });
+    }
+    pin_row.vars.security_response3 = input;
+    pin_row.save();
     sayText(msgs('pin_reset', {}, lang));
     promptDigits('pin_reset', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
 })
