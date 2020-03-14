@@ -55,8 +55,8 @@ addInputHandler('geo_selection_1', function(input){
 addInputHandler('geo_selection_2', function(input){
     state.vars.current_step = 'geo_selection_2';
     input = parseInt(input.replace(/\D/g,''));//cleans out anything nonnumeric in the input - really, input should only be digits 1 -?
-    var province = parseInt(state.vars.province);
-    geo_data = geo_select(province, geo_data);
+    var region = parseInt(state.vars.region);
+    geo_data = geo_select(region, geo_data);
     var keys = Object.keys(geo_data);
     if(input > 0 && input <= keys.length){
         var selection = input - 1;
