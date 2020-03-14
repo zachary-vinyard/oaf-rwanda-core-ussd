@@ -48,9 +48,9 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
                 }
             }
             else{
-                sayText(msgs('no_stored_pin', {}, lang));
-                sayText(msgs('security_question1', {}, lang));
-                promptDigits('security_question1', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
+                sayText(msgs('pin_unset', {}, lang));
+                sayText(msgs('pin_security_message', {}, lang));
+                promptDigits('security_question_intro', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
             }
         }
         else{
@@ -90,19 +90,18 @@ addInputHandler('pin_verification_step', function(input){
         if(state.vars.pin_attempts < 5){
             console.log('pin attempts: ' + state.vars.pin_attempts);
             state.vars.pin_attempts = state.vars.pin_attempts + 1;
-            sayText(msgs('incorrect_pin', {}, lang));
+            sayText(msgs('pin_incorrect_pin', {}, lang));
             promptDigits('pin_verification_step', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
         }
         else{
             sayText(msgs('pin_attempts_exceeded', {}, lang));
-            stopRules();
         }
     }
 })
 
-addInputHandler('security_question_intro', function(input){
+addInputHandler('security_question_intro', function(){
     state.vars.security_attempts = 0;
-    sayText(msgs('security_question1', {}, lang));
+    sayText(msgs('pin_security_question1', {}, lang));
     promptDigits('security_question1', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
 })
 
@@ -113,23 +112,23 @@ addInputHandler('security_question1', function(input){
     // if correct, ask client to reset their PIN
     console.log('num seasons: ' + num_seasons + ' type: ' + typeof(num_seasons));
     if(input === num_seasons){
-        sayText(msgs('pin_child_question', {}, lang));
-        promptDigits('security_response', {'submitOnHash' : false, 'maxDigits' : 60, 'timeout' : 360});
+        sayText(msgs('pin_security_question2', {}, lang));
+        promptDigits('security_question2', {'submitOnHash' : false, 'maxDigits' : 60, 'timeout' : 360});
     }
     else{
         if(state.vars.security_attempts < 2){
             state.vars.security_attempts = state.vars.security_attempts + 1;
-            sayText(msgs('incorrect_security_answer', {}, lang));
+            sayText(msgs('pin_invalid_sq1', {}, lang));
             promptDigits('security_question1', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
         }
         else{
-            sayText(msgs('security_attempts_exceeded', {}, lang));
+            sayText(msgs('pin_security_attempts_exceeded', {}, lang));
             stopRules();
         }
     }
 })
 
-addInputHandler('security_response', function(input){
+addInputHandler('security_question2', function(input){
     // save their response to the question
     var pin_table = project.getOrCreateDataTable(project.vars.pin_table);
     var pin_cursor = pin_table.queryRows({vars: {'account_number': state.vars.account_number}});
@@ -143,7 +142,7 @@ addInputHandler('security_response', function(input){
             }
         });
     }
-    pin_row.vars.child_name = input;
+    pin_row.vars.security_response2 = input;
     pin_row.save();
     sayText(msgs('reset_pin', {}, lang));
     promptDigits('pin_reset', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
@@ -158,7 +157,7 @@ addInputHandler('pin_reset', function(input){
     }
     else{
         state.vars.new_pin = input;
-        sayText(msgs('confirm_pin', {'$PIN' : input}, lang)); // move this to SMS?
+        sayText(msgs('pin_confirm_menu', {'$PIN' : input}, lang)); 
         promptDigits('pin_confirm', {'submitOnHash' : false, 'maxDigits' : 2, 'timeout' : 180});
     }
 })
@@ -185,7 +184,7 @@ addInputHandler('pin_confirm', function(input){
         promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
     }
     else{
-        sayText(msgs('reset_pin', {}, lang));
+        sayText(msgs('pin_reset', {}, lang));
         promptDigits('pin_reset', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
     }
 })
