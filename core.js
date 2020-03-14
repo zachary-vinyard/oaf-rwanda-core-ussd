@@ -113,9 +113,9 @@ addInputHandler('security_question_intro', function(){
 addInputHandler('security_question1', function(input){
     input = parseInt(input.replace(/\D/g,''));
     // verify response to security question 1: first year with TUBURA
-    var enroll_date = JSON.parse(state.vars.client_json).EnrollmentDate; // is this correct
+    var enroll_date = JSON.parse(state.vars.client_json).EnrollmentDate;
     var first_year = parseInt(enroll_date.substring(0,4));
-    // if correct, ask client to reset their PIN
+    // if correct, ask client the next question
     console.log('first_year: ' + first_year + ' type: ' + typeof(first_year));
     if(input === first_year){
         sayText(msgs('pin_security_question2', {}, lang));
@@ -135,23 +135,27 @@ addInputHandler('security_question1', function(input){
 })
 
 addInputHandler('security_question2', function(input){
-    // save their response to the question
-    var pin_table = project.getOrCreateDataTable(project.vars.pin_table);
-    var pin_cursor = pin_table.queryRows({vars: {'account_number': state.vars.account_number}});
-    if(pin_cursor.hasNext()){
-        var pin_row = pin_cursor.next();
+    input = parseInt(input.replace(/\s/g,''));
+    input = input;
+    // verify response to security question 2
+    var group_name = JSON.parse(state.vars.client_json).GroupName;
+    var group_letters = group_name.substring(0,3);
+    // if correct, ask client the next question
+    if(input.toUpperCase === group_letters.toUpperCase){
+        sayText(msgs('pin_security_question2', {}, lang));
+        promptDigits('security_question2', {'submitOnHash' : false, 'maxDigits' : 60, 'timeout' : 360});
     }
     else{
-        var pin_row = pin_table.createRow({
-            vars : {
-                account_number : state.vars.account_number
-            }
-        });
+        if(state.vars.security_attempts < 2){
+            state.vars.security_attempts = state.vars.security_attempts + 1;
+            sayText(msgs('pin_invalid_sq1', {}, lang));
+            promptDigits('security_question1', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
+        }
+        else{
+            sayText(msgs('pin_security_attempts_exceeded', {}, lang));
+            stopRules();
+        }
     }
-    pin_row.vars.security_response2 = input;
-    pin_row.save();
-    sayText(msgs('pin_security_question3', {}, lang));
-    promptDigits('security_question3', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
 })
 
 addInputHandler('security_question3', function(input){
