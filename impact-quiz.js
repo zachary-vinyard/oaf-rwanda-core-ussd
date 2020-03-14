@@ -7,7 +7,7 @@
 // load in relevant modules and set constants
 var geo_select = require('./lib/cta-geo-select');
 var geo_process = require('./lib/cta-geo-string-processer');
-var geo_data = require('./dat/rwanda-gov-geography');
+var geo_data = require('./dat/rwanda-tubura-geography');
 var reinit = require('./lib/imp-reinitization');
 var msgs = require('./lib/msg-retrieve');
 
@@ -31,9 +31,9 @@ addInputHandler('geo_selection_1', function(input){
     var keys = Object.keys(geo_data);
     if(input > 0 && input <= keys.length){
         var selection = input - 1;
-        state.vars.province = selection;
-        state.vars.province_name = keys[selection];
-        call.vars.province = state.vars.province_name;
+        state.vars.region = selection;
+        state.vars.region_name = keys[selection];
+        call.vars.region = state.vars.region_name;
         geo_data = geo_select(selection, geo_data)
         var selection_menu = geo_process(geo_data);
         state.vars.current_menu = JSON.stringify(selection_menu);
