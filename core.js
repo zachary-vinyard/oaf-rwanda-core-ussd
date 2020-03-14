@@ -145,7 +145,7 @@ addInputHandler('security_question2', function(input){
     }
     pin_row.vars.security_response2 = input;
     pin_row.save();
-    sayText(msgs('reset_pin', {}, lang));
+    sayText(msgs('pin_reset', {}, lang));
     promptDigits('pin_reset', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
 })
 
