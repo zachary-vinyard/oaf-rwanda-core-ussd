@@ -166,7 +166,7 @@ addInputHandler('security_question3', function(input){
     
     // if user already has a response stored, verify against their response
     if(pin_row.vars.security_response3){
-        if(input.toUpperCase() === pin_row.vars.security_response3.toUpperCase){
+        if(input.toUpperCase() === pin_row.vars.security_response3.toUpperCase()){
             sayText(msgs('pin_reset', {}, lang));
             promptDigits('pin_reset', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
         }
