@@ -46,6 +46,11 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
                     sayText(msgs('pin_verification', {}, lang));
                     promptDigits('pin_verification_step', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
                 }
+                else{
+                    sayText(msgs('pin_unset', {}, lang));
+                    sayText(msgs('pin_security_message', {}, lang));
+                    promptDigits('security_question_intro', {'submitOnHash' : false, 'maxDigits' : 1, 'timeout' : 180});
+                }
             }
             else{
                 sayText(msgs('pin_unset', {}, lang));
