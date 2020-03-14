@@ -142,8 +142,8 @@ addInputHandler('security_question2', function(input){
     // if correct, ask client the next question
     console.log('group_letters: ' + group_letters.toUpperCase() + ' input: ' + input.toUpperCase());
     if(input.toUpperCase() === group_letters.toUpperCase()){
-        sayText(msgs('pin_security_question2', {}, lang));
-        promptDigits('security_question2', {'submitOnHash' : false, 'maxDigits' : 60, 'timeout' : 360});
+        sayText(msgs('pin_security_question3', {}, lang));
+        promptDigits('security_question3', {'submitOnHash' : false, 'maxDigits' : 60, 'timeout' : 360});
     }
     else{
         if(state.vars.security_attempts < 2){
