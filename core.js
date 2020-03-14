@@ -123,8 +123,8 @@ addInputHandler('security_question1', function(input){
         promptDigits('security_question2', {'submitOnHash' : false, 'maxDigits' : 3, 'timeout' : 360});
     }
     else{
+        state.vars.security_attempts = state.vars.security_attempts + 1;
         if(state.vars.security_attempts < 2){
-            state.vars.security_attempts = state.vars.security_attempts + 1;
             sayText(msgs('pin_invalid_sq1', {}, lang));
             promptDigits('security_question1', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
         }
@@ -147,8 +147,8 @@ addInputHandler('security_question2', function(input){
         promptDigits('security_question3', {'submitOnHash' : false, 'maxDigits' : 60, 'timeout' : 360});
     }
     else{
+        state.vars.security_attempts += 1;
         if(state.vars.security_attempts < 2){
-            state.vars.security_attempts += 1;
             sayText(msgs('pin_incorrect_response', {}, lang));
             promptDigits('security_question2', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
         }
@@ -171,8 +171,8 @@ addInputHandler('security_question3', function(input){
             promptDigits('pin_reset', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
         }
         else{
+            state.vars.security_attempts += 1;
             if(state.vars.security_attempts < 2){
-                state.vars.security_attempts += 1;
                 sayText(msgs('pin_incorrect_response', {}, lang));
                 promptDigits('security_question3', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
             }
