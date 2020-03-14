@@ -150,7 +150,7 @@ addInputHandler('security_question2', function(input){
         if(state.vars.security_attempts < 2){
             state.vars.security_attempts += 1;
             sayText(msgs('pin_incorrect_response', {}, lang));
-            promptDigits('security_question1', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
+            promptDigits('security_question2', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
         }
         else{
             sayText(msgs('pin_security_attempts_exceeded', {}, lang));
@@ -174,7 +174,7 @@ addInputHandler('security_question3', function(input){
             if(state.vars.security_attempts < 2){
                 state.vars.security_attempts += 1;
                 sayText(msgs('pin_incorrect_response', {}, lang));
-                promptDigits('security_question1', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
+                promptDigits('security_question3', {'submitOnHash' : false, 'maxDigits' : 4, 'timeout' : 180});
             }
             else{
                 sayText(msgs('pin_security_attempts_exceeded', {}, lang));
