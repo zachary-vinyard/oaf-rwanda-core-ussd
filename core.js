@@ -109,7 +109,7 @@ addInputHandler('security_question1', function(input){
     input = parseInt(input.replace(/\D/g,''));
     // verify response to security question 1: first year with TUBURA
     var enroll_date = JSON.parse(state.vars.client_json).EnrollmentDate; // is this correct
-    var first_year = enroll_date.substring(0,4);
+    var first_year = parseInt(enroll_date.substring(0,4));
     // if correct, ask client to reset their PIN
     console.log('first_year: ' + first_year + ' type: ' + typeof(first_year));
     if(input === first_year){
