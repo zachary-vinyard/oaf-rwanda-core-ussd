@@ -11,5 +11,5 @@ global.main = function () {
 };
 
 addInputHandler('account_number_splash', function(input){
-    sayText(input);
+    sayText('you have entered'+input);
 });
