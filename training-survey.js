@@ -10,6 +10,6 @@ global.main = function () {
                                             'timeout'      : 180 });
 };
 
-addInputHandler('ext_main_splash', function(input){
+addInputHandler('account_number_splash', function(input){
     sayText(input);
 });
