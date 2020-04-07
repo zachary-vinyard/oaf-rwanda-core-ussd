@@ -58,7 +58,7 @@ addInputHandler('district_selection', function(input){
         state.vars.step = 1;
         state.vars.num_correct = 0;
         // ask first quiz question
-        //var ask = require('./lib/imp-ask-question');
+        var ask = require('./lib/training-ask-question');
         //ask();
         sayText('The question id is : '+ state.id);
     }
@@ -70,5 +70,36 @@ addInputHandler('district_selection', function(input){
         sayText(msgs('imp_invalid_geo'));
         sayText(msgs('geo_selections', JSON.parse(state.vars.current_menu)));
         promptDigits('district selection', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+    }
+});
+
+// input handler for survey questions
+addInputHandler('quiz_question', function(input){
+    // test and store input response
+    input = parseInt(input.replace(/\s/g,''));
+    if (input === 99){ // exit
+        sayText(msgs('exit'));
+        stopRules();
+    }
+    call.vars.status = state.vars.survey_type + state.vars.step;
+    call.vars[call.vars.status] = input;
+    var survey_length = 8; // pull direct from table
+
+    // verify response and retrieve relevant feedback string
+    //var verify = require('./lib/imp-answer-verify');
+    //var feedback = verify(input);
+    state.vars.step += 1;
+
+    // ask next question or display score if complete
+    if(state.vars.step <= survey_length){
+        var ask = require('./lib/imp-ask-question');
+        ask();
+        return null;
+    }
+    else{
+        call.vars.status = 'complete';
+        sayText(msgs('imp_closing_message', {   '$FEEDBACK'    : feedback,
+                                            '$NUM_CORRECT' : state.vars.num_correct}, lang));
+        return null;
     }
 });
