@@ -141,10 +141,11 @@ addInputHandler('cor_menu_select', function(input){
         // translate variables into indices
         var district = Object.keys(geo_mm_data).indexOf(state.vars.client_district);
         var site = Object.keys(geo_select(district, geo_mm_data)).indexOf(state.vars.client_site);
-        // generate phone numbers within client's site and display
+        // generate phone numbers within client's site 
         var geo_data = geo_select(site, geo_select(district, geo_mm_data));
         var selection_menu = geo_process(geo_data);
-        state.vars.current_menu = JSON.stringify(selection_menu);
+        state.vars.current_menu = selection_menu;
+        // display menu of agent phone numbers
         sayText(msgs('mml_display_agents', selection_menu));
         promptDigits('mml_agent_display', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
@@ -160,21 +161,21 @@ addInputHandler('cor_menu_select', function(input){
 addInputHandler('mml_agent_display', function(input){
     state.vars.current_step = 'mml_agent_display';
     input = parseInt(input.replace(/\D/g,''));
+    // generate current branch and keys
     var district = Object.keys(geo_mm_data).indexOf(state.vars.client_district);
     var site = Object.keys(geo_select(district, geo_mm_data)).indexOf(state.vars.client_site);
     var geo_data = geo_select(site, geo_select(district, geo_mm_data));
     var keys = Object.keys(geo_data);
+    // if selection is within parameters, display agent information; user can click to return to main menu
     if(input > 0 && input <= keys.length){
         var agent = geo_select(input, geo_data);
         sayText(msgs('mml_agent_display', {'$NAME' : agent['agent_name'], '$PN1' : keys[input], '$PN2' : agent['agent_pn2']}));
         promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
-    else if (input == 99){ // exit
-        sayText(msgs('exit')); // need to add this to the list
-        stopRules();
-    }
-    else{ // selection not within parameters
-        sayText(msgs('invalid_geo_input'));
+    // if input is outside of parameters, display error message and prompt selection again
+    else{
+        sayText(msgs('mml_invalid_geo_input'));
+        sayText(msgs('mml_display_agents', state.vars.current_menu));
         promptDigits('mml_agent_display', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
 });
