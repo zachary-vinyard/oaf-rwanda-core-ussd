@@ -8,6 +8,11 @@ var admin_alert = require('./lib/admin-alert'); //global admin alerter
 var get_menu_option = require('./lib/get-menu-option');
 var populate_menu = require('./lib/populate-menu');
 
+// load in geo modules and data for locator services
+var geo_select = require('./lib/cta-geo-select');
+var geo_process = require('./lib/cta-geo-string-processer');
+var geo_mm_data = require('./dat/mm-agent-geography');
+
 //options
 //var settings_table = project.getOrCreateDataTable('ussd_settings'); //removing this to account for project variable preference
 const lang = project.vars.cor_lang;
@@ -132,7 +137,11 @@ addInputHandler('cor_menu_select', function(input){
         }
     }
     else if(selection === 'mm_locator'){
-        // prompt them to enter their district
+        // prompt them to enter their region
+        var geo_list = geo_process(geo_mm_data);
+        state.vars.current_menu = JSON.stringify(geo_list);
+        sayText(msgs('mml_main_splash', geo_list));
+        promptDigits('geo_selection_1', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
     else{
         var current_menu = msgs(selection, opts, lang);
@@ -140,6 +149,125 @@ addInputHandler('cor_menu_select', function(input){
         sayText(current_menu);
         promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
         return null;
+    }
+});
+addInputHandler('geo_selection_1', function(input){
+    state.vars.current_step = 'geo_selection_1'
+    input = parseInt(input.replace(/\D/g,''));//cleans out anything nonnumeric in the input - really, input should only be digits 1 -?
+    var keys = Object.keys(geo_data);
+    if(input > 0 && input <= keys.length){
+        var selection = input - 1;
+        state.vars.province = selection;
+        state.vars.province_name = keys[selection];
+        client_log(contact.phone_number, {'province' : state.vars.province_name});
+        geo_data = geo_select(selection, geo_data)
+        var selection_menu = geo_process(geo_data);
+        state.vars.current_menu = JSON.stringify(selection_menu);
+        sayText(msgs('geo_selections', selection_menu));
+        promptDigits('geo_selection_2', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+    }
+    else{ // selection not within parameters
+        sayText(msgs('invalid_geo_input'));
+        promptDigits('geo_selection_1', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+    }
+});
+
+/*
+input = district selection
+shows list of sectors from district
+*/
+addInputHandler('geo_selection_2', function(input){
+    state.vars.current_step = 'geo_selection_2';
+    input = parseInt(input.replace(/\D/g,''));//cleans out anything nonnumeric in the input - really, input should only be digits 1 -?
+    var province = parseInt(state.vars.province);
+    geo_data = geo_select(province, geo_data);
+    var keys = Object.keys(geo_data);
+    if(input > 0 && input <= keys.length){
+        var selection = input - 1;
+        state.vars.district = selection;
+        state.vars.district_name = keys[selection];
+        client_log(contact.phone_number, {'district' : state.vars.district_name});
+        geo_data = geo_select(selection, geo_data);
+        var selection_menu = geo_process(geo_data);
+        state.vars.current_menu = JSON.stringify(selection_menu);
+        sayText(msgs('geo_selections', selection_menu));
+        promptDigits('geo_selection_3', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+    }
+    else{ // selection not within parameters
+        sayText(msgs('invalid_geo_input'));
+        promptDigits('geo_selection_2', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+    }
+});
+
+/*
+input = sector selection
+shows list of cells from sectors
+*/
+addInputHandler('geo_selection_3', function(input){
+    state.vars.current_step = 'geo_selection_3';
+    input = parseInt(input.replace(/\D/g,''));
+    geo_data = geo_select(state.vars.district, geo_select(state.vars.province, geo_data));
+    var keys = Object.keys(geo_data);
+    if(input > 0 && input <= keys.length){
+        var selection = input - 1;
+        geo_data = geo_select(selection, geo_data);
+        state.vars.sector = selection;
+        state.vars.sector_name = keys[selection];
+        var selection_menu = geo_process(geo_data);
+        state.vars.current_menu = JSON.stringify(selection_menu);
+        sayText(msgs('geo_selections', selection_menu));
+        promptDigits('geo_selection_4', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+    }
+    else{ // selection not within parameters
+        sayText(msgs('invalid_geo_input'));
+        promptDigits('geo_selection_3', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+    }
+});
+
+addInputHandler('geo_selection_4', function(input){
+    state.vars.current_step = 'geo_selection_4';
+    input = parseInt(input.replace(/\D/g,''));//cleans out anything nonnumeric in the input - really, input should only be digits 1 -?
+    var province = state.vars.province;
+    var district = state.vars.district;
+    var sector = state.vars.sector;
+    geo_data = geo_select(sector, geo_select(district, geo_select(province, geo_data)));
+    var keys = Object.keys(geo_data);
+    if(input > 0 && input <= keys.length){
+        var selection = input - 1;
+        geo_data = geo_select(selection, geo_data);
+        state.vars.site = selection;
+        state.vars.site_name = keys[selection];
+        var selection_menu = geo_process(geo_data);
+        state.vars.current_menu = JSON.stringify(selection_menu);
+        sayText(msgs('geo_selections', selection_menu));
+        promptDigits('mml_pn_selection', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+    }
+    else{ // selection not within parameters
+        sayText(msgs('invalid_geo_input'));
+        promptDigits('geo_selection_4', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+    }
+});
+
+addInputHandler('mml_pn_selection', function(input){
+    state.vars.current_step = 'pn_selection';
+    input = parseInt(input.replace(/\D/g,''));//cleans out anything nonnumeric in the input - really, input should only be digits 1 -?
+    var province = state.vars.province;
+    var district = state.vars.district;
+    var sector = state.vars.sector;
+    var site = state.vars.site;
+    geo_data = geo_select(site, geo_select(sector, geo_select(district, geo_select(province, geo_data))));
+    var keys = Object.keys(geo_data);
+    if(input > 0 && input <= keys.length){
+        var selection = input - 1;
+        var agent_pn = keys[selection];
+        state.vars.agent_pn = agent_pn;
+        var agent = geo_process(geo_select(selection, geo_data));
+        console.log(JSON.stringify(agent));
+        sayText(msgs('mml_agent_display', {'$NAME' : agent['agent_name'], '$PN1' : agent['agent_pn1'], '$PN2' : agent['agent_pn2'], '$NETWORK' : agent['agent_tc']}));
+    }
+    else{ // selection not within parameters
+        sayText(msgs('invalid_geo_input'));
+        promptDigits('mml_pn_selection', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
 });
 
