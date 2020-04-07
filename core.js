@@ -162,7 +162,7 @@ addInputHandler('mml_agent_display', function(input){
     input = parseInt(input.replace(/\D/g,''));
     var district = Object.keys(geo_mm_data).indexOf(state.vars.client_district);
     var site = Object.keys(geo_select(district, geo_mm_data)).indexOf(state.vars.client_site);
-    geo_data = geo_select(site, geo_select(district, geo_select(province, geo_data)));
+    geo_data = geo_select(site, geo_select(district, geo_mm_data));
     var keys = Object.keys(geo_data);
     if(input > 0 && input <= keys.length){
         var selection = input - 1;
