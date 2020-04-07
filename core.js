@@ -137,17 +137,16 @@ addInputHandler('cor_menu_select', function(input){
             }
         }
     }
-    else if(selection === 'mm_locator'){
-        // based on client's site and district, display a list of phone numbers near them
-        console.log('district: ' + state.vars.client_district + ' site: ' + state.vars.client_site);
-        // translate text into keys
+    else if(selection === 'mm_locator'){// based on client's site and district, display a list of phone numbers near them
+        // translate variables into indices
         var district = Object.keys(geo_mm_data).indexOf(state.vars.client_district);
         var site = Object.keys(geo_select(district, geo_mm_data)).indexOf(state.vars.client_site);
+        // generate phone numbers within client's site and display
         var geo_data = geo_select(site, geo_select(district, geo_mm_data));
         var selection_menu = geo_process(geo_data);
         state.vars.current_menu = JSON.stringify(selection_menu);
         sayText(msgs('mml_display_agents', selection_menu));
-        promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+        promptDigits('mml_agent_display', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
     else{
         var current_menu = msgs(selection, opts, lang);
@@ -155,6 +154,27 @@ addInputHandler('cor_menu_select', function(input){
         sayText(current_menu);
         promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
         return null;
+    }
+});
+
+addInputHandler('mml_agent_display', function(input){
+    state.vars.current_step = 'mml_agent_display';
+    input = parseInt(input.replace(/\D/g,''));
+    geo_data = geo_select(site, geo_select(district, geo_select(province, geo_data)));
+    var keys = Object.keys(geo_data);
+    if(input > 0 && input <= keys.length){
+        var selection = input - 1;
+        var agent = geo_process(geo_select(selection, geo_data));
+        sayText(msgs('mml_agent_display', {'$NAME' : agent['agent_name'], '$PN1' : selection, '$PN2' : agent['agent_pn2']}));
+        promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+    }
+    else if (input == 99){ // exit
+        sayText(msgs('exit')); // need to add this to the list
+        stopRules();
+    }
+    else{ // selection not within parameters
+        sayText(msgs('invalid_geo_input'));
+        promptDigits('mml_agent_display', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
 });
 
