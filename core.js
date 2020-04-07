@@ -140,7 +140,7 @@ addInputHandler('cor_menu_select', function(input){
     else if(selection === 'mm_locator'){
         // based on client's site and district, display a list of phone numbers near them
         console.log('district: ' + state.vars.client_district + ' site: ' + state.vars.client_site);
-        var geo_data = geo_select(state.vars.client_site, geo_select(state.vars.client_district, geo_mm_data));
+        var geo_data = geo_select(state.vars.client_district, geo_mm_data);
         var selection_menu = geo_process(geo_data);
         state.vars.current_menu = JSON.stringify(selection_menu);
         sayText(msgs('mml_display_agents', selection_menu));
