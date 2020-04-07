@@ -162,11 +162,9 @@ addInputHandler('mml_agent_display', function(input){
     input = parseInt(input.replace(/\D/g,''));
     var district = Object.keys(geo_mm_data).indexOf(state.vars.client_district);
     var site = Object.keys(geo_select(district, geo_mm_data)).indexOf(state.vars.client_site);
-    geo_data = geo_select(site, geo_select(district, geo_mm_data));
+    var agent = geo_select(input, geo_select(site, geo_select(district, geo_mm_data)));
     var keys = Object.keys(geo_data);
     if(input > 0 && input <= keys.length){
-        var selection = input - 1;
-        var agent = geo_process(geo_select(selection, geo_data));
         sayText(msgs('mml_agent_display', {'$NAME' : agent['agent_name'], '$PN1' : selection, '$PN2' : agent['agent_pn2']}));
         promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
