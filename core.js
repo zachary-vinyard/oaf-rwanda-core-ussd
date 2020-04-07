@@ -42,11 +42,12 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
         if(client_verified){
             sayText(msgs('account_number_verified'));
             state.vars.account_number = response;
-            var splash = core_splash_map.queryRows({'vars' : {'district' : state.vars.client_district}}).next().vars.splash_menu;
+            var splash = 'mml_splash_menu'
+/*             var splash = core_splash_map.queryRows({'vars' : {'district' : state.vars.client_district}}).next().vars.splash_menu;
             if(splash === null || splash === undefined){
                 admin_alert(state.vars.client_district + ' not found in district database');
                 throw 'ERROR : DISTRICT NOT FOUND';
-            }
+            } */
             state.vars.splash = splash;
             var menu = populate_menu(splash, lang);
             state.vars.current_menu_str = menu;
@@ -239,6 +240,7 @@ addInputHandler('geo_selection_4', function(input){
         state.vars.site_name = keys[selection];
         var selection_menu = geo_process(geo_data);
         state.vars.current_menu = JSON.stringify(selection_menu);
+        sayText(msgs('mml_pn_menu'));
         sayText(msgs('geo_selections', selection_menu));
         promptDigits('mml_pn_selection', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
