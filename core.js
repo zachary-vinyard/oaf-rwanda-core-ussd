@@ -148,6 +148,10 @@ addInputHandler('cor_menu_select', function(input){
         // display menu of agent phone numbers
         sayText(msgs('mml_display_agents', selection_menu));
         promptDigits('mml_agent_display', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+        // send the client an SMS with the phone numbers of MM agents in their site
+        var agent_record = msgs('mml_display_agents', selection_menu, lang);
+        var msg_route = project.vars.sms_push_route;
+        project.sendMessage({'to_number' : contact.phone_number, 'route_id' : msg_route, 'content' : agent_record});
     }
     else{
         var current_menu = msgs(selection, opts, lang);
