@@ -143,7 +143,7 @@ addInputHandler('cor_menu_select', function(input){
         var selection_menu = geo_process(geo_data);
         state.vars.current_menu = JSON.stringify(selection_menu);
         sayText(msgs('geo_selections', selection_menu));
-        promptDigits('mml_display_agent', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+        promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
     else{
         var current_menu = msgs(selection, opts, lang);
@@ -151,24 +151,6 @@ addInputHandler('cor_menu_select', function(input){
         sayText(current_menu);
         promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
         return null;
-    }
-});
-
-addInputHandler('mml_display_agent', function(input){
-    state.vars.current_step = 'mml_display_agent';
-    input = parseInt(input.replace(/\D/g,''));
-    var agent_pn = input;
-    geo_data = geo_select(agent_pn, geo_select(state.vars.client_site, geo_select(state.vars.client_district, geo_data)));
-    var keys = Object.keys(geo_data);
-    if(input > 0 && input <= keys.length){
-        var selection = input - 1;
-        var agent_pn = keys[selection];
-        var agent_data = geo_process(geo_select(selection, geo_data));
-        sayText(msgs('mml_display_agent', {'$NAME' : agent_data['$agent_name'], '$PN1' : agent_pn, '$PN2' : agent_data['$agent_pn2']}));
-    }
-    else{ // selection not within parameters
-        sayText(msgs('invalid_geo_input'));
-        promptDigits('mml_display_agent', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
 });
 
