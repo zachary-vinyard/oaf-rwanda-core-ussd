@@ -11,7 +11,7 @@ var populate_menu = require('./lib/populate-menu');
 // load in geo modules and data for locator services
 var geo_select = require('./lib/cta-geo-select');
 var geo_process = require('./lib/cta-geo-string-processer');
-var geo_mm_data = require('./dat/mm-agent-geography');
+// var geo_mm_data = require('./dat/mm-agent-geography');
 
 //options
 //var settings_table = project.getOrCreateDataTable('ussd_settings'); //removing this to account for project variable preference
@@ -42,7 +42,7 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
         if(client_verified){
             sayText(msgs('account_number_verified'));
             state.vars.account_number = response;
-            var splash = 'mml_splash_menu'
+            var splash = 'mml_splash_menu';
 /*             var splash = core_splash_map.queryRows({'vars' : {'district' : state.vars.client_district}}).next().vars.splash_menu;
             if(splash === null || splash === undefined){
                 admin_alert(state.vars.client_district + ' not found in district database');
