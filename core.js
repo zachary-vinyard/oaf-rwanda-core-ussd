@@ -131,6 +131,9 @@ addInputHandler('cor_menu_select', function(input){
             }
         }
     }
+    else if(selection === 'mm_locator'){
+        // prompt them to enter their district
+    }
     else{
         var current_menu = msgs(selection, opts, lang);
         state.vars.current_menu_str = current_menu;
