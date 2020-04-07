@@ -144,7 +144,7 @@ addInputHandler('cor_menu_select', function(input){
         // generate phone numbers within client's site 
         var geo_data = geo_select(site, geo_select(district, geo_mm_data));
         var selection_menu = geo_process(geo_data);
-        state.vars.current_menu = selection_menu;
+        state.vars.current_menu = JSON.stringify(selection_menu);
         // display menu of agent phone numbers
         sayText(msgs('mml_display_agents', selection_menu));
         promptDigits('mml_agent_display', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
