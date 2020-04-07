@@ -59,7 +59,7 @@ addInputHandler('district_selection', function(input){
         state.vars.num_correct = 0;
         // ask first quiz question
         var ask = require('./lib/training-ask-question');
-        //ask();
+        ask();
         sayText('The question id is : '+ state.id);
     }
     else if (input == 99){ // exit
@@ -92,7 +92,7 @@ addInputHandler('quiz_question', function(input){
 
     // ask next question or display score if complete
     if(state.vars.step <= survey_length){
-        var ask = require('./lib/imp-ask-question');
+        var ask = require('./lib/training-ask-question');
         ask();
         return null;
     }
