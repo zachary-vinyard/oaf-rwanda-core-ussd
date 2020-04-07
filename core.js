@@ -175,7 +175,7 @@ addInputHandler('mml_agent_display', function(input){
     // if input is outside of parameters, display error message and prompt selection again
     else{
         sayText(msgs('mml_invalid_geo_input'));
-        sayText(msgs('mml_display_agents', state.vars.current_menu));
+        sayText(msgs('mml_display_agents', JSON.parse(state.vars.current_menu)));
         promptDigits('mml_agent_display', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
 });
