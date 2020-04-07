@@ -11,7 +11,7 @@ var populate_menu = require('./lib/populate-menu');
 // load in geo modules and data for locator services
 var geo_select = require('./lib/cta-geo-select');
 var geo_process = require('./lib/cta-geo-string-processer');
-// var geo_mm_data = require('./dat/mm-agent-geography');
+var geo_mm_data = require('./dat/mm-agent-geography');
 
 //options
 //var settings_table = project.getOrCreateDataTable('ussd_settings'); //removing this to account for project variable preference
@@ -240,36 +240,12 @@ addInputHandler('geo_selection_4', function(input){
         state.vars.site_name = keys[selection];
         var selection_menu = geo_process(geo_data);
         state.vars.current_menu = JSON.stringify(selection_menu);
-        sayText(msgs('mml_pn_menu'));
         sayText(msgs('geo_selections', selection_menu));
-        promptDigits('mml_pn_selection', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+        promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
     else{ // selection not within parameters
         sayText(msgs('invalid_geo_input'));
         promptDigits('geo_selection_4', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
-    }
-});
-
-addInputHandler('mml_pn_selection', function(input){
-    state.vars.current_step = 'pn_selection';
-    input = parseInt(input.replace(/\D/g,''));//cleans out anything nonnumeric in the input - really, input should only be digits 1 -?
-    var province = state.vars.province;
-    var district = state.vars.district;
-    var sector = state.vars.sector;
-    var site = state.vars.site;
-    geo_data = geo_select(site, geo_select(sector, geo_select(district, geo_select(province, geo_data))));
-    var keys = Object.keys(geo_data);
-    if(input > 0 && input <= keys.length){
-        var selection = input - 1;
-        var agent_pn = keys[selection];
-        state.vars.agent_pn = agent_pn;
-        var agent = geo_process(geo_select(selection, geo_data));
-        console.log(JSON.stringify(agent));
-        sayText(msgs('mml_agent_display', {'$NAME' : agent['agent_name'], '$PN1' : agent['agent_pn1'], '$PN2' : agent['agent_pn2'], '$NETWORK' : agent['agent_tc']}));
-    }
-    else{ // selection not within parameters
-        sayText(msgs('invalid_geo_input'));
-        promptDigits('mml_pn_selection', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
 });
 
