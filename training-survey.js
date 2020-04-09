@@ -8,9 +8,8 @@ const max_digits_for_account_number = project.vars.max_digits_an;
 
 global.main = function () {
 
-    var geo_list = geo_process(geo_data);
-    state.vars.current_menu = JSON.stringify('1) Marketing');
-    sayText(msgs('train_main_splash', {'$Division_MENU' : '1: Marketing'}));
+    state.vars.current_menu = JSON.stringify('1: Marketing');
+    sayText(msgs('train_main_splash', {'$Division_MENU' : '1) Marketing'}));
     promptDigits('division_selection', { 'submitOnHash' : false,
     'maxDigits'    : max_digits_for_account_number,
     'timeout'      : 180 });
@@ -33,7 +32,8 @@ addInputHandler('division_selection',function(input){
     var surveys_obj = '';
     var counter = 1;
     while(survey_cursor.hasNext()){
-        try{
+        try
+        {
         var row = survey_cursor.next();
         var survey_type = row.vars.survey_type;
         surveys_obj = surveys_obj + String(counter) + ")" + survey_type + '\n';
@@ -44,10 +44,11 @@ addInputHandler('division_selection',function(input){
         break;
     }
 }
-sayText(msgs('train_main_splash', {'$Division_MENU' : surveys_obj}));
+    call.vars.current_menu = survey_obj;
 
+    sayText(msgs('train_type_splash', {'$Type_MENU' : surveys_obj}));
     promptDigits('surveyType_selection', { 'submitOnHash' : false,
-                                            'maxDigits'    : max_digits_for_account_number,
+                                            'maxDigits'    : 1,
                                             'timeout'      : 180 }); 
     
 
@@ -69,6 +70,8 @@ addInputHandler('surveyType_selection',function(input){
 
     state.vars.current_step = 'surveyType_selection';
     input = parseInt(input.replace(/\D/g,''));
+
+    if(input > 0){
     var survey_table = project.getOrCreateDataTable('Surveys');
     var survey_cursor = survey_table.queryRows({
         vars        : { 'survey_division': call.vars.current_division},
@@ -80,6 +83,7 @@ addInputHandler('surveyType_selection',function(input){
         var row = survey_cursor.next();
         if(input  == counter){
             call.vars.survey_code = row.vars.survey_code;
+            call.vars.number_of_questions = row.vars.number_of_questions;
             console.log("current code : "+call.vars.survey_code);
             break;
         }
@@ -93,10 +97,24 @@ addInputHandler('surveyType_selection',function(input){
     console.log("Selected one: "+call.vars.survey_code)
 
     var geo_list = geo_process(geo_data);
-    sayText(msgs('train_main_splash', geo_list));
+    sayText(msgs('training_province_splash', geo_list));
     promptDigits('province_selection', { 'submitOnHash' : false,
-                                            'maxDigits'    : max_digits_for_account_number,
-                                            'timeout'      : 180 }); 
+                                            'maxDigits'    : 1,
+                                            'timeout'      : 180 });
+                                         }
+    else if (input === 99){ // exit
+        sayText(msgs('exit'));
+        stopRules();
+    }
+    else{ // selection not within parameters
+        sayText("ivalid input");
+        sayText(msgs('train_type_splash', {'$Type_MENU' : call.vars.current_menu}));
+        promptDigits('surveyType_selection', { 'submitOnHash' : false,
+                                                'maxDigits'    : 1,
+                                                'timeout'      : 180 });
+    }
+                                    
+
 });
 
 addInputHandler('province_selection', function(input){
@@ -111,7 +129,7 @@ addInputHandler('province_selection', function(input){
         geo_data = geo_select(selection, geo_data)
         var selection_menu = geo_process(geo_data);
         state.vars.current_menu = JSON.stringify(selection_menu);
-        sayText(msgs('geo_selections', selection_menu));
+        sayText(msgs('training_district_splash', selection_menu));
         promptDigits('district_selection', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
     else if (input === 99){ // exit
@@ -120,7 +138,7 @@ addInputHandler('province_selection', function(input){
     }
     else{ // selection not within parameters
         sayText(msgs('imp_invalid_geo'));
-        sayText(msgs('geo_selections', JSON.parse(state.vars.current_menu)));
+        sayText(msgs('training_province_splash', JSON.parse(state.vars.current_menu)));
         promptDigits('province_selection', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
 });
@@ -137,7 +155,7 @@ addInputHandler('district_selection', function(input){
         state.vars.district_name = keys[selection];
         call.vars.district = state.vars.district_name;
         // initialize variables for tracking place in impact quiz6
-        state.vars.survey_type = 'trn';
+        state.vars.survey_type = call.vars.survey_code;
         state.vars.step = 1;
         state.vars.num_correct = 0;
         // ask first quiz question
@@ -166,11 +184,11 @@ addInputHandler('quiz_question', function(input){
     }
     call.vars.status = state.vars.survey_type + state.vars.step;
     call.vars[call.vars.status] = input;
-    var survey_length = 8; // pull direct from table
+    var survey_length = call.vars.number_of_questions ; // pull direct from table
 
     // verify response and retrieve relevant feedback string
-    //var verify = require('./lib/imp-answer-verify');
-    //var feedback = verify(input);
+    var verify = require('./lib/imp-answer-verify');
+    var feedback = verify(input);
     state.vars.step += 1;
 
     // ask next question or display score if complete
