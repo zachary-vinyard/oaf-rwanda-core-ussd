@@ -37,9 +37,10 @@ addInputHandler('division_selection',function(input){
         var row = survey_cursor.next();
         var survey_type = row.vars.survey_type;
         surveys_obj = surveys_obj + String(counter) + ")" + survey_type + '\n';
+        
+        call.vars.$counter = row.vars.survey_code;
+        console.log("survey code "+$counter+" :"+call.vars.$counter);
         counter ++;
-        call.vars.string($counter) = row.vars.survey_code;
-        console.log("survey code:"+call.vars.string(1));
     }
     catch(error){
        console.log("error"+error);
@@ -72,7 +73,8 @@ addInputHandler('surveyType_selection',function(input){
     state.vars.current_step = 'surveyType_selection';
     input = parseInt(input.replace(/\D/g,''));
 
-    console.log("Selected one: "+call.vars.string(input))
+    console.log("----------------"+$input)
+    console.log("Selected one: "+call.vars.$input)
 
     var geo_list = geo_process(geo_data);
     sayText(msgs('train_main_splash', geo_list));
@@ -81,7 +83,7 @@ addInputHandler('surveyType_selection',function(input){
                                             'timeout'      : 180 }); 
 });
 
-addInputHandler('province_selection', function(input){
+addInputHandler('province_selection', function(input){ 
     state.vars.current_step = 'geo_selection_1';
     input = parseInt(input.replace(/\D/g,''));//cleans out anything nonnumeric in the input - really, input should only be digits 1 -?
     var keys = Object.keys(geo_data);
