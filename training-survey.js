@@ -5,7 +5,7 @@ var msgs = require('./lib/msg-retrieve');
 var msgs = require('./lib/msg-retrieve');
 
 const max_digits_for_account_number = project.vars.max_digits_an;
-
+const lang = project.vars.cor_lang;
 global.main = function () {
 
     state.vars.current_menu = JSON.stringify('1: Marketing');
@@ -199,7 +199,7 @@ addInputHandler('quiz_question', function(input){
     }
     else{
         call.vars.status = 'complete';
-        sayText(msgs('imp_closing_message', {   '$FEEDBACK'    : feedback,
+        sayText(msgs('training_closing_message', {   '$FEEDBACK'    : feedback,
                                             '$NUM_CORRECT' : state.vars.num_correct}, lang));
         return null;
     }
