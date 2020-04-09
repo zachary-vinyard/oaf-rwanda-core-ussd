@@ -173,7 +173,7 @@ addInputHandler('mml_agent_display', function(input){
     // if selection is within parameters, display agent information; user can click to return to main menu
     if(input > 0 && input <= keys.length){
         var agent = geo_select(input, geo_data);
-        sayText(msgs('mml_agent_display', {'$NAME' : agent['agent_name'], '$PN1' : keys[input], '$PN2' : agent['agent_pn2']}));
+        sayText(msgs('mml_agent_display', {'$NAME' : agent['agent_name'], '$PN1' : keys[input], '$NETWORK' : agent['agent_tc']}));
         promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
     // if input is outside of parameters, display error message and prompt selection again
