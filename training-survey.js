@@ -38,8 +38,8 @@ addInputHandler('division_selection',function(input){
         var survey_type = row.vars.survey_type;
         surveys_obj = surveys_obj + String(counter) + ")" + survey_type + '\n';
         counter ++;
-        call.vars.$counter = row.vars.survey_code;
-        console.log("survey code:"+call.vars.$counter);
+        call.vars.string($counter) = row.vars.survey_code;
+        console.log("survey code:"+call.vars.string(1));
     }
     catch(error){
        console.log("error"+error);
