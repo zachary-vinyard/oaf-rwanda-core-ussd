@@ -194,7 +194,7 @@ addInputHandler('quiz_question', function(input){
     // ask next question or display score if complete
     if(state.vars.step <= survey_length){
         var ask = require('./lib/training-ask-question');
-        ask();
+        ask(feedback);
         return null;
     }
     else{
