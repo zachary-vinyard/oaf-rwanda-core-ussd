@@ -44,7 +44,7 @@ addInputHandler('division_selection',function(input){
         break;
     }
 }
-    call.vars.current_menu = survey_obj;
+    call.vars.current_menu = surveys_obj;
 
     sayText(msgs('train_type_splash', {'$Type_MENU' : surveys_obj}));
     promptDigits('surveyType_selection', { 'submitOnHash' : false,
