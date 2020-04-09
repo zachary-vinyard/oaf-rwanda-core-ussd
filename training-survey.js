@@ -27,7 +27,7 @@ addInputHandler('division_selection',function(input){
     call.vars.current_division = 'Marketing'
     var survey_table = project.getOrCreateDataTable('Surveys');
     var survey_cursor = survey_table.queryRows({
-        vars        : { vars: {'survey_division': call.vars.current_division}},
+        vars        : { 'survey_division': call.vars.current_division},
         sort_dir    : 'desc'
     });
     var surveys_obj = '';
