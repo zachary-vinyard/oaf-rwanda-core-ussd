@@ -187,7 +187,7 @@ addInputHandler('quiz_question', function(input){
     var survey_length = call.vars.number_of_questions ; // pull direct from table
 
     // verify response and retrieve relevant feedback string
-    var verify = require('./lib/imp-answer-verify');
+    var verify = require('./lib/training-answer-verify');
     var feedback = verify(input);
     state.vars.step += 1;
 
