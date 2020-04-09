@@ -34,11 +34,12 @@ addInputHandler('division_selection',function(input){
     var counter = 1;
     while(survey_cursor.hasNext()){
         try{
-        var survey_type = survey_cursor.vars.survey_type;
+        var row = survey_cursor.next();
+        var survey_type = row.vars.survey_type;
         surveys_obj = surveys_obj + String(counter) + ")" + survey_type + '\n';
         counter ++;
-        call.vars.$counter = survey_cursor.vars.survey_code;
-        console.log("survey code:"+state.vars.$counter);
+        call.vars.$counter = row.vars.survey_code;
+        console.log("survey code:"+call.vars.$counter);
     }
     catch(error){
        console.log("error"+error);
