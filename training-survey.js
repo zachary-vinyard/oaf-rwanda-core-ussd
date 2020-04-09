@@ -9,12 +9,76 @@ const max_digits_for_account_number = project.vars.max_digits_an;
 global.main = function () {
 
     var geo_list = geo_process(geo_data);
-    state.vars.current_menu = JSON.stringify(geo_list);
+    state.vars.current_menu = JSON.stringify('1: Marketing');
+    sayText(msgs('train_main_splash', {'$Division_MENU' : '1: Marketing'}));
+    promptDigits('division_selection', { 'submitOnHash' : false,
+    'maxDigits'    : max_digits_for_account_number,
+    'timeout'      : 180 });
+};
+
+
+
+addInputHandler(division_selection,function(input){
+
+    state.vars.current_step = 'division_selection';
+    input = parseInt(input.replace(/\D/g,''));
+
+    if(input === 1){
+    call.vars.current_division = 'Marketing'
+    var survey_table = project.getOrCreateDataTable('Surveys');
+    var survey_cursor = survey_table.queryRows({
+        vars        : { vars: {'survey_division': call.vars.current_division}},
+        sort_dir    : 'desc'
+    });
+    var surveys_obj = '';
+    var counter = 1;
+    while(survey_cursor.hasNext()){
+        try{
+        var survey_type = survey_cursor.vars.survey_type;
+        surveys_obj = surveys_obj + String(counter) + ")" + survey_type + '\n';
+        counter ++;
+        call.vars.$counter = survey_cursor.vars.survey_code;
+        console.log("survey code:"+state.vars.$counter);
+    }
+    catch(error){
+       console.log("error"+error);
+        break;
+    }
+}
+sayText(msgs('train_main_splash', {'$Division_MENU' : surveys_obj}));
+
+    promptDigits('surveyType_selection', { 'submitOnHash' : false,
+                                            'maxDigits'    : max_digits_for_account_number,
+                                            'timeout'      : 180 }); 
+    
+
+}
+    else if (input === 99){ // exit
+        sayText(msgs('exit'));
+        stopRules();
+    }
+    else{
+        sayText(msgs('imp_invalid_geo'));
+        sayText(msgs('train_main_splash', {'$Division_MENU' : '1: Marketing'}));
+        promptDigits('division_selection', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+
+    }
+});
+
+
+addInputHandler(surveyType_selection,function(input){
+
+    state.vars.current_step = 'surveyType_selection';
+    input = parseInt(input.replace(/\D/g,''));
+
+    console.log("Selected one: "+call.vars.string(input))
+
+    var geo_list = geo_process(geo_data);
     sayText(msgs('train_main_splash', geo_list));
     promptDigits('province_selection', { 'submitOnHash' : false,
                                             'maxDigits'    : max_digits_for_account_number,
-                                            'timeout'      : 180 });
-};
+                                            'timeout'      : 180 }); 
+});
 
 addInputHandler('province_selection', function(input){
     state.vars.current_step = 'geo_selection_1';
@@ -53,7 +117,7 @@ addInputHandler('district_selection', function(input){
         state.vars.district = selection;
         state.vars.district_name = keys[selection];
         call.vars.district = state.vars.district_name;
-        // initialize variables for tracking place in impact quiz
+        // initialize variables for tracking place in impact quiz6
         state.vars.survey_type = 'trn';
         state.vars.step = 1;
         state.vars.num_correct = 0;
