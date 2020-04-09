@@ -18,7 +18,7 @@ global.main = function () {
 
 
 
-addInputHandler(division_selection,function(input){
+addInputHandler('division_selection',function(input){
 
     state.vars.current_step = 'division_selection';
     input = parseInt(input.replace(/\D/g,''));
@@ -66,7 +66,7 @@ sayText(msgs('train_main_splash', {'$Division_MENU' : surveys_obj}));
 });
 
 
-addInputHandler(surveyType_selection,function(input){
+addInputHandler('surveyType_selection',function(input){
 
     state.vars.current_step = 'surveyType_selection';
     input = parseInt(input.replace(/\D/g,''));
