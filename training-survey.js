@@ -37,7 +37,7 @@ addInputHandler('division_selection',function(input){
         try
         {
         var row = survey_cursor.next();
-        console.log("output:",row);
+        console.log("output:",row.vars.survey_type);
         var survey_type = row.vars.survey_type;
         surveys_obj = surveys_obj + String(counter) + ")" + survey_type + '\n';
         counter ++;
