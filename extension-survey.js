@@ -27,6 +27,7 @@ const timeout_length = project.vars.timeout_length;
 
 // display welcome message and prompt user to choose their survey (AMA1, AMA2, GUS)
 global.main = function(){
+    reinit()
     sayText(msgs('ext_main_splash'));
     var menu = populate_menu('ext_splash_menu', lang);
     sayText(menu, lang);
