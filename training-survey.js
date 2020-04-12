@@ -8,6 +8,7 @@ const max_digits_for_account_number = project.vars.max_digits_an;
 const lang = project.vars.cor_lang;
 global.main = function () {
 
+    reinit()
     state.vars.current_menu = JSON.stringify('1: Marketing');
     sayText(msgs('train_main_splash', {'$Division_MENU' : '1) Marketing'}));
     promptDigits('division_selection', { 'submitOnHash' : false,
