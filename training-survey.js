@@ -3,7 +3,7 @@ var geo_process = require('./lib/cta-geo-string-processer');
 var geo_data = require('./dat/rwanda-tubura-geography');
 var msgs = require('./lib/msg-retrieve');
 var msgs = require('./lib/msg-retrieve');
-
+var reinit = require('.lib/training-reinitialization');
 const max_digits_for_account_number = project.vars.max_digits_an;
 const lang = project.vars.cor_lang;
 global.main = function () {
