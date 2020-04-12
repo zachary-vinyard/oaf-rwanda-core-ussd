@@ -32,10 +32,12 @@ addInputHandler('division_selection',function(input){
     });
     var surveys_obj = '';
     var counter = 1;
+    
     while(survey_cursor.hasNext()){
         try
         {
         var row = survey_cursor.next();
+        console.log("output:",row);
         var survey_type = row.vars.survey_type;
         surveys_obj = surveys_obj + String(counter) + ")" + survey_type + '\n';
         counter ++;
