@@ -161,7 +161,6 @@ addInputHandler('district_selection', function(input){
         // ask first quiz question
         var ask = require('./lib/training-ask-question');
         ask();
-        sayText('The question id is : '+ state.id);
     }
     else if (input == 99){ // exit
         sayText(msgs('exit')); // need to add this to the list
