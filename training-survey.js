@@ -4,7 +4,7 @@ var geo_data = require('./dat/rwanda-tubura-geography');
 var msgs = require('./lib/msg-retrieve');
 var reinit = require('./lib/training-reinitialization');
 var saving = require('./lib/training-save-version-number')
-const lang = project.vars.cor_lang;
+const lang = project.vars.console_lang;
 
 
 global.main = function () {
@@ -88,7 +88,6 @@ addInputHandler('surveyType_selection',function(input){
         if(input  == counter){
             call.vars.survey_code = row.vars.survey_code;
             call.vars.number_of_questions = row.vars.number_of_questions;
-            console.log("current code : "+call.vars.survey_code);
             break;
         }
         counter ++;
