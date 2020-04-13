@@ -2,17 +2,17 @@ var geo_select = require('./lib/cta-geo-select');
 var geo_process = require('./lib/cta-geo-string-processer');
 var geo_data = require('./dat/rwanda-tubura-geography');
 var msgs = require('./lib/msg-retrieve');
-var msgs = require('./lib/msg-retrieve');
 var reinit = require('./lib/training-reinitialization');
-const max_digits_for_account_number = project.vars.max_digits_an;
 const lang = project.vars.cor_lang;
+
+
 global.main = function () {
 
     reinit()
     state.vars.current_menu = JSON.stringify('1: Marketing');
-    sayText(msgs('train_main_splash', {'$Division_MENU' : '1) Marketing'}));
+    sayText(msgs('train_main_splash', {'$Division_MENU' : '1) Marketing'},lang));
     promptDigits('division_selection', { 'submitOnHash' : false,
-    'maxDigits'    : max_digits_for_account_number,
+    'maxDigits'    : 1,
     'timeout'      : 180 });
 };
 
@@ -49,7 +49,7 @@ addInputHandler('division_selection',function(input){
 }
     call.vars.current_menu = surveys_obj;
 
-    sayText(msgs('train_type_splash', {'$Type_MENU' : surveys_obj}));
+    sayText(msgs('train_type_splash', {'$Type_MENU' : surveys_obj},lang));
     promptDigits('surveyType_selection', { 'submitOnHash' : false,
                                             'maxDigits'    : 1,
                                             'timeout'      : 180 }); 
@@ -61,8 +61,8 @@ addInputHandler('division_selection',function(input){
         stopRules();
     }
     else{
-        sayText(msgs('imp_invalid_geo'));
-        sayText(msgs('train_main_splash', {'$Division_MENU' : '1: Marketing'}));
+        sayText(msgs('imp_invalid_geo',lang));
+        sayText(msgs('train_main_splash', {'$Division_MENU' : '1: Marketing'},lang));
         promptDigits('division_selection', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
 
     }
@@ -100,7 +100,7 @@ addInputHandler('surveyType_selection',function(input){
     console.log("Selected one: "+call.vars.survey_code)
 
     var geo_list = geo_process(geo_data);
-    sayText(msgs('training_province_splash', geo_list));
+    sayText(msgs('training_province_splash', geo_list,lang));
     promptDigits('province_selection', { 'submitOnHash' : false,
                                             'maxDigits'    : 1,
                                             'timeout'      : 180 });
@@ -111,7 +111,7 @@ addInputHandler('surveyType_selection',function(input){
     }
     else{ // selection not within parameters
         sayText("ivalid input");
-        sayText(msgs('train_type_splash', {'$Type_MENU' : call.vars.current_menu}));
+        sayText(msgs('train_type_splash', {'$Type_MENU' : call.vars.current_menu},lang));
         promptDigits('surveyType_selection', { 'submitOnHash' : false,
                                                 'maxDigits'    : 1,
                                                 'timeout'      : 180 });
@@ -132,7 +132,7 @@ addInputHandler('province_selection', function(input){
         geo_data = geo_select(selection, geo_data)
         var selection_menu = geo_process(geo_data);
         state.vars.current_menu = JSON.stringify(selection_menu);
-        sayText(msgs('training_district_splash', selection_menu));
+        sayText(msgs('training_district_splash', selection_menu,lang));
         promptDigits('district_selection', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
     else if (input === 99){ // exit
@@ -140,8 +140,8 @@ addInputHandler('province_selection', function(input){
         stopRules();
     }
     else{ // selection not within parameters
-        sayText(msgs('imp_invalid_geo'));
-        sayText(msgs('training_province_splash', JSON.parse(state.vars.current_menu)));
+        sayText(msgs('imp_invalid_geo',lang));
+        sayText(msgs('training_province_splash', JSON.parse(state.vars.current_menu),lang));
         promptDigits('province_selection', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
 });
@@ -170,8 +170,8 @@ addInputHandler('district_selection', function(input){
         stopRules();
     }
     else{ // selection not within parameters
-        sayText(msgs('imp_invalid_geo'));
-        sayText(msgs('geo_selections', JSON.parse(state.vars.current_menu)));
+        sayText(msgs('imp_invalid_geo',lang));
+        sayText(msgs('geo_selections', JSON.parse(state.vars.current_menu),lang));
         promptDigits('district selection', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
 });
