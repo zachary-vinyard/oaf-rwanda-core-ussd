@@ -3,6 +3,7 @@ var geo_process = require('./lib/cta-geo-string-processer');
 var geo_data = require('./dat/rwanda-tubura-geography');
 var msgs = require('./lib/msg-retrieve');
 var reinit = require('./lib/training-reinitialization');
+var saving = require('./lib/training-save-version-number')
 const lang = project.vars.cor_lang;
 
 
@@ -27,7 +28,7 @@ addInputHandler('division_selection',function(input){
     call.vars.current_division = 'Marketing'
     var survey_table = project.getOrCreateDataTable('Surveys');
     var survey_cursor = survey_table.queryRows({
-        vars        : { 'survey_division': call.vars.current_division},
+        vars        : { 'survey_division': call.vars.current_division,'status':"Active"},
         sort_dir    : 'desc'
     });
     var surveys_obj = '';
@@ -201,6 +202,7 @@ addInputHandler('quiz_question', function(input){
     }
     else{
         call.vars.status = 'complete';
+        saving();
         sayText(msgs('training_closing_message', {   '$FEEDBACK'    : feedback,
                                             '$NUM_CORRECT' : state.vars.num_correct}, lang));
         return null;
