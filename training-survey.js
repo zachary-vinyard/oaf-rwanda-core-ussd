@@ -194,7 +194,7 @@ addInputHandler('sector_selection', function(input){
         var selection_menu = geo_process(geo_data);
         state.vars.current_menu = JSON.stringify(selection_menu);
         sayText(msgs('training_district_splash', selection_menu,lang));
-        promptDigits('sector_selection', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+        promptDigits('site_selection', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
     else if (input == 99){ // exit
         sayText(msgs('exit')); // need to add this to the list
