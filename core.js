@@ -141,13 +141,17 @@ addInputHandler('cor_menu_select', function(input){
         // translate variables into indices
         var district = Object.keys(geo_mm_data).indexOf(state.vars.client_district);
         var site = Object.keys(geo_select(district, geo_mm_data)).indexOf(state.vars.client_site);
-        // generate phone numbers within client's site 
+        // generate list of agents within client's site
         var geo_data = geo_select(site, geo_select(district, geo_mm_data));
-        var selection_menu = geo_process(geo_data);
+        var k = Object.keys(geo_data);
+        var selection_menu = '';
+        for(i = 1; i < k.length + 1; i++){
+            out_str = out_str + i + ') ' + k[i-1] + '\n';
+        }
         state.vars.current_menu = JSON.stringify(selection_menu);
         // display menu of agent phone numbers
         sayText(msgs('mml_display_agents', selection_menu));
-        promptDigits('mml_agent_display', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+        promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
         // send the client an SMS with the phone numbers of MM agents in their site
         var agent_record = msgs('mml_display_agents', selection_menu, lang);
         var msg_route = project.vars.sms_push_route;
@@ -159,28 +163,6 @@ addInputHandler('cor_menu_select', function(input){
         sayText(current_menu);
         promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
         return null;
-    }
-});
-
-addInputHandler('mml_agent_display', function(input){
-    state.vars.current_step = 'mml_agent_display';
-    input = parseInt(input.replace(/\D/g,''));
-    // generate current branch and keys
-    var district = Object.keys(geo_mm_data).indexOf(state.vars.client_district);
-    var site = Object.keys(geo_select(district, geo_mm_data)).indexOf(state.vars.client_site);
-    var geo_data = geo_select(site, geo_select(district, geo_mm_data));
-    var keys = Object.keys(geo_data);
-    // if selection is within parameters, display agent information; user can click to return to main menu
-    if(input > 0 && input <= keys.length){
-        var agent = geo_select(input, geo_data);
-        sayText(msgs('mml_agent_display', {'$NAME' : agent['agent_name'], '$PN1' : keys[input], '$NETWORK' : agent['agent_tc']}));
-        promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
-    }
-    // if input is outside of parameters, display error message and prompt selection again
-    else{
-        sayText(msgs('mml_invalid_geo_input'));
-        sayText(msgs('mml_display_agents', JSON.parse(state.vars.current_menu)));
-        promptDigits('mml_agent_display', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
 });
 
