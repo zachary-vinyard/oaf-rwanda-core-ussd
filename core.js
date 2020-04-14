@@ -42,12 +42,11 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
         if(client_verified){
             sayText(msgs('account_number_verified'));
             state.vars.account_number = response;
-            var splash = 'mml_splash_menu';
-/*             var splash = core_splash_map.queryRows({'vars' : {'district' : state.vars.client_district}}).next().vars.splash_menu;
+            var splash = core_splash_map.queryRows({'vars' : {'district' : state.vars.client_district}}).next().vars.splash_menu;
             if(splash === null || splash === undefined){
                 admin_alert(state.vars.client_district + ' not found in district database');
                 throw 'ERROR : DISTRICT NOT FOUND';
-            } */
+            }
             state.vars.splash = splash;
             var menu = populate_menu(splash, lang);
             state.vars.current_menu_str = menu;
@@ -137,7 +136,7 @@ addInputHandler('cor_menu_select', function(input){
             }
         }
     }
-    else if(selection === 'mm_locator'){// based on client's site and district, display a list of phone numbers near them
+    else if(selection === 'cor_mm_locator'){// based on client's site and district, display a list of phone numbers near them
         // translate variables into indices
         var district = Object.keys(geo_mm_data).indexOf(state.vars.client_district);
         var site = Object.keys(geo_select(district, geo_mm_data)).indexOf(state.vars.client_site);
