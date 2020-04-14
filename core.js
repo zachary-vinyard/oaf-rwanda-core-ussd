@@ -146,7 +146,7 @@ addInputHandler('cor_menu_select', function(input){
         var k = Object.keys(geo_data);
         var selection_menu = '';
         for(i = 1; i < k.length + 1; i++){
-            out_str = out_str + i + ') ' + k[i-1] + '\n';
+            selection_menu = selection_menu + i + ') ' + k[i-1] + '\n';
         }
         state.vars.current_menu = JSON.stringify(selection_menu);
         // display menu of agent phone numbers
