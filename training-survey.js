@@ -1,6 +1,6 @@
 var geo_select = require('./lib/cta-geo-select');
 var geo_process = require('./lib/cta-geo-string-processer');
-var geo_data = require('./dat/rwanda-tubura-geography');
+var geo_data = require('./dat/rwanda-training-geography');
 var msgs = require('./lib/msg-retrieve');
 var reinit = require('./lib/training-reinitialization');
 var saving = require('./lib/training-save-version-number')
@@ -157,7 +157,72 @@ addInputHandler('district_selection', function(input){
         state.vars.district = selection;
         state.vars.district_name = keys[selection];
         call.vars.district = state.vars.district_name;
-        // initialize variables for tracking place in impact quiz6
+
+        geo_data = geo_select(selection, geo_data)
+        var selection_menu = geo_process(geo_data);
+        state.vars.current_menu = JSON.stringify(selection_menu);
+        sayText(msgs('training_district_splash', selection_menu,lang));
+        promptDigits('sector_selection', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+    }
+    else if (input == 99){ // exit
+        sayText(msgs('exit')); // need to add this to the list
+        stopRules();
+    }
+    else{ // selection not within parameters
+        sayText(msgs('imp_invalid_geo',lang));
+        sayText(msgs('geo_selections', JSON.parse(state.vars.current_menu),lang));
+        promptDigits('district_selection', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+    }
+});
+
+// input handler for sector selection
+addInputHandler('sector_selection', function(input){
+    state.vars.current_step = 'geo_selection_3';
+    input = parseInt(input.replace(/\D/g,''));//cleans out anything nonnumeric in the input - really, input should only be digits 1 -?
+    var region = parseInt(state.vars.region);
+    geo_data = geo_select(region, geo_data);
+    var district = parseInt(state.vars.district);
+    geo_data = geo_select(district, geo_data);
+    var keys = Object.keys(geo_data);
+    if(input > 0 && input <= keys.length){
+        var selection = input - 1;
+        state.vars.sector = selection;
+        state.vars.sector_name = keys[selection];
+        call.vars.sector = state.vars.sector_name;
+
+        geo_data = geo_select(selection, geo_data)
+        var selection_menu = geo_process(geo_data);
+        state.vars.current_menu = JSON.stringify(selection_menu);
+        sayText(msgs('training_district_splash', selection_menu,lang));
+        promptDigits('sector_selection', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+    }
+    else if (input == 99){ // exit
+        sayText(msgs('exit')); // need to add this to the list
+        stopRules();
+    }
+    else{ // selection not within parameters
+        sayText(msgs('imp_invalid_geo',lang));
+        sayText(msgs('geo_selections', JSON.parse(state.vars.current_menu),lang));
+        promptDigits('sector_selection', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+    }
+});
+addInputHandler('site_selection', function(input){
+    state.vars.current_step = 'geo_selection_4';
+    input = parseInt(input.replace(/\D/g,''));//cleans out anything nonnumeric in the input - really, input should only be digits 1 -?
+    var region = parseInt(state.vars.region);
+    geo_data = geo_select(region, geo_data);
+    var district = parseInt(state.vars.district);
+    geo_data = geo_select(district, geo_data);
+    var sector = parseInt(state.vars.sector);
+    geo_data = geo_select(sector, geo_data);
+
+    var keys = Object.keys(geo_data);
+    if(input > 0 && input <= keys.length){
+        var selection = input - 1;
+        state.vars.site = selection;
+        state.vars.site_name = keys[selection];
+        call.vars.site = state.vars.site_name;
+
         state.vars.survey_type = call.vars.survey_code;
         state.vars.step = 1;
         state.vars.num_correct = 0;
@@ -172,7 +237,7 @@ addInputHandler('district_selection', function(input){
     else{ // selection not within parameters
         sayText(msgs('imp_invalid_geo',lang));
         sayText(msgs('geo_selections', JSON.parse(state.vars.current_menu),lang));
-        promptDigits('district selection', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+        promptDigits('site_selection', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
     }
 });
 
