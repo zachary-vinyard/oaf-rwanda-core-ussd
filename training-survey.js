@@ -48,7 +48,7 @@ addInputHandler('division_selection',function(input){
         sort_dir    : 'desc'
     });
     counter = 1;
-    while(survey_coursor.hasNext())
+    while(survey_cursor.hasNext())
     {
         if(input === counter){
             division_exists = true;
