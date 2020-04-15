@@ -50,20 +50,26 @@ addInputHandler('division_selection',function(input){
     counter = 1;
     while(survey_cursor.hasNext())
     {
-        if(input === counter){
-            division_exists = true;
-            row = survey_cursor.next();
-            division = row.vars.division;
+        try{
+            var row = survey_cursor.next();
+            if(input  == counter){
+                division_exists = true;
+                division = row.vars.division;
+                break;
+            }
+            counter ++;
         }
-        counter++;
+        catch(error){
+           console.log("error"+error);
+            break;
+        }
     }
 
     if(division_exists == true)
     {
-        
-    call.vars.current_division = division;
-    var survey_table = project.getOrCreateDataTable('Surveys');
-    var survey_cursor = survey_table.queryRows({
+        call.vars.current_division = division;
+        var survey_table = project.getOrCreateDataTable('Surveys');
+        var survey_cursor = survey_table.queryRows({
         vars        : { 'survey_division': call.vars.current_division,'status':"Active"},
         sort_dir    : 'desc'
     });
@@ -76,20 +82,19 @@ addInputHandler('division_selection',function(input){
         var row = survey_cursor.next();
         var survey_type = row.vars.survey_type;
         surveys_obj = surveys_obj + String(counter) + ")" + survey_type + '\n';
-        counter ++;
-    }
+        counter ++;}
     catch(error){
        console.log("error"+error);
-        break;
+        break;}
     }
-}
+
     call.vars.current_menu = surveys_obj;
 
     sayText(msgs('train_type_splash', {'$Type_MENU' : surveys_obj},lang));
     promptDigits('surveyType_selection', { 'submitOnHash' : false,
                                             'maxDigits'    : 1,
                                             'timeout'      : 180 });
-}
+                                        }
     else if (input === 99){ // exit
         sayText(msgs('exit'));
         stopRules();
