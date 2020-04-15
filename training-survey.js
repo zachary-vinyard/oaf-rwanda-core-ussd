@@ -103,7 +103,7 @@ addInputHandler('division_selection',function(input){
                                             'timeout'      : timeout_length });
                                         }
     else if (input === 99){ // exit
-        sayText(msgs('exit'));
+        sayText(msgs('training_exit_message',{},lang));
         stopRules();
     }
     else{
@@ -157,7 +157,7 @@ addInputHandler('surveyType_selection',function(input){
                                             'timeout'      : timeout_length });
                                         }
     else if (input === 99){ // exit
-        sayText(msgs('exit'));
+        sayText(msgs('training_exit_message',{},lang));
         stopRules();
     }
     else{ // selection not within parameters
@@ -187,7 +187,7 @@ addInputHandler('province_selection', function(input){
         promptDigits('district_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
     }
     else if (input === 99){ // exit
-        sayText(msgs('exit'));
+        sayText(msgs('training_exit_message',{},lang));
         stopRules();
     }
     else{ // selection not within parameters
@@ -212,16 +212,16 @@ addInputHandler('district_selection', function(input){
         geo_data = geo_select(selection, geo_data)
         var selection_menu = geo_process(geo_data);
         state.vars.current_menu = JSON.stringify(selection_menu);
-        sayText(msgs('training_district_splash', selection_menu,lang));
+        sayText(msgs('training_sector_splash', selection_menu,lang));
         promptDigits('sector_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
     }
     else if (input == 99){ // exit
-        sayText(msgs('exit')); // need to add this to the list
+        sayText(msgs('training_exit_message',{},lang));
         stopRules();
     }
     else{ // selection not within parameters
         sayText(msgs('training_invalid_input',{},lang));
-        sayText(msgs('geo_selections', JSON.parse(state.vars.current_menu),lang));
+        sayText(msgs('training_district_splash', JSON.parse(state.vars.current_menu),lang));
         promptDigits('district_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
     }
 });
@@ -244,16 +244,16 @@ addInputHandler('sector_selection', function(input){
         geo_data = geo_select(selection, geo_data)
         var selection_menu = geo_process(geo_data);
         state.vars.current_menu = JSON.stringify(selection_menu);
-        sayText(msgs('training_district_splash', selection_menu,lang));
+        sayText(msgs('training_site_splash', selection_menu,lang));
         promptDigits('site_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
     }
     else if (input == 99){ // exit
-        sayText(msgs('exit')); // need to add this to the list
+        sayText(msgs('training_exit_message',{},lang));
         stopRules();
     }
     else{ // selection not within parameters
         sayText(msgs('training_invalid_input',{},lang));
-        sayText(msgs('geo_selections', JSON.parse(state.vars.current_menu),lang));
+        sayText(msgs('training_sector_splash', JSON.parse(state.vars.current_menu),lang));
         promptDigits('sector_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
     }
 });
@@ -287,7 +287,7 @@ addInputHandler('site_selection', function(input){
     }
     else{ // selection not within parameters
         sayText(msgs('training_invalid_input',{},lang));
-        sayText(msgs('geo_selections', JSON.parse(state.vars.current_menu),lang));
+        sayText(msgs('training_site_splash', JSON.parse(state.vars.current_menu),lang));
         promptDigits('site_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
     }
 });
@@ -297,7 +297,7 @@ addInputHandler('quiz_question', function(input){
     // test and store input response
     input = parseInt(input.replace(/\s/g,''));
     if (input === 99){ // exit
-        sayText(msgs('exit'));
+        sayText(msgs('training_exit_message',{},lang));
         stopRules();
     }
     call.vars.status = state.vars.survey_type + state.vars.step;
