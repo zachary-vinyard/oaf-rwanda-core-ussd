@@ -92,7 +92,7 @@ addInputHandler('province_selection', function(input){
         call.vars.region = state.vars.region_name;
         geo_data = geo_select(selection, geo_data)
         var selection_menu = geo_process(geo_data);
-        state.vars.current_menu = JSON.stringify(selection_menu);
+        state.vars.current_menu = selection_menu;
         sayText(msgs('training_district_splash', selection_menu,lang));
         promptDigits('district_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
     }
@@ -121,7 +121,7 @@ addInputHandler('district_selection', function(input){
 
         geo_data = geo_select(selection, geo_data)
         var selection_menu = geo_process(geo_data);
-        state.vars.current_menu = JSON.stringify(selection_menu);
+        state.vars.current_menu = selection_menu;
         sayText(msgs('training_sector_splash', selection_menu,lang));
         promptDigits('sector_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
     }
@@ -153,7 +153,7 @@ addInputHandler('sector_selection', function(input){
 
         geo_data = geo_select(selection, geo_data)
         var selection_menu = geo_process(geo_data);
-        state.vars.current_menu = JSON.stringify(selection_menu);
+        state.vars.current_menu = selection_menu;
         sayText(msgs('training_site_splash', selection_menu,lang));
         promptDigits('site_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
     }
