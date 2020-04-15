@@ -35,7 +35,7 @@ global.main = function () {
     }
 
     state.vars.current_menu = surveys_obj;
-    sayText(msgs('train_main_splash', {'$Type_MENU' : state.vars.current_menu},lang));
+    sayText(msgs('train_type_splash', {'$Type_MENU' : state.vars.current_menu},lang));
     promptDigits('surveyType_selection', { 'submitOnHash' : false,
     'maxDigits'    : max_digits,
     'timeout'      : 180 });
