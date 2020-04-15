@@ -21,7 +21,7 @@ global.main = function () {
         {
         var row = survey_cursor.next();
         var survey_division = row.vars.division;
-        survey_divisions = surveys_divion + String(counter) + ")" + survey_division + '\n';
+        survey_divisions = survey_divisions + String(counter) + ")" + survey_division + '\n';
         counter ++;}
         
         catch(error)
