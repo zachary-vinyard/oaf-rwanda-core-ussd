@@ -61,6 +61,7 @@ addInputHandler('surveyType_selection',function(input){
         call.vars.number_of_questions = number_of_questions;
        
         var geo_list = geo_process(geo_data);
+        state.vars.current_menu = JSON.stringify(geo_list);
         sayText(msgs('training_province_splash', geo_list,lang));
         promptDigits('province_selection', { 'submitOnHash' : false,
                                             'maxDigits'    : max_digits,
@@ -92,7 +93,7 @@ addInputHandler('province_selection', function(input){
         call.vars.region = state.vars.region_name;
         geo_data = geo_select(selection, geo_data)
         var selection_menu = geo_process(geo_data);
-        state.vars.current_menu = selection_menu;
+        state.vars.current_menu = JSON.stringify(selection_menu);
         sayText(msgs('training_district_splash', selection_menu,lang));
         promptDigits('district_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
     }
@@ -102,7 +103,7 @@ addInputHandler('province_selection', function(input){
     }
     else{ // selection not within parameters
         sayText(msgs('training_invalid_input',{},lang));
-        sayText(msgs('training_province_splash', state.vars.current_menu,lang));
+        sayText(msgs('training_province_splash', JSON.parse(state.vars.current_menu),lang));
         promptDigits('province_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
     }
 });
@@ -121,7 +122,7 @@ addInputHandler('district_selection', function(input){
 
         geo_data = geo_select(selection, geo_data)
         var selection_menu = geo_process(geo_data);
-        state.vars.current_menu = selection_menu;
+        state.vars.current_menu = JSON.stringify(selection_menu);
         sayText(msgs('training_sector_splash', selection_menu,lang));
         promptDigits('sector_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
     }
@@ -131,7 +132,7 @@ addInputHandler('district_selection', function(input){
     }
     else{ // selection not within parameters
         sayText(msgs('training_invalid_input',{},lang));
-        sayText(msgs('training_district_splash', state.vars.current_menu,lang));
+        sayText(msgs('training_district_splash', JSON.parse(state.vars.current_menu),lang));
         promptDigits('district_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
     }
 });
@@ -153,7 +154,7 @@ addInputHandler('sector_selection', function(input){
 
         geo_data = geo_select(selection, geo_data)
         var selection_menu = geo_process(geo_data);
-        state.vars.current_menu = selection_menu;
+        state.vars.current_menu = JSON.stringify(selection_menu);
         sayText(msgs('training_site_splash', selection_menu,lang));
         promptDigits('site_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
     }
@@ -163,7 +164,7 @@ addInputHandler('sector_selection', function(input){
     }
     else{ // selection not within parameters
         sayText(msgs('training_invalid_input',{},lang));
-        sayText(msgs('training_sector_splash', state.vars.current_menu,lang));
+        sayText(msgs('training_sector_splash', JSON.parse(state.vars.current_menu),lang));
         promptDigits('sector_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
     }
 });
@@ -197,7 +198,7 @@ addInputHandler('site_selection', function(input){
     }
     else{ // selection not within parameters
         sayText(msgs('training_invalid_input',{},lang));
-        sayText(msgs('training_site_splash', state.vars.current_menu,lang));
+        sayText(msgs('training_site_splash', JSON.parse(state.vars.current_menu),lang));
         promptDigits('site_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
     }
 });
