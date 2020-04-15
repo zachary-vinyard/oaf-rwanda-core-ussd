@@ -102,7 +102,7 @@ addInputHandler('province_selection', function(input){
     }
     else{ // selection not within parameters
         sayText(msgs('training_invalid_input',{},lang));
-        sayText(msgs('training_province_splash', JSON.parse(state.vars.current_menu),lang));
+        sayText(msgs('training_province_splash', state.vars.current_menu,lang));
         promptDigits('province_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
     }
 });
@@ -131,7 +131,7 @@ addInputHandler('district_selection', function(input){
     }
     else{ // selection not within parameters
         sayText(msgs('training_invalid_input',{},lang));
-        sayText(msgs('training_district_splash', JSON.parse(state.vars.current_menu),lang));
+        sayText(msgs('training_district_splash', state.vars.current_menu,lang));
         promptDigits('district_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
     }
 });
@@ -163,7 +163,7 @@ addInputHandler('sector_selection', function(input){
     }
     else{ // selection not within parameters
         sayText(msgs('training_invalid_input',{},lang));
-        sayText(msgs('training_sector_splash', JSON.parse(state.vars.current_menu),lang));
+        sayText(msgs('training_sector_splash', state.vars.current_menu,lang));
         promptDigits('sector_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
     }
 });
@@ -197,7 +197,7 @@ addInputHandler('site_selection', function(input){
     }
     else{ // selection not within parameters
         sayText(msgs('training_invalid_input',{},lang));
-        sayText(msgs('training_site_splash', JSON.parse(state.vars.current_menu),lang));
+        sayText(msgs('training_site_splash', state.vars.current_menu,lang));
         promptDigits('site_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
     }
 });
