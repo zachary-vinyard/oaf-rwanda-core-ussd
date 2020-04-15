@@ -4,11 +4,15 @@ var geo_data = require('./dat/rwanda-training-geography');
 var msgs = require('./lib/msg-retrieve');
 var reinit = require('./lib/training-reinitialization');
 var saving = require('./lib/training-save-version-number')
+
+
 const lang = project.vars.console_lang;
+const max_digits = project.vars.max_digits;
+const timeout_length = project.vars.timeout_length;
 
 
 global.main = function () {
-    reinit()
+    reinit();
 
     var survey_table = project.getOrCreateDataTable('Training_survey_division');
     var survey_cursor = survey_table.queryRows({
@@ -32,7 +36,7 @@ global.main = function () {
     state.vars.current_menu = survey_divisions;
     sayText(msgs('train_main_splash', {'$Division_MENU' : state.vars.current_menu},lang));
     promptDigits('division_selection', { 'submitOnHash' : false,
-    'maxDigits'    : 1,
+    'maxDigits'    : max_digits,
     'timeout'      : 180 });
 };
 
@@ -77,32 +81,35 @@ addInputHandler('division_selection',function(input){
     var counter = 1;
     
     while(survey_cursor.hasNext()){
-        try
-        {
-        var row = survey_cursor.next();
-        var survey_type = row.vars.survey_type;
-        surveys_obj = surveys_obj + String(counter) + ")" + survey_type + '\n';
-        counter ++;}
-    catch(error){
-       console.log("error"+error);
-        break;}
+        
+        try{
+            var row = survey_cursor.next();
+            var survey_type = row.vars.survey_type;
+            surveys_obj = surveys_obj + String(counter) + ")" + survey_type + '\n';
+            counter ++;
+        }
+        
+        catch(error){
+            console.log("error"+error);
+            break;
+        }
     }
 
-    call.vars.current_menu = surveys_obj;
+    state.vars.current_menu = surveys_obj;
 
     sayText(msgs('train_type_splash', {'$Type_MENU' : surveys_obj},lang));
     promptDigits('surveyType_selection', { 'submitOnHash' : false,
-                                            'maxDigits'    : 1,
-                                            'timeout'      : 180 });
+                                            'maxDigits'    : max_digits,
+                                            'timeout'      : timeout_length });
                                         }
     else if (input === 99){ // exit
         sayText(msgs('exit'));
         stopRules();
     }
     else{
-        sayText(msgs('imp_invalid_geo',lang));
-        sayText(msgs('train_main_splash', {'$Division_MENU' : '1: Marketing'},lang));
-        promptDigits('division_selection', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+        sayText(msgs('training_invalid_input',lang));
+        sayText(msgs('train_main_splash', {'$Division_MENU' : state.vars.current_menu},lang));
+        promptDigits('division_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
 
     }
 });
@@ -146,19 +153,19 @@ addInputHandler('surveyType_selection',function(input){
         var geo_list = geo_process(geo_data);
         sayText(msgs('training_province_splash', geo_list,lang));
         promptDigits('province_selection', { 'submitOnHash' : false,
-                                            'maxDigits'    : 1,
-                                            'timeout'      : 180 });
-                                         }
+                                            'maxDigits'    : max_digits,
+                                            'timeout'      : timeout_length });
+                                        }
     else if (input === 99){ // exit
         sayText(msgs('exit'));
         stopRules();
     }
     else{ // selection not within parameters
-        sayText("ivalid input");
+        sayText(msgs('training_invalid_input',lang));
         sayText(msgs('train_type_splash', {'$Type_MENU' : call.vars.current_menu},lang));
         promptDigits('surveyType_selection', { 'submitOnHash' : false,
-                                                'maxDigits'    : 1,
-                                                'timeout'      : 180 });
+                                                'maxDigits'    : max_digits,
+                                                'timeout'      : timeout_length });
     }
                                     
 
@@ -177,16 +184,16 @@ addInputHandler('province_selection', function(input){
         var selection_menu = geo_process(geo_data);
         state.vars.current_menu = JSON.stringify(selection_menu);
         sayText(msgs('training_district_splash', selection_menu,lang));
-        promptDigits('district_selection', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+        promptDigits('district_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
     }
     else if (input === 99){ // exit
         sayText(msgs('exit'));
         stopRules();
     }
     else{ // selection not within parameters
-        sayText(msgs('imp_invalid_geo',lang));
+        sayText(msgs('training_invalid_input',lang));
         sayText(msgs('training_province_splash', JSON.parse(state.vars.current_menu),lang));
-        promptDigits('province_selection', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+        promptDigits('province_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
     }
 });
 // input handler for district selection
@@ -206,16 +213,16 @@ addInputHandler('district_selection', function(input){
         var selection_menu = geo_process(geo_data);
         state.vars.current_menu = JSON.stringify(selection_menu);
         sayText(msgs('training_district_splash', selection_menu,lang));
-        promptDigits('sector_selection', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+        promptDigits('sector_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
     }
     else if (input == 99){ // exit
         sayText(msgs('exit')); // need to add this to the list
         stopRules();
     }
     else{ // selection not within parameters
-        sayText(msgs('imp_invalid_geo',lang));
+        sayText(msgs('training_invalid_input',lang));
         sayText(msgs('geo_selections', JSON.parse(state.vars.current_menu),lang));
-        promptDigits('district_selection', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+        promptDigits('district_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
     }
 });
 
@@ -238,16 +245,16 @@ addInputHandler('sector_selection', function(input){
         var selection_menu = geo_process(geo_data);
         state.vars.current_menu = JSON.stringify(selection_menu);
         sayText(msgs('training_district_splash', selection_menu,lang));
-        promptDigits('site_selection', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+        promptDigits('site_selection', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : timeout_length});
     }
     else if (input == 99){ // exit
         sayText(msgs('exit')); // need to add this to the list
         stopRules();
     }
     else{ // selection not within parameters
-        sayText(msgs('imp_invalid_geo',lang));
+        sayText(msgs('training_invalid_input',lang));
         sayText(msgs('geo_selections', JSON.parse(state.vars.current_menu),lang));
-        promptDigits('sector_selection', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+        promptDigits('sector_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
     }
 });
 addInputHandler('site_selection', function(input){
@@ -279,9 +286,9 @@ addInputHandler('site_selection', function(input){
         stopRules();
     }
     else{ // selection not within parameters
-        sayText(msgs('imp_invalid_geo',lang));
+        sayText(msgs('training_invalid_input',lang));
         sayText(msgs('geo_selections', JSON.parse(state.vars.current_menu),lang));
-        promptDigits('site_selection', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+        promptDigits('site_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
     }
 });
 
