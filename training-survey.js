@@ -107,7 +107,7 @@ addInputHandler('division_selection',function(input){
         stopRules();
     }
     else{
-        sayText(msgs('training_invalid_input',lang));
+        sayText(msgs('training_invalid_input',{},lang));
         sayText(msgs('train_main_splash', {'$Division_MENU' : state.vars.current_menu},lang));
         promptDigits('division_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
 
@@ -161,7 +161,7 @@ addInputHandler('surveyType_selection',function(input){
         stopRules();
     }
     else{ // selection not within parameters
-        sayText(msgs('training_invalid_input',lang));
+        sayText(msgs('training_invalid_input',{},lang));
         sayText(msgs('train_type_splash', {'$Type_MENU' : call.vars.current_menu},lang));
         promptDigits('surveyType_selection', { 'submitOnHash' : false,
                                                 'maxDigits'    : max_digits,
@@ -191,7 +191,7 @@ addInputHandler('province_selection', function(input){
         stopRules();
     }
     else{ // selection not within parameters
-        sayText(msgs('training_invalid_input',lang));
+        sayText(msgs('training_invalid_input',{},lang));
         sayText(msgs('training_province_splash', JSON.parse(state.vars.current_menu),lang));
         promptDigits('province_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
     }
@@ -220,7 +220,7 @@ addInputHandler('district_selection', function(input){
         stopRules();
     }
     else{ // selection not within parameters
-        sayText(msgs('training_invalid_input',lang));
+        sayText(msgs('training_invalid_input',{},lang));
         sayText(msgs('geo_selections', JSON.parse(state.vars.current_menu),lang));
         promptDigits('district_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
     }
@@ -252,7 +252,7 @@ addInputHandler('sector_selection', function(input){
         stopRules();
     }
     else{ // selection not within parameters
-        sayText(msgs('training_invalid_input',lang));
+        sayText(msgs('training_invalid_input',{},lang));
         sayText(msgs('geo_selections', JSON.parse(state.vars.current_menu),lang));
         promptDigits('sector_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
     }
@@ -286,7 +286,7 @@ addInputHandler('site_selection', function(input){
         stopRules();
     }
     else{ // selection not within parameters
-        sayText(msgs('training_invalid_input',lang));
+        sayText(msgs('training_invalid_input',{},lang));
         sayText(msgs('geo_selections', JSON.parse(state.vars.current_menu),lang));
         promptDigits('site_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
     }
