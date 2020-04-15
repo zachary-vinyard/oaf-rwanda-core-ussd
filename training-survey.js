@@ -14,81 +14,20 @@ const timeout_length = project.vars.timeout_length;
 global.main = function () {
     reinit();
 
-    var survey_table = project.getOrCreateDataTable('Training_survey_division');
-    var survey_cursor = survey_table.queryRows({
-        sort_dir    : 'desc'
-    });
-    var survey_divisions = '';
-    var counter = 1;
-    while(survey_cursor.hasNext()){
-        try
-        {
-        var row = survey_cursor.next();
-        var survey_division = row.vars.division;
-        survey_divisions = survey_divisions + String(counter) + ")" + survey_division + '\n';
-        counter ++;}
-        
-        catch(error)
-        {
-       console.log("error"+error);
-        break;}
-    }
-    state.vars.current_menu = survey_divisions;
-    sayText(msgs('train_main_splash', {'$Division_MENU' : state.vars.current_menu},lang));
-    promptDigits('division_selection', { 'submitOnHash' : false,
-    'maxDigits'    : max_digits,
-    'timeout'      : 180 });
-};
-
-addInputHandler('division_selection',function(input){
-
-    state.vars.current_step = 'division_selection';
-    input = parseInt(input.replace(/\D/g,''));
-
-    var division = '';
-    var division_exists = false;
-    var survey_table = project.getOrCreateDataTable('Training_survey_division');
-    var survey_cursor = survey_table.queryRows({
-        sort_dir    : 'desc'
-    });
-    counter = 1;
-    while(survey_cursor.hasNext())
-    {
-        try{
-            var row = survey_cursor.next();
-            if(input  == counter){
-                division_exists = true;
-                division = row.vars.division;
-                break;
-            }
-            counter ++;
-        }
-        catch(error){
-           console.log("error"+error);
-            break;
-        }
-    }
-
-    if(division_exists == true)
-    {
-        call.vars.current_division = division;
-        var survey_table = project.getOrCreateDataTable('Surveys');
+    var survey_table = project.getOrCreateDataTable('Surveys');
         var survey_cursor = survey_table.queryRows({
-        vars        : { 'survey_division': call.vars.current_division,'status':"Active"},
+        vars        : { 'status':"Active"},
         sort_dir    : 'desc'
     });
-    var surveys_obj = '';
-    var counter = 1;
-    
-    while(survey_cursor.hasNext()){
-        
+
+    surveys_obj = '';
+    while(survey_cursor.hasNext()){  
         try{
             var row = survey_cursor.next();
             var survey_type = row.vars.survey_type;
-            surveys_obj = surveys_obj + String(counter) + ")" + survey_type + '\n';
-            counter ++;
+            var option_number = row.vars.option_number;
+            surveys_obj = surveys_obj + String(option_number) + ")" + survey_type + '\n';
         }
-        
         catch(error){
             console.log("error"+error);
             break;
@@ -96,60 +35,31 @@ addInputHandler('division_selection',function(input){
     }
 
     state.vars.current_menu = surveys_obj;
-
-    sayText(msgs('train_type_splash', {'$Type_MENU' : surveys_obj},lang));
+    sayText(msgs('train_main_splash', {'$Type_MENU' : state.vars.current_menu},lang));
     promptDigits('surveyType_selection', { 'submitOnHash' : false,
-                                            'maxDigits'    : max_digits,
-                                            'timeout'      : timeout_length });
-                                        }
-    else if (input === 99){ // exit
-        sayText(msgs('training_exit_message',{},lang));
-        stopRules();
-    }
-    else{
-        sayText(msgs('training_invalid_input',{},lang));
-        sayText(msgs('train_main_splash', {'$Division_MENU' : state.vars.current_menu},lang));
-        promptDigits('division_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
-
-    }
-});
+    'maxDigits'    : max_digits,
+    'timeout'      : 180 });
+};
 
 
 addInputHandler('surveyType_selection',function(input){
 
     state.vars.current_step = 'surveyType_selection';
     input = parseInt(input.replace(/\D/g,''));
-
-
-    var survey_exist = false;
     var survey_type;
     var number_of_questions;
     var survey_table = project.getOrCreateDataTable('Surveys');
     var survey_cursor = survey_table.queryRows({
-        vars        : { 'survey_division': call.vars.current_division},
+        vars        : { 'option_number': input},
         sort_dir    : 'desc'
     });
-    var counter = 1;
-    while(survey_cursor.hasNext()){
-        try{
+    if(survey_cursor.hasNext()){
         var row = survey_cursor.next();
-        if(input  == counter){
-            survey_exist = true;
-            survey_type = row.vars.survey_code;
-            number_of_questions = row.vars.number_of_questions;
-            break;
-        }
-        counter ++;
-    }
-    catch(error){
-       console.log("error"+error);
-        break;
-    }
-    }
-
-    if(survey_exist == true){
+        survey_type = row.vars.survey_code;
+        number_of_questions = row.vars.number_of_questions;
         call.vars.survey_code = survey_type;
         call.vars.number_of_questions = number_of_questions;
+       
         var geo_list = geo_process(geo_data);
         sayText(msgs('training_province_splash', geo_list,lang));
         promptDigits('province_selection', { 'submitOnHash' : false,
@@ -301,7 +211,8 @@ addInputHandler('quiz_question', function(input){
         stopRules();
     }
     call.vars.status = state.vars.survey_type + state.vars.step;
-    call.vars[call.vars.status] = input;
+    var question = 'opt'+ String(state.vars.step);
+    call.vars[question] = input;
     var survey_length = call.vars.number_of_questions ; 
 
     // verify response and retrieve relevant feedback string
