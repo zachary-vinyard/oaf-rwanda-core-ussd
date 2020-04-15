@@ -3,10 +3,10 @@ var geo_process = require('./lib/cta-geo-string-processer');
 var geo_data = require('./dat/rwanda-training-geography');
 var msgs = require('./lib/msg-retrieve');
 var reinit = require('./lib/training-reinitialization');
-var saving = require('./lib/training-save-version-number')
 
 
-const lang = project.vars.console_lang;
+
+const lang = project.vars.trainings_language;
 const max_digits = project.vars.max_digits;
 const timeout_length = project.vars.timeout_length;
 
@@ -162,7 +162,7 @@ addInputHandler('surveyType_selection',function(input){
     }
     else{ // selection not within parameters
         sayText(msgs('training_invalid_input',{},lang));
-        sayText(msgs('train_type_splash', {'$Type_MENU' : call.vars.current_menu},lang));
+        sayText(msgs('train_type_splash', {'$Type_MENU' : state.vars.current_menu},lang));
         promptDigits('surveyType_selection', { 'submitOnHash' : false,
                                                 'maxDigits'    : max_digits,
                                                 'timeout'      : timeout_length });
@@ -245,7 +245,7 @@ addInputHandler('sector_selection', function(input){
         var selection_menu = geo_process(geo_data);
         state.vars.current_menu = JSON.stringify(selection_menu);
         sayText(msgs('training_district_splash', selection_menu,lang));
-        promptDigits('site_selection', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : timeout_length});
+        promptDigits('site_selection', {'submitOnHash' : false, 'maxDigits' : max_digits,'timeout' : timeout_length});
     }
     else if (input == 99){ // exit
         sayText(msgs('exit')); // need to add this to the list
@@ -316,8 +316,9 @@ addInputHandler('quiz_question', function(input){
         return null;
     }
     else{
-        
-        saving();
+    
+        var saving = require('./lib/training-save-version-number');
+        saving(); // save the number of time an individual responded to the survey
         call.vars.status = 'complete';
         sayText(msgs('training_closing_message', {   '$FEEDBACK'    : feedback,
                                             '$NUM_CORRECT' : state.vars.num_correct}, lang));
