@@ -253,7 +253,6 @@ addInputHandler('enr_group_id_confirmation', function(input){ //enr group leader
     if(state.vars.current_step == 'entered_group_name'){
         input = state.vars.glus;
     }
-    
     state.vars.current_step = 'enr_glus';
     input = input.replace(/\W/g,'');
     if(input == 99){
@@ -262,7 +261,7 @@ addInputHandler('enr_group_id_confirmation', function(input){ //enr group leader
         return null;
     }
 
-    var selection = get_menu_option(input,'enr_group_id_confirmation');
+    var selection = get_menu_option(state.vars.glus,'enr_group_id_confirmation');
 
     if(selection == null){
         sayText(msgs('invalid_input', {}, lang));
