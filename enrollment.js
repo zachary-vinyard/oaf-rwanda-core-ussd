@@ -60,8 +60,58 @@ addInputHandler('enr_splash', function(input){ //input handler for splash - expe
 /*
 input handlers for registration steps
 */
-addInputHandler('enr_reg_start', function(input){ //input is first entry of nid - next step is nid confirm
+
+//prompt for national Id then Show them the national id they have entered and ask for confirmation
+addInputHandler('enr_reg_start',function(input){
     state.vars.current_step = 'enr_reg_start';
+    input = String(input.replace(/\D/g,''));
+    var check_if_nid = require('./lib/enr-check-nid');
+    if(input == 99){
+        sayText(msgs('exit', {}, lang));
+        stopRules();
+        return null;
+    }
+    else if(!check_if_nid(input)){
+        sayText(msgs('enr_invalid_nid', {}, lang));
+        promptDigits('enr_reg_start', {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length})
+    }
+    else{
+        state.vars.reg_nid = input;
+        var splash_menu = populate_menu(enr_nid_client_confirmation, lang, 300);
+        var current_menu = msgs('ENR_NID_CONFIRMATION', {'$ENR_NID_CONFIRM' : input, '$ENR_CONFIRMATION_MENU' : splash_menu}, lang);
+        state.vars.current_menu_str = current_menu;
+        sayText(current_menu);
+        promptDigits('enr_nid_client_confirmation', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
+
+    }
+});
+
+// Checking confirmation from the user
+addInputHandler('enr_nid_client_confirmation', function(input){
+    state.vars.current_step = 'enr_nid_client_confirmation';
+    input = String(input.replace(/\D/g,''));
+    var selection = get_menu_option(input, state.vars.current_step);
+    if(input == 99){
+        sayText(msgs('exit', {}, lang));
+        stopRules();
+        return null;
+    }
+    else if(selection == null){
+        sayText(msgs('invalid_input', {}, lang));
+        promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
+    }
+    else{
+        var current_menu = msgs(selection, {}, lang);
+        state.vars.current_menu_str = current_menu;
+        sayText(current_menu);
+        promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+    }
+
+});
+
+//continue registration steps after they confirm it
+addInputHandler('enr_reg_start_after_confirm', function(input){ //input is first entry of nid - next step is nid confirm
+    state.vars.current_step = 'enr_reg_start_after_confirm';
     input = String(input.replace(/\D/g,''));
     var check_if_nid = require('./lib/enr-check-nid');
     var is_already_reg = require('./lib/enr-check-dup-nid');
@@ -72,7 +122,7 @@ addInputHandler('enr_reg_start', function(input){ //input is first entry of nid 
     }
     else if(!check_if_nid(input)){
         sayText(msgs('enr_invalid_nid', {}, lang));
-        promptDigits('enr_reg_start', {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length})
+        promptDigits('enr_reg_start_after_confirm', {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length})
     }
     else if(is_already_reg(input, an_pool)){
         var get_client_by_nid = require('./lib/dpm-get-client-by-nid');
