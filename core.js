@@ -142,19 +142,25 @@ addInputHandler('cor_menu_select', function(input){
         var site = Object.keys(geo_select(district, geo_mm_data)).indexOf(state.vars.client_site);
         // generate list of agents within client's site
         var geo_data = geo_select(site, geo_select(district, geo_mm_data));
-        var k = Object.keys(geo_data);
-        var agent_display = '';
-        for(i = 1; i < k.length + 1; i++){
-            agent_display = agent_display + i + ') ' + k[i-1] + '\n';
+        if(!geo_data){
+            sayText(msgs('mml_invalid_geo'), {}, lang);
         }
-        state.vars.current_menu = JSON.stringify(agent_display);
-        // display menu of agent phone numbers
-        sayText(msgs('mml_display_agents', {'$GEO_MENU' : agent_display}));
+        else{
+            var k = Object.keys(geo_data);
+            var agent_display = '';
+            for(i = 1; i < k.length + 1; i++){
+                agent_display = agent_display + i + ') ' + k[i-1] + '\n';
+            }
+            state.vars.current_menu = JSON.stringify(agent_display);
+            // display menu of agent phone numbers
+            sayText(msgs('mml_display_agents', {'$GEO_MENU' : agent_display}));
+            // send the client an SMS with the phone numbers of MM agents in their site
+            var agent_record = msgs('mml_display_agents', {'$GEO_MENU' : agent_display}, lang);
+            var msg_route = project.vars.sms_push_route;
+            project.sendMessage({'to_number' : contact.phone_number, 'route_id' : msg_route, 'content' : agent_record});
+        }
+        // user selects any key to return to core service menu
         promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
-        // send the client an SMS with the phone numbers of MM agents in their site
-        var agent_record = msgs('mml_display_agents', {'$GEO_MENU' : agent_display}, lang);
-        var msg_route = project.vars.sms_push_route;
-        project.sendMessage({'to_number' : contact.phone_number, 'route_id' : msg_route, 'content' : agent_record});
     }
     else{
         var current_menu = msgs(selection, opts, lang);
