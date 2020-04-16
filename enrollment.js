@@ -91,6 +91,7 @@ addInputHandler('enr_nid_client_confirmation', function(input){
     state.vars.current_step = 'enr_nid_client_confirmation';
     input = String(input.replace(/\D/g,''));
     var selection = get_menu_option(input, state.vars.current_step);
+    
     if(input == 99){
         sayText(msgs('exit', {}, lang));
         stopRules();
@@ -104,46 +105,35 @@ addInputHandler('enr_nid_client_confirmation', function(input){
         var current_menu = msgs(selection, {}, lang);
         state.vars.current_menu_str = current_menu;
         sayText(current_menu);
-        promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
-    }
 
-});
-
-//continue registration steps after they confirm it
-addInputHandler('enr_reg_start_after_confirm', function(input){ //input is first entry of nid - next step is nid confirm
-    state.vars.current_step = 'enr_reg_start_after_confirm';
-    input = String(input.replace(/\D/g,''));
-    var check_if_nid = require('./lib/enr-check-nid');
-    var is_already_reg = require('./lib/enr-check-dup-nid');
-    if(input == 99){
-        sayText(msgs('exit', {}, lang));
-        stopRules();
-        return null;
-    }
-    else if(!check_if_nid(input)){
-        sayText(msgs('enr_invalid_nid', {}, lang));
-        promptDigits('enr_reg_start_after_confirm', {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length})
-    }
-    else if(is_already_reg(input, an_pool)){
-        var get_client_by_nid = require('./lib/dpm-get-client-by-nid');
-        var client = get_client_by_nid(input, an_pool);
-        var enr_msg = msgs('enr_reg_complete', {'$ACCOUNT_NUMBER' : client.account_number, '$NAME' : client.name1 + ' ' + client.name2}, lang)
-        sayText(enr_msg);
-        var enr_msg_sms = msgs('enr_reg_complete_sms', {'$ACCOUNT_NUMBER' : client.account_number, '$NAME' : client.name1 + ' ' + client.name2}, lang);
-        var messager = require('./lib/enr-messager');
-        messager(contact.phone_number, enr_msg_sms);
-        if(state.vars.reg_pn){
-            messager(state.vars.reg_pn, enr_msg_sms);
+        if(selection == 'enr_reg_start'){
+            promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
         }
-        promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
+        else{
+            var is_already_reg = require('./lib/enr-check-dup-nid');
+            if(is_already_reg(state.vars.reg_nid , an_pool)){
+                var get_client_by_nid = require('./lib/dpm-get-client-by-nid');
+                var client = get_client_by_nid(state.vars.reg_nid , an_pool);
+                var enr_msg = msgs('enr_reg_complete', {'$ACCOUNT_NUMBER' : client.account_number, '$NAME' : client.name1 + ' ' + client.name2}, lang)
+                sayText(enr_msg);
+                var enr_msg_sms = msgs('enr_reg_complete_sms', {'$ACCOUNT_NUMBER' : client.account_number, '$NAME' : client.name1 + ' ' + client.name2}, lang);
+                var messager = require('./lib/enr-messager');
+                messager(contact.phone_number, enr_msg_sms);
+                if(state.vars.reg_pn){
+                    messager(state.vars.reg_pn, enr_msg_sms);
+                }
+                promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
+            }
+            else{
+                promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length});
+            }
+            get_time();
+        }
     }
-    else{
-        state.vars.reg_nid = input;
-        sayText(msgs('enr_nid_confirm', {}, lang));
-        promptDigits('enr_nid_confirm', {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length});
-    }
-    get_time();
+
 });
+
+
 
 addInputHandler('enr_nid_confirm', function(input){ //step for dd of nid. input here should match stored nid nee
     state.vars.current_step = 'enr_nid_confirm';// need to add section to check if nid registerd already
