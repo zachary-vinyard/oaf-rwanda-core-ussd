@@ -77,8 +77,8 @@ addInputHandler('enr_reg_start',function(input){
     }
     else{
         state.vars.reg_nid = input;
-        var splash_menu = populate_menu(enr_nid_client_confirmation, lang, 300);
-        var current_menu = msgs('ENR_NID_CONFIRMATION', {'$ENR_NID_CONFIRM' : input, '$ENR_CONFIRMATION_MENU' : splash_menu}, lang);
+        var splash_menu = populate_menu('enr_nid_client_confirmation', lang, 300);
+        var current_menu = msgs('enr_nid_client_confirmation', {'$ENR_NID_CONFIRM' : input, '$ENR_CONFIRMATION_MENU' : splash_menu}, lang);
         state.vars.current_menu_str = current_menu;
         sayText(current_menu);
         promptDigits('enr_nid_client_confirmation', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
