@@ -106,9 +106,11 @@ addInputHandler('enr_nid_client_confirmation', function(input){
         state.vars.current_menu_str = current_menu;
         sayText(current_menu);
 
+        // If the user does not confirm
         if(selection == 'enr_reg_start'){
-            promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+            promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length});
         }
+        //If the user confirms
         else{
             var is_already_reg = require('./lib/enr-check-dup-nid');
             if(is_already_reg(state.vars.reg_nid , an_pool)){
@@ -124,6 +126,7 @@ addInputHandler('enr_nid_client_confirmation', function(input){
                 }
                 promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
             }
+            // start registration process by asking them to enter their id again
             else{
                 promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length});
             }
@@ -132,7 +135,6 @@ addInputHandler('enr_nid_client_confirmation', function(input){
     }
 
 });
-
 
 
 addInputHandler('enr_nid_confirm', function(input){ //step for dd of nid. input here should match stored nid nee
