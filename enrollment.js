@@ -226,8 +226,10 @@ addInputHandler('enr_pn', function(input){ //enr phone number step
 });
 
 addInputHandler('enr_glus',function(input){
+    
     input = input.replace(/\W/g,'');
-
+    state.vars.current_step = 'enr_glus';
+    
     if(input == 99){
         sayText(msgs('exit', {}, lang));
         stopRules();
@@ -247,9 +249,11 @@ addInputHandler('enr_glus',function(input){
 });
 
 addInputHandler('enr_group_id_confirmation', function(input){ //enr group leader / umudugudu support id step. last registration step
+    
     if(state.vars.current_step == 'entered_group_name'){
         input = state.vars.glus;
     }
+    
     state.vars.current_step = 'enr_glus';
     input = input.replace(/\W/g,'');
     if(input == 99){
@@ -258,7 +262,7 @@ addInputHandler('enr_group_id_confirmation', function(input){ //enr group leader
         return null;
     }
 
-    var selection = get_menu_option(input, state.vars.current_step);
+    var selection = get_menu_option(input,'enr_group_id_confirmation');
 
     if(selection == null){
         sayText(msgs('invalid_input', {}, lang));
