@@ -104,10 +104,11 @@ addInputHandler('enr_nid_client_confirmation', function(input){
     else{
         var current_menu = msgs(selection, {}, lang);
         state.vars.current_menu_str = current_menu;
-        sayText(current_menu);
+        
 
         // If the user does not confirm
         if(selection == 'enr_reg_start'){
+            sayText(current_menu);
             promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length});
         }
         //If the user confirms
@@ -128,6 +129,7 @@ addInputHandler('enr_nid_client_confirmation', function(input){
             }
             // start registration process by asking them to enter their id again
             else{
+                sayText(current_menu);
                 promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length});
             }
             get_time();
@@ -223,7 +225,28 @@ addInputHandler('enr_pn', function(input){ //enr phone number step
     get_time();
 });
 
-addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu support id step. last registration step
+addInputHandler('enr_glus',function(input){
+    input = input.replace(/\W/g,'');
+
+    if(input == 99){
+        sayText(msgs('exit', {}, lang));
+        stopRules();
+        return null;
+    }
+    else{
+        state.vars.glus = input;
+        var splash_menu = populate_menu('enr_group_id_confirmation', lang, 300);
+        var current_menu = msgs('enr_group_id_confirmation', {'$ENR_GROUP_ID' : input, '$ENR_CONFIRMATION_MENU' : splash_menu}, lang);
+        state.vars.current_menu_str = current_menu;
+        sayText(current_menu);
+        promptDigits('enr_group_id_confirmation', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
+
+    }
+    
+
+});
+
+addInputHandler('enr_group_id_confirmation', function(input){ //enr group leader / umudugudu support id step. last registration step
     if(state.vars.current_step == 'entered_group_name'){
         input = state.vars.glus;
     }
@@ -234,9 +257,25 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
         stopRules();
         return null;
     }
-    state.vars.glus = input;
+
+    var selection = get_menu_option(input, state.vars.current_step);
+
+    if(selection == null){
+        sayText(msgs('invalid_input', {}, lang));
+        promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
+        
+    }
+    else if(selection == 'enr_glus'){
+        var current_menu = msgs(selection, {}, lang);
+        state.vars.current_menu_str = current_menu;
+        sayText(current_menu);
+        promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : max_digits_for_glus, 'timeout' : timeout_length});
+
+    }
+    else{
+
     var check_glus = require('./lib/enr-check-glus');
-    var geo = check_glus(input, glus_pool);
+    var geo = check_glus(state.vars.glus, glus_pool);
     var check_live = require('./lib/enr-check-geo-active');
     if(geo){
         try{ // get this out of a try block as soon as bandwidth
@@ -275,10 +314,14 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
             promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
         }
     }
+
+
     else{
         sayText(msgs('enr_invalid_glus', {}, lang));
         promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : max_digits_for_glus, 'timeout' : timeout_length});
     }
+}
+
     get_time();
 });//end registration steps input handlers
 
@@ -740,7 +783,7 @@ addInputHandler('enr_enter_groupname', function(input){
     if(state.vars.current_step == 'enr_glus'){
         state.vars.current_step = 'entered_group_name';
         sayText(msgs('enr_continue', {'$GROUP' : state.vars.glus}, lang));
-        promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        promptDigits('enr_group_id_confirmation', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
     }
     else if(state.vars.current_step == 'enr_order_start'){
         state.vars.current_step = 'entered_group_name';
