@@ -262,7 +262,7 @@ addInputHandler('enr_group_id_confirmation', function(input){ //enr group leader
     }
 
     state.vars.confirmation = input;
-    var selection = get_menu_option(state.vars.glus,'enr_group_id_confirmation');
+    var selection = get_menu_option(state.vars.confirmation,'enr_group_id_confirmation');
 
     if(selection == null){
         sayText(msgs('invalid_input', {}, lang));
