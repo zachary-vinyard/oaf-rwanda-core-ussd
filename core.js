@@ -138,14 +138,17 @@ addInputHandler('cor_menu_select', function(input){
     }
     else if(selection === 'cor_mm_locator'){// based on client's site and district, display a list of phone numbers near them
         // translate variables into indices
-        var district = Object.keys(geo_mm_data).indexOf(state.vars.client_district);
-        var site = Object.keys(geo_select(district, geo_mm_data)).indexOf(state.vars.client_site);
-        // generate list of agents within client's site
-        var geo_data = geo_select(site, geo_select(district, geo_mm_data));
-        if(!geo_data){
+        var district = Object.keys(geo_mm_data).indexOf(state.vars.client_district) || null;
+        console.log('District is ' + district);
+        var site = Object.keys(geo_select(district, geo_mm_data)).indexOf(state.vars.client_site) || null;
+        // catch if district is not in MM data
+        console.log('site is ' + site);
+        if(site === null){
             sayText(msgs('mml_invalid_geo'), {}, lang);
         }
         else{
+            // generate list of agents within client's site
+            var geo_data = geo_select(site, geo_select(district, geo_mm_data)); 
             var k = Object.keys(geo_data);
             var agent_display = '';
             for(i = 1; i < k.length + 1; i++){
