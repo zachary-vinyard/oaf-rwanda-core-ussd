@@ -157,6 +157,9 @@ addInputHandler('cor_menu_select', function(input){
                 var msg_route = project.vars.sms_push_route;
                 project.sendMessage({'to_number' : contact.phone_number, 'route_id' : msg_route, 'content' : agent_record});
             }
+            else{
+                sayText(msgs('mml_invalid_geo'), {}, lang);
+            }
         }
         else{
             sayText(msgs('mml_invalid_geo'), {}, lang);
