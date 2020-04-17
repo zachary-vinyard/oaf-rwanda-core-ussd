@@ -173,7 +173,7 @@ addInputHandler('cor_menu_select', function(input){
     }
 });
 
-addInputHandler('chx_update', fun ction(input){
+addInputHandler('chx_update', function(input){
     input = parseInt(input.replace(/\D/g,''));
     // if they want to update, ask them to place an order
     if(input === 1){
