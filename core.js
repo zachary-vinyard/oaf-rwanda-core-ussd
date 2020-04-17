@@ -139,9 +139,10 @@ addInputHandler('cor_menu_select', function(input){
     else if(selection === 'cor_mm_locator'){// based on client's site and district, display a list of phone numbers near them
         // translate variables into indices
         var district = Object.keys(geo_mm_data).indexOf(state.vars.client_district);
-        if(district > 0){
+        console.log('district is ' + district);
+        if(district >= 0){
             var site = Object.keys(geo_select(district, geo_mm_data)).indexOf(state.vars.client_site);
-            if(site > 0){
+            if(site >= 0){
                 var geo_data = geo_select(site, geo_select(district, geo_mm_data)); 
                 var k = Object.keys(geo_data);
                 var agent_display = '';
@@ -172,7 +173,7 @@ addInputHandler('cor_menu_select', function(input){
     }
 });
 
-addInputHandler('chx_update', function(input){
+addInputHandler('chx_update', fun ction(input){
     input = parseInt(input.replace(/\D/g,''));
     // if they want to update, ask them to place an order
     if(input === 1){
