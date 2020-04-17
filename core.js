@@ -138,29 +138,27 @@ addInputHandler('cor_menu_select', function(input){
     }
     else if(selection === 'cor_mm_locator'){// based on client's site and district, display a list of phone numbers near them
         // translate variables into indices
-        var district = Object.keys(geo_mm_data).indexOf(state.vars.client_district) || null;
-        console.log('District is ' + district);
-        var site = Object.keys(geo_select(district, geo_mm_data)).indexOf(state.vars.client_site) || null;
-        // catch if district is not in MM data
-        console.log('site is ' + site);
-        if(site === null){
-            sayText(msgs('mml_invalid_geo'), {}, lang);
+        var district = Object.keys(geo_mm_data).indexOf(state.vars.client_district);
+        if(district > 0){
+            var site = Object.keys(geo_select(district, geo_mm_data)).indexOf(state.vars.client_site);
+            if(site > 0){
+                var geo_data = geo_select(site, geo_select(district, geo_mm_data)); 
+                var k = Object.keys(geo_data);
+                var agent_display = '';
+                for(i = 1; i < k.length + 1; i++){
+                    agent_display = agent_display + i + ') ' + k[i-1] + '\n';
+                }
+                state.vars.current_menu = JSON.stringify(agent_display);
+                // display menu of agent phone numbers
+                sayText(msgs('mml_display_agents', {'$GEO_MENU' : agent_display}));
+                // send the client an SMS with the phone numbers of MM agents in their site
+                var agent_record = msgs('mml_display_agents', {'$GEO_MENU' : agent_display}, lang);
+                var msg_route = project.vars.sms_push_route;
+                project.sendMessage({'to_number' : contact.phone_number, 'route_id' : msg_route, 'content' : agent_record});
+            }
         }
         else{
-            // generate list of agents within client's site
-            var geo_data = geo_select(site, geo_select(district, geo_mm_data)); 
-            var k = Object.keys(geo_data);
-            var agent_display = '';
-            for(i = 1; i < k.length + 1; i++){
-                agent_display = agent_display + i + ') ' + k[i-1] + '\n';
-            }
-            state.vars.current_menu = JSON.stringify(agent_display);
-            // display menu of agent phone numbers
-            sayText(msgs('mml_display_agents', {'$GEO_MENU' : agent_display}));
-            // send the client an SMS with the phone numbers of MM agents in their site
-            var agent_record = msgs('mml_display_agents', {'$GEO_MENU' : agent_display}, lang);
-            var msg_route = project.vars.sms_push_route;
-            project.sendMessage({'to_number' : contact.phone_number, 'route_id' : msg_route, 'content' : agent_record});
+            sayText(msgs('mml_invalid_geo'), {}, lang);
         }
         // user selects any key to return to core service menu
         promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
