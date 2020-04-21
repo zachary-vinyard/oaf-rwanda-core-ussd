@@ -77,7 +77,7 @@ addInputHandler('enr_reg_start',function(input){
     }
     else{
         state.vars.reg_nid = input;
-        var confirmation_menu = msgs('enr_confirmation_menu',lang);
+        var confirmation_menu = msgs('enr_confirmation_menu',{},lang);
         var current_menu = msgs('enr_nid_client_confirmation', {'$ENR_NID_CONFIRM' : input, '$ENR_CONFIRMATION_MENU' : confirmation_menu}, lang);
         state.vars.current_menu_str = current_menu;
         sayText(current_menu);
@@ -243,7 +243,7 @@ addInputHandler('enr_glus',function(input){
 
         // if the info about the id is not null, ask for confirmation with the group info
         if(group_information != null){
-            var confirmation_menu = msgs(enr_confirmation_menu,lang);
+            var confirmation_menu = msgs(enr_confirmation_menu,{},lang);
             var current_menu = msgs('enr_group_id_confirmation', {'$ENR_GROUP_ID' : input,'$LOCATION_INFO':group_information, '$ENR_CONFIRMATION_MENU' : confirmation_menu}, lang);
             state.vars.current_menu_str = current_menu;
             sayText(current_menu);
