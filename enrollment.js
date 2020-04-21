@@ -77,7 +77,7 @@ addInputHandler('enr_reg_start',function(input){
     }
     else{
         state.vars.reg_nid = input;
-        var confirmation_menu = msgs(enr_confirmation_menu,lang);
+        var confirmation_menu = msgs('enr_confirmation_menu',lang);
         var current_menu = msgs('enr_nid_client_confirmation', {'$ENR_NID_CONFIRM' : input, '$ENR_CONFIRMATION_MENU' : confirmation_menu}, lang);
         state.vars.current_menu_str = current_menu;
         sayText(current_menu);
@@ -276,13 +276,12 @@ addInputHandler('enr_group_id_confirmation', function(input){ //enr group leader
     }
 
     state.vars.confirmation = input;
-    var selection = get_menu_option(state.vars.confirmation,'enr_group_id_confirmation');
 
     if(input  == 2){ // if the user chooses no, they will be prompt to enter the group code again
         var current_menu = msgs('enr_glus', {}, lang);
         state.vars.current_menu_str = current_menu;
         sayText(current_menu);
-        promptDigits(selection, {'submitOnHash' : false, 'maxDigits' : max_digits_for_glus, 'timeout' : timeout_length});
+        promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : max_digits_for_glus, 'timeout' : timeout_length});
 
     }
     else if (input == 1) { // if the user chooses yes, that the id is correct, save the info
