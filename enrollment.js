@@ -274,7 +274,6 @@ addInputHandler('enr_group_id_confirmation', function(input){ //enr group leader
     }
 
     state.vars.confirmation = input;
-
     if(input  == 2){ // if the user chooses no, they will be prompt to enter the group code again
         var current_menu = msgs('enr_glus', {}, lang);
         state.vars.current_menu_str = current_menu;
@@ -317,7 +316,10 @@ addInputHandler('enr_group_id_confirmation', function(input){ //enr group leader
         else{
             var enr_msg = msgs('enr_reg_complete', {'$ACCOUNT_NUMBER' : state.vars.account_number, '$NAME' : state.vars.reg_name_2}, lang);
             sayText(enr_msg);
-            var enr_msg_sms = msgs('enr_reg_complete_sms', {'$ACCOUNT_NUMBER' : state.vars.account_number, '$NAME' : state.vars.reg_name_2}, lang);
+            //retreive ads per district entered by the user
+            var retrieve_ad = require('./lib/enr-retrieve_ad_by_district');
+            var sms_ad = retrieve_ad(state.vars.districtId ,lang);
+            var enr_msg_sms = msgs('enr_reg_complete_sms', {'$ACCOUNT_NUMBER' : state.vars.account_number, '$NAME' : state.vars.reg_name_2,'$AD_MESSAGE':sms_ad}, lang);
             var messager = require('./lib/enr-messager');
             messager(contact.phone_number, enr_msg_sms);
             messager(state.vars.reg_pn, enr_msg_sms);
@@ -380,11 +382,6 @@ addInputHandler('enr_order_start', function(input){ //input is account number
         // check if client is a group leader
         var gl_check = require('./lib/enr-group-leader-check');
         var is_gl = gl_check(state.vars.account_number, state.vars.glus, an_pool, glus_pool);
-        // if the client is a group leader and the group is not yet named, prompt them to enter a group name
-        if(is_gl && state.vars.needs_name){
-            sayText(msgs('enr_add_groupname', {}, lang));
-            promptDigits('enr_enter_groupname', {'submitOnHash' : false, 'maxDigits' : 60, 'timeout' : timeout_length});
-        }
         // continue with order steps
         var check_live = require('./lib/enr-check-geo-active');
         if(!check_live(client.vars.geo, geo_menu_map)){
@@ -786,21 +783,3 @@ addInputHandler('enr_glvv_id', function(input){
     }
 });
 
-// input handler for entering group name and save to glus id table
-addInputHandler('enr_enter_groupname', function(input){
-    // assign input as the group name
-    input = input.replace(/\W/g,''); //added some quick sanitation to this input
-    var name_group = require('./lib/enr-name-group');
-    name_group(state.vars.glus, glus_pool, input);
-    // return the client to the last completed step
-    if(state.vars.current_step == 'enr_glus'){
-        state.vars.current_step = 'entered_group_name';
-        sayText(msgs('enr_continue', {'$GROUP' : state.vars.glus}, lang));
-        promptDigits('enr_group_id_confirmation', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
-    }
-    else if(state.vars.current_step == 'enr_order_start'){
-        state.vars.current_step = 'entered_group_name';
-        sayText(msgs('enr_continue', {'$GROUP' : state.vars.glus}, lang));
-        promptDigits('enr_order_start', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
-    }
-});
