@@ -243,8 +243,8 @@ addInputHandler('enr_glus',function(input){
 
         // if the info about the id is not null, ask for confirmation with the group info
         if(group_information != null){
-            var confirmation_menu = msgs(enr_confirmation_menu,{},lang);
-            var current_menu = msgs('enr_group_id_confirmation', {'$ENR_GROUP_ID' : input,'$LOCATION_INFO':group_information, '$ENR_CONFIRMATION_MENU' : confirmation_menu}, lang);
+            var confirmation_menu = msgs('enr_confirmation_menu',{},lang);
+            var current_menu = msgs('enr_group_id_confirmation', {'$ENR_GROUP_ID' : input,'$LOCATION_INFO': group_information, '$ENR_CONFIRMATION_MENU' : confirmation_menu}, lang);
             state.vars.current_menu_str = current_menu;
             sayText(current_menu);
             promptDigits('enr_group_id_confirmation', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
@@ -255,9 +255,7 @@ addInputHandler('enr_glus',function(input){
             sayText(msgs('invalid_group_id'));
             sayText(msgs('enr_glus', {}, lang));
             promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : max_digits_for_glus, 'timeout' : timeout_length});
-
         }
-
     }
     
 });
