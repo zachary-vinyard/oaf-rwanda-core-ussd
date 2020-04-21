@@ -102,7 +102,7 @@ addInputHandler('enr_nid_client_confirmation', function(input){
         var current_menu = msgs('enr_reg_start', {}, lang);
         state.vars.current_menu_str = current_menu; // set the current menu to what the user choosed(yes/no)
         sayText(current_menu);
-        promptDigits(enr_reg_start, {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length});
+        promptDigits('enr_reg_start', {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length});
     }
     //If the user confirms (chooses yes)
     else if(input == 1){
