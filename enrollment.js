@@ -261,10 +261,7 @@ addInputHandler('enr_glus',function(input){
 });
 
 addInputHandler('enr_group_id_confirmation', function(input){ //enr group leader / umudugudu support id step. last registration step
-    
-    if(state.vars.current_step == 'entered_group_name'){
-        input = state.vars.confirmation;
-    }
+
     state.vars.current_step = 'enr_glus';
     input = input.replace(/\W/g,'');
     if(input == 99){
@@ -308,12 +305,6 @@ addInputHandler('enr_group_id_confirmation', function(input){ //enr group leader
         var gl_check = require('./lib/enr-group-leader-check');
         var is_gl = gl_check(state.vars.account_number, state.vars.glus, an_pool, glus_pool);
         console.log('is gl? : ' + is_gl);
-        // if the client is a group leader and the group is not yet named, prompt them to enter a group name
-        if(is_gl && state.vars.needs_name){
-            sayText(msgs('enr_add_groupname', {}, lang));
-            promptDigits('enr_enter_groupname', {'submitOnHash' : false, 'maxDigits' : 60, 'timeout' : timeout_length});
-        }
-        else{
             var enr_msg = msgs('enr_reg_complete', {'$ACCOUNT_NUMBER' : state.vars.account_number, '$NAME' : state.vars.reg_name_2}, lang);
             sayText(enr_msg);
             //retreive ads per district entered by the user
@@ -325,7 +316,6 @@ addInputHandler('enr_group_id_confirmation', function(input){ //enr group leader
             messager(contact.phone_number, enr_msg_sms);
             messager(state.vars.reg_pn, enr_msg_sms);
             promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
-        }
     }
     else{
         sayText(msgs('enr_invalid_glus', {}, lang));
@@ -345,7 +335,7 @@ else{// If there is an invalid input(not one or two)
 input handlers for input ordering
 */
 addInputHandler('enr_order_start', function(input){ //input is account number
-    if(state.vars.current_step == 'entered_group_name' || state.vars.current_step == 'entered_glvv'){
+    if(state.vars.current_step == 'entered_glvv'){
         input = state.vars.account_number;
         input = input.toString();
     }
