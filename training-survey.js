@@ -13,7 +13,7 @@ const timeout_length = project.vars.timeout_length;
 
 global.main = function () {
     reinit();
-    call.vars.phone_nbr = contact.phone_number;
+    call.vars.phone_nbr = contact.phone_number;// will later be used to querry for uncomplete surveys
     var survey_table = project.getOrCreateDataTable('Surveys');
         var survey_cursor = survey_table.queryRows({
         vars        : { 'status':"Active"},
