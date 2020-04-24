@@ -3,7 +3,7 @@ rw site geography 2020
 */
 
 module.exports = {
-  "East": {
+  "Iburasirazuba": {
     "Bugesera": {
 		" Ruhuha ":{
 			" Gikundamvura " :[],
@@ -402,7 +402,7 @@ module.exports = {
 			}
 	}
   },
-  "South": {
+  "Amajyepfo": {
     "Gisagara": {
 		" Zone 3 ":{
 			" Kimana " :[],
@@ -876,7 +876,7 @@ module.exports = {
 			}
 	}
   },
-  "Southwest": {
+  "Iburengerazuba bwamajyepfo": {
     "Bugarama": {
 		" Zone 1 ":{
 			" Shara " :[],
@@ -1131,7 +1131,7 @@ module.exports = {
 		}
 	}
   },
-  "West": {
+  "Iburengerazuba": {
     "Karongi": {
 		" Zone 2 ":{
 			" Musasa " :[],
@@ -1569,7 +1569,7 @@ module.exports = {
 			}
 	}
   },
-  "North": {
+  "Amajyaruguru": {
     "Burera": [],
     "Gakenke": [],
     "Gicumbi": [],
