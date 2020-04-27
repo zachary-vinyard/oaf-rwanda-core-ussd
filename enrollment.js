@@ -60,11 +60,12 @@ addInputHandler('enr_splash', function(input){ //input handler for splash - expe
 /*
 input handlers for registration steps
 */
-addInputHandler('enr_reg_start', function(input){ //input is first entry of nid - next step is nid confirm
+
+//prompt for national Id then Show them the national id they have entered and ask for confirmation
+addInputHandler('enr_reg_start',function(input){
     state.vars.current_step = 'enr_reg_start';
     input = String(input.replace(/\D/g,''));
     var check_if_nid = require('./lib/enr-check-nid');
-    var is_already_reg = require('./lib/enr-check-dup-nid');
     if(input == 99){
         sayText(msgs('exit', {}, lang));
         stopRules();
@@ -74,26 +75,69 @@ addInputHandler('enr_reg_start', function(input){ //input is first entry of nid 
         sayText(msgs('enr_invalid_nid', {}, lang));
         promptDigits('enr_reg_start', {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length})
     }
-    else if(is_already_reg(input, an_pool)){
-        var get_client_by_nid = require('./lib/dpm-get-client-by-nid');
-        var client = get_client_by_nid(input, an_pool);
-        var enr_msg = msgs('enr_reg_complete', {'$ACCOUNT_NUMBER' : client.account_number, '$NAME' : client.name1 + ' ' + client.name2}, lang)
-        sayText(enr_msg);
-        var enr_msg_sms = msgs('enr_reg_complete_sms', {'$ACCOUNT_NUMBER' : client.account_number, '$NAME' : client.name1 + ' ' + client.name2}, lang);
-        var messager = require('./lib/enr-messager');
-        messager(contact.phone_number, enr_msg_sms);
-        if(state.vars.reg_pn){
-            messager(state.vars.reg_pn, enr_msg_sms);
-        }
-        promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
-    }
     else{
         state.vars.reg_nid = input;
-        sayText(msgs('enr_nid_confirm', {}, lang));
-        promptDigits('enr_nid_confirm', {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length});
+        var confirmation_menu = msgs('enr_confirmation_menu',{},lang);
+        var current_menu = msgs('enr_nid_client_confirmation', {'$ENR_NID_CONFIRM' : input, '$ENR_CONFIRMATION_MENU' : confirmation_menu}, lang);
+        state.vars.current_menu_str = current_menu;
+        sayText(current_menu);
+        promptDigits('enr_nid_client_confirmation', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
+
     }
-    get_time();
 });
+
+// Checking confirmation from the user
+addInputHandler('enr_nid_client_confirmation', function(input){
+    state.vars.current_step = 'enr_nid_client_confirmation';
+    input = String(input.replace(/\D/g,''));
+    
+    if(input == 99){
+        sayText(msgs('exit', {}, lang));
+        stopRules();
+        return null;
+    }
+    
+     // If the user does not confirm(chooses no)
+    else if(input == 2){
+        var current_menu = msgs('enr_reg_start', {}, lang);
+        state.vars.current_menu_str = current_menu; // set the current menu to what the user choosed(yes/no)
+        sayText(current_menu);
+        promptDigits('enr_reg_start', {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length});
+    }
+    //If the user confirms (chooses yes)
+    else if(input == 1){
+        // Check if the client is already registered 
+        var is_already_reg = require('./lib/enr-check-dup-nid');
+        if(is_already_reg(state.vars.reg_nid , an_pool)){
+            var get_client_by_nid = require('./lib/dpm-get-client-by-nid');
+            var client = get_client_by_nid(state.vars.reg_nid , an_pool);
+            var enr_msg = msgs('enr_reg_complete', {'$ACCOUNT_NUMBER' : client.account_number, '$NAME' : client.name1 + ' ' + client.name2}, lang)
+            sayText(enr_msg);
+            var enr_msg_sms = msgs('enr_reg_complete_sms', {'$ACCOUNT_NUMBER' : client.account_number, '$NAME' : client.name1 + ' ' + client.name2}, lang);
+            var messager = require('./lib/enr-messager');
+            messager(contact.phone_number, enr_msg_sms);
+            if(state.vars.reg_pn){
+                messager(state.vars.reg_pn, enr_msg_sms);
+            }
+            promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
+            }
+            // start registration process by asking them to enter their id again
+            else{
+                var current_menu = msgs('enr_nid_confirm', {}, lang);
+                state.vars.current_menu_str = current_menu;
+                sayText(current_menu);// contains the menu that ask the unser to reenter the id(after confirmation)
+                promptDigits('enr_nid_confirm', {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length});
+            }
+            get_time();
+        }
+        else {
+            sayText(msgs('invalid_input', {}, lang));
+            promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
+        }
+    
+
+});
+
 
 addInputHandler('enr_nid_confirm', function(input){ //step for dd of nid. input here should match stored nid nee
     state.vars.current_step = 'enr_nid_confirm';// need to add section to check if nid registerd already
@@ -181,10 +225,43 @@ addInputHandler('enr_pn', function(input){ //enr phone number step
     get_time();
 });
 
-addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu support id step. last registration step
-    if(state.vars.current_step == 'entered_group_name'){
-        input = state.vars.glus;
+addInputHandler('enr_glus',function(input){
+    
+    input = input.replace(/\W/g,'');
+    state.vars.current_step = 'enr_glus';
+    
+    if(input == 99){
+        sayText(msgs('exit', {}, lang));
+        stopRules();
+        return null;
     }
+    else{
+        state.vars.glus = input;
+        // checking and retreiving info about the entered id
+        var groupCheck = require('./lib/enr-check-gid');
+        var group_information = groupCheck(input,'group_codes',lang);
+
+        // if the info about the id is not null, ask for confirmation with the group info
+        if(group_information != null){
+            var confirmation_menu = msgs('enr_confirmation_menu',{},lang);
+            var current_menu = msgs('enr_group_id_confirmation', {'$ENR_GROUP_ID' : input,'$LOCATION_INFO': group_information, '$ENR_CONFIRMATION_MENU' : confirmation_menu}, lang);
+            state.vars.current_menu_str = current_menu;
+            sayText(current_menu);
+            promptDigits('enr_group_id_confirmation', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
+
+        }
+        // if the group id is not valid, prompt them again
+        else{
+            sayText(msgs('invalid_group_id'));
+            sayText(msgs('enr_glus', {}, lang));
+            promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : max_digits_for_glus, 'timeout' : timeout_length});
+        }
+    }
+    
+});
+
+addInputHandler('enr_group_id_confirmation', function(input){ //enr group leader / umudugudu support id step. last registration step
+
     state.vars.current_step = 'enr_glus';
     input = input.replace(/\W/g,'');
     if(input == 99){
@@ -192,9 +269,19 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
         stopRules();
         return null;
     }
-    state.vars.glus = input;
+
+    state.vars.confirmation = input;
+    if(input  == 2){ // if the user chooses no, they will be prompt to enter the group code again
+        var current_menu = msgs('enr_glus', {}, lang);
+        state.vars.current_menu_str = current_menu;
+        sayText(current_menu);
+        promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : max_digits_for_glus, 'timeout' : timeout_length});
+
+    }
+    else if (input == 1) { // if the user chooses yes, that the id is correct, save the info
+
     var check_glus = require('./lib/enr-check-glus');
-    var geo = check_glus(input, glus_pool);
+    var geo = check_glus(state.vars.glus, glus_pool);
     var check_live = require('./lib/enr-check-geo-active');
     if(geo){
         try{ // get this out of a try block as soon as bandwidth
@@ -218,25 +305,29 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
         var gl_check = require('./lib/enr-group-leader-check');
         var is_gl = gl_check(state.vars.account_number, state.vars.glus, an_pool, glus_pool);
         console.log('is gl? : ' + is_gl);
-        // if the client is a group leader and the group is not yet named, prompt them to enter a group name
-        if(is_gl && state.vars.needs_name){
-            sayText(msgs('enr_add_groupname', {}, lang));
-            promptDigits('enr_enter_groupname', {'submitOnHash' : false, 'maxDigits' : 60, 'timeout' : timeout_length});
-        }
-        else{
             var enr_msg = msgs('enr_reg_complete', {'$ACCOUNT_NUMBER' : state.vars.account_number, '$NAME' : state.vars.reg_name_2}, lang);
             sayText(enr_msg);
-            var enr_msg_sms = msgs('enr_reg_complete_sms', {'$ACCOUNT_NUMBER' : state.vars.account_number, '$NAME' : state.vars.reg_name_2}, lang);
+            //retreive ads per district entered by the user
+            var retrieveAd = require('./lib/enr-retrieve-ad-by-district');
+            var districtId = state.vars.districtId ;
+            var sms_ad = retrieveAd(districtId,lang);
+            var enr_msg_sms = msgs('enr_reg_complete_sms', {'$ACCOUNT_NUMBER' : state.vars.account_number, '$NAME' : state.vars.reg_name_2,'$AD_MESSAGE':sms_ad}, lang);
             var messager = require('./lib/enr-messager');
             messager(contact.phone_number, enr_msg_sms);
             messager(state.vars.reg_pn, enr_msg_sms);
             promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
-        }
     }
     else{
         sayText(msgs('enr_invalid_glus', {}, lang));
         promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : max_digits_for_glus, 'timeout' : timeout_length});
     }
+}
+else{// If there is an invalid input(not one or two)
+    sayText(msgs('invalid_input', {}, lang));
+    promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
+    
+}
+
     get_time();
 });//end registration steps input handlers
 
@@ -244,7 +335,7 @@ addInputHandler('enr_glus', function(input){ //enr group leader / umudugudu supp
 input handlers for input ordering
 */
 addInputHandler('enr_order_start', function(input){ //input is account number
-    if(state.vars.current_step == 'entered_group_name' || state.vars.current_step == 'entered_glvv'){
+    if(state.vars.current_step == 'entered_glvv'){
         input = state.vars.account_number;
         input = input.toString();
     }
@@ -282,11 +373,6 @@ addInputHandler('enr_order_start', function(input){ //input is account number
         // check if client is a group leader
         var gl_check = require('./lib/enr-group-leader-check');
         var is_gl = gl_check(state.vars.account_number, state.vars.glus, an_pool, glus_pool);
-        // if the client is a group leader and the group is not yet named, prompt them to enter a group name
-        if(is_gl && state.vars.needs_name){
-            sayText(msgs('enr_add_groupname', {}, lang));
-            promptDigits('enr_enter_groupname', {'submitOnHash' : false, 'maxDigits' : 60, 'timeout' : timeout_length});
-        }
         // continue with order steps
         var check_live = require('./lib/enr-check-geo-active');
         if(!check_live(client.vars.geo, geo_menu_map)){
@@ -688,21 +774,3 @@ addInputHandler('enr_glvv_id', function(input){
     }
 });
 
-// input handler for entering group name and save to glus id table
-addInputHandler('enr_enter_groupname', function(input){
-    // assign input as the group name
-    input = input.replace(/\W/g,''); //added some quick sanitation to this input
-    var name_group = require('./lib/enr-name-group');
-    name_group(state.vars.glus, glus_pool, input);
-    // return the client to the last completed step
-    if(state.vars.current_step == 'enr_glus'){
-        state.vars.current_step = 'entered_group_name';
-        sayText(msgs('enr_continue', {'$GROUP' : state.vars.glus}, lang));
-        promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
-    }
-    else if(state.vars.current_step == 'enr_order_start'){
-        state.vars.current_step = 'entered_group_name';
-        sayText(msgs('enr_continue', {'$GROUP' : state.vars.glus}, lang));
-        promptDigits('enr_order_start', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
-    }
-});
