@@ -12,6 +12,7 @@ var populate_menu = require('./lib/populate-menu');
 var geo_select = require('./lib/cta-geo-select');
 var geo_process = require('./lib/cta-geo-string-processer');
 var geo_mm_data = require('./dat/mm-agent-geography');
+var get_time = require('./lib/enr-timestamp');
 
 //options
 //var settings_table = project.getOrCreateDataTable('ussd_settings'); //removing this to account for project variable preference
@@ -22,7 +23,14 @@ const max_digits_for_account_number = project.vars.max_digits_an;
 //const max_digits_for_serial = 7;
 const core_splash_map = project.getOrCreateDataTable(project.vars.core_splash_map);
 //const chicken_client_table = project.vars.chicken_client_table;
+const an_pool = project.vars.enr_client_pool;
+const glus_pool = project.vars.glus_pool;
+const geo_menu_map = project.vars.geo_menu_map;
 const timeout_length = 180;
+const max_digits_for_nid = project.vars.max_digits_nid;
+const max_digits_for_pn = project.vars.max_digits_pn;
+const max_digits_for_glus = project.vars.max_digits_glvv;
+const max_digits_for_name = project.vars.max_digits_name;
 
 global.main = function () {
     sayText(msgs('cor_enr_main_splash'));
