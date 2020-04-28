@@ -25,7 +25,7 @@ const core_splash_map = project.getOrCreateDataTable(project.vars.core_splash_ma
 const timeout_length = 180;
 
 global.main = function () {
-    sayText(msgs('cor_main_splash'));
+    sayText(msgs('cor_enr_main_splash'));
     promptDigits('account_number_splash', { 'submitOnHash' : false,
                                             'maxDigits'    : max_digits_for_account_number,
                                             'timeout'      : 180 });
@@ -35,32 +35,41 @@ global.main = function () {
 input handlers - one per response variable
 */
 addInputHandler('account_number_splash', function(input){ //acount_number_splash input handler - main input handler for initial splash
-    try{
-        var response = input.replace(/\D/g,'')
-        var verify = require('./lib/account-verify')
-        var client_verified = verify(response);
-        if(client_verified){
-            sayText(msgs('account_number_verified'));
-            state.vars.account_number = response;
-            var splash = core_splash_map.queryRows({'vars' : {'district' : state.vars.client_district}}).next().vars.splash_menu;
-            if(splash === null || splash === undefined){
-                admin_alert(state.vars.client_district + ' not found in district database');
-                throw 'ERROR : DISTRICT NOT FOUND';
-            }
-            state.vars.splash = splash;
-            var menu = populate_menu(splash, lang);
-            state.vars.current_menu_str = menu;
-            sayText(menu, lang);
-            promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
-        }
-        else{
-            sayText(msgs('account_number_not_found'));
-        }
+
+    var response = input.replace(/\D/g,'');
+    if(response == 1){
+        var current_menu = msgs('enr_reg_start', {}, lang);
+        state.vars.current_menu_str = current_menu;
+        sayText(current_menu);
+        promptDigits('enr_reg_start', {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length});
     }
-    catch(error){
-        console.log(error);
-        admin_alert('Error on USSD test integration : '+ error + '\nAccount number: ' + response, "ERROR, ERROR, ERROR", 'marisa')
-        stopRules();
+    else{
+        try{
+            var verify = require('./lib/account-verify')
+            var client_verified = verify(response);
+            if(client_verified){
+                sayText(msgs('account_number_verified'));
+                state.vars.account_number = response;
+                var splash = core_splash_map.queryRows({'vars' : {'district' : state.vars.client_district}}).next().vars.splash_menu;
+                if(splash === null || splash === undefined){
+                    admin_alert(state.vars.client_district + ' not found in district database');
+                    throw 'ERROR : DISTRICT NOT FOUND';
+                }
+                state.vars.splash = splash;
+                var menu = populate_menu(splash, lang);
+                state.vars.current_menu_str = menu;
+                sayText(menu, lang);
+                promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
+            }
+            else{
+                sayText(msgs('account_number_not_found'));
+            }
+        }
+        catch(error){
+            console.log(error);
+            admin_alert('Error on USSD test integration : '+ error + '\nAccount number: ' + response, "ERROR, ERROR, ERROR", 'marisa')
+            stopRules();
+        }
     }
 });
 
@@ -362,3 +371,333 @@ addInputHandler('cor_payg_reg', function(serial_no){
         return null;
     }
 });
+
+
+// Enrollement codes
+
+//registration
+
+/*
+input handlers for registration steps
+*/
+
+//prompt for national Id then Show them the national id they have entered and ask for confirmation
+addInputHandler('enr_reg_start',function(input){
+    state.vars.current_step = 'enr_reg_start';
+    input = String(input.replace(/\D/g,''));
+    var check_if_nid = require('./lib/enr-check-nid');
+    if(input == 99){
+        sayText(msgs('exit', {}, lang));
+        stopRules();
+        return null;
+    }
+    else if(!check_if_nid(input)){
+        sayText(msgs('enr_invalid_nid', {}, lang));
+        promptDigits('enr_reg_start', {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length})
+    }
+    else{
+        state.vars.reg_nid = input;
+        var confirmation_menu = msgs('enr_confirmation_menu',{},lang);
+        var current_menu = msgs('enr_nid_client_confirmation', {'$ENR_NID_CONFIRM' : input, '$ENR_CONFIRMATION_MENU' : confirmation_menu}, lang);
+        state.vars.current_menu_str = current_menu;
+        sayText(current_menu);
+        promptDigits('enr_nid_client_confirmation', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
+
+    }
+});
+
+// Checking confirmation from the user
+addInputHandler('enr_nid_client_confirmation', function(input){
+    state.vars.current_step = 'enr_nid_client_confirmation';
+    input = String(input.replace(/\D/g,''));
+    
+    if(input == 99){
+        sayText(msgs('exit', {}, lang));
+        stopRules();
+        return null;
+    }
+    
+     // If the user does not confirm(chooses no)
+    else if(input == 2){
+        var current_menu = msgs('enr_reg_start', {}, lang);
+        state.vars.current_menu_str = current_menu; // set the current menu to what the user choosed(yes/no)
+        sayText(current_menu);
+        promptDigits('enr_reg_start', {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length});
+    }
+    //If the user confirms (chooses yes)
+    else if(input == 1){
+        // Check if the client is already registered 
+        var is_already_reg = require('./lib/enr-check-dup-nid');
+        if(is_already_reg(state.vars.reg_nid , an_pool)){
+            var get_client_by_nid = require('./lib/dpm-get-client-by-nid');
+            var client = get_client_by_nid(state.vars.reg_nid , an_pool);
+            var enr_msg = msgs('enr_reg_complete', {'$ACCOUNT_NUMBER' : client.account_number, '$NAME' : client.name1 + ' ' + client.name2}, lang)
+            sayText(enr_msg);
+            var enr_msg_sms = msgs('enr_reg_complete_sms', {'$ACCOUNT_NUMBER' : client.account_number, '$NAME' : client.name1 + ' ' + client.name2}, lang);
+            var messager = require('./lib/enr-messager');
+            messager(contact.phone_number, enr_msg_sms);
+            if(state.vars.reg_pn){
+                messager(state.vars.reg_pn, enr_msg_sms);
+            }
+            //Get client data and redirect to the menu
+            try{
+            var verify = require('./lib/account-verify')
+            var client_verified = verify(client.account_number);
+            if(client_verified){
+                sayText(msgs('account_number_verified'));
+                state.vars.account_number = client.account_number;
+                var splash = core_splash_map.queryRows({'vars' : {'district' : state.vars.client_district}}).next().vars.splash_menu;
+                if(splash === null || splash === undefined){
+                    admin_alert(state.vars.client_district + ' not found in district database');
+                    throw 'ERROR : DISTRICT NOT FOUND';
+                }
+                state.vars.splash = splash;
+                var menu = populate_menu(splash, lang);
+                state.vars.current_menu_str = menu;
+                sayText(menu, lang);
+                promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
+            }
+            else{
+                sayText(msgs('account_number_not_found'));
+            }
+        }
+            catch(error){
+                console.log(error);
+                admin_alert('Error on USSD test integration : '+ error + '\nAccount number: ' + response, "ERROR, ERROR, ERROR", 'marisa')
+                stopRules();
+            }
+            }
+            // start registration process by asking them to enter their id again
+            else{
+                var current_menu = msgs('enr_nid_confirm', {}, lang);
+                state.vars.current_menu_str = current_menu;
+                sayText(current_menu);// contains the menu that ask the unser to reenter the id(after confirmation)
+                promptDigits('enr_nid_confirm', {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length});
+            }
+            get_time();
+        }
+        else {
+            sayText(msgs('invalid_input', {}, lang));
+            promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
+        }
+    
+
+});
+
+
+addInputHandler('enr_nid_confirm', function(input){ //step for dd of nid. input here should match stored nid nee
+    state.vars.current_step = 'enr_nid_confirm';// need to add section to check if nid registerd already
+    input = String(input.replace(/\D/g,''));
+    if(input == 99){
+        sayText(msgs('exit', {}, lang));
+        stopRules();
+        return null;
+    }
+    else if(state.vars.reg_nid == input){
+        sayText(msgs('enr_name_1', {}, lang));
+        promptDigits('enr_name_1', {'submitOnHash' : false, 'maxDigits' : max_digits_for_name, 'timeout' : timeout_length});
+    }
+    else{
+        sayText(msgs('enr_unmatched_nid', {}, lang));
+        promptDigits('enr_reg_start', {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length});
+    }
+    get_time();
+});
+
+addInputHandler('enr_name_1', function(input){ //enr name 1 step
+    state.vars.current_step = 'enr_name_1';
+    if(input == 99){
+        sayText(msgs('exit', {}, lang));
+        stopRules();
+        return null;
+    }
+    input = input.replace(/[^a-z_]/ig,'');
+    if(contact.phone_number == '5550123'){ // allows for testing on the online testing env
+        input = 'TEST1'
+    }
+    if(input === undefined || input == ''){
+        sayText(msgs('enr_invalid_name_input', {}, lang));
+        promptDigits('enr_name_1',  {'submitOnHash' : false, 'maxDigits' : max_digits_for_name, 'timeout' : timeout_length});
+    }
+    else{
+        state.vars.reg_name_1 = input;
+        sayText(msgs('enr_name_2', {}, lang));
+        promptDigits('enr_name_2',  {'submitOnHash' : false, 'maxDigits' : max_digits_for_name, 'timeout' : timeout_length});
+    }
+    get_time();
+});
+
+addInputHandler('enr_name_2', function(input){ //enr name 2 step
+    state.vars.current_step = 'enr_name_2';
+    if(input == 99){
+        sayText(msgs('exit', {}, lang));
+        stopRules();
+        return null;
+    }
+    input = input.replace(/[^a-z_]/ig,'');
+    if(contact.phone_number == '5550123'){ // allows for testing on the online testing env
+        input = 'TEST1'
+    }
+    if(input === undefined || input == ''){
+        sayText(msgs('enr_invalid_name_input', {}, lang));
+        promptDigits('enr_name_2',  {'submitOnHash' : false, 'maxDigits' : max_digits_for_name, 'timeout' : timeout_length});
+    }
+    else{
+        state.vars.reg_name_2 = input;
+        sayText(msgs('enr_pn', {}, lang));
+        promptDigits('enr_pn', {'submitOnHash' : false, 'maxDigits' : max_digits_for_pn, 'timeout' : timeout_length});
+    }
+    get_time();
+});
+
+addInputHandler('enr_pn', function(input){ //enr phone number step
+    state.vars.current_step = 'enr_pn';
+    input = input.replace(/\D/g,'');
+    var check_pn = require('./lib/phone-format-check');
+    if(input == 99){
+        sayText(msgs('exit', {}, lang));
+        stopRules();
+        return null;
+    }
+    if(check_pn(input)){
+        state.vars.reg_pn = input;
+        sayText(msgs('enr_glus', {}, lang));
+        promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : max_digits_for_glus, 'timeout' : timeout_length});
+    }
+    else{
+        sayText(msgs('invalid_pn_format', {}, lang));
+        promptDigits('enr_pn', {'submitOnHash' : false, 'maxDigits' : max_digits_for_pn, 'timeout' : timeout_length});
+    }
+    get_time();
+});
+
+addInputHandler('enr_glus',function(input){
+    
+    input = input.replace(/\W/g,'');
+    state.vars.current_step = 'enr_glus';
+    
+    if(input == 99){
+        sayText(msgs('exit', {}, lang));
+        stopRules();
+        return null;
+    }
+    else{
+        state.vars.glus = input;
+        // checking and retreiving info about the entered id
+        var groupCheck = require('./lib/enr-check-gid');
+        var group_information = groupCheck(input,'group_codes',lang);
+
+        // if the info about the id is not null, ask for confirmation with the group info
+        if(group_information != null){
+            var confirmation_menu = msgs('enr_confirmation_menu',{},lang);
+            var current_menu = msgs('enr_group_id_confirmation', {'$ENR_GROUP_ID' : input,'$LOCATION_INFO': group_information, '$ENR_CONFIRMATION_MENU' : confirmation_menu}, lang);
+            state.vars.current_menu_str = current_menu;
+            sayText(current_menu);
+            promptDigits('enr_group_id_confirmation', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
+
+        }
+        // if the group id is not valid, prompt them again
+        else{
+            sayText(msgs('invalid_group_id'));
+            sayText(msgs('enr_glus', {}, lang));
+            promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : max_digits_for_glus, 'timeout' : timeout_length});
+        }
+    }
+    
+});
+
+addInputHandler('enr_group_id_confirmation', function(input){ //enr group leader / umudugudu support id step. last registration step
+
+    state.vars.current_step = 'enr_glus';
+    input = input.replace(/\W/g,'');
+    if(input == 99){
+        sayText(msgs('exit', {}, lang));
+        stopRules();
+        return null;
+    }
+
+    state.vars.confirmation = input;
+    if(input  == 2){ // if the user chooses no, they will be prompt to enter the group code again
+        var current_menu = msgs('enr_glus', {}, lang);
+        state.vars.current_menu_str = current_menu;
+        sayText(current_menu);
+        promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : max_digits_for_glus, 'timeout' : timeout_length});
+
+    }
+    else if (input == 1) { // if the user chooses yes, that the id is correct, save the info
+
+    var check_glus = require('./lib/enr-check-glus');
+    var geo = check_glus(state.vars.glus, glus_pool);
+    var check_live = require('./lib/enr-check-geo-active');
+    if(geo){
+        try{ // get this out of a try block as soon as bandwidth
+            if(!check_live(geo, geo_menu_map)){
+                sayText(msgs('enr_order_period_finished', {}, lang));
+                promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : max_digits_for_glus, 'timeout' : timeout_length});
+                return 0;
+            }
+        }
+        catch(error){
+            console.log(error);
+            var admin_alert = require('./lib/admin-alert');
+            admin_alert('error on live - dead check\n' + error);
+        }
+        // if there isn't already an account number, get one
+        if(state.vars.account_number == null){
+            var client_log = require('./lib/enr-client-logger');
+            client_log(state.vars.reg_nid, state.vars.reg_name_1, state.vars.reg_name_2, state.vars.reg_pn, state.vars.glus, geo, an_pool);
+        }
+        //check if group leader here
+        var gl_check = require('./lib/enr-group-leader-check');
+        var is_gl = gl_check(state.vars.account_number, state.vars.glus, an_pool, glus_pool);
+        console.log('is gl? : ' + is_gl);
+            var enr_msg = msgs('enr_reg_complete', {'$ACCOUNT_NUMBER' : state.vars.account_number, '$NAME' : state.vars.reg_name_2}, lang);
+            sayText(enr_msg);
+            //retreive ads per district entered by the user
+            var retrieveAd = require('./lib/enr-retrieve-ad-by-district');
+            var districtId = state.vars.districtId ;
+            var sms_ad = retrieveAd(districtId,lang);
+            var enr_msg_sms = msgs('enr_reg_complete_sms', {'$ACCOUNT_NUMBER' : state.vars.account_number, '$NAME' : state.vars.reg_name_2,'$AD_MESSAGE':sms_ad}, lang);
+            var messager = require('./lib/enr-messager');
+            messager(contact.phone_number, enr_msg_sms);
+            messager(state.vars.reg_pn, enr_msg_sms);
+            try{
+                var verify = require('./lib/account-verify')
+                var client_verified = verify(state.vars.account_number);
+                if(client_verified){
+                    sayText(msgs('account_number_verified'));
+                    var splash = core_splash_map.queryRows({'vars' : {'district' : state.vars.client_district}}).next().vars.splash_menu;
+                    if(splash === null || splash === undefined){
+                        admin_alert(state.vars.client_district + ' not found in district database');
+                        throw 'ERROR : DISTRICT NOT FOUND';
+                    }
+                    state.vars.splash = splash;
+                    var menu = populate_menu(splash, lang);
+                    state.vars.current_menu_str = menu;
+                    sayText(menu, lang);
+                    promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
+                }
+                else{
+                    sayText(msgs('account_number_not_found'));
+                }
+            }
+            catch(error){
+                console.log(error);
+                admin_alert('Error on USSD test integration : '+ error + '\nAccount number: ' + response, "ERROR, ERROR, ERROR", 'marisa')
+                stopRules();
+            }
+            
+    }
+    else{
+        sayText(msgs('enr_invalid_glus', {}, lang));
+        promptDigits('enr_glus', {'submitOnHash' : false, 'maxDigits' : max_digits_for_glus, 'timeout' : timeout_length});
+    }
+}
+else{// If there is an invalid input(not one or two)
+    sayText(msgs('invalid_input', {}, lang));
+    promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
+    
+}
+
+    get_time();
+});//end registration steps input handlers
