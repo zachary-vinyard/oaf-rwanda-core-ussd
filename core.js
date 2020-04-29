@@ -25,7 +25,7 @@ const max_digits_for_account_number = project.vars.max_digits_an;
 const core_splash_map = project.getOrCreateDataTable(project.vars.core_splash_map);
 //const chicken_client_table = project.vars.chicken_client_table;
 const an_pool = project.vars.enr_client_pool;
-const glus_pool = project.vars.new_glus_pool;
+const glus_pool = project.vars.glus_pool;
 const geo_menu_map = project.vars.geo_menu_map;
 const timeout_length = 180;
 const max_digits_for_nid = project.vars.max_digits_nid;
@@ -73,11 +73,12 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
             else{
                 sayText(msgs('account_number_not_found'));
             }*/
+            state.vars.splash = 'core_splash_menu';
             state.vars.account_number = response;
             var menu = populate_menu('core_splash_menu', lang);
-                state.vars.current_menu_str = menu;
-                sayText(menu, lang);
-                promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
+            state.vars.current_menu_str = menu;
+            sayText(menu, lang);
+            promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
         }
         catch(error){
             console.log(error);
@@ -186,20 +187,20 @@ addInputHandler('cor_menu_select', function(input){
     }
     else if(selection === 'enr_order_start'){
         state.vars.multiple_input_menus = 1;
-        var client = get_client(input, an_pool, true);
-    if(client === null || client.vars.registered == 0){
-        sayText(msgs('account_number_not_found', {}, lang));
-        contact.vars.account_failures = contact.vars.account_failures + 1;
-        promptDigits(state.vars.current_step, {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length})
-    }
-    else if(client.vars.finalized == 1 && client.vars.geo !== 'Ruhango'){ //fix next tine for generallity
-        sayText(msgs('enr_order_already_finalized', {}, lang));
-        promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
-    }
-    else if(client.vars.registered == 1){
-        // if client does not have a glvv id entered, prompt them to enter it before continuing
-        glvv_check = client.vars.glus || state.vars.glus;
-        if(glvv_check == null || glvv_check == 0){
+        var client = get_client(state.vars.account_number, an_pool, true);
+        if(client === null || client.vars.registered == 0){
+            sayText(msgs('account_number_not_found', {}, lang));
+            contact.vars.account_failures = contact.vars.account_failures + 1;
+            promptDigits(state.vars.current_step, {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length})
+        }
+        else if(client.vars.finalized == 1 && client.vars.geo !== 'Ruhango'){ //fix next tine for generallity
+            sayText(msgs('enr_order_already_finalized', {}, lang));
+            promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        }
+        else if(client.vars.registered == 1){
+            // if client does not have a glvv id entered, prompt them to enter it before continuing
+            glvv_check = client.vars.glus || state.vars.glus;
+            if(glvv_check == null || glvv_check == 0){
             sayText(msgs('enr_missing_glvv', {}, lang));
             promptDigits('enr_glvv_id', {'submitOnHash' : false, 'maxDigits' : 8, 'timeout' : timeout_length});
             return null;
