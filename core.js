@@ -91,14 +91,11 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
 addInputHandler('cor_menu_select', function(input){
     input = String(input.replace(/\D/g,''));
     // If comming from entering the group id reinitialize the input from the main menu
-    if(state.vars.current_step = 'entered_glvv'){
+    if(state.vars.current_step == 'entered_glvv'){
         input =  state.vars.selected_core_input; 
     }
     state.vars.current_step = 'cor_menu_select';
-    console.log(input);
-    console.log(state.vars.splash);
     var selection = get_menu_option(input, state.vars.splash);
-    console.log(selection);
     state.vars.selected_core_input = input;
     if(selection === null || selection === undefined){
         sayText(msgs('invalid_input', {}, lang));
