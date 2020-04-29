@@ -73,12 +73,26 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
             else{
                 sayText(msgs('account_number_not_found'));
             }*/
-            state.vars.splash = 'core_splash_menu';
+            state.vars.splash = 'core_enr_splah_menu';
             state.vars.account_number = response;
-            var menu = populate_menu('core_splash_menu', lang);
-            state.vars.current_menu_str = menu;
-            sayText(menu, lang);
-            promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
+            var menu = populate_menu('core_enr_splah_menu', lang);
+            if(typeof(menu) == 'string'){
+                state.vars.current_menu_str = menu;
+                sayText(menu);
+                state.vars.multiple_input_menus = 0;
+                state.vars.input_menu = menu;
+                promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
+            }
+            else if(typeof(menu) == 'object'){
+                state.vars.input_menu_loc = 0; //watch for off by 1 errors - consider moving this to start at 1
+                state.vars.multiple_input_menus = 1;
+                state.vars.input_menu_length = Object.keys(menu).length; //this will be 1 greater than max possible loc
+                state.vars.current_menu_str = menu[state.vars.input_menu_loc];
+                sayText(menu[state.vars.input_menu_loc]);
+                state.vars.input_menu = JSON.stringify(menu);
+                promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
+            }
+            
         }
         catch(error){
             console.log(error);
@@ -95,6 +109,31 @@ addInputHandler('cor_menu_select', function(input){
         input =  state.vars.selected_core_input; 
     }
     state.vars.current_step = 'cor_menu_select';
+
+    if(state.vars.multiple_input_menus){ 
+        if(input == 44 &&  state.vars.input_menu_loc > 0){
+            state.vars.input_menu_loc = state.vars.input_menu_loc - 1;
+            var menu = JSON.parse(state.vars.input_menu)[state.vars.input_menu_loc];
+            state.vars.current_menu_str = menu;
+            sayText(menu);
+            promptDigits('enr_input_splash', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        }
+        else if(input == 77 && (state.vars.input_menu_loc < state.vars.input_menu_length - 1)){
+            state.vars.input_menu_loc = state.vars.input_menu_loc + 1;
+            var menu = JSON.parse(state.vars.input_menu)[state.vars.input_menu_loc]
+            state.vars.current_menu_str = menu;
+            sayText(menu);
+            promptDigits('enr_input_splash', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        }
+        else if(input == 44 && state.vars.input_menu_loc == 0){
+            var splash_menu = populate_menu('enr_splash', lang, 300);
+            var menu = msgs('enr_splash', {'$ENR_SPLASH' : splash_menu}, lang);
+            state.vars.current_menu_str = menu;
+            sayText(menu);
+            promptDigits('enr_splash', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
+        }
+    }
+
     var selection = get_menu_option(input, state.vars.splash);
     state.vars.selected_core_input = input;
     if(selection === null || selection === undefined){
@@ -300,9 +339,6 @@ addInputHandler('cor_menu_select', function(input){
         return null;
     }
 });
-
-
-
 addInputHandler('chx_update', function(input){
     input = parseInt(input.replace(/\D/g,''));
     // if they want to update, ask them to place an order
