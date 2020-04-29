@@ -44,7 +44,6 @@ global.main = function () {
 input handlers - one per response variable
 */
 addInputHandler('account_number_splash', function(input){ //acount_number_splash input handler - main input handler for initial splash
-
     var response = input.replace(/\D/g,'');
     if(response == 1){
         var current_menu = msgs('enr_reg_start', {}, lang);
@@ -104,6 +103,7 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
 
 addInputHandler('cor_menu_select', function(input){
     input = String(input.replace(/\D/g,''));
+
     // If comming from entering the group id reinitialize the input from the main menu
     if(state.vars.current_step == 'entered_glvv'){
         input =  state.vars.selected_core_input; 
@@ -226,7 +226,7 @@ addInputHandler('cor_menu_select', function(input){
         if(client === null || client.vars.registered == 0){
             sayText(msgs('account_number_not_found', {}, lang));
             contact.vars.account_failures = contact.vars.account_failures + 1;
-            promptDigits(state.vars.current_step, {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length})
+            promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length})
         }
         else if(client.vars.finalized == 1 && client.vars.geo !== 'Ruhango'){ //fix next tine for generallity
             sayText(msgs('enr_order_already_finalized', {}, lang));
@@ -280,7 +280,7 @@ addInputHandler('cor_menu_select', function(input){
     else{
         sayText(msgs('account_number_not_found', {}, lang));
         contact.vars.account_failures = contact.vars.account_failures + 1;
-        promptDigits(state.vars.current_step, {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length})
+        promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length})
     }
     get_time();
     }
@@ -289,7 +289,7 @@ addInputHandler('cor_menu_select', function(input){
         if(client === null || client.vars.registered === 0){
             sayText(msgs('account_number_not_found', {}, lang));
             contact.vars.account_failures = contact.vars.account_failures + 1;
-            promptDigits(state.vars.current_step, {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+            promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
         }
         else{
             var prod_menu_select = require('./lib/enr-select-product-menu');
@@ -324,7 +324,7 @@ addInputHandler('cor_menu_select', function(input){
         }
         else if(client.vars.finalized == 1){
             sayText(msgs('enr_already_finalized', {}, lang));
-            promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+            promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
         }
     }
     else{
@@ -473,10 +473,23 @@ addInputHandler('cor_continue', function(input){
     input = parseInt(input.replace(/\D/g,''));
     if(input !== 99){
         var splash_menu = populate_menu(state.vars.splash, lang);
-        var current_menu = splash_menu;
-        state.vars.current_menu_str = current_menu;
-        sayText(current_menu);
-        promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : 1,'timeout' : 180});
+        var menu = splash_menu;
+        if(typeof(menu) == 'string'){
+            state.vars.current_menu_str = menu;
+            sayText(menu);
+            state.vars.multiple_input_menus = 0;
+            state.vars.input_menu = menu;
+            promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
+        }
+        else if(typeof(menu) == 'object'){
+            state.vars.input_menu_loc = 0; //watch for off by 1 errors - consider moving this to start at 1
+            state.vars.multiple_input_menus = 1;
+            state.vars.input_menu_length = Object.keys(menu).length; //this will be 1 greater than max possible loc
+            state.vars.current_menu_str = menu[state.vars.input_menu_loc];
+            sayText(menu[state.vars.input_menu_loc]);
+            state.vars.input_menu = JSON.stringify(menu);
+            promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
+        }
         return null;
     }
     else if(input == 99){
@@ -600,7 +613,7 @@ addInputHandler('enr_nid_client_confirmation', function(input){
             if(state.vars.reg_pn){
                 messager(state.vars.reg_pn, enr_msg_sms);
             }
-            //Get client data and redirect to the menu
+            //Get client data from Roster so that all the client's data are available then redirect to the menu
             try{
             var verify = require('./lib/account-verify')
             var client_verified = verify(client.account_number);
@@ -614,9 +627,22 @@ addInputHandler('enr_nid_client_confirmation', function(input){
                 }
                 state.vars.splash = splash;
                 var menu = populate_menu(splash, lang);
-                state.vars.current_menu_str = menu;
-                sayText(menu, lang);
-                promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
+                if(typeof(menu) == 'string'){
+                    state.vars.current_menu_str = menu;
+                    sayText(menu);
+                    state.vars.multiple_input_menus = 0;
+                    state.vars.input_menu = menu;
+                    promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
+                }
+                else if(typeof(menu) == 'object'){
+                    state.vars.input_menu_loc = 0; //watch for off by 1 errors - consider moving this to start at 1
+                    state.vars.multiple_input_menus = 1;
+                    state.vars.input_menu_length = Object.keys(menu).length; //this will be 1 greater than max possible loc
+                    state.vars.current_menu_str = menu[state.vars.input_menu_loc];
+                    sayText(menu[state.vars.input_menu_loc]);
+                    state.vars.input_menu = JSON.stringify(menu);
+                    promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
+                }
             }
             else{
                 sayText(msgs('account_number_not_found'));
@@ -632,7 +658,7 @@ addInputHandler('enr_nid_client_confirmation', function(input){
             else{
                 var current_menu = msgs('enr_nid_confirm', {}, lang);
                 state.vars.current_menu_str = current_menu;
-                sayText(current_menu);// contains the menu that ask the unser to reenter the id(after confirmation)
+                sayText(current_menu);// contains the menu that ask the user to reenter the id(after confirmation)
                 promptDigits('enr_nid_confirm', {'submitOnHash' : false, 'maxDigits' : max_digits_for_nid, 'timeout' : timeout_length});
             }
             get_time();
@@ -776,7 +802,6 @@ addInputHandler('enr_group_id_confirmation', function(input){ //enr group leader
         stopRules();
         return null;
     }
-
     state.vars.confirmation = input;
     if(input  == 2){ // if the user chooses no, they will be prompt to enter the group code again
         var current_menu = msgs('enr_glus', {}, lang);
@@ -786,9 +811,7 @@ addInputHandler('enr_group_id_confirmation', function(input){ //enr group leader
 
     }
     else if (input == 1) { // if the user chooses yes, that the id is correct, save the info
-
-    var check_glus = require('./lib/enr-check-glus');
-    var geo = check_glus(state.vars.glus, glus_pool);
+    var geo = state.vars.districtName;
     var check_live = require('./lib/enr-check-geo-active');
     if(geo){
         try{ // get this out of a try block as soon as bandwidth
@@ -834,9 +857,22 @@ addInputHandler('enr_group_id_confirmation', function(input){ //enr group leader
                     }
                     state.vars.splash = splash;
                     var menu = populate_menu(splash, lang);
-                    state.vars.current_menu_str = menu;
-                    sayText(menu, lang);
-                    promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
+                    if(typeof(menu) == 'string'){
+                        state.vars.current_menu_str = menu;
+                        sayText(menu);
+                        state.vars.multiple_input_menus = 0;
+                        state.vars.input_menu = menu;
+                        promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
+                    }
+                    else if(typeof(menu) == 'object'){
+                        state.vars.input_menu_loc = 0; //watch for off by 1 errors - consider moving this to start at 1
+                        state.vars.multiple_input_menus = 1;
+                        state.vars.input_menu_length = Object.keys(menu).length; //this will be 1 greater than max possible loc
+                        state.vars.current_menu_str = menu[state.vars.input_menu_loc];
+                        sayText(menu[state.vars.input_menu_loc]);
+                        state.vars.input_menu = JSON.stringify(menu);
+                        promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
+                    }
                 }
                 else{
                     sayText(msgs('account_number_not_found'));
@@ -1062,35 +1098,6 @@ addInputHandler('enr_input_order_continue', function(input){
 /*
 input handlers for order review
 */
-addInputHandler('enr_order_review_start', function(input){ //input is account number
-    state.vars.current_step = 'enr_order_review_start';
-    input = parseInt(input.replace(/\D/g,''));
-    var client = get_client(input, an_pool);
-    if(client === null || client.vars.registered === 0){
-        sayText(msgs('account_number_not_found', {}, lang));
-        contact.vars.account_failures = contact.vars.account_failures + 1;
-        promptDigits(state.vars.current_step, {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
-    }
-    else{
-        var prod_menu_select = require('./lib/enr-select-product-menu');
-        var gen_input_review = require('./lib/enr-gen-order-review'); //todo: add prepayment calc
-        var input_review_menu = gen_input_review(input, prod_menu_select(client.vars.geo, geo_menu_map), an_pool, lang);
-        if(typeof(input_review_menu) == 'string'){
-            sayText(input_review_menu);
-            promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
-        }
-        else{
-            state.vars.multiple_review_frames = 1;
-            state.vars.review_frame_loc = 0;
-            state.vars.review_frame_length = Object.keys(input_review_menu).length;
-            state.vars.current_review_str = input_review_menu[state.vars.review_frame_loc];
-            sayText(state.vars.current_review_str);
-            state.vars.review_menu = JSON.stringify(input_review_menu);
-            promptDigits('enr_order_review_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
-        }
-    }
-    get_time();
-});
 
 addInputHandler('enr_order_review_continue', function(input){
     state.vars.current_step = 'enr_order_review_continue';
@@ -1117,32 +1124,6 @@ addInputHandler('enr_order_review_continue', function(input){
 /*
 input handlers for finalize order
 */
-addInputHandler('enr_finalize_start', function(input){ //input is account number
-    state.vars.current_step = 'enr_finalize_start';
-    input = parseInt(input.replace(/\D/g,''));
-    if(input == 99){
-        sayText(msgs('exit', {}, lang));
-        stopRules();
-        return null;
-    }
-    var client = get_client(input, an_pool);
-    if(client == null || client.vars.registered == 0){
-        sayText(msgs('account_number_not_found', {}, lang));
-        contact.vars.account_failures = contact.vars.account_failures + 1;
-        promptDigits(state.vars.current_step, {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
-    }
-    else if(client.vars.finalized !== 1 || client.vars.finalized === undefined){
-        state.vars.session_account_number = input;
-        sayText(msgs('enr_finalize_verify', {}, lang));
-        promptDigits('enr_finalize_verify',  {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
-    }
-    else if(client.vars.finalized == 1){
-        sayText(msgs('enr_already_finalized', {}, lang));
-        promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
-    }
-    get_time();
-});
-
 addInputHandler('enr_finalize_verify', function(input){
     state.vars.current_step = 'enr_finalize_verify';
     input = parseInt(input.replace(/\D/g, ''));
@@ -1155,7 +1136,7 @@ addInputHandler('enr_finalize_verify', function(input){
     else{
         sayText(msgs('enr_not_finalized', {}, lang));
     }
-    promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+    promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
     get_time();
 });
 
