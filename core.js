@@ -219,6 +219,7 @@ addInputHandler('cor_menu_select', function(input){
             return 0;
         }
         state.vars.session_authorized = true;
+        state.vars.session_account_number = state.vars.account_number;
         state.vars.client_geo = client.vars.geo;
         var prod_menu_select = require('./lib/enr-select-product-menu');
         var product_menu_table_name = prod_menu_select(state.vars.client_geo, geo_menu_map);
@@ -249,7 +250,7 @@ addInputHandler('cor_menu_select', function(input){
     get_time();
     }
     else if(selection === 'enr_order_review_start'){
-        var client = get_client(input, an_pool);
+        var client = get_client(state.vars.account_number, an_pool);
         if(client === null || client.vars.registered === 0){
             sayText(msgs('account_number_not_found', {}, lang));
             contact.vars.account_failures = contact.vars.account_failures + 1;
@@ -275,14 +276,14 @@ addInputHandler('cor_menu_select', function(input){
         }
     }
     else if(selection === 'enr_finalize_start'){
-        var client = get_client(input, an_pool);
+        var client = get_client(state.vars.account_number, an_pool);
         if(client == null || client.vars.registered == 0){
             sayText(msgs('account_number_not_found', {}, lang));
             contact.vars.account_failures = contact.vars.account_failures + 1;
             promptDigits(state.vars.current_step, {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
         }
         else if(client.vars.finalized !== 1 || client.vars.finalized === undefined){
-            state.vars.session_account_number = input;
+            state.vars.session_account_number = state.vars.account_number;
             sayText(msgs('enr_finalize_verify', {}, lang));
             promptDigits('enr_finalize_verify',  {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
         }
