@@ -95,6 +95,8 @@ addInputHandler('cor_menu_select', function(input){
         input =  state.vars.selected_core_input; 
     }
     state.vars.current_step = 'cor_menu_select';
+    console.log(input);
+    console.log(state.vars.splash);
     var selection = get_menu_option(input, state.vars.splash);
     console.log(selection);
     state.vars.selected_core_input = input;
