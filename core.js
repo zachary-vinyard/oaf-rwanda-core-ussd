@@ -13,6 +13,7 @@ var geo_select = require('./lib/cta-geo-select');
 var geo_process = require('./lib/cta-geo-string-processer');
 var geo_mm_data = require('./dat/mm-agent-geography');
 var get_time = require('./lib/enr-timestamp');
+var get_client = require('./lib/enr-retrieve-client-row');
 
 //options
 //var settings_table = project.getOrCreateDataTable('ussd_settings'); //removing this to account for project variable preference
@@ -24,7 +25,7 @@ const max_digits_for_account_number = project.vars.max_digits_an;
 const core_splash_map = project.getOrCreateDataTable(project.vars.core_splash_map);
 //const chicken_client_table = project.vars.chicken_client_table;
 const an_pool = project.vars.enr_client_pool;
-const glus_pool = project.vars.glus_pool;
+const glus_pool = project.vars.new_glus_pool;
 const geo_menu_map = project.vars.geo_menu_map;
 const timeout_length = 180;
 const max_digits_for_nid = project.vars.max_digits_nid;
@@ -53,7 +54,7 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
     }
     else{
         try{
-            var verify = require('./lib/account-verify')
+           /* var verify = require('./lib/account-verify')
             var client_verified = verify(response);
             if(client_verified){
                 sayText(msgs('account_number_verified'));
@@ -71,7 +72,12 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
             }
             else{
                 sayText(msgs('account_number_not_found'));
-            }
+            }*/
+            state.vars.account_number = response;
+            var menu = populate_menu('core_spalsh_menu', lang);
+                state.vars.current_menu_str = menu;
+                sayText(menu, lang);
+                promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : 180});
         }
         catch(error){
             console.log(error);
@@ -83,8 +89,13 @@ addInputHandler('account_number_splash', function(input){ //acount_number_splash
 
 addInputHandler('cor_menu_select', function(input){
     input = String(input.replace(/\D/g,''));
+    // If comming from entering the group id reinitialize the input from the main menu
+    if(state.vars.current_step = 'entered_glvv'){
+        input =  state.vars.selected_core_input; 
+    }
     state.vars.current_step = 'cor_menu_select';
     var selection = get_menu_option(input, state.vars.splash);
+    state.vars.selected_core_input = input;
     if(selection === null || selection === undefined){
         sayText(msgs('invalid_input', {}, lang));
         promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
@@ -173,6 +184,69 @@ addInputHandler('cor_menu_select', function(input){
         var msg_route = project.vars.sms_push_route;
         project.sendMessage({'to_number' : contact.phone_number, 'route_id' : msg_route, 'content' : agent_record});
     }
+    else if(selection === 'enr_order_start'){
+        state.vars.multiple_input_menus = 1;
+        var client = get_client(input, an_pool, true);
+    if(client === null || client.vars.registered == 0){
+        sayText(msgs('account_number_not_found', {}, lang));
+        contact.vars.account_failures = contact.vars.account_failures + 1;
+        promptDigits(state.vars.current_step, {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length})
+    }
+    else if(client.vars.finalized == 1 && client.vars.geo !== 'Ruhango'){ //fix next tine for generallity
+        sayText(msgs('enr_order_already_finalized', {}, lang));
+        promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+    }
+    else if(client.vars.registered == 1){
+        // if client does not have a glvv id entered, prompt them to enter it before continuing
+        glvv_check = client.vars.glus || state.vars.glus;
+        if(glvv_check == null || glvv_check == 0){
+            sayText(msgs('enr_missing_glvv', {}, lang));
+            promptDigits('enr_glvv_id', {'submitOnHash' : false, 'maxDigits' : 8, 'timeout' : timeout_length});
+            return null;
+        }
+        // save glvv in client row
+        client.vars.glus = state.vars.glus;
+        client.save();
+        // check if client is a group leader
+        var gl_check = require('./lib/enr-group-leader-check');
+        var is_gl = gl_check(state.vars.account_number, state.vars.glus, an_pool, glus_pool);
+        // continue with order steps
+        var check_live = require('./lib/enr-check-geo-active');
+        if(!check_live(client.vars.geo, geo_menu_map)){
+            sayText(msgs('enr_order_already_finalized', {}, lang));
+            promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+            return 0;
+        }
+        state.vars.session_authorized = true;
+        state.vars.client_geo = client.vars.geo;
+        var prod_menu_select = require('./lib/enr-select-product-menu');
+        var product_menu_table_name = prod_menu_select(state.vars.client_geo, geo_menu_map);
+        state.vars.product_menu_table_name = product_menu_table_name;
+        var menu = populate_menu(product_menu_table_name, lang);
+        if(typeof(menu) == 'string'){
+            state.vars.current_menu_str = menu;
+            sayText(menu);
+            state.vars.multiple_input_menus = 0;
+            state.vars.input_menu = menu;
+            promptDigits('enr_input_splash', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        }
+        else if(typeof(menu) == 'object'){
+            state.vars.input_menu_loc = 0; //watch for off by 1 errors - consider moving this to start at 1
+            state.vars.multiple_input_menus = 1;
+            state.vars.input_menu_length = Object.keys(menu).length; //this will be 1 greater than max possible loc
+            state.vars.current_menu_str = menu[state.vars.input_menu_loc];
+            sayText(menu[state.vars.input_menu_loc]);
+            state.vars.input_menu = JSON.stringify(menu);
+            promptDigits('enr_input_splash', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        }
+    }
+    else{
+        sayText(msgs('account_number_not_found', {}, lang));
+        contact.vars.account_failures = contact.vars.account_failures + 1;
+        promptDigits(state.vars.current_step, {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length})
+    }
+    get_time();
+    }
     else{
         var current_menu = msgs(selection, opts, lang);
         state.vars.current_menu_str = current_menu;
@@ -181,6 +255,8 @@ addInputHandler('cor_menu_select', function(input){
         return null;
     }
 });
+
+
 
 addInputHandler('chx_update', function(input){
     input = parseInt(input.replace(/\D/g,''));
@@ -706,6 +782,305 @@ else{// If there is an invalid input(not one or two)
     promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
     
 }
-
     get_time();
 });//end registration steps input handlers
+
+
+
+// input handler for entering glvv id. note, do we want to check if this matches the client's district?
+//Called when the user ordering does not have a group id
+addInputHandler('enr_glvv_id', function(input){
+    state.vars.current_step = 'entered_glvv'; 
+    // check if glvv is valid
+    var check_glus = require('./lib/enr-check-glus');
+    input = input.replace(/\W/g,''); //added some quick sanitation to this input
+    if(check_glus(input, glus_pool)){
+        state.vars.glus = input;
+        var gl_check = require('./lib/enr-group-leader-check');
+        var is_gl = gl_check(state.vars.account_number, state.vars.glus, an_pool);
+        console.log('is gl? : ' + is_gl);
+        // return to enr_order_start - give the client their account number in the message?
+        sayText(msgs('enr_continue', {'$GROUP' : state.vars.glus}, lang));
+        promptDigits('cor_menu_select', {'submitOnHash' : false, 'maxDigits' : 1, 'timeout' : timeout_length});
+        return null;
+    }
+    else{
+        sayText(msgs('enr_incorrect_glvv', {}, lang));
+        promptDigits('enr_glvv_id', {'submitOnHash' : false, 'maxDigits' : 8, 'timeout' : timeout_length});
+        return null;
+    }
+});
+
+//Main menu from placing an order
+
+addInputHandler('enr_input_splash', function(input){ //main input menu
+    state.vars.current_step = 'enr_input_splash';
+    input = parseInt(input.replace(/\D/g,''));
+    if(input == 99){
+        sayText(msgs('exit', {}, lang));
+        stopRules();
+        return null;
+    }
+    var product_menu_table_name = state.vars.product_menu_table_name;
+    if(state.vars.multiple_input_menus){ //needs some serious cleanup here - this is messy
+        if(input == 44 &&  state.vars.input_menu_loc > 0){
+            state.vars.input_menu_loc = state.vars.input_menu_loc - 1;
+            var menu = JSON.parse(state.vars.input_menu)[state.vars.input_menu_loc];
+            state.vars.current_menu_str = menu;
+            sayText(menu);
+            promptDigits('enr_input_splash', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        }
+        else if(input == 77 && (state.vars.input_menu_loc < state.vars.input_menu_length - 1)){
+            state.vars.input_menu_loc = state.vars.input_menu_loc + 1;
+            var menu = JSON.parse(state.vars.input_menu)[state.vars.input_menu_loc]
+            state.vars.current_menu_str = menu;
+            sayText(menu);
+            promptDigits('enr_input_splash', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        }
+        else if(input == 44 && state.vars.input_menu_loc == 0){
+            var splash_menu = populate_menu('enr_splash', lang, 300);
+            var menu = msgs('enr_splash', {'$ENR_SPLASH' : splash_menu}, lang);
+            state.vars.current_menu_str = menu;
+            sayText(menu);
+            promptDigits('enr_splash', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
+        }
+        else{
+            var selection = get_menu_option(input, product_menu_table_name);
+            if(selection == null){
+                sayText(msgs('enr_invalid_product_selection', {}, lang))
+                promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+            }
+            else{
+                state.vars.current_product = selection;
+                var get_product_options = require('./lib/enr-get-product-options')
+                var product_deets = get_product_options(selection, product_menu_table_name);
+                state.vars.product_deets = JSON.stringify(product_deets);
+                var process_prod = require('./lib/enr-format-product-options');
+                var prod_deets_for_msg = process_prod(product_deets, lang);
+                var prod_message = msgs('enr_product_selected', prod_deets_for_msg, lang)
+                state.vars.prod_message = prod_message;
+                sayText(prod_message);
+                promptDigits('enr_input_order', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+            }
+        }
+    }
+    else{
+        var selection = get_menu_option(input, product_menu_table_name);
+        if(selection == null){
+            sayText(msgs('enr_invalid_product_selection', {}, lang))
+            promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length})
+        }
+        else{
+            state.vars.current_product = selection;
+            var get_product_options = require('./lib/enr-get-product-options')
+            var product_deets = get_product_options(selection, product_menu_table_name);
+            state.vars.product_deets = JSON.stringify(product_deets);
+            var process_prod = require('./lib/enr-format-product-options');
+            var prod_deets_for_msg = process_prod(product_deets, lang);
+            var prod_message = msgs('enr_product_selected', prod_deets_for_msg, lang)
+            state.vars.prod_message = prod_message;
+            sayText(prod_message);
+            promptDigits('enr_input_order', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        }
+    }
+    get_time();
+});
+
+
+addInputHandler('enr_input_order', function(input){ //input ordering function
+    state.vars.current_step = 'enr_input_order';
+    state.vars.current_menu_str = state.vars.prod_message;
+    input = parseFloat(input.replace(/[^0-9,.,,]/g,'').replace(/,/g,'.'));
+    var product_deets = JSON.parse(state.vars.product_deets);
+    if(input == 99){
+        sayText(msgs('exit', {}, lang));
+        stopRules();
+        return null;
+    }
+    if(input < product_deets.min || input > product_deets.max){
+        sayText(msgs('enr_input_out_of_bounds', {}, lang)); //this shoud include 1 to continue 99 to quite
+        promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length})
+    }
+    else if(input % product_deets.increment === 0){
+        var format_order_message = require('./lib/enr-format-input-message');
+        state.vars.current_input_quantity = input;
+        var input_confirm_opts = format_order_message(input, product_deets, lang);
+        var input_confirm_msg = msgs('enr_confirm_input_order', input_confirm_opts, lang);
+        state.vars.current_menu_str = input_confirm_msg;
+        sayText(input_confirm_msg);
+        promptDigits('enr_confirm_input_order', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length})
+    }
+    else if(input % product_deets.increment !== 0){
+        sayText(msgs('enr_bad_input_increment', {}, lang));
+        promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length})
+    }
+    else{
+        sayText(msgs('invalid_input', {}, lang));
+        promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length})
+    }
+    get_time();
+});
+
+
+addInputHandler('enr_confirm_input_order', function(input){ //input ordering confirmation
+    state.vars.current_step = 'enr_confirm_input_order'
+    input = parseInt(input.replace(/\D/g,''));
+    if(input === 99){
+        sayText(msgs('exit', {}, lang));
+        stopRules();
+        return null;
+    }
+    else if(input === 44){
+        if(state.vars.multiple_input_menus){
+            var menu = JSON.parse(state.vars.input_menu)[0];
+        }
+        else{
+            var menu = state.vars.input_menu;
+        }
+        state.vars.current_menu_str = menu;
+        sayText(menu)
+        promptDigits('enr_input_splash', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length})
+    }
+    else if(input === 1){
+        var log_input_order = require('./lib/enr-log-input-order');
+        var product_deets = JSON.parse(state.vars.product_deets)
+        console.log('product deets : ' + JSON.stringify(product_deets));
+        var input_name = product_deets.input_name;
+        log_input_order(state.vars.session_account_number, an_pool, input_name, state.vars.current_input_quantity)
+        sayText(msgs('enr_input_order_success', {'$NAME' : product_deets[lang]}, lang));
+        promptDigits('enr_input_order_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
+    }
+    else{
+        sayText(msgs('invalid_input', {}, lang));
+        promptDigits('invalid_input', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length})
+    }
+    get_time();
+});
+
+addInputHandler('enr_input_order_continue', function(input){
+    state.vars.current_step = 'input_order_continue';
+    input = parseInt(input.replace(/\D/g,''));
+    if(input == 99){
+        sayText(msgs('exit', {}, lang));
+        stopRules();
+        return null;
+    }
+    else{
+        if(state.vars.multiple_input_menus){
+            var menu = JSON.parse(state.vars.input_menu)[0];
+        }
+        else{
+            var menu = state.vars.input_menu;
+        }
+        state.vars.current_menu_str = menu;
+        sayText(menu)
+        promptDigits('enr_input_splash', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length})
+    }
+    get_time();
+});
+//end input order handlers
+
+
+
+/*
+input handlers for order review
+*/
+addInputHandler('enr_order_review_start', function(input){ //input is account number
+    state.vars.current_step = 'enr_order_review_start';
+    input = parseInt(input.replace(/\D/g,''));
+    var client = get_client(input, an_pool);
+    if(client === null || client.vars.registered === 0){
+        sayText(msgs('account_number_not_found', {}, lang));
+        contact.vars.account_failures = contact.vars.account_failures + 1;
+        promptDigits(state.vars.current_step, {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+    }
+    else{
+        var prod_menu_select = require('./lib/enr-select-product-menu');
+        var gen_input_review = require('./lib/enr-gen-order-review'); //todo: add prepayment calc
+        var input_review_menu = gen_input_review(input, prod_menu_select(client.vars.geo, geo_menu_map), an_pool, lang);
+        if(typeof(input_review_menu) == 'string'){
+            sayText(input_review_menu);
+            promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
+        }
+        else{
+            state.vars.multiple_review_frames = 1;
+            state.vars.review_frame_loc = 0;
+            state.vars.review_frame_length = Object.keys(input_review_menu).length;
+            state.vars.current_review_str = input_review_menu[state.vars.review_frame_loc];
+            sayText(state.vars.current_review_str);
+            state.vars.review_menu = JSON.stringify(input_review_menu);
+            promptDigits('enr_order_review_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+        }
+    }
+    get_time();
+});
+
+addInputHandler('enr_order_review_continue', function(input){
+    state.vars.current_step = 'enr_order_review_continue';
+    input = parseInt(input.replace(/\D/g,''));
+    if(input == 99){
+        sayText(msgs('exit', {}, lang));
+        stopRules();
+        return null;
+    }
+    else if(state.vars.review_frame_loc < state.vars.review_frame_length - 1){ //watch for off by 1 errors
+        state.vars.review_frame_loc = state.vars.review_frame_loc + 1;
+        var input_review_menu = JSON.parse(state.vars.review_menu);
+        state.vars.current_review_str = input_review_menu[state.vars.review_frame_loc];
+        sayText(state.vars.current_review_str);
+        promptDigits('enr_order_review_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+    }
+    else{
+        promptDigits('cor_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input,'timeout' : timeout_length});
+    }
+    get_time();
+});
+//end order review
+
+/*
+input handlers for finalize order
+*/
+addInputHandler('enr_finalize_start', function(input){ //input is account number
+    state.vars.current_step = 'enr_finalize_start';
+    input = parseInt(input.replace(/\D/g,''));
+    if(input == 99){
+        sayText(msgs('exit', {}, lang));
+        stopRules();
+        return null;
+    }
+    var client = get_client(input, an_pool);
+    if(client == null || client.vars.registered == 0){
+        sayText(msgs('account_number_not_found', {}, lang));
+        contact.vars.account_failures = contact.vars.account_failures + 1;
+        promptDigits(state.vars.current_step, {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+    }
+    else if(client.vars.finalized !== 1 || client.vars.finalized === undefined){
+        state.vars.session_account_number = input;
+        sayText(msgs('enr_finalize_verify', {}, lang));
+        promptDigits('enr_finalize_verify',  {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+    }
+    else if(client.vars.finalized == 1){
+        sayText(msgs('enr_already_finalized', {}, lang));
+        promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+    }
+    get_time();
+});
+
+addInputHandler('enr_finalize_verify', function(input){
+    state.vars.current_step = 'enr_finalize_verify';
+    input = parseInt(input.replace(/\D/g, ''));
+    if(input == 1){
+        sayText(msgs('enr_finalized', {}, lang));
+        var client = get_client(state.vars.session_account_number, an_pool)
+        client.vars.finalized = 1;
+        client.save(); 
+    }
+    else{
+        sayText(msgs('enr_not_finalized', {}, lang));
+    }
+    promptDigits('enr_continue', {'submitOnHash' : false, 'maxDigits' : max_digits_for_input, 'timeout' : timeout_length});
+    get_time();
+});
+
+//end finalize order
+
