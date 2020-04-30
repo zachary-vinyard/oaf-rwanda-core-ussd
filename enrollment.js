@@ -261,7 +261,6 @@ addInputHandler('enr_glus',function(input){
 });
 
 addInputHandler('enr_group_id_confirmation', function(input){ //enr group leader / umudugudu support id step. last registration step
-
     state.vars.current_step = 'enr_glus';
     input = input.replace(/\W/g,'');
     if(input == 99){
